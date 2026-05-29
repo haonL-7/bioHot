@@ -1,0 +1,31 @@
+from flask import Flask, request, jsonify
+import json
+
+app = Flask(__name__)
+
+def load_knowledge_base():
+    with open("knowledge_base.json", "r", encoding="utf-8") as f:
+        return json.load(f)
+
+@app.route('/ask')
+def ask():
+    question = request.args.get('question', '').strip().lower()
+    if not question:
+        return jsonify({"error": "请提供问题参数"}), 400
+    
+    data = load_knowledge_base()
+    for item in data.get("probiotics", []):
+        if question == item["name"].lower():
+            return jsonify(item)
+    for item in data.get("metabolites", []):
+        if question == item["name"].lower():
+            return jsonify(item)
+    return jsonify({"error": "未找到该关键词的证据"}), 404
+
+@app.route('/')
+def index():
+    with open("index.html", "r", encoding="utf-8") as f:
+        return f.read()
+
+if __name__ == "__main__":
+    app.run()

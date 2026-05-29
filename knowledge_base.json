@@ -1,15 +1,110 @@
-[
-  {
-    "菌株": "Phocaeicola succinatutens",
-    "代谢物": "丁酸",
-    "功能声称": "改善肠道屏障",
-    "证据等级": "L1",
-    "四维评分": {
-      "正向": 0.9,
-      "反向": 0.1,
-      "耦合": 0.8,
-      "测量深度": 0.9
+{
+  "probiotics": [
+    {
+      "name": "P. succinatutens — 琥珀酸清除与病原抑制",
+      "name_en": "P. succinatutens — Succinate Scavenging and Pathogen Inhibition",
+      "evidence_level": "Level 1 (porcine network inference)",
+      "scores": {
+        "effectiveness": 3,
+        "safety": 3,
+        "accessibility": 2,
+        "evidence_strength": 1
+      },
+      "summary": "P. succinatutens通过专一性琥珀酸-丙酸代谢通路清除肠腔游离琥珀酸，切断条件致病菌（如肠杆菌科）的碳源供给，同时丙酸降低肠腔pH选择性抑制不耐酸病原菌。该代谢通路已在体外和小鼠单菌定植模型中充分验证（Level 3），甲基丙二酰辅酶A途径的关键酶（ScpA/ScpB/ScpC）在两株Phascolarctobacterium模式菌株间显示100%氨基酸序列保守性。然而，在猪模型中该功能仅达到Level 1（共现网络推断），尚未有任何研究在猪肠道中直接测量该菌定植后肠腔琥珀酸通量的因果性变化。核心证据缺口（Level 4空白）：猪源菌株分离+断奶仔猪单菌定植实验完全缺失。",
+      "summary_en": "P. succinatutens scavenges luminal succinate through its obligate succinate-to-propionate metabolic pathway, depriving opportunistic pathogens (e.g., Enterobacteriaceae) of a critical carbon source while simultaneously lowering luminal pH via propionate production to selectively suppress acid-intolerant pathogens. The methylmalonyl-CoA pathway has been fully validated in vitro and in murine mono-colonization models (Level 3), and the core enzymes (ScpA/ScpB/ScpC) show 100% amino acid sequence identity between two Phascolarctobacterium type strains. However, in porcine models, this function reaches only Level 1 (co-occurrence network inference); no study has directly measured causal changes in luminal succinate flux following colonization in the porcine gut. Critical evidence gap (Level 4 void): porcine-derived strain isolation + mono-colonization in weaned piglets is entirely absent."
     },
-    "支撑文献": ["PMID:12345678"]
-  }
-]
+    {
+      "name": "P. succinatutens — 肠道屏障维护",
+      "name_en": "P. succinatutens — Intestinal Barrier Maintenance",
+      "evidence_level": "Level 2 (porcine propionate validation, non-strain-specific)",
+      "scores": {
+        "effectiveness": 4,
+        "safety": 3,
+        "accessibility": 2,
+        "evidence_strength": 2
+      },
+      "summary": "P. succinatutens通过其代谢产物丙酸维持肠道屏障完整性。分子机制呈现双通道并行框架：膜通道由GPR43/GPR41激活后通过β-arrestin和cAMP分支阻断NF-κB核转位；胞内通道由丙酸抑制HDAC活性解除紧密连接蛋白（ZO-1、occludin）的表观遗传转录抑制。在小鼠模型中，该菌单菌定植→丙酸生成→TLR4/NF-κB通路抑制→屏障维护的完整因果链已建立（Level 3）。在猪模型中，两项Level 2研究独立验证了丙酸（源自日粮纤维混合发酵）对TLR4/NF-κB信号的抑制和紧密连接蛋白的上调作用。关键限制：现有猪模型证据仅验证了丙酸的屏障保护效应，未证明P. succinatutens可在猪肠道中原位产生足够丙酸以实现该效果——这是菌株特异性因果验证的核心缺失环节。",
+      "summary_en": "P. succinatutens maintains intestinal barrier integrity through its metabolite propionate via a dual-pathway mechanism: the membrane pathway involves GPR43/GPR41 activation rerouting signals through β-arrestin and cAMP branches to block NF-κB nuclear translocation; the intracellular pathway involves HDAC inhibition relieving epigenetic repression of tight junction proteins (ZO-1, occludin). In murine models, the complete causal chain from P. succinatutens mono-colonization → propionate production → TLR4/NF-κB pathway inhibition → barrier maintenance has been established (Level 3). In porcine models, two Level 2 studies independently validated propionate-mediated (from mixed dietary fiber fermentation) TLR4/NF-κB suppression and tight junction protein upregulation. Critical limitation: existing porcine evidence validates propionate's barrier-protective effect but does not demonstrate that P. succinatutens can produce sufficient propionate in situ in the porcine gut to achieve this effect — the missing link for strain-specific causal validation."
+    },
+    {
+      "name": "P. succinatutens — 脂肪沉积调控",
+      "name_en": "P. succinatutens — Lipid Deposition Reduction",
+      "evidence_level": "Level 1 (porcine SCFA-adipogenic gene correlation)",
+      "scores": {
+        "effectiveness": 3,
+        "safety": 3,
+        "accessibility": 2,
+        "evidence_strength": 1
+      },
+      "summary": "P. succinatutens通过丙酸介导的MYC-精氨酸-FOXO3a分子轴减少宿主脂肪沉积。该通路起始于丙酸抑制HDAC活性→MYC基因座组蛋白乙酰化升高、染色质开放度下降→MYC转录衰减→解除对谷氨酰胺转运体（SLC1A5/SLC38A5）的抑制→增强精氨酸从头合成→精氨酸积累负调控PI3K/Akt/FOXO3a级联→抑制脂肪合成基因程序。小鼠粪菌移植（FMT）和单菌定植实验已完整验证该通路（Level 3）。在猪模型中，UCP1敲入猪显示粪便SCFAs与脂肪生成基因表达呈负相关（Level 1关联证据），但该关联并非P. succinatutens特异性。该通路在不同商业猪种间的保守性仍属推测。此功能使P. succinatutens区别于同属P. faecium（通过TLR2通路发挥作用），构成属内功能分化的代谢基础。",
+      "summary_en": "P. succinatutens reduces host lipid deposition through the propionate-mediated MYC-arginine-FOXO3a molecular axis. The pathway proceeds as: propionate-mediated HDAC inhibition → increased histone acetylation and decreased chromatin accessibility at the MYC locus → MYC transcriptional attenuation → derepression of glutamine transporters (SLC1A5/SLC38A5) → enhanced de novo arginine biosynthesis → arginine accumulation suppressing PI3K/Akt/FOXO3a signaling → reduced adipogenic gene expression. Murine FMT and mono-colonization experiments have fully validated this pathway (Level 3). In porcine models, UCP1 knock-in pigs show a negative correlation between fecal SCFAs and adipogenic gene expression (Level 1 association evidence), but this association is not specific to P. succinatutens. Pathway conservation across commercial pig breeds remains speculative. This pathway distinguishes P. succinatutens from its congener P. faecium (which operates via TLR2), providing the metabolic basis for functional divergence within the genus."
+    }
+  ],
+  "metabolites": [
+    {
+      "name": "丁酸 / 短链脂肪酸",
+      "name_en": "Butyrate / SCFAs",
+      "evidence_level": "Level 2b (Forward: direct porcine in vivo validation; Reverse: Level 1 hypothesis-generating only)",
+      "scores": {
+        "effectiveness": 3,
+        "safety": 1,
+        "accessibility": 0,
+        "evidence_strength": 0
+      },
+      "summary": "丁酸是隔室化共代谢网络中验证最充分的节点（研究优先级P1）。正向通路（微生物→宿主表观遗传）：在猪模型中已获Level 2b体内验证——Xiong等（2016）里程碑式研究证明丁酸通过HDAC抑制上调断奶仔猪内源性宿主防御肽；猪回肠类器官实验验证了丁酸的HDAC抑制和屏障增强效应；藏猪模型中丁酸通过mTORC1-HDAC3/8通路促进巨噬细胞H4K31巴豆酰化。反向通路（宿主表观遗传→微生物）：仅达Level 1——宿主基因调控网络（PRDM15、STAT1）和无菌猪转录组数据提供了假设生成性线索，但宿主表观遗传操作→菌群组成变化的直接因果验证在猪模型中完全缺失。耦合验证深度：Level 0——正向和反向效应从未在同一实验系统中被同时观察。测量深度：Level 0（普遍性发现）——所有研究均仅测量单一隔室（肠腔）单一时间点，肠腔与上皮细胞内的丁酸浓度相差三个数量级（mM vs μM）的生理事实未被纳入实验设计。",
+      "summary_en": "Butyrate is the most extensively validated node in the compartmentalized co-metabolism network (Research Priority P1). Forward pathway (microbial metabolites → host epigenetics): Level 2b in vivo validation in porcine models — Xiong et al. (2016) landmark study demonstrated butyrate upregulates endogenous host defense peptides via HDAC inhibition in weaned piglets; porcine ileal organoid experiments confirmed HDAC inhibition and barrier-enhancing effects; Tibetan pig studies showed butyrate promotes macrophage H4K31 crotonylation via mTORC1-HDAC3/8. Reverse pathway (host epigenetics → microbiota): only Level 1 — host gene regulatory networks (PRDM15, STAT1) and germ-free pig transcriptome data provide hypothesis-generating clues, but direct causal validation of host epigenetic manipulation → microbial community change is entirely absent in porcine models. Coupling Verification Depth: Level 0 — forward and reverse effects have never been simultaneously observed within a single experimental system. Measurement Depth: Level 0 (universal finding) — all studies measured only a single compartment (luminal) at a single timepoint; the three-order-of-magnitude concentration difference between luminal (mM) and intracellular (μM) butyrate has not been incorporated into experimental design."
+    },
+    {
+      "name": "胆汁酸",
+      "name_en": "Bile Acids",
+      "evidence_level": "Level 2b (Forward: direct porcine in vivo validation; Reverse: Level 1 hypothesis-generating only)",
+      "scores": {
+        "effectiveness": 3,
+        "safety": 1,
+        "accessibility": 0,
+        "evidence_strength": 0
+      },
+      "summary": "胆汁酸是猪模型验证的核心节点之一（研究优先级P2）。正向通路：已达Level 2b——断奶仔猪中猪脱氧胆酸（HDCA）通过FXR-PI3K/AKT通路增强肠道屏障功能，使Lactobacillus丰度从5.28%增至37.97%；新生仔猪中胆汁酸通过激活TGR5和下调FXR促进肠道上皮细胞增殖和屏障成熟。猪与小鼠的胆汁酸池组成存在显著物种差异（猪以猪脱氧胆酸为主），限制了鼠类证据的直接外推。反向通路：仅达Level 1——宿主胆汁酸信号改变是否反馈调控微生物群落组成尚未被因果验证。耦合验证深度：Level 0——FXR/TGR5激活效应与菌群结构调整从未在同一实验中被同时追踪。测量深度：Level 0（普遍性发现）。主要证据缺口：胆汁酸在肠腔-上皮界面的浓度梯度数据缺失，反向通路的因果验证空白构成理解胆汁酸-菌群反馈调控回路的关键瓶颈。",
+      "summary_en": "Bile acids are a porcine-validated core node (Research Priority P2). Forward pathway: Level 2b — hyodeoxycholic acid (HDCA) enhances intestinal barrier function via the FXR-PI3K/AKT pathway in weaned piglets, increasing Lactobacillus abundance from 5.28% to 37.97%; in neonatal piglets, bile acids promote epithelial cell proliferation and barrier maturation through TGR5 activation and FXR downregulation. Substantial species differences in bile acid pool composition between pigs (hyodeoxycholic acid-dominant) and mice limit direct extrapolation of murine evidence. Reverse pathway: only Level 1 — whether host bile acid signaling alterations feed back to regulate microbial community composition has not been causally validated. Coupling Verification Depth: Level 0 — FXR/TGR5 activation effects and microbial community restructuring have never been simultaneously tracked within a single experiment. Measurement Depth: Level 0 (universal finding). Key evidence gaps: concentration gradient data for bile acids at the lumen-epithelium interface are absent; the reverse pathway causal validation void constitutes a critical bottleneck for understanding bile acid-microbiota feedback regulatory circuits."
+    },
+    {
+      "name": "色氨酸代谢物",
+      "name_en": "Tryptophan Metabolites",
+      "evidence_level": "Level 2a (Forward: preliminary porcine in vivo validation; Reverse: Level 0 no evidence)",
+      "scores": {
+        "effectiveness": 2,
+        "safety": 0,
+        "accessibility": 0,
+        "evidence_strength": 0
+      },
+      "summary": "色氨酸代谢物处于部分猪模型验证状态（研究优先级P2）。正向通路：达Level 2a（初步体内验证）——Bacteroides thetaiotaomicron通过色氨酸代谢-AhR-Nrf2信号轴缓解断奶仔猪腹泻，其代谢物主要富集于色氨酸代谢通路；肠道微生物介导的色氨酸代谢通过AhR信号通路抑制细胞焦亡维持仔猪肠道上皮稳态；膳食补充色氨酸可调节断奶仔猪肠道微生物组成和多样性并激活AhR信号。然而，这些验证均基于特定菌株或膳食干预，而非色氨酸代谢物本身的直接因果验证。反向通路：Level 0——色氨酸代谢物的反向调控角色完全未被探索。耦合验证深度：Level 0。测量深度：Level 0（普遍性发现）。核心证据缺口：色氨酸代谢物（吲哚、犬尿氨酸）在肠腔-上皮-微环境三个隔室中的浓度梯度从未被同时测量；AhR激活效应与菌群组成变化的时间异步性尚未被表征。",
+      "summary_en": "Tryptophan metabolites are partially porcine-validated (Research Priority P2). Forward pathway: Level 2a (preliminary in vivo validation) — Bacteroides thetaiotaomicron alleviates weaning diarrhea in piglets via tryptophan metabolism-AhR-Nrf2 signaling, with metabolites enriched in tryptophan metabolic pathways; gut microbiota-mediated tryptophan metabolism suppresses pyroptosis via AhR signaling to maintain intestinal epithelial homeostasis in piglets; dietary tryptophan supplementation modulates gut microbial composition and diversity in weaned piglets with AhR activation. However, these validations are based on specific bacterial strains or dietary interventions rather than direct causal validation of tryptophan metabolites per se. Reverse pathway: Level 0 — the reverse regulatory role of tryptophan metabolites remains entirely unexplored. Coupling Verification Depth: Level 0. Measurement Depth: Level 0 (universal finding). Key evidence gaps: concentration gradients of tryptophan metabolites (indole, kynurenine) across the three compartments (lumen-epithelium-microenvironment) have never been simultaneously measured; the temporal asynchrony between AhR activation and microbial community shifts has not been characterized."
+    },
+    {
+      "name": "多胺",
+      "name_en": "Polyamines",
+      "evidence_level": "Level 1 (Forward: murine cross-species extrapolation; no porcine data)",
+      "scores": {
+        "effectiveness": 1,
+        "safety": 0,
+        "accessibility": 0,
+        "evidence_strength": 0
+      },
+      "summary": "多胺是跨物种外推的预测节点（研究优先级P3），在猪模型中无任何层级的直接验证证据。正向通路：仅达Level 1——现有证据全部来源于小鼠模型和体外实验：多胺可通过促进核小体凝聚调控组蛋白甲基化和乙酰化修饰；多胺与肠道微生物群形成双向互作以维持肠道稳态（包括促进微生物生长和生物膜形成）。但这些机制在猪肠道中未经任何实验验证。反向通路：Level 0——完全空白。耦合验证深度：Level 0。测量深度：Level 0（普遍性发现）。核心证据缺口：多胺在猪肠道中的基线浓度和空间分布数据完全缺失；猪源菌株的多胺合成能力未经鉴定；多胺转运蛋白在猪肠上皮的表达模式未知。该节点的纳入基于其在其他哺乳动物中已确立的宿主-微生物共代谢功能，但在猪肠道中的功能相关性仍需从头建立。",
+      "summary_en": "Polyamines are a cross-species extrapolated predicted node (Research Priority P3) with no direct validation evidence at any level in porcine models. Forward pathway: only Level 1 — all existing evidence derives from murine models and in vitro studies: polyamines can regulate histone methylation and acetylation by promoting nucleosome condensation; polyamines and gut microbiota form bidirectional interactions to maintain intestinal homeostasis (including promoting microbial growth and biofilm formation). However, none of these mechanisms have been experimentally verified in the porcine gut. Reverse pathway: Level 0 — complete void. Coupling Verification Depth: Level 0. Measurement Depth: Level 0 (universal finding). Key evidence gaps: baseline concentration and spatial distribution data for polyamines in the porcine gut are entirely absent; polyamine biosynthetic capacity of porcine-derived strains has not been characterized; expression patterns of polyamine transporters in porcine intestinal epithelium are unknown. Inclusion of this node is based on established host-microbe co-metabolic functions in other mammals, but functional relevance in the porcine gut requires de novo establishment."
+    },
+    {
+      "name": "维生素B12",
+      "name_en": "Vitamin B12",
+      "evidence_level": "Level 1 (Forward: association inference only; weakest evidence base)",
+      "scores": {
+        "effectiveness": 1,
+        "safety": 0,
+        "accessibility": 0,
+        "evidence_strength": 0
+      },
+      "summary": "维生素B12是当前证据基础最薄弱的节点（研究优先级P3）。正向通路：仅达Level 1（关联推断）——B12作为宿主一碳代谢的关键辅因子，通过参与S-腺苷甲硫氨酸（SAM）合成为DNA甲基化提供甲基供体，其理论链路已在综述层面被反复阐述。然而，在猪模型中，B12浓度与DNA甲基化标记之间的直接因果验证完全缺失。在P. succinatutens的琥珀酸-丙酸代谢通路中，B12是甲基丙二酰辅酶A变位酶的必需辅酶，B12可用性直接影响该菌的丙酸产出效率——这是B12与项目一的功能交汇点。反向通路：Level 0——完全空白。耦合验证深度：Level 0。测量深度：Level 0（普遍性发现）。核心证据缺口：猪肠道不同隔室中的B12浓度分布数据缺失；B12-丙酸代谢耦联在猪肠道中的原位验证从未开展；B12对猪肠道上皮DNA甲基化的因果效应未经实验检验。该节点被纳入模型基于其在一碳代谢中的核心地位，但在猪肠道共代谢网络中的功能角色实质上是一个待检验的假说。",
+      "summary_en": "Vitamin B12 has the weakest evidence base among all five nodes (Research Priority P3). Forward pathway: only Level 1 (association inference) — as a key cofactor in host one-carbon metabolism, B12 participates in S-adenosylmethionine (SAM) synthesis to provide methyl donors for DNA methylation; this theoretical chain has been repeatedly elaborated in reviews. However, direct causal validation between B12 concentrations and DNA methylation marks is entirely absent in porcine models. Notably, in P. succinatutens' succinate-to-propionate metabolic pathway, B12 serves as an essential coenzyme for methylmalonyl-CoA mutase — B12 availability directly impacts this bacterium's propionate production efficiency, representing a functional intersection with Project 1. Reverse pathway: Level 0 — complete void. Coupling Verification Depth: Level 0. Measurement Depth: Level 0 (universal finding). Key evidence gaps: B12 concentration distribution data across different porcine gut compartments are absent; in situ validation of B12-propionate metabolic coupling in the porcine gut has never been conducted; causal effects of B12 on porcine intestinal epithelial DNA methylation have not been experimentally tested. This node is included based on its central role in one-carbon metabolism, but its functional role in the porcine gut co-metabolism network is substantively a hypothesis awaiting experimental testing."
+    }
+  ]
+}

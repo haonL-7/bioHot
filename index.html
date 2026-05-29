@@ -2,307 +2,1012 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>益生菌/代谢物证据查询系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>益生菌/代谢物证据评估系统</title>
+
+    <!-- ==================== CDN 引入 ==================== -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/echarts@5/dist/echarts.min.js"></script>
+
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        /* ==================== 全局样式 ==================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: #f0f7f0;
-            margin: 0;
-            padding: 2rem 1rem;
-            color: #1a3b2f;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                         "Microsoft YaHei", "Helvetica Neue", sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
         }
-        .container {
-            max-width: 900px;
+
+        #app {
+            max-width: 960px;
             margin: 0 auto;
-            background: white;
-            border-radius: 2rem;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-            overflow: hidden;
-            padding: 2rem 1.5rem 2.5rem;
+            padding: 20px 16px 40px;
         }
-        h1 {
-            font-size: 1.9rem;
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-            color: #1f5e3a;
+
+        /* ==================== 标题 ==================== */
+        .header {
+            text-align: center;
+            padding: 28px 0 10px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 6px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        /* ==================== 搜索区域 ==================== */
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin: 24px 0 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .search-bar input {
+            flex: 1;
+            min-width: 220px;
+            max-width: 440px;
+            padding: 12px 18px;
+            border: 2px solid #dfe6e9;
+            border-radius: 28px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .search-bar input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.15);
+        }
+        .search-bar button {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 28px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.15s;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+        .btn-search {
+            background: #3498db;
+            color: #fff;
+        }
+        .btn-search:hover { background: #2980b9; }
+        .btn-ai {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: #fff;
+        }
+        .btn-ai:hover { background: linear-gradient(135deg, #5b4cdb, #9088f0); }
+        .search-bar button:active { transform: scale(0.96); }
+        .search-bar button:disabled {
+            background: #b0bec5;
+            cursor: not-allowed;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ==================== 服务器地址配置面板 ==================== */
+        .server-config {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            padding: 12px 18px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 10px;
             flex-wrap: wrap;
+            font-size: 13px;
+            color: #636e72;
         }
-        .sub {
-            color: #4b6b5e;
-            margin-bottom: 2rem;
-            border-left: 4px solid #83c5a3;
-            padding-left: 1rem;
-            font-weight: 400;
-        }
-        .search-area {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
-        input {
-            flex: 3;
-            min-width: 200px;
-            padding: 0.9rem 1.2rem;
-            font-size: 1rem;
-            border: 1px solid #cbdcd3;
-            border-radius: 2rem;
-            outline: none;
-            transition: 0.2s;
-            background: #fefef7;
-        }
-        input:focus {
-            border-color: #2c8c5a;
-            box-shadow: 0 0 0 3px rgba(44,140,90,0.2);
-        }
-        button {
-            background: #2c8c5a;
-            color: white;
-            border: none;
-            padding: 0.9rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 2rem;
+        .server-config .config-icon {
             cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            font-size: 20px;
+            user-select: none;
+            transition: transform 0.3s;
         }
-        button:hover {
-            background: #1f6e46;
-            transform: translateY(-1px);
-        }
-        button:active {
-            transform: translateY(1px);
-        }
-        .result-card {
-            background: #f9fefb;
-            border-radius: 1.5rem;
-            border: 1px solid #dcfce7;
-            padding: 1.5rem;
-            margin-top: 1rem;
-        }
-        .loading {
-            color: #2c8c5a;
-            font-style: italic;
-            padding: 1rem;
-            text-align: center;
-        }
-        .error {
-            background: #fee2e2;
-            border-left: 6px solid #dc2626;
-            color: #7f1a1a;
-            padding: 1rem;
-            border-radius: 1rem;
-        }
-        .evidence-badge {
+        .server-config .config-icon.open { transform: rotate(60deg); }
+        .server-config .config-status {
             display: inline-block;
-            background: #e9f5ef;
-            padding: 0.2rem 0.8rem;
-            border-radius: 2rem;
-            font-size: 0.8rem;
-            font-weight: 500;
-            margin-bottom: 0.8rem;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
         }
-        .scores {
+        .config-status.ok  { background: #27ae60; box-shadow: 0 0 6px rgba(39,174,96,0.5); }
+        .config-status.err { background: #e74c3c; box-shadow: 0 0 6px rgba(231,76,60,0.5); }
+        .config-status.chk { background: #f39c12; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .server-config .config-label { font-weight: 600; white-space: nowrap; }
+        .server-config .config-url {
+            flex: 1; min-width: 160px;
+            font-family: "SF Mono","Fira Code",monospace;
+            font-size: 12px; color: #2c3e50;
+            word-break: break-all;
+        }
+        .server-config input.config-input {
+            flex: 1; min-width: 160px;
+            padding: 6px 10px;
+            border: 1px solid #dfe6e9;
+            border-radius: 6px;
+            font-size: 12px; font-family: monospace;
+            outline: none;
+        }
+        .server-config input.config-input:focus { border-color: #3498db; }
+        .server-config .config-btn {
+            padding: 6px 14px; border: none;
+            border-radius: 6px; font-size: 12px;
+            cursor: pointer; font-weight: 600;
+            white-space: nowrap;
+        }
+        .config-btn-save { background: #27ae60; color: #fff; }
+        .config-btn-save:hover { background: #1e8449; }
+        .config-btn-test { background: #3498db; color: #fff; }
+        .config-btn-test:hover { background: #2980b9; }
+        .config-btn-reset { background: #f1f2f6; color: #636e72; }
+        .config-btn-reset:hover { background: #dfe6e9; }
+        .config-panel { display: none; flex-wrap: wrap; gap: 8px; align-items: center; width: 100%; }
+        .config-panel.show { display: flex; }
+        .config-hint {
+            font-size: 11px; color: #b2bec3;
+            width: 100%; margin-top: 4px;
+            line-height: 1.6;
+        }
+        .config-hint code {
+            background: #f1f2f6; padding: 2px 6px;
+            border-radius: 3px; font-size: 11px;
+            font-family: monospace;
+        }
+        .server-config a { color: #3498db; text-decoration: none; }
+        .server-config a:hover { text-decoration: underline; }
+        @media (max-width: 600px) {
+            .server-config { padding: 10px 12px; font-size: 12px; }
+            .server-config .config-url { font-size: 11px; }
+            .server-config input.config-input { min-width: 120px; }
+            .config-panel.show { gap: 6px; }
+            .config-btn { padding: 5px 10px; font-size: 11px; }
+        }
+
+        /* ==================== 加载状态 ==================== */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-size: 15px;
+        }
+        .loading::before {
+            content: "⏳ ";
+        }
+        .ai-loading {
+            text-align: center;
+            padding: 32px 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+        .ai-loading .spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 3px solid #dfe6e9;
+            border-top-color: #6c5ce7;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .ai-loading p {
+            color: #636e72;
+            font-size: 14px;
+        }
+
+        /* ==================== 错误提示 ==================== */
+        .error-msg {
+            background: #ffeaa7;
+            border-left: 4px solid #fdcb6e;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin: 16px 0;
+            color: #636e72;
+            font-size: 14px;
+        }
+
+        /* ==================== 结果卡片 ==================== */
+        .result-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+        .result-card .card-header {
+            background: #f8f9fa;
+            padding: 14px 20px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
             display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .result-card .card-body {
+            padding: 16px 20px;
+        }
+
+        /* AI 结果卡片特殊样式 */
+        .ai-card { border: 2px solid #a29bfe; }
+        .ai-card .card-header {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: #fff;
+        }
+
+        /* ==================== 标签与徽章 ==================== */
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .badge-green  { background: #27ae60; }
+        .badge-blue   { background: #2980b9; }
+        .badge-orange { background: #f39c12; }
+        .badge-gray   { background: #95a5a6; }
+        .badge-purple { background: #6c5ce7; }
+
+        .confidence-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .confidence-high   { background: #d5f5e3; color: #27ae60; }
+        .confidence-medium { background: #fef9e7; color: #f39c12; }
+        .confidence-low    { background: #fadbd8; color: #e74c3c; }
+
+        /* ==================== 评分指标行 ==================== */
+        .score-row {
+            display: flex;
+            gap: 12px;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin: 1.2rem 0;
+            margin: 12px 0;
         }
         .score-item {
-            background: white;
-            padding: 0.5rem 1rem;
-            border-radius: 1rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            font-size: 0.9rem;
-        }
-        .strong {
-            font-weight: 700;
-            color: #1f5e3a;
-        }
-        hr {
-            margin: 1.2rem 0;
-            border: none;
-            border-top: 1px solid #d4e6db;
-        }
-        footer {
-            margin-top: 2rem;
+            flex: 1;
+            min-width: 70px;
             text-align: center;
-            font-size: 0.75rem;
-            color: #7c9a8b;
+            padding: 10px 6px;
+            background: #f8f9fa;
+            border-radius: 8px;
         }
-        @media (max-width: 550px) {
-            body { padding: 1rem; }
-            .container { padding: 1.5rem; }
-            button { width: 100%; }
+        .score-item .score-val {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        .score-item .score-label {
+            font-size: 11px;
+            color: #7f8c8d;
+            margin-top: 2px;
+        }
+
+        /* ==================== 图表容器 ==================== */
+        .chart-box {
+            width: 100%;
+            height: 360px;
+        }
+
+        /* ==================== 摘要区域 ==================== */
+        .summary-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #444;
+        }
+        .summary-box h4 {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .summary-box.en {
+            border-left: 3px solid #a29bfe;
+        }
+
+        /* ==================== 参考文献列表 ==================== */
+        .ref-list {
+            list-style: none;
+            padding: 0;
+        }
+        .ref-list li {
+            padding: 8px 12px;
+            margin: 4px 0;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+        .ref-list li::before {
+            content: "📄 ";
+        }
+
+        /* ==================== 实验建议列表 ==================== */
+        .advice-list {
+            list-style: none;
+            padding: 0;
+        }
+        .advice-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f2f6;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .advice-list li:last-child { border-bottom: none; }
+        .advice-list .advice-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 24px;
+            height: 24px;
+            background: #3498db;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ==================== 本地命中提示 ==================== */
+        .local-hit {
+            background: #eaf2f8;
+            border-left: 4px solid #3498db;
+            padding: 10px 16px;
+            border-radius: 6px;
+            margin: 12px 0;
+            font-size: 13px;
+            color: #2c3e50;
+        }
+
+        /* ==================== 移动端适配 ==================== */
+        @media (max-width: 600px) {
+            #app { padding: 12px 10px 30px; }
+            .header h1 { font-size: 20px; }
+            .search-bar input { min-width: 160px; font-size: 14px; padding: 10px 14px; }
+            .search-bar button { padding: 10px 16px; font-size: 14px; }
+            .chart-box { height: 260px; }
+            .result-card .card-body { padding: 12px 14px; }
+            .score-item .score-val { font-size: 22px; }
+            .score-row { gap: 6px; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>
-        🧫 微生态证据引擎
-        <span style="font-size: 0.9rem; background: #eef3ea; padding: 0.2rem 0.7rem; border-radius: 2rem;">益生菌 · 代谢物</span>
-    </h1>
-    <div class="sub">基于知识库的证据等级 + 四维评分（有效性 · 安全性 · 可及性 · 证据强度）</div>
 
-    <div class="search-area">
-        <input type="text" id="queryInput" placeholder="例如：益生菌 / 丁酸 / 乳酸杆菌..." value="益生菌">
-        <button id="searchBtn">🔍 查询证据</button>
+<!-- ==================== Vue 3 应用 ==================== -->
+<div id="app">
+    <!-- 页头 -->
+    <div class="header">
+        <h1>🧬 益生菌/代谢物证据评估系统</h1>
+        <p class="subtitle">本地知识库检索 + DeepSeek AI 增强分析 | 猪肠道微生物组与表观遗传学</p>
     </div>
 
-    <div id="resultArea">
-        <!-- 动态内容会显示在这里 -->
-        <div class="result-card" style="background:#fefaf0; color:#7c6b3f;">
-            💡 提示：输入“益生菌”或“丁酸”试试看，支持中英文名称。
+    <!-- ==================== 服务器地址配置面板 ==================== -->
+    <div class="server-config">
+        <span class="config-icon" :class="{ open: showConfig }" @click="toggleConfig" title="服务器设置">⚙️</span>
+        <span class="config-status" :class="connStatus"></span>
+        <span class="config-label">后端：</span>
+        <span class="config-url" v-if="!showConfig" :title="backendUrl">{{ backendUrl }}</span>
+        <span class="config-hint" v-if="!showConfig && connStatus === 'err'" style="color:#e74c3c;">
+            ⚠️ 无法连接 — <a href="#" @click.prevent="toggleConfig">修改地址</a>
+        </span>
+        <div class="config-panel" :class="{ show: showConfig }">
+            <input
+                class="config-input"
+                v-model="customUrl"
+                @keyup.enter="saveBackendUrl"
+                placeholder="例：http://192.168.1.100:8000"
+            />
+            <button class="config-btn config-btn-save" @click="saveBackendUrl">💾 保存</button>
+            <button class="config-btn config-btn-test" @click="testConnection" :disabled="testingConn">
+                {{ testingConn ? '测试中...' : '🔗 测试' }}
+            </button>
+            <button class="config-btn config-btn-reset" @click="resetBackendUrl">↩ 自动</button>
+            <span class="config-hint">
+                💡 手机/平板访问时，请填入电脑的局域网 IP 地址。<br>
+                在电脑上按 <code>Win+R</code> → 输入 <code>cmd /k ipconfig</code> → 找到 <code>IPv4 地址</code>（如 192.168.x.x），然后在上面输入 <code>http://你的IP:8000</code> 并保存。
+            </span>
         </div>
     </div>
-    <footer>
-        数据来源：用户整理 · 仅供参考，不做医疗建议
-    </footer>
+
+    <!-- 搜索栏 -->
+    <div class="search-bar">
+        <input
+            v-model="query"
+            @keyup.enter="search"
+            placeholder="输入菌株名或代谢物名，如：丁酸、P. succinatutens、胆汁酸..."
+        />
+    </div>
+    <div class="btn-row">
+        <button class="btn-search" @click="search" :disabled="loading">
+            {{ loading && !aiLoading ? '搜索中...' : '🔍 知识库搜索' }}
+        </button>
+        <button class="btn-ai" @click="aiSearch" :disabled="aiLoading">
+            {{ aiLoading ? 'AI 分析中...' : '🤖 AI 深度分析' }}
+        </button>
+    </div>
+
+    <!-- 加载状态 -->
+    <div v-if="loading && !aiLoading" class="loading">正在查询知识库，请稍候...</div>
+
+    <!-- AI 加载状态 -->
+    <div v-if="aiLoading" class="ai-loading">
+        <div class="spinner"></div>
+        <p>DeepSeek AI 正在综合分析 "<strong>{{ aiQuery }}</strong>" ...</p>
+        <p style="font-size:12px;color:#b2bec3;margin-top:4px;">联网搜索 + 本地知识库 + 专业评估模型，预计需要 10-30 秒</p>
+    </div>
+
+    <!-- 全局错误提示 -->
+    <div v-if="errorMsg" class="error-msg">{{ errorMsg }}</div>
+
+    <!-- ==================== AI 分析结果（优先展示） ==================== -->
+    <template v-if="aiData && !aiLoading">
+        <!-- AI 结果卡片 -->
+        <div class="result-card ai-card">
+            <div class="card-header">
+                🤖 AI 深度分析结果
+                <span class="badge" :class="aiTierClass">{{ aiData.evidence_level }}</span>
+                <span class="confidence-badge" :class="'confidence-' + (aiData.confidence || 'medium')">
+                    可信度: {{ aiData.confidence || 'medium' }}
+                </span>
+            </div>
+            <div class="card-body">
+                <!-- 基本信息 -->
+                <p style="margin-bottom:4px;">
+                    <strong>{{ aiData.name }}</strong>
+                    <span style="color:#7f8c8d;font-size:13px;"> / {{ aiData.name_en }}</span>
+                </p>
+                <p style="font-size:13px;color:#7f8c8d;margin-bottom:8px;">
+                    类型: {{ aiData.type === 'probiotics' ? '益生菌' : aiData.type === 'metabolites' ? '代谢物' : '未知' }}
+                    <span v-if="aiData.research_priority && aiData.research_priority !== 'N/A'">
+                        | 研究优先级: <strong>{{ aiData.research_priority }}</strong>
+                    </span>
+                </p>
+
+                <!-- 四维评分 -->
+                <div class="score-row">
+                    <div class="score-item">
+                        <div class="score-val">{{ scores.eff }}</div>
+                        <div class="score-label">有效性<br>(Forward)</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-val">{{ scores.saf }}</div>
+                        <div class="score-label">安全性<br>(Reverse)</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-val">{{ scores.acc }}</div>
+                        <div class="score-label">耦合验证<br>(Coupling)</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-val">{{ scores.evi }}</div>
+                        <div class="score-label">测量深度<br>(Measurement)</div>
+                    </div>
+                </div>
+
+                <!-- ECharts 柱状图 -->
+                <div class="chart-box" id="ai-bar-chart" style="height:280px;"></div>
+
+                <!-- 中文摘要 -->
+                <div class="summary-box">
+                    <h4>📝 中文摘要</h4>
+                    <p>{{ aiData.summary }}</p>
+                </div>
+
+                <!-- 英文摘要 -->
+                <div class="summary-box en" v-if="aiData.summary_en">
+                    <h4>📝 English Summary</h4>
+                    <p>{{ aiData.summary_en }}</p>
+                </div>
+
+                <!-- 关键文献 -->
+                <div v-if="aiData.key_references && aiData.key_references.length > 0" style="margin-top:14px;">
+                    <h4 style="font-size:13px;color:#7f8c8d;margin-bottom:8px;">📚 关键参考文献</h4>
+                    <ul class="ref-list">
+                        <li v-for="(ref, idx) in aiData.key_references" :key="idx">{{ ref }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 本地知识库命中提示 -->
+        <div v-if="localMatch && localMatch.found" class="local-hit">
+            💡 本地知识库已收录 "<strong>{{ localMatch.name }}</strong>"（{{ localMatch.evidence_level }}）。
+            AI 分析已综合本地数据进行增强评估。
+        </div>
+        <div v-else-if="localMatch && !localMatch.found" class="local-hit" style="background:#fef9e7;border-left-color:#f39c12;">
+            ⚠️ 本地知识库未收录 "<strong>{{ query }}</strong>"，以上评估完全由 DeepSeek AI 基于现有科学文献生成，可信度为 <strong>{{ aiData.confidence || 'low' }}</strong>。建议通过实验验证。
+        </div>
+    </template>
+
+    <!-- ==================== 本地知识库结果 ==================== -->
+    <template v-if="searched && !loading">
+        <!-- 卡片 A：证据等级 -->
+        <div class="result-card" v-if="tierData">
+            <div class="card-header">
+                📊 证据等级评估
+                <span class="badge" :class="tierBadgeClass">{{ tierData.tier }}</span>
+            </div>
+            <div class="card-body">
+                <p style="margin-bottom:8px;color:#555;">
+                    条目：<strong>{{ tierData.strain || '未知' }}</strong>
+                    <span v-if="tierData.category" style="font-size:12px;color:#7f8c8d;">
+                        | 类型: {{ tierData.category === 'probiotics' ? '益生菌' : '代谢物' }}
+                    </span>
+                </p>
+                <div class="chart-box" id="bubble-chart"></div>
+            </div>
+        </div>
+
+        <!-- 卡片 B：四维评分 -->
+        <div class="result-card" v-if="matrixData">
+            <div class="card-header">📈 四维评分（正向 / 反向 / 耦合 / 测量深度）</div>
+            <div class="card-body">
+                <div class="chart-box" id="bar-chart"></div>
+            </div>
+        </div>
+
+        <!-- 卡片 C：实验建议 -->
+        <div class="result-card" v-if="adviceData">
+            <div class="card-header">🧪 实验验证建议</div>
+            <div class="card-body">
+                <ul class="advice-list">
+                    <li v-for="(item, idx) in adviceData.advice" :key="idx">
+                        <span class="advice-num">{{ idx + 1 }}</span>
+                        <span>{{ item }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </template>
+
+    <!-- 未搜索时的占位 -->
+    <div v-if="!searched && !loading && !aiData && !aiLoading" style="text-align:center;padding:40px 20px;color:#b2bec3;">
+        <p style="font-size:48px;margin-bottom:12px;">🔬</p>
+        <p>输入菌株名或代谢物名，使用「知识库搜索」或「AI 深度分析」开始评估</p>
+        <p style="font-size:13px;margin-top:8px;">
+            已收录 {{ kbStats.probiotics }} 条益生菌条目 + {{ kbStats.metabolites }} 条代谢物条目
+        </p>
+    </div>
 </div>
 
+<!-- ==================== Vue 应用逻辑 ==================== -->
 <script>
-    (function() {
-        const inputEl = document.getElementById('queryInput');
-        const btnEl = document.getElementById('searchBtn');
-        const resultArea = document.getElementById('resultArea');
+const { createApp, ref, computed, nextTick, onMounted } = Vue;
 
-        // 核心查询函数（GET /ask?question=xxx）
-        async function fetchEvidence(question) {
-            if (!question || question.trim() === '') {
-                showError('请输入要查询的益生菌或代谢物名称');
+const app = createApp({
+    setup() {
+        // ==================== 智能后端地址检测 ====================
+        // 自动判断当前环境，决定后端 API 地址：
+        //   1. 页面通过 HTTP 加载 -> 使用同一主机名 + 端口 8000
+        //   2. 页面通过 file:// 打开 -> 默认 localhost:8000
+        //   3. 用户手动保存过地址 -> 优先使用 localStorage 中的地址
+        //   4. URL 参数 ?api=xxx -> 临时覆盖（方便分享链接）
+        const detectBackendUrl = function() {
+            var loc = window.location;
+            var host = loc.hostname;
+            var autoUrl;
+            if (loc.protocol === 'file:') {
+                // 本地文件打开：默认 localhost:8000
+                autoUrl = 'http://localhost:8000';
+            } else if (host === 'localhost' || host === '127.0.0.1') {
+                // 从本地 HTTP 服务加载：后端在 8000 端口
+                autoUrl = 'http://localhost:8000';
+            } else if (/^(\d{1,3}\.){3}\d{1,3}$/.test(host) || host === '[::1]') {
+                // 纯 IP 地址（局域网开发）：后端在 8000 端口
+                autoUrl = loc.protocol + '//' + host + ':8000';
+            } else {
+                // 生产环境域名（PythonAnywhere / Railway / 自定义域名）：
+                // 前端和后端在同一服务器，使用同源地址（无端口号）
+                autoUrl = loc.protocol + '//' + host;
+            }
+            return autoUrl;
+        };
+
+        // URL 参数 ?api=xxx 可临时覆盖（方便分享链接给手机）
+        var params = new URLSearchParams(window.location.search);
+        var urlParam = params.get('api');
+
+        // 优先级：URL 参数 > localStorage > 自动检测
+        var storedUrl = localStorage.getItem('evidence_backend_url');
+        var initialUrl = urlParam || storedUrl || detectBackendUrl();
+
+        // ==================== 响应式状态 ====================
+        const query = ref('');
+        const loading = ref(false);
+        const aiLoading = ref(false);
+        const aiQuery = ref('');
+        const errorMsg = ref('');
+        const searched = ref(false);
+
+        // 服务器连接状态
+        const backendUrl = ref(initialUrl);
+        const customUrl = ref(initialUrl);
+        const showConfig = ref(false);
+        const connStatus = ref('chk');
+        const testingConn = ref(false);
+
+        // 本地知识库结果
+        const tierData = ref(null);
+        const matrixData = ref(null);
+        const adviceData = ref(null);
+
+        // AI 分析结果
+        const aiData = ref(null);
+        const localMatch = ref(null);
+
+        // 知识库统计
+        const kbStats = ref({ probiotics: 0, metabolites: 0 });
+
+        // ECharts 实例
+        let bubbleChart = null;
+        let barChart = null;
+        let aiBarChart = null;
+
+        // ==================== 计算属性 ====================
+        const scores = computed(() => {
+            const s = aiData.value?.scores || {};
+            return {
+                eff: s.effectiveness ?? 0,
+                saf: s.safety ?? 0,
+                acc: s.accessibility ?? 0,
+                evi: s.evidence_strength ?? 0
+            };
+        });
+
+        const aiTierClass = computed(() => {
+            const t = aiData.value?.evidence_level || '';
+            if (t.includes('Level 4') || t.includes('Level 3')) return 'badge-green';
+            if (t.includes('Level 2b')) return 'badge-blue';
+            if (t.includes('Level 2') || t.includes('Level 2a')) return 'badge-orange';
+            return 'badge-gray';
+        });
+
+        const tierBadgeClass = computed(() => {
+            const t = tierData.value?.tier || '';
+            if (t === 'L1' || t.includes('Level 4') || t.includes('Level 3')) return 'badge-green';
+            if (t === 'L2' || t.includes('Level 2b')) return 'badge-blue';
+            if (t.includes('Level 2') || t.includes('Level 2a')) return 'badge-orange';
+            return 'badge-gray';
+        });
+
+        // ==================== API 封装 ====================
+        const apiGet = async (endpoint, params) => {
+            try {
+                const res = await axios.get(`${backendUrl.value}${endpoint}`, { params });
+                return res.data;
+            } catch (err) {
+                const msg = err.response?.data?.error || err.message || '网络请求失败';
+                throw new Error(msg);
+            }
+        };
+
+        // ==================== 服务器配置方法 ====================
+        // 展开/收起配置面板
+        const toggleConfig = function() {
+            showConfig.value = !showConfig.value;
+            if (showConfig.value) {
+                customUrl.value = backendUrl.value;
+            }
+        };
+
+        // 保存用户自定义后端地址到 localStorage
+        const saveBackendUrl = function() {
+            var url = customUrl.value.trim();
+            // 去掉末尾斜杠
+            url = url.rstrip('/');
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'http://' + url;
+            }
+            backendUrl.value = url;
+            customUrl.value = url;
+            localStorage.setItem('evidence_backend_url', url);
+            showConfig.value = false;
+            testConnection(true); // 保存后静默测试
+        };
+
+        // 重置为自动检测地址
+        const resetBackendUrl = function() {
+            localStorage.removeItem('evidence_backend_url');
+            var autoUrl = detectBackendUrl();
+            backendUrl.value = autoUrl;
+            customUrl.value = autoUrl;
+            showConfig.value = false;
+            testConnection(true);
+        };
+
+        // 测试后端连接（silent 为 true 时不显示"检查中"状态）
+        const testConnection = async function(silent) {
+            if (silent === undefined) silent = false;
+            if (!silent) {
+                connStatus.value = 'chk';
+                testingConn.value = true;
+            }
+            try {
+                var res = await axios.get(backendUrl.value + '/', { timeout: 5000 });
+                if (res.data && res.data.status) {
+                    connStatus.value = 'ok';
+                } else {
+                    connStatus.value = 'err';
+                }
+            } catch (e) {
+                connStatus.value = 'err';
+            } finally {
+                testingConn.value = false;
+            }
+        };
+
+        // ==================== 获取知识库统计 ====================
+        const fetchKBStats = async () => {
+            try {
+                const data = await apiGet('/api/knowledge_base');
+                kbStats.value = {
+                    probiotics: data.total_probiotics || 0,
+                    metabolites: data.total_metabolites || 0
+                };
+            } catch (e) {
+                // 静默失败
+            }
+        };
+
+        // ==================== 本地知识库搜索 ====================
+        const search = async () => {
+            const q = query.value.trim();
+            if (!q) {
+                errorMsg.value = '请输入菌株名或代谢物名进行搜索';
                 return;
             }
-            const keyword = question.trim();
-            // 显示加载状态
-            showLoading();
+
+            errorMsg.value = '';
+            loading.value = true;
+            searched.value = true;
+            aiData.value = null;     // 清除旧 AI 结果
+            localMatch.value = null;
+
+            const [tierRes, matrixRes, adviceRes] = await Promise.allSettled([
+                apiGet('/api/evaluate_tier',     { query: q }),
+                apiGet('/api/evaluate_matrix',   { query: q }),
+                apiGet('/api/experiment_advice', { query: q }),
+            ]);
+
+            if (tierRes.status === 'fulfilled') {
+                tierData.value = tierRes.value;
+            } else {
+                tierData.value = null;
+                errorMsg.value += '证据等级查询失败：' + tierRes.reason.message + ' ';
+            }
+
+            if (matrixRes.status === 'fulfilled') {
+                matrixData.value = matrixRes.value;
+            } else {
+                matrixData.value = null;
+                errorMsg.value += '四维评分查询失败：' + matrixRes.reason.message + ' ';
+            }
+
+            if (adviceRes.status === 'fulfilled') {
+                adviceData.value = adviceRes.value;
+            } else {
+                adviceData.value = null;
+                errorMsg.value += '实验建议查询失败：' + adviceRes.reason.message;
+            }
+
+            loading.value = false;
+
+            await nextTick();
+            renderBubbleChart();
+            renderBarChart();
+        };
+
+        // ==================== AI 深度分析 ====================
+        const aiSearch = async () => {
+            const q = query.value.trim();
+            if (!q) {
+                errorMsg.value = '请输入关键词进行 AI 分析';
+                return;
+            }
+
+            errorMsg.value = '';
+            aiLoading.value = true;
+            aiQuery.value = q;
+            searched.value = true;
+            // 清除旧数据
+            tierData.value = null;
+            matrixData.value = null;
+            adviceData.value = null;
 
             try {
-                // ✅ 关键：与后端 /ask 接口匹配，参数名 question
-                const url = `/ask?question=${encodeURIComponent(keyword)}`;
-                const response = await fetch(url);
-
-                if (!response.ok) {
-                    if (response.status === 404) {
-                        const errorData = await response.json();
-                        throw new Error(errorData.detail || '未找到该关键词的证据');
-                    }
-                    throw new Error(`请求失败 (${response.status})`);
-                }
-
-                const data = await response.json();
-                renderResult(data, keyword);
+                const data = await apiGet('/api/ai_analyze', { query: q });
+                aiData.value = data.ai_analysis;
+                localMatch.value = data.local_match;
             } catch (err) {
-                console.error('查询出错:', err);
-                showError(err.message || '网络或服务器错误，请稍后重试');
-            }
-        }
-
-        // 显示加载动画
-        function showLoading() {
-            resultArea.innerHTML = `<div class="loading">⏳ 正在检索知识库，请稍候...</div>`;
-        }
-
-        // 显示错误信息
-        function showError(msg) {
-            resultArea.innerHTML = `
-                <div class="error">
-                    ❌ 查询失败<br>
-                    <span style="font-size:0.9rem;">${escapeHtml(msg)}</span><br>
-                    <span style="font-size:0.8rem;">👉 可尝试：益生菌 / 丁酸 / 乳酸菌</span>
-                </div>
-            `;
-        }
-
-        // 渲染结果卡片（根据返回的 JSON 结构）
-        function renderResult(data, queryWord) {
-            // data 结构示例：
-            // {
-            //   "name": "益生菌",
-            //   "evidence_level": "A级",
-            //   "scores": {"effectiveness": 4.8, "safety": 4.9, "accessibility": 4.5, "evidence_strength": 4.7},
-            //   "summary": "多项RCT支持..."
-            // }
-            if (!data || typeof data !== 'object') {
-                showError('返回的数据格式异常');
-                return;
+                errorMsg.value = 'AI 分析请求失败：' + err.message;
+                aiData.value = null;
+                localMatch.value = null;
             }
 
-            const name = data.name || queryWord;
-            const level = data.evidence_level || '待评估';
-            const scores = data.scores || {};
-            const summary = data.summary || '暂无详细摘要，正在完善知识库。';
+            aiLoading.value = false;
 
-            // 四维评分 (默认值展示)
-            const effectiveness = scores.effectiveness ?? '—';
-            const safety = scores.safety ?? '—';
-            const accessibility = scores.accessibility ?? '—';
-            const evidenceStrength = scores.evidence_strength ?? '—';
+            await nextTick();
+            renderAIBarChart();
+        };
 
-            const scoreHtml = `
-                <div class="scores">
-                    <div class="score-item">📊 有效性：<span class="strong">${effectiveness}</span>/5</div>
-                    <div class="score-item">🛡️ 安全性：<span class="strong">${safety}</span>/5</div>
-                    <div class="score-item">💰 可及性：<span class="strong">${accessibility}</span>/5</div>
-                    <div class="score-item">🔬 证据强度：<span class="strong">${evidenceStrength}</span>/5</div>
-                </div>
-            `;
+        // ==================== 气泡图（本地知识库） ====================
+        const renderBubbleChart = () => {
+            const dom = document.getElementById('bubble-chart');
+            if (!dom || !tierData.value) return;
 
-            const html = `
-                <div class="result-card">
-                    <div class="evidence-badge">📌 证据等级：${escapeHtml(level)}</div>
-                    <div style="font-size:1.4rem; font-weight:600; margin-bottom:0.5rem;">✨ ${escapeHtml(name)}</div>
-                    ${scoreHtml}
-                    <hr>
-                    <div style="line-height:1.5;">📖 ${escapeHtml(summary)}</div>
-                </div>
-            `;
-            resultArea.innerHTML = html;
-        }
+            if (bubbleChart) bubbleChart.dispose();
+            bubbleChart = echarts.init(dom);
 
-        // 简单的防XSS
-        function escapeHtml(str) {
-            if (str === undefined || str === null) return '';
-            return String(str).replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-                return c;
-            });
-        }
+            const tierSizeMap = { 'L1': 100, 'L2': 70, 'L3': 45, 'L4': 25 };
+            const tier = tierData.value.tier || 'L4';
+            const bubbleSize = tierSizeMap[tier] || 25;
 
-        // 绑定事件
-        btnEl.addEventListener('click', () => {
-            fetchEvidence(inputEl.value);
+            const option = {
+                title: {
+                    text: '证据等级气泡图',
+                    subtext: `当前等级：${tier}（气泡面积 ∝ 证据强度）`,
+                    left: 'center',
+                    textStyle: { fontSize: 14 }
+                },
+                xAxis: { name: '证据强度', min: 0, max: 100, axisLine: { lineStyle: { color: '#bbb' } } },
+                yAxis: { name: '可信度', min: 0, max: 100, axisLine: { lineStyle: { color: '#bbb' } } },
+                series: [{
+                    type: 'scatter',
+                    symbolSize: bubbleSize * 1.5,
+                    data: [[bubbleSize, bubbleSize]],
+                    itemStyle: {
+                        color: tier === 'L1' ? '#27ae60' : tier === 'L2' ? '#2980b9' : tier === 'L3' ? '#f39c12' : '#95a5a6',
+                        shadowBlur: 12,
+                        shadowColor: 'rgba(0,0,0,0.2)'
+                    },
+                    label: {
+                        show: true,
+                        formatter: `{b|${tier}}\n{a|证据强度: ${bubbleSize}}`,
+                        rich: { b: { fontSize: 22, fontWeight: 'bold', color: '#2c3e50' }, a: { fontSize: 12, color: '#7f8c8d' } },
+                        position: 'inside'
+                    }
+                }],
+                grid: { left: 50, right: 30, top: 80, bottom: 50 },
+                tooltip: { formatter: `条目：${tierData.value.strain}<br/>证据等级：${tier}` }
+            };
+
+            bubbleChart.setOption(option);
+            window.addEventListener('resize', () => bubbleChart?.resize());
+        };
+
+        // ==================== 柱状图（本地知识库四维评分） ====================
+        const renderBarChart = () => {
+            const dom = document.getElementById('bar-chart');
+            if (!dom || !matrixData.value) return;
+
+            if (barChart) barChart.dispose();
+            barChart = echarts.init(dom);
+
+            const m = matrixData.value.matrix || {};
+            const dims = ['正向', '反向', '耦合', '测量深度'];
+            const vals = [m['正向'] || 0, m['反向'] || 0, m['耦合'] || 0, m['测量深度'] || 0];
+            const colors = vals.map(v => v >= 0.7 ? '#27ae60' : v >= 0.4 ? '#2980b9' : '#b2bec3');
+
+            const option = {
+                title: { text: '四维评分', subtext: `条目：${matrixData.value.strain || '未知'}`, left: 'center', textStyle: { fontSize: 14 } },
+                xAxis: { type: 'category', data: dims, axisLabel: { fontSize: 13 } },
+                yAxis: { type: 'value', min: 0, max: 1, name: '评分 (0-1)', axisLabel: { formatter: '{value}' } },
+                series: [{
+                    type: 'bar',
+                    data: vals.map((v, i) => ({ value: v, itemStyle: { color: colors[i], borderRadius: [6, 6, 0, 0] } })),
+                    barWidth: '50%',
+                    label: { show: true, position: 'top', formatter: '{c}', fontWeight: 'bold' },
+                    emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0,0,0,0.15)' } }
+                }],
+                grid: { left: 45, right: 30, top: 80, bottom: 40 },
+                tooltip: { formatter: (p) => `${p.name}：${p.value}（满分 1.0）` }
+            };
+
+            barChart.setOption(option);
+            window.addEventListener('resize', () => barChart?.resize());
+        };
+
+        // ==================== 柱状图（AI 分析四维评分） ====================
+        const renderAIBarChart = () => {
+            const dom = document.getElementById('ai-bar-chart');
+            if (!dom || !aiData.value) return;
+
+            if (aiBarChart) aiBarChart.dispose();
+            aiBarChart = echarts.init(dom);
+
+            const s = aiData.value.scores || {};
+            const dims = ['有效性\n(Forward)', '安全性\n(Reverse)', '耦合验证\n(Coupling)', '测量深度\n(Measurement)'];
+            const vals = [s.effectiveness || 0, s.safety || 0, s.accessibility || 0, s.evidence_strength || 0];
+            const colors = vals.map(v => v >= 4 ? '#27ae60' : v >= 2 ? '#2980b9' : v >= 1 ? '#f39c12' : '#b2bec3');
+
+            const option = {
+                title: {
+                    text: '四维矩阵评分（AI 评估）',
+                    subtext: '满分 5 分 | 基于 DeepSeek 综合分析',
+                    left: 'center',
+                    textStyle: { fontSize: 14 }
+                },
+                xAxis: { type: 'category', data: dims, axisLabel: { fontSize: 11 } },
+                yAxis: { type: 'value', min: 0, max: 5, name: '评分 (0-5)', axisLabel: { formatter: '{value}' } },
+                series: [{
+                    type: 'bar',
+                    data: vals.map((v, i) => ({ value: v, itemStyle: { color: colors[i], borderRadius: [6, 6, 0, 0] } })),
+                    barWidth: '45%',
+                    label: { show: true, position: 'top', formatter: '{c}/5', fontWeight: 'bold', fontSize: 14 },
+                    emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(108,92,231,0.3)' } },
+                    markLine: {
+                        silent: true,
+                        data: [
+                            { yAxis: 4, label: { formatter: '强证据' }, lineStyle: { color: '#27ae60', type: 'dashed' } },
+                            { yAxis: 2, label: { formatter: '中度证据' }, lineStyle: { color: '#f39c12', type: 'dashed' } }
+                        ]
+                    }
+                }],
+                grid: { left: 50, right: 30, top: 80, bottom: 40 },
+                tooltip: { formatter: (p) => `${p.name.replace('\n', ' ')}：${p.value} / 5` }
+            };
+
+            aiBarChart.setOption(option);
+            window.addEventListener('resize', () => aiBarChart?.resize());
+        };
+
+        // ==================== 初始化 ====================
+        onMounted(() => {
+            fetchKBStats();
+            testConnection(true);  // 页面加载时静默检测后端连接
         });
 
-        inputEl.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                fetchEvidence(inputEl.value);
-            }
-        });
+        return {
+            query, loading, aiLoading, aiQuery, errorMsg, searched,
+            tierData, matrixData, adviceData,
+            aiData, localMatch, kbStats,
+            scores, aiTierClass, tierBadgeClass,
+            search, aiSearch,
+            // 服务器连接
+            backendUrl, customUrl, showConfig, connStatus, testingConn,
+            toggleConfig, saveBackendUrl, resetBackendUrl, testConnection
+        };
+    }
+});
 
-        // 页面初始化：自动查询预设的示例（益生菌）
-        // 如果你希望打开页面时直接展示示例，可以取消下一行注释
-        // 但建议保留用户主动点击，避免首次加载慢。
-        // 为了让用户立即看到效果，可执行一次默认查询：
-        if (inputEl.value.trim() === '益生菌') {
-            setTimeout(() => {
-                fetchEvidence('益生菌');
-            }, 100);
-        }
-    })();
+app.mount('#app');
 </script>
+
 </body>
 </html>

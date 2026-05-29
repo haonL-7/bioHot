@@ -1,72 +1,549 @@
-import os
+"""
+益生菌/代谢物证据评估系统 - FastAPI 后端
+集成 DeepSeek API 进行 AI 增强分析
+"""
 import json
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse
+import os
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import Dict, Any
+from fastapi.responses import JSONResponse, HTMLResponse
+from typing import Optional
+from openai import OpenAI
 
-app = FastAPI()
+# ==================== 初始化 FastAPI 应用 ====================
+app = FastAPI(
+    title="证据评估系统 API",
+    description="益生菌/代谢物证据等级评估 — 本地知识库 + DeepSeek AI 增强",
+    version="2.0.0"
+)
 
-# 允许跨域（本地和云端都无影响）
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-def load_knowledge_base() -> Dict[str, Any]:
-    """加载 knowledge_base.json 文件"""
-    with open("knowledge_base.json", "r", encoding="utf-8") as f:
-        return json.load(f)
+# ==================== 初始化 DeepSeek 客户端 ====================
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "REDACTED_OLD_KEY")
+deepseek_client = OpenAI(
+    api_key=DEEPSEEK_API_KEY,
+    base_url="https://api.deepseek.com",
+)
 
-# ==================== GET 接口（匹配前端 ask?question=） ====================
-@app.get("/ask")
-async def ask_get(question: str):
-    """前端使用 fetch('/ask?question=益生菌') 时调用"""
-    data = load_knowledge_base()
-    keyword = question.strip().lower()
-    
-    # 搜索益生菌列表
-    for item in data.get("probiotics", []):
-        if keyword == item["name"].lower():
-            return item
-    
-    # 搜索代谢物列表
-    for item in data.get("metabolites", []):
-        if keyword == item["name"].lower():
-            return item
-    
-    raise HTTPException(status_code=404, detail="未找到该关键词的证据")
+# ==================== 加载本地知识库 ====================
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+KB_PATH = os.path.join(BASE_DIR, "knowledge_base.json")
 
-# ==================== POST 接口（兼容旧版或备用） ====================
-class QueryRequest(BaseModel):
-    query: str
+try:
+    with open(KB_PATH, "r", encoding="utf-8") as f:
+        KNOWLEDGE_BASE = json.load(f)
+    prob_count = len(KNOWLEDGE_BASE.get("probiotics", []))
+    meta_count = len(KNOWLEDGE_BASE.get("metabolites", []))
+    print(f"[启动] 知识库加载成功: {prob_count} 益生菌 + {meta_count} 代谢物")
+except FileNotFoundError:
+    print(f"[警告] 未找到知识库文件 {KB_PATH}")
+    KNOWLEDGE_BASE = {"probiotics": [], "metabolites": []}
+except json.JSONDecodeError as e:
+    print(f"[错误] 知识库 JSON 解析失败: {e}")
+    KNOWLEDGE_BASE = {"probiotics": [], "metabolites": []}
 
-@app.post("/query")
-async def query_evidence(req: QueryRequest):
-    data = load_knowledge_base()
-    keyword = req.query.strip().lower()
-    
-    for item in data.get("probiotics", []):
-        if keyword == item["name"].lower():
-            return item
-    for item in data.get("metabolites", []):
-        if keyword == item["name"].lower():
-            return item
-    
-    raise HTTPException(status_code=404, detail="未找到该关键词的证据")
 
-# ==================== 提供前端页面 ====================
-@app.get("/", response_class=HTMLResponse)
-async def get_index():
-    """访问根路径时返回 index.html 查询界面"""
-    with open("index.html", "r", encoding="utf-8") as f:
-        return f.read()
+# ==================== 工具函数 ====================
 
-# ==================== 启动服务（云端自动获取端口） ====================
+def search_knowledge(query: str) -> Optional[dict]:
+    """
+    在知识库中搜索匹配 query 的条目
+    支持按菌株名、代谢物名、功能声称匹配（不区分大小写）
+    """
+    if not KNOWLEDGE_BASE:
+        return None
+
+    query_lower = query.strip().lower()
+    best_match = None
+    best_score = 0
+
+    # 搜索 probiotics 和 metabolites 两个类别
+    for category in ["probiotics", "metabolites"]:
+        for item in KNOWLEDGE_BASE.get(category, []):
+            score = 0
+            name_cn = item.get("name", "").lower()
+            name_en = item.get("name_en", "").lower()
+            summary = item.get("summary", "").lower()
+            summary_en = item.get("summary_en", "").lower()
+
+            # 中文名称精确匹配
+            if query_lower in name_cn:
+                score += 5
+            # 英文名称匹配
+            if query_lower in name_en:
+                score += 3
+            # 摘要中包含关键词
+            if query_lower in summary:
+                score += 2
+            if query_lower in summary_en:
+                score += 1
+            # Token 级匹配（处理多词查询）
+            query_tokens = query_lower.split()
+            for token in query_tokens:
+                if token in name_cn or token in name_en:
+                    score += 2
+
+            if score > best_score:
+                best_score = score
+                best_match = {**item, "category": category}
+
+    return best_match
+
+
+def build_kb_context() -> str:
+    """
+    将本地知识库的关键信息构建为注入 DeepSeek 系统提示的上下文
+    """
+    lines = ["## 本地知识库已收录条目\n"]
+    for cat, label in [("probiotics", "益生菌"), ("metabolites", "代谢物")]:
+        lines.append(f"### {label}")
+        for item in KNOWLEDGE_BASE.get(cat, []):
+            lines.append(f"- **{item['name']}** ({item.get('name_en', '')})")
+            lines.append(f"  证据等级: {item.get('evidence_level', 'N/A')}")
+            scores = item.get("scores", {})
+            lines.append(f"  评分: 有效性={scores.get('effectiveness','?')}, 安全性={scores.get('safety','?')}, 可及性={scores.get('accessibility','?')}, 证据强度={scores.get('evidence_strength','?')}")
+            lines.append(f"  摘要: {item.get('summary', '')[:200]}...")
+            lines.append("")
+    return "\n".join(lines)
+
+
+# ==================== DeepSeek AI 分析 ====================
+
+SYSTEM_PROMPT = """你是一个专业的猪肠道微生物组与表观遗传学证据评估助手。
+你的任务是基于用户输入的益生菌、代谢物或其他关键词，结合本地知识库和你的专业知识，对证据进行结构化评估。
+
+## 证据等级标准（参照已发表论文的四级框架）
+
+**益生菌功能声称（4级）：**
+- Level 1：关联推断（共现网络分析、丰度-表型统计关联、体外实验、同属异种间接证据）
+- Level 2：中度推断（猪模型中直接验证了效应分子功能，附机制通路数据，但不区分菌株来源）
+- Level 3：强推断（小鼠单菌定植因果验证，人源菌株）
+- Level 4：确立证据（猪源菌株在断奶仔猪中的单菌定植实验，经独立重复证实）
+
+**代谢物四维矩阵（双向通路评估）：**
+- 正向通路（Forward）：Level 0(无证据) → Level 1(关联推断/体外) → Level 2a(猪体外) → Level 2b(猪体内) → Level 3(因果验证) → Level 4(跨代证据)
+- 反向通路（Reverse）：同上分级
+- 耦合验证（Coupling）：Level 0(无) → Level 1(独立验证) → Level 2(同实验观察) → Level 3(干预因果) → Level 4(跨尺度耦合)
+- 测量深度（Measurement）：Level 0(单隔室单时间点) → Level 1(多隔室或多时间点) → Level 2(多隔室+多时间点+多组学)
+
+## 输出格式
+
+你必须仅输出一个合法的 JSON 对象，不要包含任何其他文字、代码块标记或解释：
+
+{
+  "name": "中文名称",
+  "name_en": "英文名称",
+  "type": "probiotics 或 metabolites",
+  "evidence_level": "证据等级，如 Level 2b",
+  "scores": {
+    "effectiveness": 0到5的整数,
+    "safety": 0到5的整数,
+    "accessibility": 0到5的整数,
+    "evidence_strength": 0到5的整数
+  },
+  "summary": "基于现有科学证据的中文摘要（200-400字），概述验证状态和主要证据缺口",
+  "summary_en": "English summary of verification status and key evidence gaps",
+  "key_references": ["与评估相关的关键文献描述", "格式：Author (Year) Key Finding"],
+  "research_priority": "P1/P2/P3 或 N/A（仅代谢物适用）",
+  "confidence": "high / medium / low（此评估的信心水平）"
+}
+
+## 注意事项
+1. 优先使用本地知识库中的已有数据
+2. 如果用户查询的条目未收录，基于你的专业知识给出合理评估，并将 confidence 设为 "low"
+3. 评分（0-5）应保守赋值：0=无证据，1=关联推断，2=初步验证，3=直接验证，4=强因果验证，5=确立+独立重复
+4. summary 应明确区分"已有验证"和"证据缺口"
+5. 如果查询的是甲基化/表观遗传/屏障功能等通路机制，请将其映射到共代谢框架中评估"""
+
+
+def analyze_with_deepseek(question: str, kb_context: str) -> dict:
+    """
+    调用 DeepSeek API 进行证据评估分析
+    先注入本地知识库上下文，让 DeepSeek 综合本地数据 + 自身知识给出评估
+    """
+    user_message = f"""## 用户查询
+{question}
+
+{kb_context}
+
+请基于以上本地知识库数据和你的专业知识，对该查询进行结构化证据评估。直接输出 JSON，不要包含任何其他文字。"""
+
+    try:
+        response = deepseek_client.chat.completions.create(
+            model="deepseek-chat",
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_message},
+            ],
+            temperature=0.3,   # 低温度保证输出稳定性
+            max_tokens=2048,
+            extra_body={
+                "enable_search": True,   # 启用 DeepSeek 联网搜索
+            },
+        )
+
+        raw = response.choices[0].message.content.strip()
+
+        # 清理可能的 markdown 代码块标记
+        if raw.startswith("```"):
+            raw = raw.split("\n", 1)[-1]
+            if raw.endswith("```"):
+                raw = raw[:-3]
+            raw = raw.strip()
+        # 有时 DeepSeek 返回 ```json ... ``` 格式
+        if raw.startswith("json"):
+            raw = raw[4:].strip()
+
+        result = json.loads(raw)
+
+        # 确保必需字段存在
+        result.setdefault("type", "unknown")
+        result.setdefault("confidence", "medium")
+        result.setdefault("key_references", [])
+        result.setdefault("research_priority", "N/A")
+        result.setdefault("scores", {
+            "effectiveness": 0,
+            "safety": 0,
+            "accessibility": 0,
+            "evidence_strength": 0
+        })
+
+        return result
+
+    except json.JSONDecodeError as e:
+        print(f"[DeepSeek] JSON 解析失败: {e}")
+        print(f"[DeepSeek] 原始响应: {raw[:500] if 'raw' in dir() else 'N/A'}")
+        return {
+            "name": question,
+            "name_en": question,
+            "type": "unknown",
+            "evidence_level": "N/A",
+            "scores": {"effectiveness": 0, "safety": 0, "accessibility": 0, "evidence_strength": 0},
+            "summary": f"AI 分析结果解析失败，请稍后重试。原始响应片段：{raw[:200] if 'raw' in dir() else '无输出'}",
+            "summary_en": "AI analysis parse error.",
+            "key_references": [],
+            "research_priority": "N/A",
+            "confidence": "low",
+            "error": str(e)
+        }
+    except Exception as e:
+        print(f"[DeepSeek] API 调用失败: {e}")
+        return {
+            "name": question,
+            "name_en": question,
+            "type": "unknown",
+            "evidence_level": "N/A",
+            "scores": {"effectiveness": 0, "safety": 0, "accessibility": 0, "evidence_strength": 0},
+            "summary": f"DeepSeek API 调用失败：{str(e)}",
+            "summary_en": f"DeepSeek API error: {str(e)}",
+            "key_references": [],
+            "research_priority": "N/A",
+            "confidence": "low",
+            "error": str(e)
+        }
+
+
+# ==================== 全局异常处理 ====================
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request, exc):
+    return JSONResponse(
+        status_code=500,
+        content={
+            "success": False,
+            "error": f"服务器内部错误：{str(exc)}",
+            "detail": "请检查请求参数或联系管理员"
+        }
+    )
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "success": False,
+            "error": f"请求错误（{exc.status_code}）：{exc.detail}",
+        }
+    )
+
+
+# 读取 index.html 内容（模块加载时缓存）
+INDEX_HTML_PATH = os.path.join(BASE_DIR, "index.html")
+try:
+    with open(INDEX_HTML_PATH, "r", encoding="utf-8") as f:
+        INDEX_HTML = f.read()
+    print(f"[启动] 前端页面加载成功 ({len(INDEX_HTML)} 字符)")
+except FileNotFoundError:
+    INDEX_HTML = None
+    print("[警告] 未找到 index.html，根路径将返回 JSON")
+
+# ==================== API 接口 ====================
+
+@app.get("/")
+async def root():
+    """
+    根路径：返回前端页面（生产）或 API 状态（开发/无前端文件时）
+    """
+    if INDEX_HTML:
+        return HTMLResponse(content=INDEX_HTML)
+    return {
+        "service": "证据评估系统 API v2.0",
+        "status": "运行中",
+        "features": ["本地知识库检索", "DeepSeek AI 增强分析", "四维矩阵评分"],
+        "knowledge_base": {
+            "probiotics": len(KNOWLEDGE_BASE.get("probiotics", [])),
+            "metabolites": len(KNOWLEDGE_BASE.get("metabolites", []))
+        }
+    }
+
+
+@app.get("/api/evaluate_tier")
+async def evaluate_tier(query: str = Query(..., description="搜索关键词")):
+    """证据等级评估接口 — 从本地知识库匹配"""
+    result = search_knowledge(query)
+
+    if result:
+        return {
+            "success": True,
+            "query": query,
+            "tier": result.get("evidence_level", "N/A"),
+            "strain": result.get("name", ""),
+            "metabolite": result.get("name", ""),
+            "claim": result.get("summary", "")[:100],
+            "category": result.get("category", ""),
+            "source": "知识库匹配"
+        }
+    else:
+        return {
+            "success": True,
+            "query": query,
+            "tier": "L4",
+            "strain": query,
+            "metabolite": "",
+            "claim": "",
+            "category": "",
+            "source": "默认评级（知识库未匹配）",
+            "note": "该条目尚未收录，建议使用 AI 分析获取评估"
+        }
+
+
+@app.get("/api/evaluate_matrix")
+async def evaluate_matrix(query: str = Query(..., description="搜索关键词")):
+    """四维评分接口"""
+    result = search_knowledge(query)
+
+    if result and "scores" in result:
+        scores = result["scores"]
+        return {
+            "success": True,
+            "query": query,
+            "strain": result.get("name", ""),
+            "metabolite": result.get("name", ""),
+            "category": result.get("category", ""),
+            "matrix": {
+                "正向": scores.get("effectiveness", 0) / 5,    # 归一化到 0-1
+                "反向": scores.get("safety", 0) / 5,
+                "耦合": scores.get("accessibility", 0) / 5,
+                "测量深度": scores.get("evidence_strength", 0) / 5
+            },
+            "scores_raw": scores,
+            "source": "知识库匹配"
+        }
+    elif result:
+        return {
+            "success": True,
+            "query": query,
+            "strain": result.get("name", ""),
+            "metabolite": result.get("name", ""),
+            "category": result.get("category", ""),
+            "matrix": {"正向": 0, "反向": 0, "耦合": 0, "测量深度": 0},
+            "scores_raw": {},
+            "source": "知识库匹配（评分缺失）"
+        }
+    else:
+        return {
+            "success": True,
+            "query": query,
+            "strain": query,
+            "metabolite": "",
+            "category": "",
+            "matrix": {"正向": 0, "反向": 0, "耦合": 0, "测量深度": 0},
+            "scores_raw": {},
+            "source": "默认评分（知识库未匹配）"
+        }
+
+
+@app.get("/api/experiment_advice")
+async def experiment_advice(query: str = Query(..., description="搜索关键词")):
+    """实验建议接口"""
+    result = search_knowledge(query)
+
+    common_advice = [
+        "体外发酵实验：使用模拟结肠发酵系统，检测目标代谢物产量变化",
+        "16S rRNA 基因测序：确认菌株在复杂菌群中的相对丰度",
+        "靶向代谢组学（LC-MS/MS）：精确定量目标短链脂肪酸",
+        "Caco-2 / IPEC-J2 细胞模型：评估代谢物对肠上皮屏障功能的影响",
+        "动物模型验证：使用无菌小鼠定植菌株，检测肠道屏障指标"
+    ]
+
+    if result:
+        evidence = result.get("evidence_level", "")
+        category = result.get("category", "")
+
+        if "Level 4" in evidence:
+            specific_advice = [
+                "该条目已达到 Level 4（确立证据），可作为猪用益生菌开发的候选菌株",
+                "建议开展大规模田间试验验证其在不同猪群中的效果一致性",
+                "可考虑商业化开发：菌剂制备工艺优化、稳定性评估、剂量标准化"
+            ]
+        elif "Level 3" in evidence or "Level 2b" in evidence:
+            specific_advice = [
+                "当前证据较强，但核心缺口是猪模型中的菌株特异性因果验证",
+                "最高优先级：分离猪源菌株 + 断奶仔猪单菌定植实验（填补 Level 4 空白）",
+                "补充猪肠道多隔室（肠腔/上皮/微环境）代谢物浓度同步测量",
+                "验证核心代谢基因（如 scpA/scpB/scpC）在猪源菌株中的保守性"
+            ]
+        elif "Level 2" in evidence or "Level 2a" in evidence:
+            specific_advice = [
+                "当前为中度证据（Level 2），猪模型中已有间接验证但缺乏菌株特异性因果证据",
+                "建议开展猪模型直接因果验证：单一代谢物干预 + 表观遗传标记测量",
+                "设计跨隔室采样方案（肠腔内容物 + 上皮组织 + 微环境参数）",
+                "考虑从菌株功能验证升级为合成微生态体系验证"
+            ]
+        elif "Level 1" in evidence:
+            specific_advice = [
+                "当前证据较弱（Level 1），仅有关联推断或跨物种外推",
+                "优先从体外实验开始：代谢通路酶活验证、底物转化效率测定",
+                "猪模型基线数据建立：该代谢物在猪肠道不同隔室的浓度范围",
+                "使用同位素示踪法确认代谢物由目标菌株/通路产生"
+            ]
+        else:
+            specific_advice = [
+                "当前证据不足，建议开展探索性研究",
+                "首先进行菌株全基因组测序，注释代谢相关基因簇",
+                "通过共培养实验验证菌株是否能够产生预期代谢物",
+                "参考已发表的系统证据映射文献，设计靶向代谢组学检测方案"
+            ]
+
+        return {
+            "success": True,
+            "query": query,
+            "strain": result.get("name", ""),
+            "category": category,
+            "evidence_level": evidence,
+            "advice": specific_advice + common_advice,
+            "source": "知识库匹配"
+        }
+    else:
+        return {
+            "success": True,
+            "query": query,
+            "strain": query,
+            "category": "",
+            "evidence_level": "L4",
+            "advice": [
+                "该条目暂未收录，建议从基础实验开始验证",
+                "进行菌株全基因组测序，挖掘代谢相关基因簇",
+                "查阅该条目所属类群的已知代谢功能文献",
+                "开展非靶向代谢组学，发现潜在的代谢产物",
+                "可使用「AI 深度分析」功能获取基于现有文献的初步评估"
+            ] + common_advice,
+            "source": "默认建议（知识库未匹配）"
+        }
+
+
+@app.get("/api/ai_analyze")
+async def ai_analyze(query: str = Query(..., description="需要 AI 分析的关键词")):
+    """
+    AI 深度分析接口 — DeepSeek 增强
+    1. 先查本地知识库
+    2. 无论是否命中，都调用 DeepSeek 进行增强分析
+    3. 返回结构化的证据评估 JSON
+    """
+    # Step 1: 查询本地知识库
+    local_match = search_knowledge(query)
+
+    # Step 2: 构建知识库上下文
+    kb_context = build_kb_context()
+
+    # Step 3: 调用 DeepSeek
+    ai_result = analyze_with_deepseek(query, kb_context)
+
+    # Step 4: 合并本地命中信息
+    return {
+        "success": True,
+        "query": query,
+        "ai_analysis": ai_result,
+        "local_match": {
+            "found": local_match is not None,
+            "name": local_match.get("name", "") if local_match else "",
+            "name_en": local_match.get("name_en", "") if local_match else "",
+            "evidence_level": local_match.get("evidence_level", "") if local_match else "",
+            "category": local_match.get("category", "") if local_match else "",
+            "scores": local_match.get("scores", {}) if local_match else {},
+            "summary": (local_match.get("summary", "")[:300] + "...") if local_match else ""
+        },
+        "source": "DeepSeek AI + 本地知识库"
+    }
+
+
+@app.get("/api/knowledge_base")
+async def list_knowledge_base(
+    category: Optional[str] = Query(None, description="筛选类别: probiotics / metabolites")
+):
+    """列出知识库所有条目"""
+    if category and category in KNOWLEDGE_BASE:
+        return {
+            "success": True,
+            "category": category,
+            "count": len(KNOWLEDGE_BASE[category]),
+            "items": [
+                {
+                    "name": item["name"],
+                    "name_en": item.get("name_en", ""),
+                    "evidence_level": item.get("evidence_level", ""),
+                    "scores": item.get("scores", {})
+                }
+                for item in KNOWLEDGE_BASE[category]
+            ]
+        }
+    return {
+        "success": True,
+        "total_probiotics": len(KNOWLEDGE_BASE.get("probiotics", [])),
+        "total_metabolites": len(KNOWLEDGE_BASE.get("metabolites", [])),
+        "categories": ["probiotics", "metabolites"]
+    }
+
+
+@app.get("/api/doi_abstract")
+async def doi_abstract(doi: str = Query(..., description="论文 DOI 号")):
+    """DOI 摘要接口（占位，后续对接 PubMed API）"""
+    return {
+        "success": True,
+        "doi": doi,
+        "title": "（占位）论文标题 - 接口开发中",
+        "abstract": (
+            f"这是 DOI {doi} 的摘要占位文字。"
+            "该接口后续将对接 PubMed E-utilities 或 Crossref API，"
+            "自动获取论文的标题、摘要、作者、发表年份等信息。"
+            "当前版本仅返回占位内容，用于前端联调测试。"
+        ),
+        "authors": "（待获取）",
+        "journal": "（待获取）",
+        "year": "（待获取）",
+        "note": "此接口为占位实现，后续将接入真实文献数据库"
+    }
+
+
+# ==================== 启动入口 ====================
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.getenv("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
