@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>益生菌/代谢物证据查询系统</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f7f0;
+            margin: 0;
+            padding: 2rem 1rem;
+            color: #1a3b2f;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            padding: 2rem 1.5rem 2.5rem;
+        }
+        h1 {
+            font-size: 1.9rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: #1f5e3a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .sub {
+            color: #4b6b5e;
+            margin-bottom: 2rem;
+            border-left: 4px solid #83c5a3;
+            padding-left: 1rem;
+            font-weight: 400;
+        }
+        .search-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        input {
+            flex: 3;
+            min-width: 200px;
+            padding: 0.9rem 1.2rem;
+            font-size: 1rem;
+            border: 1px solid #cbdcd3;
+            border-radius: 2rem;
+            outline: none;
+            transition: 0.2s;
+            background: #fefef7;
+        }
+        input:focus {
+            border-color: #2c8c5a;
+            box-shadow: 0 0 0 3px rgba(44,140,90,0.2);
+        }
+        button {
+            background: #2c8c5a;
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        button:hover {
+            background: #1f6e46;
+            transform: translateY(-1px);
+        }
+        button:active {
+            transform: translateY(1px);
+        }
+        .result-card {
+            background: #f9fefb;
+            border-radius: 1.5rem;
+            border: 1px solid #dcfce7;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        .loading {
+            color: #2c8c5a;
+            font-style: italic;
+            padding: 1rem;
+            text-align: center;
+        }
+        .error {
+            background: #fee2e2;
+            border-left: 6px solid #dc2626;
+            color: #7f1a1a;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+        .evidence-badge {
+            display: inline-block;
+            background: #e9f5ef;
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+        .scores {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.2rem 0;
+        }
+        .score-item {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            font-size: 0.9rem;
+        }
+        .strong {
+            font-weight: 700;
+            color: #1f5e3a;
+        }
+        hr {
+            margin: 1.2rem 0;
+            border: none;
+            border-top: 1px solid #d4e6db;
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #7c9a8b;
+        }
+        @media (max-width: 550px) {
+            body { padding: 1rem; }
+            .container { padding: 1.5rem; }
+            button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>
+        🧫 微生态证据引擎
+        <span style="font-size: 0.9rem; background: #eef3ea; padding: 0.2rem 0.7rem; border-radius: 2rem;">益生菌 · 代谢物</span>
+    </h1>
+    <div class="sub">基于知识库的证据等级 + 四维评分（有效性 · 安全性 · 可及性 · 证据强度）</div>
+
+    <div class="search-area">
+        <input type="text" id="queryInput" placeholder="例如：益生菌 / 丁酸 / 乳酸杆菌..." value="益生菌">
+        <button id="searchBtn">🔍 查询证据</button>
+    </div>
+
+    <div id="resultArea">
+        <!-- 动态内容会显示在这里 -->
+        <div class="result-card" style="background:#fefaf0; color:#7c6b3f;">
+            💡 提示：输入“益生菌”或“丁酸”试试看，支持中英文名称。
+        </div>
+    </div>
+    <footer>
+        数据来源：用户整理 · 仅供参考，不做医疗建议
+    </footer>
+</div>
+
+<script>
+    (function() {
+        const inputEl = document.getElementById('queryInput');
+        const btnEl = document.getElementById('searchBtn');
+        const resultArea = document.getElementById('resultArea');
+
+        // 核心查询函数（GET /ask?question=xxx）
+        async function fetchEvidence(question) {
+            if (!question || question.trim() === '') {
+                showError('请输入要查询的益生菌或代谢物名称');
+                return;
+            }
+            const keyword = question.trim();
+            // 显示加载状态
+            showLoading();
+
+            try {
+                // ✅ 关键：与后端 /ask 接口匹配，参数名 question
+                const url = `/ask?question=${encodeURIComponent(keyword)}`;
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.detail || '未找到该关键词的证据');
+                    }
+                    throw new Error(`请求失败 (${response.status})`);
+                }
+
+                const data = await response.json();
+                renderResult(data, keyword);
+            } catch (err) {
+                console.error('查询出错:', err);
+                showError(err.message || '网络或服务器错误，请稍后重试');
+            }
+        }
+
+        // 显示加载动画
+        function showLoading() {
+            resultArea.innerHTML = `<div class="loading">⏳ 正在检索知识库，请稍候...</div>`;
+        }
+
+        // 显示错误信息
+        function showError(msg) {
+            resultArea.innerHTML = `
+                <div class="error">
+                    ❌ 查询失败<br>
+                    <span style="font-size:0.9rem;">${escapeHtml(msg)}</span><br>
+                    <span style="font-size:0.8rem;">👉 可尝试：益生菌 / 丁酸 / 乳酸菌</span>
+                </div>
+            `;
+        }
+
+        // 渲染结果卡片（根据返回的 JSON 结构）
+        function renderResult(data, queryWord) {
+            // data 结构示例：
+            // {
+            //   "name": "益生菌",
+            //   "evidence_level": "A级",
+            //   "scores": {"effectiveness": 4.8, "safety": 4.9, "accessibility": 4.5, "evidence_strength": 4.7},
+            //   "summary": "多项RCT支持..."
+            // }
+            if (!data || typeof data !== 'object') {
+                showError('返回的数据格式异常');
+                return;
+            }
+
+            const name = data.name || queryWord;
+            const level = data.evidence_level || '待评估';
+            const scores = data.scores || {};
+            const summary = data.summary || '暂无详细摘要，正在完善知识库。';
+
+            // 四维评分 (默认值展示)
+            const effectiveness = scores.effectiveness ?? '—';
+            const safety = scores.safety ?? '—';
+            const accessibility = scores.accessibility ?? '—';
+            const evidenceStrength = scores.evidence_strength ?? '—';
+
+            const scoreHtml = `
+                <div class="scores">
+                    <div class="score-item">📊 有效性：<span class="strong">${effectiveness}</span>/5</div>
+                    <div class="score-item">🛡️ 安全性：<span class="strong">${safety}</span>/5</div>
+                    <div class="score-item">💰 可及性：<span class="strong">${accessibility}</span>/5</div>
+                    <div class="score-item">🔬 证据强度：<span class="strong">${evidenceStrength}</span>/5</div>
+                </div>
+            `;
+
+            const html = `
+                <div class="result-card">
+                    <div class="evidence-badge">📌 证据等级：${escapeHtml(level)}</div>
+                    <div style="font-size:1.4rem; font-weight:600; margin-bottom:0.5rem;">✨ ${escapeHtml(name)}</div>
+                    ${scoreHtml}
+                    <hr>
+                    <div style="line-height:1.5;">📖 ${escapeHtml(summary)}</div>
+                </div>
+            `;
+            resultArea.innerHTML = html;
+        }
+
+        // 简单的防XSS
+        function escapeHtml(str) {
+            if (str === undefined || str === null) return '';
+            return String(str).replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+                return c;
+            });
+        }
+
+        // 绑定事件
+        btnEl.addEventListener('click', () => {
+            fetchEvidence(inputEl.value);
+        });
+
+        inputEl.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                fetchEvidence(inputEl.value);
+            }
+        });
+
+        // 页面初始化：自动查询预设的示例（益生菌）
+        // 如果你希望打开页面时直接展示示例，可以取消下一行注释
+        // 但建议保留用户主动点击，避免首次加载慢。
+        // 为了让用户立即看到效果，可执行一次默认查询：
+        if (inputEl.value.trim() === '益生菌') {
+            setTimeout(() => {
+                fetchEvidence('益生菌');
+            }, 100);
+        }
+    })();
+</script>
+</body>
+</html>
