@@ -82,12 +82,7 @@
             color: #fff;
         }
         .btn-search:hover { background: #1a202c; }
-        .btn-ai {
-            background: #4a5568;
-            color: #fff;
-        }
-        .btn-ai:hover { background: #2d3748; }
-        .search-bar button:active { transform: scale(0.96); }
+                .search-bar button:active { transform: scale(0.96); }
         .search-bar button:disabled {
             background: #cbd5e0;
             cursor: not-allowed;
@@ -196,10 +191,7 @@
             color: #7f8c8d;
             font-size: 15px;
         }
-        .loading::before {
-            content: "... ";
-            letter-spacing: 2px;
-        }
+        .loading .spinner { display: inline-block; width: 28px; height: 28px; border: 2px solid #e2e8f0; border-top-color: #4a5568; border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle; }
         .ai-loading {
             text-align: center;
             padding: 32px 20px;
@@ -424,20 +416,25 @@
 
 <!-- ==================== Vue 3 应用 ==================== -->
 <div id="app">
+    <div class="lang-bar">
+        <span :class="{ active: lang === 'zh' }" @click="setLang('zh')">CN</span>
+        <span class="sep">|</span>
+        <span :class="{ active: lang === 'en' }" @click="setLang('en')">EN</span>
+    </div>
     <!-- 页头 -->
     <div class="header">
-        <h1>益生菌/代谢物证据评估系统</h1>
-        <p class="subtitle">本地知识库检索 + DeepSeek AI 增强分析 | 猪肠道微生物组与表观遗传学</p>
+        <h1>{{ t('title') }}</h1>
+        <p class="subtitle">{{ t('subtitle') }}</p>
     </div>
 
     <!-- ==================== 服务器地址配置面板 ==================== -->
     <div class="server-config">
         <span class="config-icon" :class="{ open: showConfig }" @click="toggleConfig" title="服务器设置">Settings</span>
         <span class="config-status" :class="connStatus"></span>
-        <span class="config-label">后端：</span>
+        <span class="config-label">{{ t('backend') }}:</span>
         <span class="config-url" v-if="!showConfig" :title="backendUrl">{{ backendUrl }}</span>
         <span class="config-hint" v-if="!showConfig && connStatus === 'err'" style="color:#e74c3c;">
-            无法连接 — <a href="#" @click.prevent="toggleConfig">修改地址</a>
+            {{ t('cantConnect') }} <a href="#" @click.prevent="toggleConfig">{{ t('modifyAddr') }}</a>
         </span>
         <div class="config-panel" :class="{ show: showConfig }">
             <input
@@ -446,11 +443,11 @@
                 @keyup.enter="saveBackendUrl"
                 placeholder="例：http://192.168.1.100:8000"
             />
-            <button class="config-btn config-btn-save" @click="saveBackendUrl">保存</button>
+            <button class="config-btn config-btn-save" @click="saveBackendUrl">{{ t('saveBtn') }}</button>
             <button class="config-btn config-btn-test" @click="testConnection" :disabled="testingConn">
-                {{ testingConn ? '测试中...' : '测试' }}
+                {{ testingConn ? '...' : t('testBtn') }}
             </button>
-            <button class="config-btn config-btn-reset" @click="resetBackendUrl">自动</button>
+            <button class="config-btn config-btn-reset" @click="resetBackendUrl">{{ t('autoBtn') }}</button>
             <span class="config-hint">
                 手机/平板访问时，请填入电脑的局域网 IP 地址。<br>
                 在电脑上按 <code>Win+R</code> → 输入 <code>cmd /k ipconfig</code> → 找到 <code>IPv4 地址</code>（如 192.168.x.x），然后在上面输入 <code>http://你的IP:8000</code> 并保存。
@@ -462,27 +459,16 @@
     <div class="search-bar">
         <input
             v-model="query"
-            @keyup.enter="search"
-            placeholder="输入菌株名或代谢物名，如：丁酸、P. succinatutens、胆汁酸..."
+            @keyup.enter="unifiedSearch"
+            :placeholder="t('placeholder')"
         />
     </div>
-    <div class="btn-row">
-        <button class="btn-search" @click="search" :disabled="loading">
-            {{ loading && !aiLoading ? '搜索中...' : '知识库搜索' }}
-        </button>
-        <button class="btn-ai" @click="aiSearch" :disabled="aiLoading">
-            {{ aiLoading ? 'AI 分析中...' : 'AI 深度分析' }}
-        </button>
-    </div>
+    <button @click="unifiedSearch" :disabled="searching" class="btn-search">{{ searching ? t('searching') : t('searchBtn') }}</button>
 
     <!-- 加载状态 -->
-    <div v-if="loading && !aiLoading" class="loading">正在查询知识库，请稍候...</div>
-
-    <!-- AI 加载状态 -->
-    <div v-if="aiLoading" class="ai-loading">
-        <div class="spinner"></div>
-        <p>DeepSeek AI 正在综合分析 "<strong>{{ aiQuery }}</strong>" ...</p>
-        <p style="font-size:12px;color:#a0aec0;margin-top:4px;">联网搜索 + 本地知识库 + 专业评估模型，预计需要 10-30 秒</p>
+    <div v-if="searching" class="loading">
+        <div class="spinner"></div>{{ searchPhase === 'kb' ? t('kbSearching') : t('aiAnalyzing') }}
+        <div v-if="searchPhase === 'ai'" style="font-size:12px;color:#a0aec0;margin-top:4px;">{{ t('aiTimeHint') }}</div>
     </div>
 
     <!-- 全局错误提示 -->
@@ -506,9 +492,9 @@
                     <span style="color:#7f8c8d;font-size:13px;"> / {{ aiData.name_en }}</span>
                 </p>
                 <p style="font-size:13px;color:#7f8c8d;margin-bottom:8px;">
-                    类型: {{ aiData.type === 'probiotics' ? '益生菌' : aiData.type === 'metabolites' ? '代谢物' : '未知' }}
+                    {{ t('type') }}: {{ aiData.type === 'probiotics' ? t('probiotics') : aiData.type === 'metabolites' ? t('metabolites') : t('unknown') }}
                     <span v-if="aiData.research_priority && aiData.research_priority !== 'N/A'">
-                        | 研究优先级: <strong>{{ aiData.research_priority }}</strong>
+                        | {{ t('researchPriority') }}: <strong>{{ aiData.research_priority }}</strong>
                     </span>
                 </p>
 
@@ -516,19 +502,19 @@
                 <div class="score-row">
                     <div class="score-item">
                         <div class="score-val">{{ scores.eff }}</div>
-                        <div class="score-label">有效性<br>(Forward)</div>
+                        <div class="score-label">{{ t('effectiveness') }}<br>({{ t('forward') }})</div>
                     </div>
                     <div class="score-item">
                         <div class="score-val">{{ scores.saf }}</div>
-                        <div class="score-label">安全性<br>(Reverse)</div>
+                        <div class="score-label">{{ t('safety') }}<br>({{ t('reverse') }})</div>
                     </div>
                     <div class="score-item">
                         <div class="score-val">{{ scores.acc }}</div>
-                        <div class="score-label">耦合验证<br>(Coupling)</div>
+                        <div class="score-label">{{ t('coupling') }}<br>({{ t('coupling_en') }})</div>
                     </div>
                     <div class="score-item">
                         <div class="score-val">{{ scores.evi }}</div>
-                        <div class="score-label">测量深度<br>(Measurement)</div>
+                        <div class="score-label">{{ t('measurement') }}<br>({{ t('measurement_en') }})</div>
                     </div>
                 </div>
 
@@ -558,7 +544,7 @@
         </div>
 
         <!-- 本地知识库命中提示 -->
-        <div v-if="localMatch && localMatch.found" class="local-hit">
+        <div v-if="hasKBResults && aiData" class="local-hit">
             本地知识库已收录 "<strong>{{ localMatch.name }}</strong>"（{{ localMatch.evidence_level }}）。
             AI 分析已综合本地数据进行增强评估。
         </div>
@@ -577,9 +563,9 @@
             </div>
             <div class="card-body">
                 <p style="margin-bottom:8px;color:#555;">
-                    条目：<strong>{{ tierData.strain || '未知' }}</strong>
+                    {{ t('entry') }}: <strong>{{ tierData.strain || '--' }}</strong>
                     <span v-if="tierData.category" style="font-size:12px;color:#7f8c8d;">
-                        | 类型: {{ tierData.category === 'probiotics' ? '益生菌' : '代谢物' }}
+                        | {{ t('type') }}: {{ tierData.category === 'probiotics' ? t('probiotics') : t('metabolites') }}
                     </span>
                 </p>
                 <div class="chart-box" id="bubble-chart"></div>
@@ -609,7 +595,7 @@
     </template>
 
     <!-- 未搜索时的占位 -->
-    <div v-if="!searched && !loading && !aiData && !aiLoading" style="text-align:center;padding:40px 20px;color:#b2bec3;">
+    <div v-if="!searched && !searching" style="text-align:center;padding:40px 20px;color:#b2bec3;">
         <p style="font-size:48px;margin-bottom:12px;"></p>
         <p>输入菌株名或代谢物名，使用知识库搜索或 AI 深度分析开始评估</p>
         <p style="font-size:13px;margin-top:8px;">
@@ -624,6 +610,11 @@ const { createApp, ref, computed, nextTick, onMounted } = Vue;
 
 const app = createApp({
     setup() {
+        /* ==================== 国际化词典 ==================== */
+        var L = {zh:{title:"益生菌/代谢物证据评估系统",subtitle:"本地知识库检索 + AI 增强分析 | 猪肠道微生物组与表观遗传学",placeholder:"菌株名或代谢物名",searchBtn:"搜索",searching:"搜索中...",kbSearching:"正在查询知识库...",aiAnalyzing:"AI 综合分析中...",aiTimeHint:"本地知识库未收录，已自动启动 AI 深度分析（联网搜索 + 专业评估），预计 10-30 秒",backend:"后端",saveBtn:"保存",testBtn:"测试",autoBtn:"自动",cantConnect:"无法连接",modifyAddr:"修改地址",configHint:"手机/平板访问时，请填入电脑的局域网 IP 地址。<br>电脑上按 <code>Win+R</code> → <code>cmd /k ipconfig</code> 查看 IPv4 地址。",aiResults:"AI 深度分析结果",sourceAI:"AI 综合分析",sourceKB:"本地知识库",evidenceLevel:"证据等级评估",matrixScore:"四维评分",experimentAdvice:"实验验证建议",summaryZH:"中文摘要",summaryEN:"English Summary",references:"关键参考文献",confidence:"可信度",type:"类型",probiotics:"益生菌",metabolites:"代谢物",unknown:"未知",researchPriority:"研究优先级",entry:"条目",kbMatched:"本地知识库已收录此条目。以下为已验证的结构化数据。",kbNotFound:"本地知识库未收录此条目。以下分析由 AI 基于现有科学文献生成。",emptyPlaceholder:"输入菌株名或代谢物名开始评估",emptyStats:"已收录 {p} 条益生菌条目 + {m} 条代谢物条目",effectiveness:"有效性",safety:"安全性",coupling:"耦合验证",measurement:"测量深度",forward:"Forward",reverse:"Reverse",coupling_en:"Coupling",measurement_en:"Measurement",needQuery:"请输入菌株名或代谢物名",tierError:"证据等级查询失败",matrixError:"四维评分查询失败",adviceError:"实验建议查询失败",aiError:"AI 分析请求失败",tierBadge:"证据等级",scoreOutOf:"/ 5",strongEvidence:"强证据",moderateEvidence:"中度证据"},en:{title:"Probiotic/Metabolite Evidence Assessment",subtitle:"Local KB + AI Analysis | Porcine Gut Microbiome & Epigenetics",placeholder:"Strain or metabolite name",searchBtn:"Search",searching:"Searching...",kbSearching:"Querying knowledge base...",aiAnalyzing:"AI analysis in progress...",aiTimeHint:"Not found in local KB. Auto-launching AI deep analysis (web search + expert evaluation), ~10-30s",backend:"Backend",saveBtn:"Save",testBtn:"Test",autoBtn:"Auto",cantConnect:"Cannot connect",modifyAddr:"Modify",configHint:"For mobile/tablet, enter the LAN IP of your PC.<br>On PC: <code>Win+R</code> → <code>cmd /k ipconfig</code> → IPv4 Address.",aiResults:"AI Deep Analysis",sourceAI:"AI Analysis",sourceKB:"Local KB",evidenceLevel:"Evidence Level",matrixScore:"Four-Dimensional Score",experimentAdvice:"Experiment Recommendations",summaryZH:"Chinese Summary",summaryEN:"English Summary",references:"Key References",confidence:"Confidence",type:"Type",probiotics:"Probiotics",metabolites:"Metabolites",unknown:"Unknown",researchPriority:"Research Priority",entry:"Entry",kbMatched:"This entry exists in the local knowledge base.",kbNotFound:"Not found in local KB. Analysis generated by AI based on scientific literature.",emptyPlaceholder:"Enter a strain or metabolite name",emptyStats:"{p} probiotic entries + {m} metabolite entries",effectiveness:"Effectiveness",safety:"Safety",coupling:"Coupling",measurement:"Depth",forward:"Forward",reverse:"Reverse",coupling_en:"Coupling",measurement_en:"Measurement",needQuery:"Please enter a strain or metabolite name",tierError:"Evidence query failed",matrixError:"Matrix query failed",adviceError:"Advice query failed",aiError:"AI analysis failed",tierBadge:"Evidence Level",scoreOutOf:"/ 5",strongEvidence:"Strong Evidence",moderateEvidence:"Moderate Evidence"}};
+        var t = function(k) { return L[lang.value]?.[k] || L['zh'][k] || k; };
+        var setLang = function(l) { lang.value = l; localStorage.setItem('evidence_lang', l); };
+
         // ==================== 智能后端地址检测 ====================
         // 自动判断当前环境，决定后端 API 地址：
         //   1. 页面通过 HTTP 加载 -> 使用同一主机名 + 端口 8000
@@ -660,10 +651,10 @@ const app = createApp({
         var initialUrl = urlParam || storedUrl || detectBackendUrl();
 
         // ==================== 响应式状态 ====================
+        var lang = ref(localStorage.getItem('evidence_lang') || 'zh');
         const query = ref('');
-        const loading = ref(false);
-        const aiLoading = ref(false);
-        const aiQuery = ref('');
+        var searching = ref(false);
+        var searchPhase = ref('kb');
         const errorMsg = ref('');
         const searched = ref(false);
 
@@ -681,7 +672,6 @@ const app = createApp({
 
         // AI 分析结果
         const aiData = ref(null);
-        const localMatch = ref(null);
 
         // 知识库统计
         const kbStats = ref({ probiotics: 0, metabolites: 0 });
@@ -797,86 +787,58 @@ const app = createApp({
             }
         };
 
-        // ==================== 本地知识库搜索 ====================
-        const search = async () => {
-            const q = query.value.trim();
-            if (!q) {
-                errorMsg.value = '请输入菌株名或代谢物名进行搜索';
-                return;
-            }
-
+        // ==================== 统一搜索（KB 优先，无匹配自动 AI） ====================
+        var unifiedSearch = async function() {
+            var q = query.value.trim();
+            if (!q) { errorMsg.value = t('needQuery'); return; }
             errorMsg.value = '';
-            loading.value = true;
+            searching.value = true;
+            searchPhase.value = 'kb';
             searched.value = true;
-            aiData.value = null;     // 清除旧 AI 结果
-            localMatch.value = null;
+            aiData.value = null;
+            tierData.value = null;
+            matrixData.value = null;
+            adviceData.value = null;
 
-            const [tierRes, matrixRes, adviceRes] = await Promise.allSettled([
+            var results = await Promise.allSettled([
                 apiGet('/api/evaluate_tier',     { query: q }),
                 apiGet('/api/evaluate_matrix',   { query: q }),
                 apiGet('/api/experiment_advice', { query: q }),
             ]);
 
-            if (tierRes.status === 'fulfilled') {
-                tierData.value = tierRes.value;
+            var tierOk = results[0].status === 'fulfilled' ? results[0].value : null;
+            if (tierOk) tierData.value = tierOk;
+            else errorMsg.value += t('tierError') + ': ' + (results[0].reason?.message || '') + ' ';
+
+            if (results[1].status === 'fulfilled') matrixData.value = results[1].value;
+            else errorMsg.value += t('matrixError') + ': ' + (results[1].reason?.message || '') + ' ';
+
+            if (results[2].status === 'fulfilled') adviceData.value = results[2].value;
+            else errorMsg.value += t('adviceError') + ': ' + (results[2].reason?.message || '') + ' ';
+
+            var foundInKB = tierOk && tierOk.source === '知识库匹配';
+
+            if (foundInKB) {
+                searching.value = false;
+                await nextTick();
+                renderBubbleChart();
+                renderBarChart();
             } else {
-                tierData.value = null;
-                errorMsg.value += '证据等级查询失败：' + tierRes.reason.message + ' ';
+                searchPhase.value = 'ai';
+                try {
+                    var data = await apiGet('/api/ai_analyze', { query: q });
+                    aiData.value = data.ai_analysis;
+                } catch (err) {
+                    errorMsg.value += t('aiError') + ': ' + (err.message || '') + ' ';
+                    aiData.value = null;
+                }
+                searching.value = false;
+                await nextTick();
+                if (aiData.value) renderAIBarChart();
             }
-
-            if (matrixRes.status === 'fulfilled') {
-                matrixData.value = matrixRes.value;
-            } else {
-                matrixData.value = null;
-                errorMsg.value += '四维评分查询失败：' + matrixRes.reason.message + ' ';
-            }
-
-            if (adviceRes.status === 'fulfilled') {
-                adviceData.value = adviceRes.value;
-            } else {
-                adviceData.value = null;
-                errorMsg.value += '实验建议查询失败：' + adviceRes.reason.message;
-            }
-
-            loading.value = false;
-
-            await nextTick();
-            renderBubbleChart();
-            renderBarChart();
         };
 
-        // ==================== AI 深度分析 ====================
-        const aiSearch = async () => {
-            const q = query.value.trim();
-            if (!q) {
-                errorMsg.value = '请输入关键词进行 AI 分析';
-                return;
-            }
-
-            errorMsg.value = '';
-            aiLoading.value = true;
-            aiQuery.value = q;
-            searched.value = true;
-            // 清除旧数据
-            tierData.value = null;
-            matrixData.value = null;
-            adviceData.value = null;
-
-            try {
-                const data = await apiGet('/api/ai_analyze', { query: q });
-                aiData.value = data.ai_analysis;
-                localMatch.value = data.local_match;
-            } catch (err) {
-                errorMsg.value = 'AI 分析请求失败：' + err.message;
-                aiData.value = null;
-                localMatch.value = null;
-            }
-
-            aiLoading.value = false;
-
-            await nextTick();
-            renderAIBarChart();
-        };
+        
 
         // ==================== 气泡图（本地知识库） ====================
         const renderBubbleChart = () => {
@@ -1006,11 +968,12 @@ const app = createApp({
         });
 
         return {
-            query, loading, aiLoading, aiQuery, errorMsg, searched,
+            lang, query, searching, searchPhase, errorMsg, searched,
             tierData, matrixData, adviceData,
-            aiData, localMatch, kbStats,
+            aiData, kbStats,
+            hasKBResults: computed(function() { return tierData.value && tierData.value.source === "知识库匹配"; }),
             scores, aiTierClass, tierBadgeClass,
-            search, aiSearch,
+            t, setLang, unifiedSearch,
             // 服务器连接
             backendUrl, customUrl, showConfig, connStatus, testingConn,
             toggleConfig, saveBackendUrl, resetBackendUrl, testConnection
