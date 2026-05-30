@@ -17,7 +17,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
                          "Microsoft YaHei", "Helvetica Neue", sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: #f8f9fa;
             min-height: 100vh;
             color: #333;
         }
@@ -36,12 +36,12 @@
         .header h1 {
             font-size: 26px;
             font-weight: 700;
-            color: #2c3e50;
+            color: #1a202c; font-weight: 300; letter-spacing: 1px;
             margin-bottom: 6px;
         }
         .header .subtitle {
             font-size: 14px;
-            color: #7f8c8d;
+            color: #a0aec0; font-weight: 300;
         }
 
         /* ==================== 搜索区域 ==================== */
@@ -57,7 +57,7 @@
             min-width: 220px;
             max-width: 440px;
             padding: 12px 18px;
-            border: 2px solid #dfe6e9;
+            border: 1px solid #e2e8f0;
             border-radius: 28px;
             font-size: 16px;
             outline: none;
@@ -78,18 +78,18 @@
             font-weight: 600;
         }
         .btn-search {
-            background: #3498db;
+            background: #2d3748;
             color: #fff;
         }
-        .btn-search:hover { background: #2980b9; }
+        .btn-search:hover { background: #1a202c; }
         .btn-ai {
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            background: #4a5568;
             color: #fff;
         }
-        .btn-ai:hover { background: linear-gradient(135deg, #5b4cdb, #9088f0); }
+        .btn-ai:hover { background: #2d3748; }
         .search-bar button:active { transform: scale(0.96); }
         .search-bar button:disabled {
-            background: #b0bec5;
+            background: #cbd5e0;
             cursor: not-allowed;
         }
 
@@ -103,8 +103,8 @@
         /* ==================== 服务器地址配置面板 ==================== */
         .server-config {
             background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
             padding: 12px 18px;
             margin-bottom: 10px;
             display: flex;
@@ -116,11 +116,19 @@
         }
         .server-config .config-icon {
             cursor: pointer;
-            font-size: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a0aec0;
             user-select: none;
-            transition: transform 0.3s;
+            transition: color 0.2s;
+            border: 1px solid #e2e8f0;
+            border-radius: 3px;
+            padding: 2px 8px;
         }
-        .server-config .config-icon.open { transform: rotate(60deg); }
+        .server-config .config-icon:hover { color: #4a5568; border-color: #a0aec0; }
+        .server-config .config-icon.open { color: #2d3748; border-color: #4a5568; }
         .server-config .config-status {
             display: inline-block;
             width: 10px; height: 10px;
@@ -153,10 +161,10 @@
             cursor: pointer; font-weight: 600;
             white-space: nowrap;
         }
-        .config-btn-save { background: #27ae60; color: #fff; }
-        .config-btn-save:hover { background: #1e8449; }
-        .config-btn-test { background: #3498db; color: #fff; }
-        .config-btn-test:hover { background: #2980b9; }
+        .config-btn-save { background: #2d3748; color: #fff; }
+        .config-btn-save:hover { background: #1a202c; }
+        .config-btn-test { background: #4a5568; color: #fff; }
+        .config-btn-test:hover { background: #2d3748; }
         .config-btn-reset { background: #f1f2f6; color: #636e72; }
         .config-btn-reset:hover { background: #dfe6e9; }
         .config-panel { display: none; flex-wrap: wrap; gap: 8px; align-items: center; width: 100%; }
@@ -189,7 +197,8 @@
             font-size: 15px;
         }
         .loading::before {
-            content: "⏳ ";
+            content: "... ";
+            letter-spacing: 2px;
         }
         .ai-loading {
             text-align: center;
@@ -203,7 +212,7 @@
             width: 32px;
             height: 32px;
             border: 3px solid #dfe6e9;
-            border-top-color: #6c5ce7;
+            border-top-color: #4a5568;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             margin-bottom: 10px;
@@ -218,8 +227,8 @@
 
         /* ==================== 错误提示 ==================== */
         .error-msg {
-            background: #ffeaa7;
-            border-left: 4px solid #fdcb6e;
+            background: #fff5f5;
+            border-left: 3px solid #fc8181;
             padding: 14px 18px;
             border-radius: 6px;
             margin: 16px 0;
@@ -230,18 +239,19 @@
         /* ==================== 结果卡片 ==================== */
         .result-card {
             background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
-            margin-bottom: 18px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            margin-bottom: 16px;
             overflow: hidden;
         }
         .result-card .card-header {
-            background: #f8f9fa;
+            background: #fff;
             padding: 14px 20px;
-            font-weight: 600;
-            font-size: 16px;
-            color: #2c3e50;
-            border-bottom: 1px solid #eee;
+            font-weight: 500;
+            font-size: 15px;
+            color: #1a202c;
+            border-bottom: 1px solid #edf2f7;
+            letter-spacing: 0.3px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -251,9 +261,9 @@
         }
 
         /* AI 结果卡片特殊样式 */
-        .ai-card { border: 2px solid #a29bfe; }
+        .ai-card { border: 1px solid #e2e8f0; }
         .ai-card .card-header {
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            background: #2d3748;
             color: #fff;
         }
 
@@ -266,11 +276,11 @@
             font-weight: 700;
             color: #fff;
         }
-        .badge-green  { background: #27ae60; }
-        .badge-blue   { background: #2980b9; }
-        .badge-orange { background: #f39c12; }
-        .badge-gray   { background: #95a5a6; }
-        .badge-purple { background: #6c5ce7; }
+        .badge-green  { background: #38a169; }
+        .badge-blue   { background: #3182ce; }
+        .badge-orange { background: #d69e2e; }
+        .badge-gray   { background: #a0aec0; }
+        .badge-purple { background: #4a5568; }
 
         .confidence-badge {
             display: inline-block;
@@ -279,9 +289,9 @@
             font-size: 11px;
             font-weight: 600;
         }
-        .confidence-high   { background: #d5f5e3; color: #27ae60; }
-        .confidence-medium { background: #fef9e7; color: #f39c12; }
-        .confidence-low    { background: #fadbd8; color: #e74c3c; }
+        .confidence-high   { background: #f0fff4; color: #38a169; }
+        .confidence-medium { background: #fffff0; color: #d69e2e; }
+        .confidence-low    { background: #fff5f5; color: #e53e3e; }
 
         /* ==================== 评分指标行 ==================== */
         .score-row {
@@ -295,8 +305,8 @@
             min-width: 70px;
             text-align: center;
             padding: 10px 6px;
-            background: #f8f9fa;
-            border-radius: 8px;
+            background: #f7fafc;
+            border-radius: 4px;
         }
         .score-item .score-val {
             font-size: 28px;
@@ -317,13 +327,13 @@
 
         /* ==================== 摘要区域 ==================== */
         .summary-box {
-            background: #f8f9fa;
-            border-radius: 8px;
+            background: #f7fafc;
+            border-radius: 4px;
             padding: 14px 18px;
             margin: 12px 0;
             font-size: 14px;
             line-height: 1.8;
-            color: #444;
+            color: #4a5568;
         }
         .summary-box h4 {
             font-size: 13px;
@@ -333,7 +343,7 @@
             letter-spacing: 0.5px;
         }
         .summary-box.en {
-            border-left: 3px solid #a29bfe;
+            border-left: 3px solid #cbd5e0;
         }
 
         /* ==================== 参考文献列表 ==================== */
@@ -344,14 +354,16 @@
         .ref-list li {
             padding: 8px 12px;
             margin: 4px 0;
-            background: #f8f9fa;
-            border-radius: 6px;
+            background: #f7fafc;
+            border-radius: 4px;
             font-size: 13px;
             color: #555;
             line-height: 1.5;
         }
         .ref-list li::before {
-            content: "📄 ";
+            content: "# ";
+            color: #cbd5e0;
+            font-weight: 600;
         }
 
         /* ==================== 实验建议列表 ==================== */
@@ -375,9 +387,9 @@
             justify-content: center;
             min-width: 24px;
             height: 24px;
-            background: #3498db;
+            background: #2d3748;
             color: #fff;
-            border-radius: 50%;
+            border-radius: 2px;
             font-size: 12px;
             font-weight: 700;
             flex-shrink: 0;
@@ -386,8 +398,8 @@
 
         /* ==================== 本地命中提示 ==================== */
         .local-hit {
-            background: #eaf2f8;
-            border-left: 4px solid #3498db;
+            background: #f7fafc;
+            border-left: 3px solid #718096;
             padding: 10px 16px;
             border-radius: 6px;
             margin: 12px 0;
@@ -414,18 +426,18 @@
 <div id="app">
     <!-- 页头 -->
     <div class="header">
-        <h1>🧬 益生菌/代谢物证据评估系统</h1>
+        <h1>益生菌/代谢物证据评估系统</h1>
         <p class="subtitle">本地知识库检索 + DeepSeek AI 增强分析 | 猪肠道微生物组与表观遗传学</p>
     </div>
 
     <!-- ==================== 服务器地址配置面板 ==================== -->
     <div class="server-config">
-        <span class="config-icon" :class="{ open: showConfig }" @click="toggleConfig" title="服务器设置">⚙️</span>
+        <span class="config-icon" :class="{ open: showConfig }" @click="toggleConfig" title="服务器设置">Settings</span>
         <span class="config-status" :class="connStatus"></span>
         <span class="config-label">后端：</span>
         <span class="config-url" v-if="!showConfig" :title="backendUrl">{{ backendUrl }}</span>
         <span class="config-hint" v-if="!showConfig && connStatus === 'err'" style="color:#e74c3c;">
-            ⚠️ 无法连接 — <a href="#" @click.prevent="toggleConfig">修改地址</a>
+            无法连接 — <a href="#" @click.prevent="toggleConfig">修改地址</a>
         </span>
         <div class="config-panel" :class="{ show: showConfig }">
             <input
@@ -434,13 +446,13 @@
                 @keyup.enter="saveBackendUrl"
                 placeholder="例：http://192.168.1.100:8000"
             />
-            <button class="config-btn config-btn-save" @click="saveBackendUrl">💾 保存</button>
+            <button class="config-btn config-btn-save" @click="saveBackendUrl">保存</button>
             <button class="config-btn config-btn-test" @click="testConnection" :disabled="testingConn">
-                {{ testingConn ? '测试中...' : '🔗 测试' }}
+                {{ testingConn ? '测试中...' : '测试' }}
             </button>
-            <button class="config-btn config-btn-reset" @click="resetBackendUrl">↩ 自动</button>
+            <button class="config-btn config-btn-reset" @click="resetBackendUrl">自动</button>
             <span class="config-hint">
-                💡 手机/平板访问时，请填入电脑的局域网 IP 地址。<br>
+                手机/平板访问时，请填入电脑的局域网 IP 地址。<br>
                 在电脑上按 <code>Win+R</code> → 输入 <code>cmd /k ipconfig</code> → 找到 <code>IPv4 地址</code>（如 192.168.x.x），然后在上面输入 <code>http://你的IP:8000</code> 并保存。
             </span>
         </div>
@@ -456,10 +468,10 @@
     </div>
     <div class="btn-row">
         <button class="btn-search" @click="search" :disabled="loading">
-            {{ loading && !aiLoading ? '搜索中...' : '🔍 知识库搜索' }}
+            {{ loading && !aiLoading ? '搜索中...' : '知识库搜索' }}
         </button>
         <button class="btn-ai" @click="aiSearch" :disabled="aiLoading">
-            {{ aiLoading ? 'AI 分析中...' : '🤖 AI 深度分析' }}
+            {{ aiLoading ? 'AI 分析中...' : 'AI 深度分析' }}
         </button>
     </div>
 
@@ -470,7 +482,7 @@
     <div v-if="aiLoading" class="ai-loading">
         <div class="spinner"></div>
         <p>DeepSeek AI 正在综合分析 "<strong>{{ aiQuery }}</strong>" ...</p>
-        <p style="font-size:12px;color:#b2bec3;margin-top:4px;">联网搜索 + 本地知识库 + 专业评估模型，预计需要 10-30 秒</p>
+        <p style="font-size:12px;color:#a0aec0;margin-top:4px;">联网搜索 + 本地知识库 + 专业评估模型，预计需要 10-30 秒</p>
     </div>
 
     <!-- 全局错误提示 -->
@@ -481,7 +493,7 @@
         <!-- AI 结果卡片 -->
         <div class="result-card ai-card">
             <div class="card-header">
-                🤖 AI 深度分析结果
+                AI 深度分析结果
                 <span class="badge" :class="aiTierClass">{{ aiData.evidence_level }}</span>
                 <span class="confidence-badge" :class="'confidence-' + (aiData.confidence || 'medium')">
                     可信度: {{ aiData.confidence || 'medium' }}
@@ -525,19 +537,19 @@
 
                 <!-- 中文摘要 -->
                 <div class="summary-box">
-                    <h4>📝 中文摘要</h4>
+                    <h4>中文摘要</h4>
                     <p>{{ aiData.summary }}</p>
                 </div>
 
                 <!-- 英文摘要 -->
                 <div class="summary-box en" v-if="aiData.summary_en">
-                    <h4>📝 English Summary</h4>
+                    <h4>English Summary</h4>
                     <p>{{ aiData.summary_en }}</p>
                 </div>
 
                 <!-- 关键文献 -->
                 <div v-if="aiData.key_references && aiData.key_references.length > 0" style="margin-top:14px;">
-                    <h4 style="font-size:13px;color:#7f8c8d;margin-bottom:8px;">📚 关键参考文献</h4>
+                    <h4 style="font-size:13px;color:#7f8c8d;margin-bottom:8px;">关键参考文献</h4>
                     <ul class="ref-list">
                         <li v-for="(ref, idx) in aiData.key_references" :key="idx">{{ ref }}</li>
                     </ul>
@@ -547,11 +559,11 @@
 
         <!-- 本地知识库命中提示 -->
         <div v-if="localMatch && localMatch.found" class="local-hit">
-            💡 本地知识库已收录 "<strong>{{ localMatch.name }}</strong>"（{{ localMatch.evidence_level }}）。
+            本地知识库已收录 "<strong>{{ localMatch.name }}</strong>"（{{ localMatch.evidence_level }}）。
             AI 分析已综合本地数据进行增强评估。
         </div>
         <div v-else-if="localMatch && !localMatch.found" class="local-hit" style="background:#fef9e7;border-left-color:#f39c12;">
-            ⚠️ 本地知识库未收录 "<strong>{{ query }}</strong>"，以上评估完全由 DeepSeek AI 基于现有科学文献生成，可信度为 <strong>{{ aiData.confidence || 'low' }}</strong>。建议通过实验验证。
+            本地知识库未收录 "<strong>{{ query }}</strong>"，以上评估完全由 DeepSeek AI 基于现有科学文献生成，可信度为 <strong>{{ aiData.confidence || 'low' }}</strong>。建议通过实验验证。
         </div>
     </template>
 
@@ -560,7 +572,7 @@
         <!-- 卡片 A：证据等级 -->
         <div class="result-card" v-if="tierData">
             <div class="card-header">
-                📊 证据等级评估
+                证据等级评估
                 <span class="badge" :class="tierBadgeClass">{{ tierData.tier }}</span>
             </div>
             <div class="card-body">
@@ -576,7 +588,7 @@
 
         <!-- 卡片 B：四维评分 -->
         <div class="result-card" v-if="matrixData">
-            <div class="card-header">📈 四维评分（正向 / 反向 / 耦合 / 测量深度）</div>
+            <div class="card-header">四维评分</div>
             <div class="card-body">
                 <div class="chart-box" id="bar-chart"></div>
             </div>
@@ -584,7 +596,7 @@
 
         <!-- 卡片 C：实验建议 -->
         <div class="result-card" v-if="adviceData">
-            <div class="card-header">🧪 实验验证建议</div>
+            <div class="card-header">实验验证建议</div>
             <div class="card-body">
                 <ul class="advice-list">
                     <li v-for="(item, idx) in adviceData.advice" :key="idx">
@@ -598,8 +610,8 @@
 
     <!-- 未搜索时的占位 -->
     <div v-if="!searched && !loading && !aiData && !aiLoading" style="text-align:center;padding:40px 20px;color:#b2bec3;">
-        <p style="font-size:48px;margin-bottom:12px;">🔬</p>
-        <p>输入菌株名或代谢物名，使用「知识库搜索」或「AI 深度分析」开始评估</p>
+        <p style="font-size:48px;margin-bottom:12px;"></p>
+        <p>输入菌株名或代谢物名，使用知识库搜索或 AI 深度分析开始评估</p>
         <p style="font-size:13px;margin-top:8px;">
             已收录 {{ kbStats.probiotics }} 条益生菌条目 + {{ kbStats.metabolites }} 条代谢物条目
         </p>
@@ -892,7 +904,7 @@ const app = createApp({
                     symbolSize: bubbleSize * 1.5,
                     data: [[bubbleSize, bubbleSize]],
                     itemStyle: {
-                        color: tier === 'L1' ? '#27ae60' : tier === 'L2' ? '#2980b9' : tier === 'L3' ? '#f39c12' : '#95a5a6',
+                        color: tier === 'L1' ? '#38a169' : tier === 'L2' ? '#3182ce' : tier === 'L3' ? '#d69e2e' : '#a0aec0',
                         shadowBlur: 12,
                         shadowColor: 'rgba(0,0,0,0.2)'
                     },
@@ -922,7 +934,7 @@ const app = createApp({
             const m = matrixData.value.matrix || {};
             const dims = ['正向', '反向', '耦合', '测量深度'];
             const vals = [m['正向'] || 0, m['反向'] || 0, m['耦合'] || 0, m['测量深度'] || 0];
-            const colors = vals.map(v => v >= 0.7 ? '#27ae60' : v >= 0.4 ? '#2980b9' : '#b2bec3');
+            const colors = vals.map(v => v >= 0.7 ? '#38a169' : v >= 0.4 ? '#3182ce' : '#a0aec0');
 
             const option = {
                 title: { text: '四维评分', subtext: `条目：${matrixData.value.strain || '未知'}`, left: 'center', textStyle: { fontSize: 14 } },
@@ -954,7 +966,7 @@ const app = createApp({
             const s = aiData.value.scores || {};
             const dims = ['有效性\n(Forward)', '安全性\n(Reverse)', '耦合验证\n(Coupling)', '测量深度\n(Measurement)'];
             const vals = [s.effectiveness || 0, s.safety || 0, s.accessibility || 0, s.evidence_strength || 0];
-            const colors = vals.map(v => v >= 4 ? '#27ae60' : v >= 2 ? '#2980b9' : v >= 1 ? '#f39c12' : '#b2bec3');
+            const colors = vals.map(v => v >= 4 ? '#38a169' : v >= 2 ? '#3182ce' : v >= 1 ? '#d69e2e' : '#a0aec0');
 
             const option = {
                 title: {
@@ -974,8 +986,8 @@ const app = createApp({
                     markLine: {
                         silent: true,
                         data: [
-                            { yAxis: 4, label: { formatter: '强证据' }, lineStyle: { color: '#27ae60', type: 'dashed' } },
-                            { yAxis: 2, label: { formatter: '中度证据' }, lineStyle: { color: '#f39c12', type: 'dashed' } }
+                            { yAxis: 4, label: { formatter: '强证据' }, lineStyle: { color: '#38a169', type: 'dashed' } },
+                            { yAxis: 2, label: { formatter: '中度证据' }, lineStyle: { color: '#d69e2e', type: 'dashed' } }
                         ]
                     }
                 }],
