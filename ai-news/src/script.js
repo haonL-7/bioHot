@@ -301,6 +301,36 @@
             var absEl = card.querySelector('.paper-abstract');
             if (absEl) absEl.textContent = paper.abstract || '';
 
+            // Multi-backup links
+            var linksEl = card.querySelector('.paper-links');
+            if (linksEl) {
+                var links = paper.links || [];
+                if (links.length === 0 && paper.url) {
+                    links = [{type: 'primary', label: 'Source', url: paper.url}];
+                }
+                links.forEach(function (link) {
+                    var a = document.createElement('a');
+                    a.href = link.url || '#';
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.className = 'paper-link paper-link-' + (link.type || 'primary');
+                    a.textContent = link.label || 'Link';
+                    linksEl.appendChild(a);
+                });
+                // Broken link report button
+                var reportBtn = document.createElement('button');
+                reportBtn.className = 'report-broken-btn';
+                reportBtn.setAttribute('data-paper-id', paper.id || '');
+                reportBtn.title = 'Report broken link';
+                reportBtn.textContent = 'Report';
+                reportBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    reportBrokenLink(paper.id, paper.title);
+                });
+                linksEl.appendChild(reportBtn);
+            }
+
             // Nodes
             var nodesEl = card.querySelector('.paper-nodes');
             if (nodesEl) {
@@ -366,6 +396,79 @@
         });
     });
 
+    // ---- Link health check (CORS-safe: uses img beacon) ----
+    var brokenLinks = {}; // id -> {count, lastReported}
+
+    function checkLinkHealth() {
+        var links = document.querySelectorAll('.paper-link');
+        links.forEach(function (link) {
+            // Skip already-checked links
+            if (link.dataset.checked === 'true') return;
+            link.dataset.checked = 'true';
+
+            var url = link.getAttribute('href');
+            if (!url || url === '#') return;
+
+            // Use Image beacon to check link (avoids CORS issues with fetch)
+            var img = new Image();
+            var timeout = setTimeout(function () {
+                // Timeout = likely unreachable
+                link.classList.add('link-unreachable');
+                link.title = 'Link may be unavailable';
+            }, 5000);
+
+            img.onload = function () {
+                clearTimeout(timeout);
+                link.classList.add('link-ok');
+            };
+            img.onerror = function () {
+                clearTimeout(timeout);
+                // Error doesn't always mean broken — could be non-image URL
+                // Mark as "uncertain" rather than broken
+                link.classList.add('link-uncertain');
+            };
+            img.src = url;
+        });
+    }
+
+    function reportBrokenLink(id, title) {
+        if (!id) return;
+        var now = new Date().toISOString();
+        if (!brokenLinks[id]) {
+            brokenLinks[id] = { count: 0, firstReported: now, title: title };
+        }
+        brokenLinks[id].count += 1;
+        brokenLinks[id].lastReported = now;
+
+        // Store in localStorage for persistence
+        try {
+            localStorage.setItem('brokenLinks', JSON.stringify(brokenLinks));
+        } catch (e) { /* ignore */ }
+
+        // Visual feedback
+        var btn = document.querySelector('.report-broken-btn[data-paper-id=\"' + id + '\"]');
+        if (btn) {
+            btn.textContent = 'Reported';
+            btn.classList.add('reported');
+            setTimeout(function () { btn.textContent = 'Report'; btn.classList.remove('reported'); }, 2000);
+        }
+
+        console.log('Broken link reported:', id, title ? title.substring(0, 50) : '', 'Count:', brokenLinks[id].count);
+    }
+
+    function loadBrokenLinkReports() {
+        try {
+            var stored = localStorage.getItem('brokenLinks');
+            if (stored) brokenLinks = JSON.parse(stored);
+        } catch (e) { /* ignore */ }
+    }
+
     // ---- Init ----
+    loadBrokenLinkReports();
     loadData();
+
+    // Run link health check after a short delay (let the page render first)
+    setTimeout(function () {
+        checkLinkHealth();
+    }, 2000);
 })();

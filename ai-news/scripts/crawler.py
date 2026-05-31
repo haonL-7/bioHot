@@ -12,6 +12,7 @@ import time
 import hashlib
 import re
 from datetime import datetime, timedelta
+from urllib.parse import quote
 from xml.etree import ElementTree as ET
 
 import requests
@@ -416,7 +417,13 @@ def fetch_pubmed_details(pmids: list[str]) -> list[dict]:
                     if ln:
                         authors.append(f"{ln} {ini}")
 
-                url = f"https://doi.org/{doi}" if doi else f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
+                url = f"https://doi.org/{quote(doi, safe='')}" if doi else f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
+                # Multi-backup links
+                links = []
+                if doi:
+                    links.append({"type": "doi", "label": "DOI", "url": url})
+                if pmid:
+                    links.append({"type": "pubmed", "label": "PubMed", "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"})
 
                 articles.append({
                     "journal": journal, "doi": doi, "pmid": pmid,
@@ -424,6 +431,7 @@ def fetch_pubmed_details(pmids: list[str]) -> list[dict]:
                     "url": url, "title": title.strip(),
                     "abstract": abstract.strip()[:800],
                     "pub_date": pub_date, "source": "PubMed",
+                    "links": links if links else [],
                 })
             except Exception:
                 continue
@@ -457,6 +465,7 @@ def fetch_biorxiv() -> list[dict]:
                 "url": link,
                 "title": title[:300], "abstract": abstract[:800],
                 "pub_date": pub_date, "source": "bioRxiv",
+                "links": [{"type": "biorxiv", "label": "bioRxiv", "url": link}],
             })
     except Exception as e:
         print(f"    bioRxiv error: {e}")

@@ -95,6 +95,7 @@ def build_news_data(scored_articles: list[dict]) -> list[dict]:
             "pmid": art.get("pmid", ""),
             "firstAuthor": art.get("first_author", ""),
             "pubDate": art.get("pub_date", ""),
+            "links": art.get("links", []),
             "source": art.get("source", ""),
             # Evidence framework — bidirectional
             "evidenceLevel": ev.get("evidence_level", "L1"),
@@ -263,6 +264,20 @@ def generate_static_html(papers: list[dict], stats: dict):
         url = paper.get("url", "")
         title_html = f'<a href="{url}" target="_blank" rel="noopener noreferrer">{paper.get("title", "")}</a>' if url else paper.get("title", "")
 
+        # Multi-backup links
+        links_html = '<div class="paper-links">'
+        all_links = paper.get("links", [])
+        if not all_links and url:
+            all_links = [{"type": "primary", "label": "Source", "url": url}]
+        for link in all_links:
+            link_url = link.get("url", "")
+            link_label = link.get("label", "Link")
+            link_type = link.get("type", "")
+            links_html += f'<a href="{link_url}" target="_blank" rel="noopener noreferrer" class="paper-link paper-link-{link_type}">{link_label}</a> '
+        # Broken link report button
+        links_html += f'<button class="report-broken-btn" data-paper-id="{paper.get("id", "")}" title="Report broken link">Report</button>'
+        links_html += '</div>'
+
         cards_html += f'''<article class="paper-card{kb_class}">
             <div class="paper-header">
                 <div class="paper-source">
@@ -277,6 +292,7 @@ def generate_static_html(papers: list[dict], stats: dict):
             <h2 class="paper-title">{title_html}</h2>
             <p class="paper-evidence-levels">{ev_line}</p>
             <p class="paper-abstract">{paper.get("abstract", "")[:600]}</p>
+            {links_html}
             <div class="paper-nodes">{nodes_html}</div>
             <div class="paper-matrix">{matrix_html}</div>
             <div class="paper-summary">{paper.get("summary", "")}</div>

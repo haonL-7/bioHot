@@ -326,6 +326,53 @@ body {
     overflow: hidden;
 }
 
+/* ---- Multi-backup links ---- */
+.paper-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+.paper-link {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid;
+    transition: all 0.15s;
+    letter-spacing: 0.3px;
+}
+.paper-link-doi,
+.paper-link-primary { color: var(--accent); border-color: var(--accent); }
+.paper-link-doi:hover,
+.paper-link-primary:hover { background: var(--accent); color: #fff; }
+.paper-link-pubmed { color: #2874a6; border-color: #2874a6; }
+.paper-link-pubmed:hover { background: #2874a6; color: #fff; }
+.paper-link-biorxiv { color: #943d27; border-color: #943d27; }
+.paper-link-biorxiv:hover { background: #943d27; color: #fff; }
+
+/* Link health status */
+.paper-link.link-ok { border-color: #1a6b3c; color: #1a6b3c; }
+.paper-link.link-uncertain { opacity: 0.6; }
+.paper-link.link-unreachable { border-color: #999; color: #999; text-decoration: line-through; }
+
+/* Broken link report button */
+.report-broken-btn {
+    padding: 1px 6px;
+    font-size: 9px;
+    font-family: var(--font-sans);
+    color: var(--text-muted);
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
+}
+.report-broken-btn:hover { color: #922; border-color: #922; }
+.report-broken-btn.reported { color: #1a6b3c; border-color: #1a6b3c; }
+
 .paper-nodes {
     display: flex;
     flex-wrap: wrap;
