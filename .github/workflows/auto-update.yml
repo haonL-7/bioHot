@@ -122,25 +122,13 @@ jobs:
       - name: 📊 生成运行摘要
         if: always()
         run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "📊 Daily Update & Deploy — 运行摘要"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "========================================="
+          echo "  Daily Update & Deploy - Run Summary"
+          echo "========================================="
           if [ -f ai-news/data/stats.json ]; then
-            python -c "
-      import json
-      with open('ai-news/data/stats.json') as f:
-          s = json.load(f)
-      print(f\"  📰 文章总数:  {s.get('total_articles', 'N/A')}\")
-      print(f\"  🎯 均权威度:  {s.get('avg_authority', 'N/A')}\")
-      print(f\"  🆕 均新颖度:  {s.get('avg_novelty', 'N/A')}\")
-      print(f\"  💡 均价值度:  {s.get('avg_value', 'N/A')}\")
-      print(f\"  🕐 更新时间:  {s.get('updated_at_human', 'N/A')}\")
-            "
+            python ai-news/scripts/print_stats.py
           else
-            echo "  ⚠ 统计文件未生成"
+            echo "  WARNING: stats.json not found"
           fi
-
-          REPO_NAME="${{ github.repository }}"
-          echo ""
-          echo "  🌐 网站地址: https://${REPO_NAME%/*}.github.io/${REPO_NAME#*/}"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "  Site: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+          echo "========================================="
