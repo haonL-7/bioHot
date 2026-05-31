@@ -165,15 +165,30 @@
     function applyAllFilters() {
         var items = state.papers.slice();
 
-        // Search
+        // Search (space-insensitive: "p.succinatutens" matches "P. succinatutens")
         if (state.searchQuery) {
-            var q = state.searchQuery.toLowerCase();
+            var q = state.searchQuery.toLowerCase().replace(/\s+/g, '');
+            // Split into tokens for multi-word search (each token must match)
+            var tokens = state.searchQuery.toLowerCase().split(/\s+/).filter(function (t) { return t.length > 0; });
             items = items.filter(function (p) {
-                return (p.title || '').toLowerCase().indexOf(q) >= 0 ||
-                    (p.abstract || '').toLowerCase().indexOf(q) >= 0 ||
-                    (p.journal || '').toLowerCase().indexOf(q) >= 0 ||
-                    (p.firstAuthor || '').toLowerCase().indexOf(q) >= 0 ||
-                    (p.nodes || []).some(function (n) { return n.toLowerCase().indexOf(q) >= 0; });
+                // Space-insensitive match for exact phrase
+                var haystack = [
+                    (p.title || '').toLowerCase().replace(/\s+/g, ''),
+                    (p.abstract || '').toLowerCase().replace(/\s+/g, ''),
+                    (p.journal || '').toLowerCase().replace(/\s+/g, ''),
+                    (p.firstAuthor || '').toLowerCase().replace(/\s+/g, ''),
+                ].join(' ');
+                // Also check nodes (space-normalized)
+                var nodeHaystack = (p.nodes || []).map(function (n) { return n.toLowerCase().replace(/\s+/g, ''); }).join(' ');
+                if (haystack.indexOf(q) >= 0 || nodeHaystack.indexOf(q) >= 0) return true;
+                // Token-based fallback: each word must match somewhere
+                if (tokens.length > 1) {
+                    return tokens.every(function (tok) {
+                        var t = tok.replace(/\s+/g, '');
+                        return haystack.indexOf(t) >= 0 || nodeHaystack.indexOf(t) >= 0;
+                    });
+                }
+                return false;
             });
         }
 
