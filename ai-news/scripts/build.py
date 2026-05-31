@@ -261,24 +261,30 @@ def generate_static_html(papers: list[dict], stats: dict):
                 <span class="matrix-val">{val}/5</span>
             </div>'''
 
-        url = paper.get("url", "")
-        title_html = f'<a href="{url}" target="_blank" rel="noopener noreferrer">{paper.get("title", "")}</a>' if url else paper.get("title", "")
+        # Title: clicking opens evaluation detail modal
+        paper_id = paper.get("id", "")
+        title_text = paper.get("title", "")
+        title_html = f'<a href="#" class="paper-title-link" data-paper-id="{paper_id}" onclick="return false">{title_text}</a>'
 
-        # Multi-backup links
-        links_html = '<div class="paper-links">'
+        # Multi-backup links (only render if there are valid URLs)
         all_links = paper.get("links", [])
-        if not all_links and url:
-            all_links = [{"type": "primary", "label": "Source", "url": url}]
-        for link in all_links:
-            link_url = link.get("url", "")
-            link_label = link.get("label", "Link")
-            link_type = link.get("type", "")
-            links_html += f'<a href="{link_url}" target="_blank" rel="noopener noreferrer" class="paper-link paper-link-{link_type}">{link_label}</a> '
-        # Broken link report button
-        links_html += f'<button class="report-broken-btn" data-paper-id="{paper.get("id", "")}" title="Report broken link">Report</button>'
-        links_html += '</div>'
+        if not all_links:
+            url = paper.get("url", "")
+            if url:
+                all_links = [{"type": "primary", "label": "Source", "url": url}]
+        valid_links = [l for l in all_links if l.get("url", "").strip()]
+        links_html = ''
+        if valid_links:
+            links_html = '<div class="paper-links">'
+            for link in valid_links:
+                link_url = link.get("url", "")
+                link_label = link.get("label", "Link")
+                link_type = link.get("type", "")
+                links_html += f'<a href="{link_url}" target="_blank" rel="noopener noreferrer" class="paper-link paper-link-{link_type}">{link_label}</a> '
+            links_html += f'<button class="report-broken-btn" data-paper-id="{paper_id}" title="Report broken link">Report</button>'
+            links_html += '</div>'
 
-        cards_html += f'''<article class="paper-card{kb_class}">
+        cards_html += f'''<article class="paper-card{kb_class}" data-paper-id="{paper_id}">
             <div class="paper-header">
                 <div class="paper-source">
                     <span class="paper-journal">{paper.get("journal", "")}</span>

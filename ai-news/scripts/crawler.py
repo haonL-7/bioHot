@@ -15,6 +15,8 @@ from datetime import datetime, timedelta
 from urllib.parse import quote
 from xml.etree import ElementTree as ET
 
+import urllib.request
+import urllib.parse
 import requests
 import feedparser
 from bs4 import BeautifulSoup
@@ -472,11 +474,172 @@ def fetch_biorxiv() -> list[dict]:
     return articles
 
 
+# ==================== Europe PMC ====================
+
+def fetch_europepmc() -> list[dict]:
+    """Fetch papers from Europe PMC API (free, no key, indexes PubMed + preprints)"""
+    articles = []
+    base_url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+    # Use broad query for gut microbiome co-metabolism
+    broad_queries = [
+        '(butyrate OR propionate OR acetate OR "short-chain fatty acid") AND (gut OR intestinal) AND (microbiome OR microbiota)',
+        '("bile acid" OR FXR OR TGR5) AND (gut OR intestinal) AND (microbiome OR microbiota)',
+        '(tryptophan OR indole OR kynurenine) AND (gut OR intestinal) AND (microbiome OR microbiota)',
+        '(polyamine OR spermidine OR spermine) AND (gut OR intestinal) AND (microbiome)',
+        '("vitamin B" OR cobalamin OR riboflavin OR biotin OR folate) AND (gut OR intestinal) AND (microbiome OR microbiota)',
+        '("vitamin A" OR retinoic OR "vitamin D" OR VDR) AND (gut OR intestinal) AND (microbiome OR microbiota)',
+        '(lactate OR succinate OR GABA) AND (gut OR intestinal) AND (microbiome OR microbiota)',
+        '("P. succinatutens" OR Phascolarctobacterium OR Lactobacillus OR Bifidobacterium OR Prevotella OR Akkermansia OR Faecalibacterium) AND (gut OR intestinal OR porcine)',
+    ]
+    for query in broad_queries[:5]:  # Limit to avoid rate limits
+        try:
+            params = {
+                "query": query, "format": "json", "pageSize": 10,
+                "sort": "FIRST_PUBLICATION_DATE desc",
+                "resultType": "core",
+            }
+            resp = requests.get(base_url, params=params, headers=HEADERS, timeout=TIMEOUT)
+            resp.raise_for_status()
+            data = resp.json()
+            for item in data.get("resultList", {}).get("result", []):
+                title = item.get("title", "").strip()
+                abstract = item.get("abstractText", "")[:800]
+                doi = item.get("doi", "")
+                pmid = item.get("pmid", "")
+                journal = item.get("journalTitle", "") or item.get("bookOrReportDetails", {}).get("publisher", "")
+                pub_date = item.get("firstPublicationDate", "")
+                nodes = assign_nodes(title, abstract)
+                if not nodes:
+                    continue
+                url = f"https://doi.org/{quote(doi, safe='')}" if doi else f"https://europepmc.org/article/MED/{pmid}"
+                links = []
+                if doi:
+                    links.append({"type": "doi", "label": "DOI", "url": url})
+                if pmid:
+                    links.append({"type": "pubmed", "label": "PubMed", "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"})
+                articles.append({
+                    "journal": journal, "doi": doi, "pmid": str(pmid) if pmid else "",
+                    "first_author": item.get("authorString", "").split(",")[0].strip() if item.get("authorString") else "",
+                    "url": url, "title": title, "abstract": abstract,
+                    "pub_date": pub_date, "source": "Europe PMC",
+                    "links": links,
+                })
+        except Exception as e:
+            print(f"    Europe PMC error: {e}")
+        time.sleep(0.3)
+    return articles
+
+
+# ==================== Semantic Scholar ====================
+
+def fetch_semantic_scholar() -> list[dict]:
+    """Fetch papers from Semantic Scholar API (free tier, 100 req/5min without key)"""
+    articles = []
+    base_url = "https://api.semanticscholar.org/graph/v1/paper/search"
+    fields = "title,abstract,year,externalIds,journal,publicationDate,authors"
+    broad_queries = [
+        "gut microbiome butyrate propionate co-metabolism",
+        "gut microbiome bile acid host signaling",
+        "gut microbiome tryptophan indole AhR",
+        "porcine gut microbiome SCFA",
+        "Phascolarctobacterium succinate propionate",
+        "gut microbiome vitamin B12 folate one-carbon",
+        "gut microbiome polyamine spermidine host",
+        "Lactobacillus piglet intestinal barrier",
+    ]
+    for query in broad_queries[:5]:
+        try:
+            params = {"query": query, "limit": 10, "fields": fields}
+            resp = requests.get(base_url, params=params, headers=HEADERS, timeout=TIMEOUT)
+            if resp.status_code == 429:
+                time.sleep(5)
+                continue
+            resp.raise_for_status()
+            data = resp.json()
+            for item in data.get("data", []):
+                title = item.get("title", "").strip()
+                abstract = (item.get("abstract") or "")[:800]
+                doi = (item.get("externalIds") or {}).get("DOI", "")
+                journal = (item.get("journal") or {}).get("name", "") if item.get("journal") else ""
+                pub_date = str(item.get("year", ""))
+                nodes = assign_nodes(title, abstract)
+                if not nodes:
+                    continue
+                url = f"https://doi.org/{quote(doi, safe='')}" if doi else f"https://www.semanticscholar.org/paper/{item.get('paperId', '')}"
+                links = []
+                if doi:
+                    links.append({"type": "doi", "label": "DOI", "url": url})
+                links.append({"type": "semantic-scholar", "label": "Semantic Scholar", "url": f"https://www.semanticscholar.org/paper/{item.get('paperId', '')}"})
+                authors = item.get("authors", [])
+                first_author = authors[0].get("name", "") if authors else ""
+                articles.append({
+                    "journal": journal, "doi": doi, "pmid": "",
+                    "first_author": first_author,
+                    "url": url, "title": title, "abstract": abstract,
+                    "pub_date": pub_date, "source": "Semantic Scholar",
+                    "links": links,
+                })
+        except Exception as e:
+            print(f"    Semantic Scholar error: {e}")
+        time.sleep(0.5)
+    return articles
+
+
+# ==================== arXiv ====================
+
+def fetch_arxiv() -> list[dict]:
+    """Fetch preprints from arXiv (q-bio, free, no key)"""
+    articles = []
+    base_url = "http://export.arxiv.org/api/query"
+    queries = [
+        'all:"gut microbiome" AND (butyrate OR propionate OR SCFA OR bile acid)',
+        'all:"gut microbiome" AND (tryptophan OR indole OR kynurenine)',
+        'all:"gut microbiota" AND (lactobacillus OR bifidobacterium OR prevotella)',
+        'all:microbiome AND (porcine OR piglet OR swine) AND (gut OR intestinal)',
+        'all:"gut microbiome" AND (vitamin B12 OR folate OR riboflavin OR biotin)',
+    ]
+    for query_str in queries[:3]:
+        try:
+            params = urllib.parse.urlencode({
+                "search_query": query_str,
+                "max_results": 10,
+                "sortBy": "submittedDate",
+                "sortOrder": "descending",
+            })
+            req = urllib.request.Request(f"{base_url}?{params}", headers={"User-Agent": HEADERS["User-Agent"]})
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+                feed = feedparser.parse(resp.read())
+            for entry in feed.entries[:10]:
+                title = entry.get("title", "").strip().replace("\n", " ")
+                abstract = entry.get("summary", "").strip().replace("\n", " ")[:800]
+                abstract = clean_html(abstract)
+                nodes = assign_nodes(title, abstract)
+                if not nodes:
+                    continue
+                link = entry.get("link", "")
+                pub_date = entry.get("published", "")
+                arxiv_id = link.split("/abs/")[-1] if "/abs/" in link else ""
+                articles.append({
+                    "journal": "arXiv (preprint)",
+                    "doi": "", "pmid": "",
+                    "first_author": entry.get("author", ""),
+                    "url": link, "title": title[:300], "abstract": abstract,
+                    "pub_date": pub_date, "source": "arXiv",
+                    "links": [
+                        {"type": "arxiv", "label": "arXiv", "url": link},
+                    ],
+                })
+        except Exception as e:
+            print(f"    arXiv error: {e}")
+        time.sleep(0.5)
+    return articles
+
+
 # ==================== 主流程 ====================
 
 def main():
     print("=" * 60)
-    print("  Co-Metabolism Literature Crawler (25 Nodes)")
+    print("  Co-Metabolism Literature Crawler (PubMed + bioRxiv + Europe PMC + Semantic Scholar + arXiv)")
     print(f"  Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
@@ -502,6 +665,24 @@ def main():
     biorxiv_articles = fetch_biorxiv()
     print(f"    {len(biorxiv_articles)} preprints")
     all_articles.extend(biorxiv_articles)
+
+    # Europe PMC
+    print("\n[Europe PMC]")
+    epmc_articles = fetch_europepmc()
+    print(f"    {len(epmc_articles)} papers")
+    all_articles.extend(epmc_articles)
+
+    # Semantic Scholar
+    print("\n[Semantic Scholar]")
+    ss_articles = fetch_semantic_scholar()
+    print(f"    {len(ss_articles)} papers")
+    all_articles.extend(ss_articles)
+
+    # arXiv
+    print("\n[arXiv]")
+    arxiv_articles = fetch_arxiv()
+    print(f"    {len(arxiv_articles)} preprints")
+    all_articles.extend(arxiv_articles)
 
     # 去重
     seen = {}
