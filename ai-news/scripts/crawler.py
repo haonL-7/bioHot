@@ -15,6 +15,7 @@ from datetime import datetime, timedelta
 from xml.etree import ElementTree as ET
 
 import requests
+import feedparser
 from bs4 import BeautifulSoup
 
 # ==================== 配置 ====================
@@ -127,20 +128,35 @@ def is_reputable(journal_name: str) -> bool:
 
 
 def assign_nodes(title: str, abstract: str) -> list[str]:
-    """为文章分配所属代谢物节点"""
+    """Assign co-metabolism nodes. Stricter matching: requires node keyword + gut/microbiome context."""
     text = (title + " " + abstract).lower()
+
+    # Must have gut/microbiome context
+    gut_context = ["gut", "intestine", "intestinal", "colon", "colonic",
+                   "microbiome", "microbiota", "fecal", "faecal", "cecal", "cecum"]
+    has_gut = any(kw in text for kw in gut_context)
+
     nodes = []
     checks = [
-        ("Butyrate/SCFAs", ["butyrate", "butyric", "short-chain fatty acid", "scfa"]),
-        ("Bile Acids", ["bile acid", "fxr", "tgr5", "hyodeoxycholic", "hdca"]),
-        ("Tryptophan Metabolites", ["tryptophan", "indole", "kynurenine", "aryl hydrocarbon", "ahr"]),
-        ("Polyamines", ["polyamine", "spermidine", "spermine", "putrescine", "cadaverine"]),
-        ("Vitamin B12", ["vitamin b12", "cobalamin", "methylmalonyl-coa", "one-carbon"]),
+        ("Butyrate/SCFAs", ["butyrate", "butyric", "short-chain fatty acid", "scfa", "scfas",
+                             "propionate", "propionic", "acetate", "acetic"]),
+        ("Bile Acids", ["bile acid", "fxr", "tgr5", "hyodeoxycholic", "hdca", "obeticholic",
+                        "farnesoid x receptor", "bile salt"]),
+        ("Tryptophan Metabolites", ["tryptophan", "indole", "kynurenine", "aryl hydrocarbon",
+                                    "ahr", "indole-3", "ipa"]),
+        ("Polyamines", ["polyamine", "spermidine", "spermine", "putrescine", "cadaverine",
+                        "ornithine decarboxylase"]),
+        ("Vitamin B12", ["vitamin b12", "cobalamin", "methylmalonyl-coa", "methylmalonyl coa",
+                         "one-carbon metabolism", "one carbon metabolism", "adenosylcobalamin"]),
     ]
     for node, keywords in checks:
         if any(kw in text for kw in keywords):
             nodes.append(node)
-    return nodes or ["Unclassified"]
+
+    # Only assign if paper has gut context AND matches at least one node
+    if not has_gut:
+        return []
+    return nodes
 
 
 # ==================== PubMed ====================
@@ -233,33 +249,30 @@ def fetch_pubmed_details(pmids: list[str]) -> list[dict]:
 # ==================== bioRxiv ====================
 
 def fetch_biorxiv() -> list[dict]:
-    """获取 bioRxiv 微生物学相关预印本"""
+    """Fetch bioRxiv preprints from microbiology subject RSS"""
     articles = []
-    for subject in ["microbiology", "systems_biology", "biochemistry"]:
-        try:
-            date_start = (datetime.now() - timedelta(days=SEARCH_DAYS)).strftime("%Y-%m-%d")
-            date_end = datetime.now().strftime("%Y-%m-%d")
-            url = f"https://api.biorxiv.org/details/biorxiv/{date_start}/{date_end}/0/15"
-            resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
-            resp.raise_for_status()
-            for paper in resp.json().get("collection", []):
-                title = paper.get("title", "").strip()
-                abstract = paper.get("abstract", "").strip()
-                # 节点关键词过滤
-                if not assign_nodes(title, abstract):
-                    continue
-                doi = paper.get("doi", "")
-                articles.append({
-                    "journal": f"bioRxiv ({subject})",
-                    "doi": doi, "pmid": "",
-                    "first_author": paper.get("author_corresponding", ""),
-                    "url": f"https://doi.org/{doi}" if doi else f"https://www.biorxiv.org/content/10.1101/{doi}",
-                    "title": title[:300], "abstract": abstract[:800],
-                    "pub_date": paper.get("date", ""), "source": "bioRxiv",
-                })
-        except Exception as e:
-            print(f"    bioRxiv ({subject}) error: {e}")
-            continue
+    rss_url = "https://connect.biorxiv.org/biorxiv_xml.php?subject=microbiology"
+    try:
+        feed = feedparser.parse(rss_url)
+        for entry in feed.entries[:30]:
+            title = entry.get("title", "").strip()
+            abstract = entry.get("summary", "").strip()
+            abstract = clean_html(abstract)
+            nodes = assign_nodes(title, abstract)
+            if not nodes:
+                continue
+            link = entry.get("link", "")
+            pub_date = entry.get("published", "")
+            articles.append({
+                "journal": "bioRxiv (microbiology)",
+                "doi": "", "pmid": "",
+                "first_author": "",
+                "url": link,
+                "title": title[:300], "abstract": abstract[:800],
+                "pub_date": pub_date, "source": "bioRxiv",
+            })
+    except Exception as e:
+        print(f"    bioRxiv error: {e}")
     return articles
 
 
@@ -315,10 +328,12 @@ def main():
             rejected += 1
     print(f"  Journal filter: {len(filtered)} kept, {rejected} rejected")
 
-    # 统一格式
+    # 统一格式 + 剔除无节点匹配的论文
     articles = []
     for art in filtered:
         nodes = assign_nodes(art.get("title", ""), art.get("abstract", ""))
+        if not nodes:
+            continue  # Skip papers not matching any of the five nodes
         articles.append({
             "id": make_id(art.get("title", ""), art.get("source", "")),
             "title": art.get("title", ""),

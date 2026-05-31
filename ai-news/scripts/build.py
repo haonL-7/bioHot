@@ -53,10 +53,18 @@ def load_json(filepath: str) -> dict | list:
 def build_news_data(scored_articles: list[dict]) -> list[dict]:
     """
     Flatten nested evaluation structure -> frontend-friendly flat fields
+    Exclude papers marked should_include=false by the evaluator
     """
     papers = []
     for art in scored_articles:
         ev = art.get("evaluation", art.get("scores", {}))
+        # Skip papers the evaluator explicitly rejected
+        if ev.get("should_include") is False:
+            continue
+        # Skip papers without any node assignment
+        nodes = ev.get("nodes", art.get("nodes", []))
+        if not nodes or nodes == ["Unclassified"]:
+            continue
         papers.append({
             "id": art.get("id", ""),
             "title": art.get("title", ""),

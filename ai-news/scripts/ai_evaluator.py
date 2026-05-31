@@ -77,6 +77,15 @@ Return ONLY a JSON object (no other text):
 }
 ```
 
+CRITICAL: Set "should_include" to FALSE if:
+- The paper only tangentially mentions a metabolite without studying its mechanistic role in gut microbiome
+- It is about a non-gut system (skin, lung, ocean, soil, etc.) even if the metabolite is mentioned
+- It is a pure clinical/epidemiological study with no mechanistic insight
+- It is about host metabolism without any microbial component
+- It does not contribute new data to the co-metabolism framework
+
+Be selective. Only include papers that genuinely advance understanding of microbial metabolite-host interactions in the gut context.
+
 ## Paper to Evaluate
 Title: {title}
 Journal: {journal}
