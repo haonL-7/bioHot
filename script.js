@@ -1,15 +1,12 @@
 /**
- * Co-Metabolism Evidence Monitor — Frontend
- * Evidence framework: 4-level tier + 4-dimensional matrix
+ * Co-Metabolism Evidence Monitor
  */
-
 (function () {
     'use strict';
 
-    const state = {
+    var state = {
         papers: [],
         filtered: [],
-        stats: null,
         searchQuery: '',
         evidenceFilter: 'all',
         typeFilter: 'all',
@@ -17,144 +14,123 @@
         sortBy: 'evidence',
     };
 
-    const dom = {
-        feed: document.getElementById('feed'),
-        feedLoading: document.getElementById('feedLoading'),
-        feedEmpty: document.getElementById('feedEmpty'),
-        searchInput: document.getElementById('searchInput'),
-        updateTime: document.getElementById('updateTime'),
-        statTotal: document.getElementById('statTotal'),
-        statL4: document.getElementById('statL4'),
-        statL3: document.getElementById('statL3'),
-        statNodes: document.getElementById('statNodes'),
-        nodeFilters: document.getElementById('nodeFilters'),
-    };
-
     // ---- Data loading ----
-
-    async function loadData() {
-        try {
-            const resp = await fetch('data/news.json');
-            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-            const data = await resp.json();
-            state.papers = data.papers || [];
-            state.stats = data.stats || {};
-            state.filtered = [...state.papers];
-            renderStats();
-            renderNodeFilters();
-            applyAllFilters();
-            dom.feedLoading.style.display = 'none';
-        } catch (err) {
-            dom.feedLoading.textContent = 'Data unavailable. Please run the workflow first.';
-            console.error(err);
-        }
+    function loadData() {
+        fetch('data/news.json')
+            .then(function (resp) {
+                if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                return resp.json();
+            })
+            .then(function (data) {
+                state.papers = data.papers || [];
+                state.filtered = state.papers.slice();
+                renderStats();
+                renderNodeFilters();
+                applyAllFilters();
+                var loading = document.getElementById('feedLoading');
+                if (loading) loading.style.display = 'none';
+            })
+            .catch(function (err) {
+                var loading = document.getElementById('feedLoading');
+                if (loading) loading.textContent = 'Data unavailable.';
+                console.error(err);
+            });
     }
 
     // ---- Stats ----
-
     function renderStats() {
-        const papers = state.papers;
-        dom.statTotal.textContent = papers.length || '--';
+        var papers = state.papers;
+        document.getElementById('statTotal').textContent = papers.length || '--';
 
-        const l4 = papers.filter(p => (p.evidenceLevel || p.evidence_level) === 'L4').length;
-        dom.statL4.textContent = l4 || '--';
-
-        const l3plus = papers.filter(p =>
-            ['L4', 'L3'].includes(p.evidenceLevel || p.evidence_level)
-        ).length;
-        dom.statL3.textContent = l3plus || '--';
-
-        const allNodes = new Set();
-        papers.forEach(p => (p.nodes || []).forEach(n => allNodes.add(n)));
-        dom.statNodes.textContent = allNodes.size || '--';
-
-        if (state.stats && state.stats.updated_at_human) {
-            dom.updateTime.textContent = 'Last updated: ' + state.stats.updated_at_human + ' (UTC)';
-        }
+        var l4 = 0, l3plus = 0;
+        var allNodes = {};
+        papers.forEach(function (p) {
+            var lv = p.evidenceLevel || '';
+            if (lv === 'L4') l4++;
+            if (lv === 'L4' || lv === 'L3') l3plus++;
+            (p.nodes || []).forEach(function (n) { allNodes[n] = true; });
+        });
+        document.getElementById('statL4').textContent = l4 || '--';
+        document.getElementById('statL3').textContent = l3plus || '--';
+        document.getElementById('statNodes').textContent = Object.keys(allNodes).length || '--';
     }
 
     // ---- Node filter chips ----
-
     function renderNodeFilters() {
-        const counts = {};
-        state.papers.forEach(p => {
-            (p.nodes || []).forEach(n => {
+        var counts = {};
+        state.papers.forEach(function (p) {
+            (p.nodes || []).forEach(function (n) {
                 counts[n] = (counts[n] || 0) + 1;
             });
         });
 
-        const nodes = ['Butyrate/SCFAs', 'Bile Acids', 'Tryptophan Metabolites', 'Polyamines', 'Vitamin B12'];
-        dom.nodeFilters.innerHTML = nodes
-            .filter(n => counts[n])
-            .map(n => `<span class="node-chip" data-node="${escapeHtml(n)}">${escapeHtml(n)}&nbsp;(${counts[n]})</span>`)
-            .join('');
+        var nodeOrder = ['Butyrate/SCFAs', 'Bile Acids', 'Tryptophan Metabolites', 'Polyamines', 'Vitamin B12'];
+        var html = '';
+        nodeOrder.forEach(function (n) {
+            if (counts[n]) {
+                html += '<span class="node-chip" data-node="' + n + '">' + n + ' (' + counts[n] + ')</span>';
+            }
+        });
+        var container = document.getElementById('nodeFilters');
+        if (container) container.innerHTML = html;
 
-        dom.nodeFilters.querySelectorAll('.node-chip').forEach(chip => {
-            chip.addEventListener('click', () => {
-                const node = chip.dataset.node;
+        container.querySelectorAll('.node-chip').forEach(function (chip) {
+            chip.addEventListener('click', function () {
+                var node = chip.getAttribute('data-node');
                 state.nodeFilter = state.nodeFilter === node ? null : node;
-                updateNodeChips();
+                container.querySelectorAll('.node-chip').forEach(function (c) {
+                    c.classList.toggle('active', c.getAttribute('data-node') === state.nodeFilter);
+                });
                 applyAllFilters();
             });
         });
     }
 
-    function updateNodeChips() {
-        dom.nodeFilters.querySelectorAll('.node-chip').forEach(chip => {
-            chip.classList.toggle('active', chip.dataset.node === state.nodeFilter);
-        });
-    }
-
     // ---- Filtering ----
-
     function applyAllFilters() {
-        let items = [...state.papers];
+        var items = state.papers.slice();
 
         // Search
         if (state.searchQuery) {
-            const q = state.searchQuery.toLowerCase();
-            items = items.filter(p =>
-                (p.title || '').toLowerCase().includes(q) ||
-                (p.abstract || '').toLowerCase().includes(q) ||
-                (p.journal || '').toLowerCase().includes(q) ||
-                (p.firstAuthor || p.first_author || '').toLowerCase().includes(q) ||
-                (p.nodes || []).some(n => n.toLowerCase().includes(q))
-            );
+            var q = state.searchQuery.toLowerCase();
+            items = items.filter(function (p) {
+                return (p.title || '').toLowerCase().indexOf(q) >= 0 ||
+                    (p.abstract || '').toLowerCase().indexOf(q) >= 0 ||
+                    (p.journal || '').toLowerCase().indexOf(q) >= 0 ||
+                    (p.firstAuthor || '').toLowerCase().indexOf(q) >= 0 ||
+                    (p.nodes || []).some(function (n) { return n.toLowerCase().indexOf(q) >= 0; });
+            });
         }
 
-        // Evidence level filter
+        // Evidence filter
         if (state.evidenceFilter !== 'all') {
-            items = items.filter(p =>
-                (p.evidenceLevel || p.evidence_level) === state.evidenceFilter
-            );
+            items = items.filter(function (p) { return p.evidenceLevel === state.evidenceFilter; });
         }
 
         // Type filter
         if (state.typeFilter === 'knowledge_base') {
-            items = items.filter(p => (p.type || p.source) === 'knowledge_base');
+            items = items.filter(function (p) { return (p.type || p.source) === 'knowledge_base'; });
         } else if (state.typeFilter === 'daily') {
-            items = items.filter(p => (p.type || p.source) !== 'knowledge_base');
+            items = items.filter(function (p) { return (p.type || p.source) !== 'knowledge_base'; });
         }
 
         // Node filter
         if (state.nodeFilter) {
-            items = items.filter(p =>
-                (p.nodes || []).includes(state.nodeFilter)
-            );
+            items = items.filter(function (p) { return (p.nodes || []).indexOf(state.nodeFilter) >= 0; });
         }
 
         // Sort
-        const levelOrder = { L4: 5, L3: 4, L2b: 3, L2a: 2, L1: 1 };
+        var levelOrder = { L4: 5, L3: 4, L2b: 3, L2a: 2, L1: 1 };
         if (state.sortBy === 'date') {
-            items.sort((a, b) => (b.pubDate || b.pub_date || '').localeCompare(a.pubDate || a.pub_date || ''));
+            items.sort(function (a, b) { return (b.pubDate || '').localeCompare(a.pubDate || ''); });
         } else if (state.sortBy === 'score') {
-            items.sort((a, b) => (b.totalScore || b.total_score || 0) - (a.totalScore || a.total_score || 0));
+            items.sort(function (a, b) { return (b.totalScore || 0) - (a.totalScore || 0); });
         } else {
-            items.sort((a, b) => {
-                const la = levelOrder[a.evidenceLevel || a.evidence_level] || 0;
-                const lb = levelOrder[b.evidenceLevel || b.evidence_level] || 0;
+            items.sort(function (a, b) {
+                var la = levelOrder[a.evidenceLevel] || 0;
+                var lb = levelOrder[b.evidenceLevel] || 0;
                 if (la !== lb) return lb - la;
-                return (b.totalScore || b.total_score || 0) - (a.totalScore || a.total_score || 0);
+                return (b.totalScore || 0) - (a.totalScore || 0);
             });
         }
 
@@ -163,156 +139,153 @@
     }
 
     // ---- Rendering ----
-
     function renderFeed(items) {
+        var feed = document.getElementById('feed');
         // Remove existing cards
-        dom.feed.querySelectorAll('.paper-card').forEach(c => c.remove());
-
-        if (items.length === 0) {
-            dom.feedEmpty.style.display = 'block';
-        } else {
-            dom.feedEmpty.style.display = 'none';
+        var existing = feed.querySelectorAll('.paper-card');
+        for (var i = 0; i < existing.length; i++) {
+            existing[i].parentNode.removeChild(existing[i]);
         }
 
-        const template = document.getElementById('paperCard');
-        const fragment = document.createDocumentFragment();
+        var empty = document.getElementById('feedEmpty');
+        if (empty) empty.style.display = items.length === 0 ? 'block' : 'none';
 
-        items.forEach(paper => {
-            const card = template.content.cloneNode(true);
+        if (items.length === 0) return;
 
-            // KB entry vs daily paper
-            const isKB = (paper.type || paper.source) === 'knowledge_base';
-            card.classList.toggle('kb-entry', isKB);
+        var template = document.getElementById('paperCard');
+        if (!template) return;
 
-            // Header
-            const journalEl = card.querySelector('.paper-journal');
-            journalEl.textContent = paper.journal || paper.source || '';
-            if (isKB) {
-                journalEl.textContent = paper.category + ' | ' + (paper.journal || '');
+        items.forEach(function (paper) {
+            var card = template.content.cloneNode(true);
+
+            var isKB = (paper.type || paper.source) === 'knowledge_base';
+            var article = card.querySelector('article');
+            if (article) {
+                if (isKB) article.className += ' kb-entry';
+            }
+
+            // Journal
+            var jnEl = card.querySelector('.paper-journal');
+            if (jnEl) {
+                jnEl.textContent = paper.journal || paper.source || '';
             }
 
             // Badges
-            const badgesEl = card.querySelector('.paper-badges');
-            if (paper.researchPriority) {
-                const prio = document.createElement('span');
-                prio.className = 'priority-badge priority-' + (paper.researchPriority || '').toLowerCase();
-                prio.textContent = paper.researchPriority;
-                badgesEl.appendChild(prio);
-            }
-            if (isKB) {
-                const kbBadge = document.createElement('span');
-                kbBadge.className = 'kb-badge';
-                kbBadge.textContent = 'Curated';
-                badgesEl.appendChild(kbBadge);
+            var badgesEl = card.querySelector('.paper-badges');
+            if (badgesEl) {
+                if (paper.researchPriority) {
+                    var prio = document.createElement('span');
+                    prio.className = 'priority-badge priority-' + paper.researchPriority.toLowerCase();
+                    prio.textContent = paper.researchPriority;
+                    badgesEl.appendChild(prio);
+                }
+                if (isKB) {
+                    var kbBadge = document.createElement('span');
+                    kbBadge.className = 'kb-badge';
+                    kbBadge.textContent = 'Curated';
+                    badgesEl.appendChild(kbBadge);
+                }
             }
 
-            // Date & level
-            card.querySelector('.paper-date').textContent = formatDate(paper.pubDate || paper.pub_date);
-            const level = paper.evidenceLevel || paper.evidence_level || 'L1';
-            const badge = card.querySelector('.level-badge');
-            badge.textContent = level;
-            badge.className = 'level-badge level-' + level.toLowerCase();
+            // Date
+            var dateEl = card.querySelector('.paper-date');
+            if (dateEl) dateEl.textContent = paper.pubDate || '';
+
+            // Evidence level badge
+            var badge = card.querySelector('.level-badge');
+            if (badge) {
+                var level = paper.evidenceLevel || 'L1';
+                badge.textContent = level;
+                badge.className = 'level-badge level-' + level.toLowerCase();
+            }
 
             // Title
-            const titleLink = card.querySelector('.paper-title a');
-            titleLink.textContent = paper.title || '(No title)';
-            titleLink.href = paper.url || '#';
-            if (!paper.url) titleLink.removeAttribute('href');
+            var titleLink = card.querySelector('.paper-title a');
+            if (titleLink) {
+                titleLink.textContent = paper.title || '';
+                if (paper.url) {
+                    titleLink.setAttribute('href', paper.url);
+                } else {
+                    titleLink.removeAttribute('href');
+                }
+            }
 
-            // Porcine vs murine evidence levels
-            const levelsEl = card.querySelector('.paper-evidence-levels');
-            if (paper.porcineEvidenceLevel || paper.murineEvidenceLevel) {
-                const parts = [];
+            // Evidence levels line
+            var levelsEl = card.querySelector('.paper-evidence-levels');
+            if (levelsEl) {
+                var parts = [];
                 if (paper.porcineEvidenceLevel) parts.push('Porcine: ' + paper.porcineEvidenceLevel);
                 if (paper.murineEvidenceLevel) parts.push('Murine: ' + paper.murineEvidenceLevel);
-                levelsEl.textContent = parts.join(' | ');
-            } else if (paper.modelSystem) {
-                levelsEl.textContent = paper.modelSystem;
+                if (parts.length > 0) {
+                    levelsEl.textContent = parts.join(' | ');
+                } else if (paper.modelSystem) {
+                    levelsEl.textContent = paper.modelSystem;
+                }
             }
 
             // Abstract
-            card.querySelector('.paper-abstract').textContent = paper.abstract || '';
+            var absEl = card.querySelector('.paper-abstract');
+            if (absEl) absEl.textContent = paper.abstract || '';
 
             // Nodes
-            const nodesContainer = card.querySelector('.paper-nodes');
-            (paper.nodes || []).forEach(node => {
-                const tag = document.createElement('span');
-                tag.className = 'node-tag';
-                tag.textContent = node;
-                nodesContainer.appendChild(tag);
-            });
+            var nodesEl = card.querySelector('.paper-nodes');
+            if (nodesEl) {
+                (paper.nodes || []).forEach(function (node) {
+                    var tag = document.createElement('span');
+                    tag.className = 'node-tag';
+                    tag.textContent = node;
+                    nodesEl.appendChild(tag);
+                });
+            }
 
             // Matrix bars
-            const matrixItems = card.querySelectorAll('.matrix-item');
-            const eff = paper.effectiveness || 0;
-            const saf = paper.safety || 0;
-            const cou = paper.coupling || 0;
-            const dep = paper.measurementDepth || paper.measurement_depth || 0;
-            const dims = [eff, saf, cou, dep];
-
-            matrixItems.forEach((item, i) => {
-                const val = dims[i] || 0;
-                item.querySelector('.matrix-fill').style.width = (val / 5 * 100) + '%';
-                item.querySelector('.matrix-val').textContent = val + '/5';
-            });
+            var matrixItems = card.querySelectorAll('.matrix-item');
+            var dims = [paper.effectiveness || 0, paper.safety || 0, paper.coupling || 0, paper.measurementDepth || 0];
+            for (var i = 0; i < matrixItems.length; i++) {
+                var val = dims[i] || 0;
+                var fillEl = matrixItems[i].querySelector('.matrix-fill');
+                var valEl = matrixItems[i].querySelector('.matrix-val');
+                if (fillEl) fillEl.style.width = (val / 5 * 100) + '%';
+                if (valEl) valEl.textContent = val + '/5';
+            }
 
             // Summary
-            const summary = paper.summary || '';
-            card.querySelector('.paper-summary').textContent = summary;
+            var sumEl = card.querySelector('.paper-summary');
+            if (sumEl) sumEl.textContent = paper.summary || '';
 
             // Limitation
-            const limitation = paper.keyLimitation || paper.key_limitation || '';
-            card.querySelector('.paper-limitation').textContent = limitation ? 'Limitation: ' + limitation : '';
+            var limEl = card.querySelector('.paper-limitation');
+            if (limEl) limEl.textContent = paper.keyLimitation ? 'Limitation: ' + paper.keyLimitation : '';
 
-            fragment.appendChild(card);
+            feed.appendChild(card);
         });
-
-        dom.feed.appendChild(fragment);
-    }
-
-    // ---- Helpers ----
-
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try {
-            const d = new Date(dateStr);
-            const m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear()}`;
-        } catch {
-            return dateStr;
-        }
-    }
-
-    function escapeHtml(str) {
-        const div = document.createElement('div');
-        div.textContent = str;
-        return div.innerHTML;
     }
 
     // ---- Events ----
+    var searchTimer;
+    var searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(function () {
+                state.searchQuery = searchInput.value.trim();
+                applyAllFilters();
+            }, 250);
+        });
+    }
 
-    let searchTimer;
-    dom.searchInput.addEventListener('input', () => {
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(() => {
-            state.searchQuery = dom.searchInput.value.trim();
-            applyAllFilters();
-        }, 250);
-    });
-
-    document.querySelectorAll('.filter-group').forEach(group => {
-        group.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const parent = btn.parentElement;
-                parent.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-group').forEach(function (group) {
+        group.querySelectorAll('.filter-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                group.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
                 btn.classList.add('active');
 
-                if (btn.dataset.level !== undefined) {
-                    state.evidenceFilter = btn.dataset.level;
-                } else if (btn.dataset.sort) {
-                    state.sortBy = btn.dataset.sort;
-                } else if (btn.dataset.type) {
-                    state.typeFilter = btn.dataset.type;
+                if (btn.getAttribute('data-level') !== null) {
+                    state.evidenceFilter = btn.getAttribute('data-level');
+                } else if (btn.getAttribute('data-sort')) {
+                    state.sortBy = btn.getAttribute('data-sort');
+                } else if (btn.getAttribute('data-type')) {
+                    state.typeFilter = btn.getAttribute('data-type');
                 }
                 applyAllFilters();
             });
@@ -320,6 +293,5 @@
     });
 
     // ---- Init ----
-
     loadData();
 })();
