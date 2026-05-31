@@ -1,4 +1,30 @@
-# PythonAnywhere 部署指南
+# 后端部署指南
+
+> ⚠️ GitHub Pages 只能托管静态文件。FastAPI 后端（`api.py`）需要部署到支持 Python 的云平台。
+>
+> 两个推荐方案：**Railway**（最简单，Procfile 已配好）或 **PythonAnywhere**（免费套餐）。
+
+---
+
+## 方案 A：Railway（推荐，一键部署）
+
+### 前置条件
+- GitHub 仓库已包含 `Procfile` + `requirements.txt`
+- 在 GitHub → Settings → Secrets → Actions 中添加 `DEEPSEEK_API_KEY`
+
+### 部署步骤
+1. 注册 [Railway](https://railway.app)（GitHub 登录）
+2. 点击 **New Project → Deploy from GitHub repo**
+3. 选择 `haonL-7/evidence-app`
+4. Railway 自动检测 Procfile，无需额外配置
+5. 在 Railway Dashboard → Variables 中添加：
+   - `DEEPSEEK_API_KEY` = `sk-你的key`
+   - `PORT` = `8000`
+6. Railway 自动分配域名如 `https://evidence-app.up.railway.app`
+
+---
+
+## 方案 B：PythonAnywhere（免费套餐）
 
 ## 准备工作
 
