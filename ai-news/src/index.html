@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 每日热点 — AI Daily Hot</title>
+    <meta name="description" content="AI 每日热点 — 自动爬取 + AI 评分，每日更新的 AI 资讯精选">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🤖</text></svg>">
+</head>
+<body>
+
+<div id="app">
+    <!-- ====== 顶部导航 ====== -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <h1>AI 每日热点</h1>
+                <span class="badge badge-live">LIVE</span>
+            </div>
+            <p class="subtitle">
+                每日自动爬取 AI 资讯 · AI 多维度评分 · 助你高效获取关键信息
+            </p>
+            <div class="update-info" id="updateInfo">
+                <span class="dot"></span>
+                <span id="updateTime">加载中...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== 统计卡片 ====== -->
+    <section class="stats-bar" id="statsBar">
+        <div class="stat-card">
+            <div class="stat-num" id="statTotal">--</div>
+            <div class="stat-label">今日文章</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num" id="statAuth">--</div>
+            <div class="stat-label">均权威度</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num" id="statNovel">--</div>
+            <div class="stat-label">均新颖度</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num" id="statValue">--</div>
+            <div class="stat-label">均价值度</div>
+        </div>
+    </section>
+
+    <!-- ====== 工具栏 ====== -->
+    <div class="toolbar">
+        <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18">
+                <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="搜索标题、标签、来源..."
+                autocomplete="off"
+            />
+            <button class="search-clear" id="searchClear" title="清除">✕</button>
+        </div>
+        <div class="toolbar-actions">
+            <div class="sort-group">
+                <button class="sort-btn active" data-sort="total" title="按 AI 总分排序">🏆 最高分</button>
+                <button class="sort-btn" data-sort="date" title="按发布时间排序">🕐 最新</button>
+                <button class="sort-btn" data-sort="value" title="按实用价值排序">💡 最有用</button>
+            </div>
+            <div class="tag-filters" id="tagFilters"></div>
+        </div>
+    </div>
+
+    <!-- ====== 文章列表 ====== -->
+    <main class="feed" id="feed">
+        <!-- 加载中 -->
+        <div class="feed-loading" id="feedLoading">
+            <div class="spinner"></div>
+            <p>正在加载 AI 资讯...</p>
+        </div>
+        <!-- 空状态 -->
+        <div class="feed-empty" id="feedEmpty" style="display:none;">
+            <p class="empty-icon">📭</p>
+            <p>暂无匹配的资讯</p>
+            <p class="empty-hint">试试调整搜索或筛选条件</p>
+        </div>
+    </main>
+
+    <!-- ====== 页脚 ====== -->
+    <footer class="footer">
+        <p>
+            🤖 AI 每日热点 · 数据由 AI 自动评估生成 · 评分仅供参考
+            <span class="footer-sep">|</span>
+            <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        </p>
+        <p class="footer-power">
+            Powered by <strong>Groq</strong> (免费 API) + <strong>GitHub Pages</strong> (永久免费托管)
+        </p>
+    </footer>
+</div>
+
+<!-- 文章卡片模板 -->
+<template id="cardTemplate">
+    <article class="news-card">
+        <div class="card-top">
+            <div class="card-source">
+                <span class="source-name"></span>
+                <span class="source-date"></span>
+            </div>
+            <div class="card-score">
+                <span class="score-num"></span>
+                <span class="score-label">分</span>
+            </div>
+        </div>
+        <h2 class="card-title">
+            <a href="#" target="_blank" rel="noopener"></a>
+        </h2>
+        <p class="card-summary"></p>
+        <div class="card-bottom">
+            <div class="card-tags"></div>
+            <div class="card-reason"></div>
+        </div>
+        <div class="card-metrics">
+            <span class="metric" data-type="authority">权威 <strong></strong></span>
+            <span class="metric" data-type="novelty">新颖 <strong></strong></span>
+            <span class="metric" data-type="value">价值 <strong></strong></span>
+        </div>
+    </article>
+</template>
+
+<script src="script.js"></script>
+</body>
+</html>
