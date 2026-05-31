@@ -1,8 +1,8 @@
-name: Daily Update & Deploy
+name: Weekly Update & Deploy
 
 on:
   schedule:
-    - cron: "0 18 * * *"
+    - cron: "0 18 * * 1"  # Every Monday 18:00 UTC (Beijing Tuesday 02:00)
   workflow_dispatch:
     inputs:
       max_articles:
