@@ -55,7 +55,7 @@
         document.getElementById('statNodes').textContent = Object.keys(allNodes).length || '--';
     }
 
-    // ---- Node filter chips ----
+    // ---- Node filter chips (dynamic — no hardcoded node list) ----
     function renderNodeFilters() {
         var counts = {};
         state.papers.forEach(function (p) {
@@ -64,12 +64,29 @@
             });
         });
 
-        var nodeOrder = ['Butyrate/SCFAs', 'Bile Acids', 'Tryptophan Metabolites', 'Polyamines', 'Vitamin B12'];
+        // Sort nodes: SCFAs first, then metabolites, then vitamins, then strains
+        var scfaNodes = ['Butyrate', 'Propionate', 'Acetate', 'Branched SCFAs'];
+        var metabNodes = ['Bile Acids', 'Tryptophan Metabolites', 'Polyamines',
+                         'Lactate', 'Succinate', 'GABA/Glutamate'];
+        var vitNodes = ['Vitamin B12', 'Folate/B9', 'Riboflavin/B2', 'Biotin/B7',
+                       'Vitamin A/Retinoic Acid', 'Vitamin D', 'B-Vitamins (B1/B3/B5/B6)'];
+        var strainNodes = ['Phascolarctobacterium', 'Lactobacillus', 'Bifidobacterium',
+                          'Bacteroides', 'Clostridium', 'Prevotella',
+                          'Akkermansia', 'Faecalibacterium'];
+
+        var order = scfaNodes.concat(metabNodes, vitNodes, strainNodes);
+        var orderedNodes = [];
+        order.forEach(function (n) {
+            if (counts[n]) orderedNodes.push(n);
+        });
+        // Catch any nodes not in the priority order list
+        Object.keys(counts).sort().forEach(function (n) {
+            if (orderedNodes.indexOf(n) < 0) orderedNodes.push(n);
+        });
+
         var html = '';
-        nodeOrder.forEach(function (n) {
-            if (counts[n]) {
-                html += '<span class="node-chip" data-node="' + n + '">' + n + ' (' + counts[n] + ')</span>';
-            }
+        orderedNodes.forEach(function (n) {
+            html += '<span class="node-chip" data-node="' + n + '">' + n + ' (' + counts[n] + ')</span>';
         });
         var container = document.getElementById('nodeFilters');
         if (container) container.innerHTML = html;

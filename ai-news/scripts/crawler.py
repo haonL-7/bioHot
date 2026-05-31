@@ -28,35 +28,150 @@ PUBMED_BASE = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 PUBMED_SEARCH_URL = f"{PUBMED_BASE}/esearch.fcgi"
 PUBMED_FETCH_URL = f"{PUBMED_BASE}/efetch.fcgi"
 
-# 五个核心代谢物节点的 PubMed 检索式
+# 扩展后的 PubMed 检索式 — 三类节点：代谢物、维生素、菌株
 SEARCH_QUERIES = {
-    "Butyrate/SCFAs": (
-        '(butyrate OR "short-chain fatty acid" OR SCFA OR butyric) '
+    # ============ SCFA 亚类 ============
+    "Butyrate": (
+        '(butyrate OR butyric OR butyryl-CoA OR butyrate-producing) '
         'AND (gut OR intestinal OR colon OR colonic) '
-        'AND (microbiome OR microbiota OR "gut microbiota")'
+        'AND (microbiome OR microbiota OR "gut microbiota" OR bacteria)'
     ),
+    "Propionate": (
+        '(propionate OR propionic OR "methylmalonyl-CoA" OR succinate-to-propionate) '
+        'AND (gut OR intestinal OR colon OR colonic) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    "Acetate": (
+        '(acetate OR acetic OR "acetyl-CoA" OR acetogenic) '
+        'AND (gut OR intestinal OR colon OR colonic) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    "Branched SCFAs": (
+        '(isobutyrate OR isovalerate OR valerate OR "branched-chain fatty acid" OR BCFA) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    # ============ 胆汁酸 ============
     "Bile Acids": (
         '("bile acid" OR "bile acids" OR FXR OR TGR5 '
         'OR hyodeoxycholic OR HDCA OR obeticholic) '
         'AND (gut OR intestinal OR ileum OR colon) '
         'AND (microbiome OR microbiota OR bacteria)'
     ),
+    # ============ 色氨酸代谢物 ============
     "Tryptophan Metabolites": (
         '(tryptophan OR indole OR kynurenine OR "AhR" '
-        'OR "aryl hydrocarbon receptor") '
+        'OR "aryl hydrocarbon receptor" OR indole-3-propionic OR IPA) '
         'AND (gut OR intestinal OR colon) '
         'AND (microbiome OR microbiota OR metabolism)'
     ),
+    # ============ 多胺 ============
     "Polyamines": (
-        '(polyamine OR spermidine OR spermine OR putrescine OR cadaverine) '
+        '(polyamine OR spermidine OR spermine OR putrescine OR cadaverine '
+        'OR ornithine decarboxylase) '
         'AND (gut OR intestinal OR colon) '
         'AND (microbiome OR microbiota OR bacteria)'
     ),
+    # ============ 维生素家族 ============
     "Vitamin B12": (
-        '("vitamin B12" OR cobalamin OR "methylmalonyl-CoA" '
-        'OR "one-carbon metabolism") '
+        '("vitamin B12" OR cobalamin OR adenosylcobalamin '
+        'OR "methylmalonyl-CoA mutase") '
         'AND (gut OR intestinal OR colon) '
-        'AND (microbiome OR microbiota OR bacteria OR propionate)'
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    "Folate/B9": (
+        '(folate OR "folic acid" OR "vitamin B9" OR tetrahydrofolate '
+        'OR "one-carbon metabolism" OR "methyl donor" OR MTHFR) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    "Riboflavin/B2": (
+        '(riboflavin OR "vitamin B2" OR FAD OR FMN OR flavin) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    "Biotin/B7": (
+        '(biotin OR "vitamin B7" OR biotinylation OR biotinidase) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    "Vitamin A/Retinoic Acid": (
+        '("vitamin A" OR retinoic OR retinol OR RAR OR RXR '
+        'OR "retinoic acid receptor") '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria OR immune)'
+    ),
+    "Vitamin D": (
+        '("vitamin D" OR calcitriol OR "VDR" OR "vitamin D receptor" '
+        'OR cholecalciferol) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria OR immune)'
+    ),
+    "B-Vitamins (B1/B3/B5/B6)": (
+        '(thiamine OR "vitamin B1" OR niacin OR "vitamin B3" OR NAD '
+        'OR pantothenate OR "vitamin B5" OR CoA OR pyridoxine OR "vitamin B6") '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    # ============ 其他代谢物 ============
+    "Lactate": (
+        '(lactate OR lactic OR "lactic acid" OR D-lactate OR L-lactate '
+        'OR lactate-utilizing) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    "Succinate": (
+        '(succinate OR succinic OR "succinate accumulation" '
+        'OR succinate-producing OR succinate-consuming) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    "GABA/Glutamate": (
+        '(GABA OR gamma-aminobutyric OR glutamate OR glutamic '
+        'OR "gut-brain axis" OR gadB) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    # ============ 菌株/分类学 ============
+    "Phascolarctobacterium": (
+        '(Phascolarctobacterium OR "P. succinatutens" OR succinatutens) '
+        'AND (gut OR intestinal OR succinate OR propionate)'
+    ),
+    "Lactobacillus": (
+        '(Lactobacillus OR Lactiplantibacillus OR Limosilactobacillus '
+        'OR Ligilactobacillus) '
+        'AND (gut OR intestinal OR colon OR porcine OR piglet) '
+        'AND (microbiome OR microbiota OR probiotic OR SCFA)'
+    ),
+    "Bifidobacterium": (
+        '(Bifidobacterium OR Bifidobacteriales) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR probiotic OR acetate)'
+    ),
+    "Bacteroides": (
+        '(Bacteroides OR Bacteroidetes OR Bacteroidota) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR polysaccharide OR propionate)'
+    ),
+    "Clostridium": (
+        '(Clostridium OR Clostridiales OR Clostridia) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR butyrate OR SCFA)'
+    ),
+    "Prevotella": (
+        '(Prevotella OR Prevotellaceae) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR porcine OR succinate)'
+    ),
+    "Akkermansia": (
+        '(Akkermansia OR "A. muciniphila" OR muciniphila) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR mucin OR barrier)'
+    ),
+    "Faecalibacterium": (
+        '(Faecalibacterium OR "F. prausnitzii" OR prausnitzii) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR butyrate OR anti-inflammatory)'
     ),
 }
 
@@ -128,33 +243,84 @@ def is_reputable(journal_name: str) -> bool:
 
 
 def assign_nodes(title: str, abstract: str) -> list[str]:
-    """Assign co-metabolism nodes. Stricter matching: requires node keyword + gut/microbiome context."""
+    """Assign co-metabolism + strain nodes. Requires node keyword + gut/microbiome context.
+    Covers: SCFAs, Bile Acids, Tryptophan, Polyamines, Vitamins (B1-B12, A, D),
+    Lactate, Succinate, GABA/Glutamate, and 8+ gut bacterial taxa."""
+
     text = (title + " " + abstract).lower()
 
-    # Must have gut/microbiome context
+    # Must have gut/microbiome context (relaxed for strain queries where papers discuss pure genomics)
     gut_context = ["gut", "intestine", "intestinal", "colon", "colonic",
                    "microbiome", "microbiota", "fecal", "faecal", "cecal", "cecum"]
     has_gut = any(kw in text for kw in gut_context)
 
     nodes = []
     checks = [
-        ("Butyrate/SCFAs", ["butyrate", "butyric", "short-chain fatty acid", "scfa", "scfas",
-                             "propionate", "propionic", "acetate", "acetic"]),
+        # ======== SCFA 亚类 ========
+        ("Butyrate", ["butyrate", "butyric", "butyryl-coa", "butyryl coa",
+                      "butyrate-producing", "butyrate producing"]),
+        ("Propionate", ["propionate", "propionic", "methylmalonyl-coa", "methylmalonyl coa",
+                        "succinate-to-propionate", "succinate to propionate"]),
+        ("Acetate", ["acetate", "acetic", "acetyl-coa", "acetyl coa", "acetogenic",
+                     "acetogen", "acetogenesis"]),
+        ("Branched SCFAs", ["isobutyrate", "isovalerate", "valerate", "branched-chain fatty acid",
+                            "branched chain fatty acid", "bcfa"]),
+        # ======== 胆汁酸 ========
         ("Bile Acids", ["bile acid", "fxr", "tgr5", "hyodeoxycholic", "hdca", "obeticholic",
-                        "farnesoid x receptor", "bile salt"]),
+                        "farnesoid x receptor", "bile salt", "bsep", "ibat", "asbt"]),
+        # ======== 色氨酸代谢物 ========
         ("Tryptophan Metabolites", ["tryptophan", "indole", "kynurenine", "aryl hydrocarbon",
-                                    "ahr", "indole-3", "ipa"]),
+                                    "ahr", "indole-3", "ipa", "indoleacrylic"]),
+        # ======== 多胺 ========
         ("Polyamines", ["polyamine", "spermidine", "spermine", "putrescine", "cadaverine",
-                        "ornithine decarboxylase"]),
-        ("Vitamin B12", ["vitamin b12", "cobalamin", "methylmalonyl-coa", "methylmalonyl coa",
-                         "one-carbon metabolism", "one carbon metabolism", "adenosylcobalamin"]),
+                        "ornithine decarboxylase", "agmatine"]),
+        # ======== 维生素家族 ========
+        ("Vitamin B12", ["vitamin b12", "cobalamin", "adenosylcobalamin",
+                         "methylmalonyl-coa mutase"]),
+        ("Folate/B9", ["folate", "folic acid", "vitamin b9", "tetrahydrofolate",
+                       "methyl donor", "mthfr", "one-carbon metabolism",
+                       "one carbon metabolism", "dhfr"]),
+        ("Riboflavin/B2", ["riboflavin", "vitamin b2", "fad", "fmn", "flavin",
+                           "flavoprotein"]),
+        ("Biotin/B7", ["biotin", "vitamin b7", "biotinylation", "biotinidase",
+                       "biotin-dependent"]),
+        ("Vitamin A/Retinoic Acid", ["vitamin a", "retinoic", "retinol", "rar", "rxr",
+                                     "retinoic acid receptor", "retinaldehyde"]),
+        ("Vitamin D", ["vitamin d", "calcitriol", "vitamin d receptor", "vdr",
+                       "cholecalciferol", "calcidiol"]),
+        ("B-Vitamins (B1/B3/B5/B6)", ["thiamine", "vitamin b1", "niacin", "vitamin b3",
+                                       "nad", "pantothenate", "vitamin b5", "coa",
+                                       "pyridoxine", "vitamin b6", "pyridoxal"]),
+        # ======== 其他代谢物 ========
+        ("Lactate", ["lactate", "lactic acid", "lactate-utilizing", "lactate producing",
+                     "d-lactate", "l-lactate"]),
+        ("Succinate", ["succinate", "succinic", "succinate accumulation",
+                       "succinate-producing", "succinate consuming"]),
+        ("GABA/Glutamate", ["gaba", "gamma-aminobutyric", "glutamate", "glutamic",
+                            "gut-brain axis", "gadb", "glutamate decarboxylase"]),
+        # ======== 菌株/分类学 ========
+        ("Phascolarctobacterium", ["phascolarctobacterium", "p. succinatutens",
+                                   "succinatutens"]),
+        ("Lactobacillus", ["lactobacillus", "lactiplantibacillus", "limosilactobacillus",
+                           "ligilactobacillus", "lactobacilli"]),
+        ("Bifidobacterium", ["bifidobacterium", "bifidobacteriales", "bifidobacteria"]),
+        ("Bacteroides", ["bacteroides", "bacteroidetes", "bacteroidota",
+                         "bacteroidales"]),
+        ("Clostridium", ["clostridium", "clostridiales", "clostridia",
+                         "clostridial"]),
+        ("Prevotella", ["prevotella", "prevotellaceae"]),
+        ("Akkermansia", ["akkermansia", "a. muciniphila", "muciniphila"]),
+        ("Faecalibacterium", ["faecalibacterium", "f. prausnitzii", "prausnitzii"]),
     ]
     for node, keywords in checks:
         if any(kw in text for kw in keywords):
             nodes.append(node)
 
-    # Only assign if paper has gut context AND matches at least one node
-    if not has_gut:
+    # Gut context required for metabolite papers; relaxed for well-known gut taxa
+    gut_taxa = {"Phascolarctobacterium", "Akkermansia", "Faecalibacterium",
+                "Bacteroides", "Prevotella", "Clostridium",
+                "Lactobacillus", "Bifidobacterium"}
+    if not has_gut and not (set(nodes) & gut_taxa):
         return []
     return nodes
 
@@ -280,7 +446,7 @@ def fetch_biorxiv() -> list[dict]:
 
 def main():
     print("=" * 60)
-    print("  Co-Metabolism Literature Crawler (5 Nodes)")
+    print("  Co-Metabolism Literature Crawler (25 Nodes)")
     print(f"  Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
@@ -357,9 +523,24 @@ def main():
         for n in art["nodes"]:
             node_counts[n] = node_counts.get(n, 0) + 1
     print(f"\n  Node distribution:")
-    for node in ["Butyrate/SCFAs", "Bile Acids", "Tryptophan Metabolites",
-                  "Polyamines", "Vitamin B12"]:
-        print(f"    {node}: {node_counts.get(node, 0)}")
+    # Show SCFA sub-nodes first, then bile acids/tryptophan, then vitamins, then strains
+    priority_nodes = [
+        "Butyrate", "Propionate", "Acetate", "Branched SCFAs",
+        "Bile Acids", "Tryptophan Metabolites", "Polyamines",
+        "Vitamin B12", "Folate/B9", "Riboflavin/B2", "Biotin/B7",
+        "Vitamin A/Retinoic Acid", "Vitamin D", "B-Vitamins (B1/B3/B5/B6)",
+        "Lactate", "Succinate", "GABA/Glutamate",
+        "Phascolarctobacterium", "Lactobacillus", "Bifidobacterium",
+        "Bacteroides", "Clostridium", "Prevotella",
+        "Akkermansia", "Faecalibacterium",
+    ]
+    for node in priority_nodes:
+        if node_counts.get(node, 0) > 0:
+            print(f"    {node}: {node_counts[node]}")
+    # catch any unexpected nodes
+    for node, count in sorted(node_counts.items()):
+        if node not in priority_nodes:
+            print(f"    {node}: {count}")
 
     os.makedirs(DATA_DIR, exist_ok=True)
     with open(RAW_ARTICLES_FILE, "w", encoding="utf-8") as f:

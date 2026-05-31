@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Co-Metabolism Evidence Monitor</title>
-    <meta name="description" content="Daily literature monitoring for gut microbiome co-metabolism research. Five nodes: Butyrate, Bile Acids, Tryptophan, Polyamines, Vitamin B12.">
+    <meta name="description" content="Daily literature monitoring for gut microbiome co-metabolism research. 25+ nodes: SCFAs, Bile Acids, Tryptophan, Polyamines, Vitamins (B1-B12, A, D), Lactate, Succinate, GABA, and 8+ gut bacterial strains.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,9 +17,10 @@
             <p class="journal-tag">Research Evidence Monitor</p>
             <h1>Gut Microbiome Co-Metabolism</h1>
             <p class="subtitle">
-                Daily literature surveillance across five metabolite nodes: Butyrate/SCFAs, Bile Acids,
-                Tryptophan Metabolites, Polyamines, and Vitamin B12.
-                Evaluated using a four-level evidence framework and four-dimensional matrix.
+                Daily bidirectional literature surveillance across 25+ co-metabolism nodes: SCFAs (butyrate, propionate, acetate),
+                bile acids, tryptophan metabolites, polyamines, vitamin family (B1-B12, A, D), lactate, succinate, GABA,
+                and 8+ porcine gut bacterial strains.
+                Evaluated using a four-level evidence framework and four-dimensional bidirectional matrix.
             </p>
         </div>
         <div class="header-meta">
@@ -34,15 +35,15 @@
     <section class="stats-row" id="statsRow">
         <div class="stat">
             <span class="stat-value" id="statTotal">--</span>
-            <span class="stat-label">Papers this week</span>
+            <span class="stat-label">Papers tracked</span>
         </div>
         <div class="stat">
             <span class="stat-value" id="statL4">--</span>
-            <span class="stat-label">Level 4 evidence</span>
+            <span class="stat-label">L4 bidirectional evidence</span>
         </div>
         <div class="stat">
             <span class="stat-value" id="statL3">--</span>
-            <span class="stat-label">Level 3 evidence</span>
+            <span class="stat-label">L3+ evidence</span>
         </div>
         <div class="stat">
             <span class="stat-value" id="statNodes">--</span>
@@ -111,17 +112,17 @@
         <div class="paper-nodes"></div>
         <div class="paper-matrix">
             <div class="matrix-item" data-dim="effectiveness">
-                <span class="matrix-label">Effectiveness</span>
+                <span class="matrix-label">Forward (Microbe→Host)</span>
                 <span class="matrix-bar"><span class="matrix-fill"></span></span>
                 <span class="matrix-val"></span>
             </div>
             <div class="matrix-item" data-dim="safety">
-                <span class="matrix-label">Safety / Reverse</span>
+                <span class="matrix-label">Reverse (Host→Microbiome)</span>
                 <span class="matrix-bar"><span class="matrix-fill"></span></span>
                 <span class="matrix-val"></span>
             </div>
             <div class="matrix-item" data-dim="coupling">
-                <span class="matrix-label">Coupling</span>
+                <span class="matrix-label">Bidirectional Coupling</span>
                 <span class="matrix-bar"><span class="matrix-fill"></span></span>
                 <span class="matrix-val"></span>
             </div>

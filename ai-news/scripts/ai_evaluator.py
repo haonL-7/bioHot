@@ -30,52 +30,85 @@ MAX_ARTICLES_PER_RUN = int(os.environ.get("MAX_ARTICLES", "30"))
 
 # ==================== 评估 Prompt ====================
 
-EVALUATION_PROMPT = """You are a senior researcher in gut microbiome and host-microbe co-metabolism. Evaluate the following research paper using a rigorous evidence-based framework.
+EVALUATION_PROMPT = """You are a senior researcher in gut microbiome and host-microbe co-metabolism. Evaluate the following research paper using a rigorous BIDIRECTIONAL evidence-based framework.
 
 ## Evaluation Framework
 
 ### A. Evidence Level (choose one)
-- **L4**: Complete causal chain validated in relevant model — intervention → molecular mechanism → phenotype, all measured in the SAME experimental system. Multi-compartment, multi-timepoint data.
-- **L3**: Strong causal evidence in a different model species (e.g., mouse mono-colonization, germ-free model), but NOT yet validated in porcine/large-animal models.
-- **L2b**: Direct in vivo validation in porcine/large-animal model, but mechanism is partially validated or from mixed interventions (not strain/metabolite-specific).
+- **L4**: Complete bidirectional causal chain validated in relevant model — forward (microbe→host) AND reverse (host→microbe) pathways both measured in the SAME experimental system. Multi-compartment, multi-timepoint data.
+- **L3**: Strong causal evidence in ONE direction (either forward OR reverse), typically in a model species (mouse mono-colonization, germ-free model), but NOT yet validated in porcine/large-animal models.
+- **L2b**: Direct in vivo validation in porcine/large-animal model for at least one direction, but mechanism is partially validated or from mixed interventions (not strain/metabolite-specific).
 - **L2a**: Preliminary in vivo evidence in porcine/large-animal model (correlation, association, or dietary intervention) without direct causal validation.
 - **L1**: In vitro only, computational prediction, cross-species extrapolation without any experimental validation, or review/opinion.
 
-### B. Four-Dimensional Matrix (score each 0-5)
-1. **Effectiveness** (Forward pathway): How strongly does this paper demonstrate microbial metabolite → host effect? Consider: direct measurement, causal design, effect size, dose-response.
-2. **Safety/Reversibility** (Reverse pathway): Does this paper address host → microbial feedback? Are there adverse effects or compensatory mechanisms discussed?
-3. **Coupling Verification**: Are forward AND reverse pathways measured in the same experimental system? Is the co-metabolism loop closed?
-4. **Measurement Depth**: Single compartment (luminal only, score 1) → Multi-compartment (lumen + epithelium, score 3) → Multi-compartment + time-series + concentration gradients (score 5).
+### B. Four-Dimensional Bidirectional Matrix (score each 0-5)
+
+**IMPORTANT**: Score BOTH directions with EQUAL rigor. A paper may have strong forward evidence but weak/no reverse evidence — document the asymmetry.
+
+1. **Forward Pathway (Microbe → Host)** — score 0-5:
+   How strongly does this paper demonstrate that gut microbes or microbial metabolites CAUSE changes in the host? Consider:
+   - Direct causality: Is a specific strain/metabolite shown to PRODUCE the host effect? (intervention → mechanism → phenotype)
+   - Mechanistic depth: Is the molecular mechanism identified (receptor binding, signaling cascade, epigenetic modification)?
+   - Quantitative rigor: Are dose-response relationships, effect sizes, and concentration gradients measured?
+   - Score 0: No forward evidence (pure association, review). Score 5: Complete causal chain from defined microbial effector to host molecular target to physiological outcome, with quantitative dose-response.
+
+2. **Reverse Pathway (Host → Microbiome)** — score 0-5:
+   How strongly does this paper demonstrate that host factors (diet, genetics, immunity, disease state) CAUSE changes in the gut microbial community or microbial metabolism? Consider:
+   - Host control mechanisms: Is a specific host factor (immune response, dietary change, genetic manipulation, epithelial signaling) shown to ALTER microbial composition or function?
+   - Mechanistic pathway: Is the molecular link from host signal to microbial response identified (e.g., host AMP secretion → altered bacterial survival; host bile acid synthesis → altered bacterial FXR signaling)?
+   - Feedback evidence: Does the paper measure how host-initiated changes feed back to alter microbial metabolite output?
+   - Score 0: No reverse evidence whatsoever. Score 5: Complete causal chain from defined host factor → specific microbial population shift or metabolic change → quantified alteration in microbial metabolite pool.
+
+3. **Bidirectional Coupling** — score 0-5:
+   Are forward AND reverse pathways measured in the SAME experimental system? Is the co-metabolism loop closed?
+   - Score 0: Only one direction measured; no coupling attempt.
+   - Score 1-2: Both directions mentioned but measured in separate experiments/systems.
+   - Score 3-4: Both directions measured in the same experiment, but not simultaneously or without cross-validation.
+   - Score 5: True bidirectional measurement — host and microbial variables tracked simultaneously in the same animals/samples, with causal links verified in both directions.
+
+4. **Measurement Depth** — score 0-5:
+   - Score 0-1: Single compartment (luminal only), single timepoint, bulk measurements.
+   - Score 2-3: Two compartments (lumen + epithelium or lumen + systemic), or multiple timepoints.
+   - Score 4-5: Multi-compartment (lumen + epithelium + lamina propria/submucosa OR portal blood), time-series sampling, concentration gradients quantified across compartments. Spatial resolution (e.g., imaging, laser-capture microdissection) counts strongly.
 
 ### C. Journal & Methodology
 - **Journal Quality**: Assess reputation, impact, and rigor.
 - **Model System**: What species/organoid/cell line? Note if porcine-relevant.
-- **Key Limitation**: One sentence on the most critical methodological weakness.
+- **Key Limitation**: One sentence on the most critical methodological weakness — pay special attention to which DIRECTION (forward or reverse) is missing.
 
 ### D. Node Relevance
-Which of these five co-metabolism nodes does this paper primarily contribute to?
-Choose ALL that apply: Butyrate/SCFAs, Bile Acids, Tryptophan Metabolites, Polyamines, Vitamin B12
+Which co-metabolism nodes does this paper primarily contribute to? Choose ALL that apply.
+
+Metabolite nodes: Butyrate, Propionate, Acetate, Branched SCFAs, Bile Acids, Tryptophan Metabolites, Polyamines, Vitamin B12, Folate/B9, Riboflavin/B2, Biotin/B7, Vitamin A/Retinoic Acid, Vitamin D, B-Vitamins (B1/B3/B5/B6), Lactate, Succinate, GABA/Glutamate
+
+Strain/Taxa nodes: Phascolarctobacterium, Lactobacillus, Bifidobacterium, Bacteroides, Clostridium, Prevotella, Akkermansia, Faecalibacterium
 
 ## Output Format
 Return ONLY a JSON object (no other text):
 ```json
 {
   "evidence_level": "L1/L2a/L2b/L3/L4",
-  "evidence_justification": "one sentence why",
+  "evidence_justification": "one sentence why, noting which direction(s) are validated",
   "effectiveness": 0,
   "safety": 0,
   "coupling": 0,
   "measurement_depth": 0,
   "total_score": 0,
+  "forward_score": 0,
+  "reverse_score": 0,
+  "forward_justification": "one sentence on forward pathway evidence",
+  "reverse_justification": "one sentence on reverse pathway evidence",
   "journal_quality": "high/medium/low",
   "model_system": "e.g., mouse mono-colonization, porcine dietary intervention, Caco-2 cells",
   "porcine_relevant": true,
-  "key_limitation": "one sentence",
+  "key_limitation": "one sentence — specify which direction is the bottleneck",
   "nodes": ["Node1", "Node2"],
-  "summary": "2-3 sentence summary of what new data this paper contributes to the co-metabolism framework",
+  "summary": "3-4 sentence summary covering: (1) what new forward-pathway data this paper contributes, (2) what (if any) reverse-pathway evidence it provides, (3) how well the two directions are coupled, and (4) the key evidence gap",
   "should_include": true
 }
 ```
+
+NOTE: `effectiveness` maps to Forward Pathway (Microbe→Host), `safety` maps to Reverse Pathway (Host→Microbiome). Score them symmetrically — a paper with strong reverse evidence should get a high safety score.
 
 CRITICAL: Set "should_include" to FALSE if:
 - The paper only tangentially mentions a metabolite without studying its mechanistic role in gut microbiome
@@ -172,10 +205,12 @@ def evaluate_with_glm(article: dict) -> Optional[dict]:
 
 
 def evaluate_local(article: dict) -> dict:
-    """本地降级：基于期刊和摘要做基础评估"""
+    """本地降级：基于期刊和摘要做基础双向评估"""
     jn = article.get("journal", "").lower()
     source = article.get("source", "")
     abstract_len = len(article.get("abstract", ""))
+    abstract_lower = article.get("abstract", "").lower()
+    title_lower = article.get("title", "").lower()
 
     # 期刊质量估计
     top_tier = any(n in jn for n in ["nature", "science", "cell", "lancet", "nejm", "pnas", "elife"])
@@ -186,38 +221,56 @@ def evaluate_local(article: dict) -> dict:
     if top_tier:
         base_level = "L3"
         jq = "high"
-        eff_base = 4
+        fwd_base = 4
     elif good_tier:
         base_level = "L2b"
         jq = "high"
-        eff_base = 3
+        fwd_base = 3
     elif source == "bioRxiv":
         base_level = "L1"
         jq = "unverified"
-        eff_base = 1
+        fwd_base = 1
     else:
         base_level = "L2a"
         jq = "medium"
-        eff_base = 2
+        fwd_base = 2
+
+    # 检测反向通路 (Host→Microbiome) 关键词
+    reverse_keywords = ["host immune", "host genetics", "diet-induced", "diet induced",
+                        "host-microbe feedback", "host-microbiome", "epithelial signaling",
+                        "amp secretion", "antimicrobial peptide", "defensin", "reg3",
+                        "bile acid synthesis", "fxr", "tgr5", "vdr", "vitamin d receptor"]
+    has_reverse_hint = any(kw in abstract_lower or kw in title_lower
+                          for kw in reverse_keywords)
+
+    rev_base = max(0, fwd_base - 1) if has_reverse_hint else max(0, fwd_base - 2)
 
     # 摘要长度代表信息量
     if abstract_len > 300:
-        eff_base = min(5, eff_base + 1)
+        fwd_base = min(5, fwd_base + 1)
+        if has_reverse_hint:
+            rev_base = min(5, rev_base + 1)
+
+    total = fwd_base + rev_base
 
     return {
         "evidence_level": base_level,
-        "evidence_justification": "Local estimation based on journal tier and abstract",
-        "effectiveness": eff_base,
-        "safety": max(0, eff_base - 2),
-        "coupling": max(0, eff_base - 3),
-        "measurement_depth": max(0, eff_base - 2),
-        "total_score": eff_base,
+        "evidence_justification": "Local bidirectional estimation based on journal tier and abstract",
+        "effectiveness": fwd_base,
+        "safety": rev_base,
+        "coupling": max(0, min(fwd_base, rev_base) - 1),
+        "measurement_depth": max(0, min(fwd_base, rev_base)),
+        "total_score": total,
+        "forward_score": fwd_base,
+        "reverse_score": rev_base,
+        "forward_justification": f"Local estimate: forward pathway evidence scored at {fwd_base}/5 based on journal tier.",
+        "reverse_justification": f"Local estimate: reverse pathway evidence scored at {rev_base}/5 {'(reverse hints detected)' if has_reverse_hint else '(no reverse hints detected)'}.",
         "journal_quality": jq,
         "model_system": "unknown",
         "porcine_relevant": False,
-        "key_limitation": "Local fallback evaluation: needs AI assessment",
+        "key_limitation": "Local fallback evaluation: needs AI assessment for bidirectional scoring",
         "nodes": article.get("nodes", []),
-        "summary": f"From {article.get('journal', 'unknown journal')}. Full AI evaluation pending.",
+        "summary": f"From {article.get('journal', 'unknown journal')}. Forward: {fwd_base}/5, Reverse: {rev_base}/5. Full AI evaluation pending.",
         "should_include": True,
         "eval_method": "local",
     }

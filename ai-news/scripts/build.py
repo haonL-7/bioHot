@@ -42,9 +42,9 @@ def is_duplicate(new_title: str, existing: list[dict]) -> bool:
 # ==================== 构建逻辑 ====================
 
 def load_json(filepath: str) -> dict | list:
-    """安全加载 JSON 文件"""
+    """Safely load a JSON file"""
     if not os.path.exists(filepath):
-        print(f"⚠ 文件不存在: {filepath}")
+        print(f"  WARNING: file not found: {filepath}")
         return {}
     with open(filepath, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -76,7 +76,7 @@ def build_news_data(scored_articles: list[dict]) -> list[dict]:
             "firstAuthor": art.get("first_author", ""),
             "pubDate": art.get("pub_date", ""),
             "source": art.get("source", ""),
-            # Evidence framework
+            # Evidence framework — bidirectional
             "evidenceLevel": ev.get("evidence_level", "L1"),
             "evidenceJustification": ev.get("evidence_justification", ""),
             "effectiveness": ev.get("effectiveness", 0),
@@ -84,6 +84,10 @@ def build_news_data(scored_articles: list[dict]) -> list[dict]:
             "coupling": ev.get("coupling", 0),
             "measurementDepth": ev.get("measurement_depth", 0),
             "totalScore": ev.get("total_score", 0),
+            "forwardScore": ev.get("forward_score", ev.get("effectiveness", 0)),
+            "reverseScore": ev.get("reverse_score", ev.get("safety", 0)),
+            "forwardJustification": ev.get("forward_justification", ""),
+            "reverseJustification": ev.get("reverse_justification", ""),
             "journalQuality": ev.get("journal_quality", "unknown"),
             "modelSystem": ev.get("model_system", ""),
             "porcineRelevant": ev.get("porcine_relevant", False),
@@ -109,6 +113,7 @@ def build_stats(papers: list[dict], eval_stats: dict) -> dict:
     journal_counter = {}
     level_counter = {}
     total_eff = total_saf = total_cou = total_dep = 0
+    total_fwd = total_rev = 0
 
     for p in papers:
         for node in p.get("nodes", []):
@@ -121,6 +126,8 @@ def build_stats(papers: list[dict], eval_stats: dict) -> dict:
         total_saf += p.get("safety", 0)
         total_cou += p.get("coupling", 0)
         total_dep += p.get("measurementDepth", 0)
+        total_fwd += p.get("forwardScore", p.get("effectiveness", 0))
+        total_rev += p.get("reverseScore", p.get("safety", 0))
 
     n = max(len(papers), 1)
     return {
@@ -131,6 +138,8 @@ def build_stats(papers: list[dict], eval_stats: dict) -> dict:
         "avg_safety": round(total_saf / n, 1),
         "avg_coupling": round(total_cou / n, 1),
         "avg_measurement_depth": round(total_dep / n, 1),
+        "avg_forward": round(total_fwd / n, 1),
+        "avg_reverse": round(total_rev / n, 1),
         "evidence_levels": level_counter,
         "node_distribution": node_counter,
         "journal_distribution": journal_counter,
@@ -156,7 +165,7 @@ def copy_frontend_files():
         if os.path.isfile(src_file):
             shutil.copy2(src_file, dst_file)
 
-    print(f"✓ 已复制前端文件到 {BUILD_DIR}")
+    print(f"  Copied frontend files to {BUILD_DIR}")
 
 
 def write_news_json(news_list: list[dict], stats: dict):
@@ -178,7 +187,7 @@ def write_news_json(news_list: list[dict], stats: dict):
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
     file_size = os.path.getsize(news_json_path)
-    print(f"✓ 已生成 news.json ({file_size / 1024:.1f} KB)")
+    print(f"  Generated news.json ({file_size / 1024:.1f} KB)")
 
     # 写入统计文件
     stats_path = os.path.join(DATA_DIR, "stats.json")
@@ -221,7 +230,7 @@ def generate_static_html(papers: list[dict], stats: dict):
             ("coupling", paper.get("coupling", 0)),
             ("depth", paper.get("measurementDepth", 0)),
         ]
-        dim_labels = ["Effectiveness", "Safety / Reverse", "Coupling", "Measurement Depth"]
+        dim_labels = ["Forward (Microbe→Host)", "Reverse (Host→Microbiome)", "Bidirectional Coupling", "Measurement Depth"]
         matrix_html = ""
         for (dim_id, val), label in zip(dims, dim_labels):
             pct = val / 5 * 100
@@ -272,22 +281,22 @@ def create_nojekyll():
     nojekyll_path = os.path.join(BUILD_DIR, ".nojekyll")
     with open(nojekyll_path, "w") as f:
         f.write("")
-    print("✓ 已创建 .nojekyll")
+    print("  Created .nojekyll")
 
 
 def print_summary(news_list: list[dict], stats: dict):
-    """打印构建摘要"""
+    """Print build summary"""
     print("\n" + "=" * 60)
-    print("📊 构建摘要")
+    print("  Build Summary")
     print("=" * 60)
     print(f"   Papers: {stats['total_papers']}")
-    print(f"   Avg Effectiveness: {stats['avg_effectiveness']}")
-    print(f"   Avg Safety: {stats['avg_safety']}")
+    print(f"   Avg Forward (Microbe->Host): {stats['avg_forward']}")
+    print(f"   Avg Reverse (Host->Microbiome): {stats['avg_reverse']}")
     print(f"   Avg Coupling: {stats['avg_coupling']}")
     print(f"   Avg Meas. Depth: {stats['avg_measurement_depth']}")
     print(f"   Evidence levels: {stats['evidence_levels']}")
     print(f"   Updated: {stats['updated_at_human']}")
-    print(f"\n   Top nodes: {dict(sorted(stats['node_distribution'].items(), key=lambda x: -x[1])[:5])}")
+    print(f"\n   Top nodes: {dict(sorted(stats['node_distribution'].items(), key=lambda x: -x[1])[:8])}")
     print("=" * 60)
 
 
