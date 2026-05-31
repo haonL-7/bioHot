@@ -61,7 +61,7 @@ jobs:
       - name: 📦 安装 Python 依赖
         run: |
           pip install --upgrade pip
-          pip install -r ai-news/requirements.txt
+          pip install -r requirements.txt
           echo "✓ 依赖安装完成"
 
       # ==================== 步骤 4: 爬取新闻 ====================
