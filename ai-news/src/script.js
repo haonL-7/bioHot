@@ -4,6 +4,18 @@
 (function () {
     'use strict';
 
+    // closest() polyfill for IE/older browsers
+    if (!Element.prototype.closest) {
+        Element.prototype.closest = function (selector) {
+            var el = this;
+            while (el && el.nodeType === 1) {
+                if (el.matches(selector)) return el;
+                el = el.parentNode;
+            }
+            return null;
+        };
+    }
+
     var state = {
         papers: [],
         filtered: [],
@@ -236,6 +248,7 @@
             var article = card.querySelector('article');
             if (article) {
                 if (isKB) article.className += ' kb-entry';
+                article.setAttribute('data-paper-id', paper.id || '');
             }
 
             // Journal
@@ -524,13 +537,19 @@
         if (e.key === 'Escape') closeModal();
     });
 
-    // Click handlers for pre-rendered paper title links
+    // Click handlers for pre-rendered cards: click card or title → open modal
     document.getElementById('feed').addEventListener('click', function (e) {
-        var link = e.target.closest('.paper-title-link');
-        if (link) {
-            e.preventDefault();
-            var paperId = link.getAttribute('data-paper-id');
-            if (paperId) openEvaluationModal(paperId);
+        // Don't intercept clicks on external links or buttons
+        if (e.target.closest('a[target="_blank"]') || e.target.closest('button') || e.target.closest('.paper-link')) {
+            return;
+        }
+        var card = e.target.closest('.paper-card');
+        if (card) {
+            var paperId = card.getAttribute('data-paper-id');
+            if (paperId) {
+                e.preventDefault();
+                openEvaluationModal(paperId);
+            }
         }
     });
 
