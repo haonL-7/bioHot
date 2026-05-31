@@ -26,7 +26,13 @@ app.add_middleware(
 )
 
 # ==================== 初始化 DeepSeek 客户端 ====================
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "REDACTED_OLD_KEY")
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+if not DEEPSEEK_API_KEY:
+    raise RuntimeError(
+        "DEEPSEEK_API_KEY environment variable is required. "
+        "Set it via: export DEEPSEEK_API_KEY=your-key-here"
+    )
+
 deepseek_client = OpenAI(
     api_key=DEEPSEEK_API_KEY,
     base_url="https://api.deepseek.com",
@@ -535,22 +541,95 @@ async def list_knowledge_base(
 
 @app.get("/api/doi_abstract")
 async def doi_abstract(doi: str = Query(..., description="论文 DOI 号")):
-    """DOI 摘要接口（占位，后续对接 PubMed API）"""
-    return {
-        "success": True,
-        "doi": doi,
-        "title": "（占位）论文标题 - 接口开发中",
-        "abstract": (
-            f"这是 DOI {doi} 的摘要占位文字。"
-            "该接口后续将对接 PubMed E-utilities 或 Crossref API，"
-            "自动获取论文的标题、摘要、作者、发表年份等信息。"
-            "当前版本仅返回占位内容，用于前端联调测试。"
-        ),
-        "authors": "（待获取）",
-        "journal": "（待获取）",
-        "year": "（待获取）",
-        "note": "此接口为占位实现，后续将接入真实文献数据库"
-    }
+    """DOI 摘要接口 — 对接 CrossRef API（免费，无需 Key）"""
+    import requests as req
+
+    # Clean DOI input
+    doi = doi.strip()
+    if doi.startswith("https://doi.org/"):
+        doi = doi.replace("https://doi.org/", "")
+    if doi.startswith("http://doi.org/"):
+        doi = doi.replace("http://doi.org/", "")
+
+    crossref_url = f"https://api.crossref.org/works/{doi}"
+    try:
+        resp = req.get(crossref_url, headers={"User-Agent": "EvidenceApp/2.0 (mailto:research@example.com)"}, timeout=10)
+        if resp.status_code != 200:
+            return {"success": False, "doi": doi, "error": f"CrossRef returned HTTP {resp.status_code}"}
+
+        data = resp.json()
+        msg = data.get("message", {})
+
+        # Extract metadata
+        title = (msg.get("title") or [""])[0] if msg.get("title") else ""
+        abstract_raw = msg.get("abstract", "")
+        # Clean HTML tags from abstract
+        import re
+        abstract = re.sub(r"<[^>]+>", "", abstract_raw) if abstract_raw else ""
+        abstract = abstract.replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&")
+
+        # Authors
+        authors = []
+        for au in msg.get("author", [])[:10]:
+            family = au.get("family", "")
+            given = au.get("given", "")
+            if family:
+                authors.append(f"{family} {given}".strip())
+
+        # Journal info
+        journal = ""
+        container = msg.get("container-title") or [""]
+        if isinstance(container, list) and container:
+            journal = container[0]
+        pub_year = msg.get("created", {}).get("date-parts", [[None]])[0][0]
+        publisher = msg.get("publisher", "")
+
+        return {
+            "success": True,
+            "doi": doi,
+            "title": title,
+            "abstract": abstract[:1500] if abstract else "(No abstract available from CrossRef)",
+            "authors": authors,
+            "first_author": authors[0] if authors else "",
+            "journal": journal or publisher,
+            "year": pub_year,
+            "publisher": publisher,
+            "url": f"https://doi.org/{doi}",
+            "source": "CrossRef API",
+        }
+    except Exception as e:
+        # Fallback: try PubMed E-utilities as secondary source
+        try:
+            pubmed_url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term={doi}[doi]&retmode=json"
+            pr = req.get(pubmed_url, timeout=10)
+            idlist = pr.json().get("esearchresult", {}).get("idlist", [])
+            if idlist:
+                pmid = idlist[0]
+                efetch_url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id={pmid}&retmode=xml&rettype=abstract"
+                import xml.etree.ElementTree as ET
+                er = req.get(efetch_url, timeout=10)
+                root = ET.fromstring(er.content)
+                article = root.find(".//PubmedArticle//Article")
+                if article is not None:
+                    title_elem = article.find(".//ArticleTitle")
+                    title = "".join(title_elem.itertext()) if title_elem is not None else ""
+                    abst_elem = article.find(".//Abstract/AbstractText")
+                    abstract = "".join(abst_elem.itertext()) if abst_elem is not None else ""
+                    jn_elem = article.find(".//Journal/Title")
+                    journal = jn_elem.text if jn_elem is not None else ""
+                    return {
+                        "success": True, "doi": doi,
+                        "title": title, "abstract": abstract[:1500],
+                        "journal": journal, "url": f"https://doi.org/{doi}",
+                        "source": "PubMed E-utilities (CrossRef fallback)",
+                    }
+        except Exception:
+            pass
+
+        return {
+            "success": False, "doi": doi,
+            "error": f"Failed to resolve DOI via CrossRef or PubMed: {str(e)}",
+        }
 
 
 # ==================== 启动入口 ====================
