@@ -1,186 +1,164 @@
 /**
- * AI 每日热点 — 前端逻辑
- * 功能：加载 JSON 数据、渲染卡片、搜索、排序、标签筛选
- * 所有操作均为本地执行，0 后端消耗
+ * Co-Metabolism Evidence Monitor — Frontend
+ * Evidence framework: 4-level tier + 4-dimensional matrix
  */
 
 (function () {
     'use strict';
 
-    // ==================== 全局状态 ====================
     const state = {
-        news: [],           // 全部文章
-        filtered: [],       // 过滤后的文章
-        stats: null,        // 统计信息
-        searchQuery: '',    // 搜索关键词
-        sortBy: 'total',    // 排序方式: total | date | value
-        activeTag: null,    // 当前选中的标签筛选（null=全部）
+        papers: [],
+        filtered: [],
+        stats: null,
+        searchQuery: '',
+        evidenceFilter: 'all',
+        nodeFilter: null,
+        sortBy: 'evidence',
     };
-
-    // ==================== DOM 元素 ====================
-    const $ = (sel) => document.querySelector(sel);
-    const $$ = (sel) => document.querySelectorAll(sel);
 
     const dom = {
-        feed: $('#feed'),
-        feedLoading: $('#feedLoading'),
-        feedEmpty: $('#feedEmpty'),
-        searchInput: $('#searchInput'),
-        searchClear: $('#searchClear'),
-        sortBtns: $$('.sort-btn'),
-        tagFilters: $('#tagFilters'),
-        updateTime: $('#updateTime'),
-        statTotal: $('#statTotal'),
-        statAuth: $('#statAuth'),
-        statNovel: $('#statNovel'),
-        statValue: $('#statValue'),
+        feed: document.getElementById('feed'),
+        feedLoading: document.getElementById('feedLoading'),
+        feedEmpty: document.getElementById('feedEmpty'),
+        searchInput: document.getElementById('searchInput'),
+        updateTime: document.getElementById('updateTime'),
+        statTotal: document.getElementById('statTotal'),
+        statL4: document.getElementById('statL4'),
+        statL3: document.getElementById('statL3'),
+        statNodes: document.getElementById('statNodes'),
+        nodeFilters: document.getElementById('nodeFilters'),
     };
 
-    // ==================== 数据加载 ====================
+    // ---- Data loading ----
 
     async function loadData() {
         try {
             const resp = await fetch('data/news.json');
             if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
             const data = await resp.json();
-
-            state.news = data.news || [];
+            state.papers = data.papers || [];
             state.stats = data.stats || {};
-            state.filtered = [...state.news];
-
+            state.filtered = [...state.papers];
             renderStats();
-            renderTagFilters();
-            sortAndRender();
-
-            // 隐藏加载状态
+            renderNodeFilters();
+            applyAllFilters();
             dom.feedLoading.style.display = 'none';
         } catch (err) {
-            console.error('加载数据失败:', err);
-            dom.feedLoading.innerHTML = `
-                <p style="font-size:48px;margin-bottom:12px;">📡</p>
-                <p>数据加载失败</p>
-                <p style="font-size:13px;color:#8b949e;margin-top:4px;">
-                    请确保 data/news.json 文件存在。<br>
-                    如果是首次使用，请先运行 GitHub Actions 生成数据。
-                </p>
-            `;
+            dom.feedLoading.textContent = 'Data unavailable. Please run the workflow first.';
+            console.error(err);
         }
     }
 
-    // ==================== 统计栏 ====================
+    // ---- Stats ----
 
     function renderStats() {
-        const s = state.stats;
-        dom.statTotal.textContent = s.total_articles || state.news.length || '--';
-        dom.statAuth.textContent = s.avg_authority || '--';
-        dom.statNovel.textContent = s.avg_novelty || '--';
-        dom.statValue.textContent = s.avg_value || '--';
+        const papers = state.papers;
+        dom.statTotal.textContent = papers.length || '--';
 
-        if (s.updated_at_human) {
-            dom.updateTime.textContent = `数据更新于 ${s.updated_at_human}（北京时间）`;
-        } else {
-            dom.updateTime.textContent = '等待首次数据生成...';
+        const l4 = papers.filter(p => (p.evidenceLevel || p.evidence_level) === 'L4').length;
+        dom.statL4.textContent = l4 || '--';
+
+        const l3plus = papers.filter(p =>
+            ['L4', 'L3'].includes(p.evidenceLevel || p.evidence_level)
+        ).length;
+        dom.statL3.textContent = l3plus || '--';
+
+        const allNodes = new Set();
+        papers.forEach(p => (p.nodes || []).forEach(n => allNodes.add(n)));
+        dom.statNodes.textContent = allNodes.size || '--';
+
+        if (state.stats && state.stats.updated_at_human) {
+            dom.updateTime.textContent = 'Last updated: ' + state.stats.updated_at_human + ' (UTC)';
         }
     }
 
-    // ==================== 标签筛选 ====================
+    // ---- Node filter chips ----
 
-    function renderTagFilters() {
-        // 收集所有标签并统计频次
-        const tagCount = {};
-        state.news.forEach(item => {
-            (item.tags || []).forEach(tag => {
-                tagCount[tag] = (tagCount[tag] || 0) + 1;
+    function renderNodeFilters() {
+        const counts = {};
+        state.papers.forEach(p => {
+            (p.nodes || []).forEach(n => {
+                counts[n] = (counts[n] || 0) + 1;
             });
         });
 
-        // 取 TOP 15 标签
-        const topTags = Object.entries(tagCount)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 15);
-
-        dom.tagFilters.innerHTML = topTags
-            .map(([tag, count]) =>
-                `<button class="tag-chip" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)} <small>(${count})</small></button>`
-            )
+        const nodes = ['Butyrate/SCFAs', 'Bile Acids', 'Tryptophan Metabolites', 'Polyamines', 'Vitamin B12'];
+        dom.nodeFilters.innerHTML = nodes
+            .filter(n => counts[n])
+            .map(n => `<span class="node-chip" data-node="${escapeHtml(n)}">${escapeHtml(n)}&nbsp;(${counts[n]})</span>`)
             .join('');
 
-        // 绑定事件
-        dom.tagFilters.querySelectorAll('.tag-chip').forEach(chip => {
+        dom.nodeFilters.querySelectorAll('.node-chip').forEach(chip => {
             chip.addEventListener('click', () => {
-                const tag = chip.dataset.tag;
-                if (state.activeTag === tag) {
-                    state.activeTag = null;
-                } else {
-                    state.activeTag = tag;
-                }
-                updateTagChips();
-                applyFilters();
+                const node = chip.dataset.node;
+                state.nodeFilter = state.nodeFilter === node ? null : node;
+                updateNodeChips();
+                applyAllFilters();
             });
         });
     }
 
-    function updateTagChips() {
-        dom.tagFilters.querySelectorAll('.tag-chip').forEach(chip => {
-            chip.classList.toggle('active', chip.dataset.tag === state.activeTag);
+    function updateNodeChips() {
+        dom.nodeFilters.querySelectorAll('.node-chip').forEach(chip => {
+            chip.classList.toggle('active', chip.dataset.node === state.nodeFilter);
         });
     }
 
-    // ==================== 搜索 & 过滤 ====================
+    // ---- Filtering ----
 
-    function applyFilters() {
-        let items = [...state.news];
+    function applyAllFilters() {
+        let items = [...state.papers];
 
-        // 关键词搜索
+        // Search
         if (state.searchQuery) {
             const q = state.searchQuery.toLowerCase();
-            items = items.filter(item => {
-                return (
-                    (item.title || '').toLowerCase().includes(q) ||
-                    (item.summary || '').toLowerCase().includes(q) ||
-                    (item.source || '').toLowerCase().includes(q) ||
-                    (item.tags || []).some(t => t.toLowerCase().includes(q))
-                );
-            });
-        }
-
-        // 标签筛选
-        if (state.activeTag) {
-            items = items.filter(item =>
-                (item.tags || []).includes(state.activeTag)
+            items = items.filter(p =>
+                (p.title || '').toLowerCase().includes(q) ||
+                (p.abstract || '').toLowerCase().includes(q) ||
+                (p.journal || '').toLowerCase().includes(q) ||
+                (p.firstAuthor || p.first_author || '').toLowerCase().includes(q) ||
+                (p.nodes || []).some(n => n.toLowerCase().includes(q))
             );
         }
 
-        state.filtered = items;
-        sortAndRender();
-    }
-
-    function sortAndRender() {
-        const items = [...state.filtered];
-
-        // 排序
-        switch (state.sortBy) {
-            case 'date':
-                items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-                break;
-            case 'value':
-                items.sort((a, b) => (b.value || 0) - (a.value || 0));
-                break;
-            case 'total':
-            default:
-                items.sort((a, b) => (b.total || 0) - (a.total || 0));
-                break;
+        // Evidence level filter
+        if (state.evidenceFilter !== 'all') {
+            items = items.filter(p =>
+                (p.evidenceLevel || p.evidence_level) === state.evidenceFilter
+            );
         }
 
+        // Node filter
+        if (state.nodeFilter) {
+            items = items.filter(p =>
+                (p.nodes || []).includes(state.nodeFilter)
+            );
+        }
+
+        // Sort
+        const levelOrder = { L4: 5, L3: 4, L2b: 3, L2a: 2, L1: 1 };
+        if (state.sortBy === 'date') {
+            items.sort((a, b) => (b.pubDate || b.pub_date || '').localeCompare(a.pubDate || a.pub_date || ''));
+        } else if (state.sortBy === 'score') {
+            items.sort((a, b) => (b.totalScore || b.total_score || 0) - (a.totalScore || a.total_score || 0));
+        } else {
+            items.sort((a, b) => {
+                const la = levelOrder[a.evidenceLevel || a.evidence_level] || 0;
+                const lb = levelOrder[b.evidenceLevel || b.evidence_level] || 0;
+                if (la !== lb) return lb - la;
+                return (b.totalScore || b.total_score || 0) - (a.totalScore || a.total_score || 0);
+            });
+        }
+
+        state.filtered = items;
         renderFeed(items);
     }
 
-    // ==================== 文章列表渲染 ====================
+    // ---- Rendering ----
 
     function renderFeed(items) {
-        // 清除现有卡片
-        const existingCards = dom.feed.querySelectorAll('.news-card');
-        existingCards.forEach(c => c.remove());
+        // Remove existing cards
+        dom.feed.querySelectorAll('.paper-card').forEach(c => c.remove());
 
         if (items.length === 0) {
             dom.feedEmpty.style.display = 'block';
@@ -188,50 +166,64 @@
             dom.feedEmpty.style.display = 'none';
         }
 
-        const template = $('#cardTemplate');
+        const template = document.getElementById('paperCard');
         const fragment = document.createDocumentFragment();
 
-        items.forEach(item => {
+        items.forEach(paper => {
             const card = template.content.cloneNode(true);
 
-            // 来源 & 日期
-            card.querySelector('.source-name').textContent = item.source || '未知来源';
-            card.querySelector('.source-date').textContent = formatDate(item.date);
+            // Header
+            card.querySelector('.paper-journal').textContent = paper.journal || paper.source || '';
+            card.querySelector('.paper-date').textContent = formatDate(paper.pubDate || paper.pub_date);
 
-            // 分数
-            const scoreEl = card.querySelector('.score-num');
-            const total = item.total || 5;
-            scoreEl.textContent = total;
-            if (total >= 8) scoreEl.classList.add('high');
-            else if (total >= 6) scoreEl.classList.add('mid');
-            else scoreEl.classList.add('low');
+            // Evidence level badge
+            const level = paper.evidenceLevel || paper.evidence_level || 'L1';
+            const badge = card.querySelector('.level-badge');
+            badge.textContent = level;
+            badge.className = 'level-badge level-' + level.toLowerCase();
 
-            // 标题
-            const titleLink = card.querySelector('.card-title a');
-            titleLink.textContent = item.title || '(无标题)';
-            titleLink.href = item.url || '#';
-            if (!item.url) titleLink.removeAttribute('href');
+            // Title
+            const titleLink = card.querySelector('.paper-title a');
+            titleLink.textContent = paper.title || '(No title)';
+            titleLink.href = paper.url || '#';
+            if (!paper.url) titleLink.removeAttribute('href');
 
-            // 摘要
-            card.querySelector('.card-summary').textContent = item.summary || '';
+            // Authors
+            card.querySelector('.paper-authors').textContent = paper.firstAuthor || paper.first_author || '';
 
-            // 标签
-            const tagsContainer = card.querySelector('.card-tags');
-            (item.tags || []).forEach(tag => {
-                const tagEl = document.createElement('span');
-                tagEl.className = 'tag';
-                tagEl.textContent = tag;
-                tagsContainer.appendChild(tagEl);
+            // Abstract
+            card.querySelector('.paper-abstract').textContent = paper.abstract || '';
+
+            // Nodes
+            const nodesContainer = card.querySelector('.paper-nodes');
+            (paper.nodes || []).forEach(node => {
+                const tag = document.createElement('span');
+                tag.className = 'node-tag';
+                tag.textContent = node;
+                nodesContainer.appendChild(tag);
             });
 
-            // 推荐理由
-            card.querySelector('.card-reason').textContent = item.reason ? `💬 ${item.reason}` : '';
+            // Matrix bars
+            const matrixItems = card.querySelectorAll('.matrix-item');
+            const eff = paper.effectiveness || 0;
+            const saf = paper.safety || 0;
+            const cou = paper.coupling || 0;
+            const dep = paper.measurementDepth || paper.measurement_depth || 0;
+            const dims = [eff, saf, cou, dep];
 
-            // 三维评分
-            const metrics = card.querySelectorAll('.card-metrics .metric');
-            metrics[0].querySelector('strong').textContent = item.authority || '--';
-            metrics[1].querySelector('strong').textContent = item.novelty || '--';
-            metrics[2].querySelector('strong').textContent = item.value || '--';
+            matrixItems.forEach((item, i) => {
+                const val = dims[i] || 0;
+                item.querySelector('.matrix-fill').style.width = (val / 5 * 100) + '%';
+                item.querySelector('.matrix-val').textContent = val + '/5';
+            });
+
+            // Summary
+            const summary = paper.summary || '';
+            card.querySelector('.paper-summary').textContent = summary;
+
+            // Limitation
+            const limitation = paper.keyLimitation || paper.key_limitation || '';
+            card.querySelector('.paper-limitation').textContent = limitation ? 'Limitation: ' + limitation : '';
 
             fragment.appendChild(card);
         });
@@ -239,24 +231,14 @@
         dom.feed.appendChild(fragment);
     }
 
-    // ==================== 工具函数 ====================
+    // ---- Helpers ----
 
     function formatDate(dateStr) {
         if (!dateStr) return '';
         try {
             const d = new Date(dateStr);
-            const now = new Date();
-            const diffMs = now - d;
-            const diffH = Math.floor(diffMs / 3600000);
-            const diffD = Math.floor(diffMs / 86400000);
-
-            if (diffH < 1) return '刚刚';
-            if (diffH < 24) return `${diffH} 小时前`;
-            if (diffD < 7) return `${diffD} 天前`;
-
-            const month = d.getMonth() + 1;
-            const day = d.getDate();
-            return `${month}月${day}日`;
+            const m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear()}`;
         } catch {
             return dateStr;
         }
@@ -268,40 +250,35 @@
         return div.innerHTML;
     }
 
-    // ==================== 事件绑定 ====================
+    // ---- Events ----
 
-    // 搜索输入
-    let searchTimeout;
+    let searchTimer;
     dom.searchInput.addEventListener('input', () => {
-        const val = dom.searchInput.value.trim();
-        dom.searchClear.classList.toggle('visible', val.length > 0);
-
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-            state.searchQuery = val;
-            applyFilters();
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => {
+            state.searchQuery = dom.searchInput.value.trim();
+            applyAllFilters();
         }, 250);
     });
 
-    // 清除搜索
-    dom.searchClear.addEventListener('click', () => {
-        dom.searchInput.value = '';
-        dom.searchClear.classList.remove('visible');
-        state.searchQuery = '';
-        applyFilters();
-    });
+    document.querySelectorAll('.filter-group').forEach(group => {
+        group.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const parent = btn.parentElement;
+                parent.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-    // 排序按钮
-    dom.sortBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            dom.sortBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            state.sortBy = btn.dataset.sort;
-            sortAndRender();
+                if (btn.dataset.level !== undefined) {
+                    state.evidenceFilter = btn.dataset.level;
+                } else if (btn.dataset.sort) {
+                    state.sortBy = btn.dataset.sort;
+                }
+                applyAllFilters();
+            });
         });
     });
 
-    // ==================== 初始化 ====================
+    // ---- Init ----
 
     loadData();
 })();

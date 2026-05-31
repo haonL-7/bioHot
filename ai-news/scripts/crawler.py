@@ -1,322 +1,360 @@
 #!/usr/bin/env python3
 """
-AI 资讯爬虫脚本
-功能：从多个 RSS 源自动爬取 AI 相关资讯，去重后保存为 JSON
+每日文献爬虫 — 五个代谢物节点 (Butyrate, Bile Acids, Tryptophan, Polyamines, B12)
+数据源: PubMed (E-utilities API) + bioRxiv (API)
+过滤: 排除预警期刊/普刊，仅保留权威学术来源
 """
 
 import json
 import os
 import sys
-import hashlib
 import time
+import hashlib
+import re
 from datetime import datetime, timedelta
-from typing import Optional
+from xml.etree import ElementTree as ET
 
 import requests
-import feedparser
 from bs4 import BeautifulSoup
-from dateutil import parser as date_parser
 
 # ==================== 配置 ====================
 
-# 数据输出目录
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
 RAW_ARTICLES_FILE = os.path.join(DATA_DIR, "raw_articles.json")
 
-# RSS 源列表（中文资讯 + 国际资讯）
-RSS_SOURCES = [
-    # ── 中文 AI 资讯 ──
-    {
-        "name": "机器之心",
-        "url": "https://rsshub.app/jiqizhixin/latest",
-        "lang": "zh",
-        "category": "ai_news",
-        "authority": 8,
-    },
-    {
-        "name": "量子位",
-        "url": "https://rsshub.app/qbitai",
-        "lang": "zh",
-        "category": "ai_news",
-        "authority": 7,
-    },
-    {
-        "name": "36氪快讯",
-        "url": "https://rsshub.app/36kr/newsflashes",
-        "lang": "zh",
-        "category": "tech_news",
-        "authority": 6,
-    },
-    {
-        "name": "品玩",
-        "url": "https://rsshub.app/pingwest/status",
-        "lang": "zh",
-        "category": "tech_news",
-        "authority": 5,
-    },
-    {
-        "name": "少数派",
-        "url": "https://rsshub.app/sspai/matrix",
-        "lang": "zh",
-        "category": "tech_news",
-        "authority": 5,
-    },
-    {
-        "name": "InfoQ 中文",
-        "url": "https://rsshub.app/infoq/news",
-        "lang": "zh",
-        "category": "dev_news",
-        "authority": 6,
-    },
-    # ── 国际 AI 资讯 ──
-    {
-        "name": "Hacker News",
-        "url": "https://hnrss.org/frontpage?points=50",
-        "lang": "en",
-        "category": "dev_news",
-        "authority": 5,
-    },
-    {
-        "name": "Reddit MachineLearning",
-        "url": "https://www.reddit.com/r/MachineLearning/hot.rss?limit=25",
-        "lang": "en",
-        "category": "research",
-        "authority": 4,
-    },
-    {
-        "name": "ArXiv CS.AI",
-        "url": "https://rss.arxiv.org/rss/cs.AI",
-        "lang": "en",
-        "category": "research",
-        "authority": 9,
-    },
-    {
-        "name": "MIT Technology Review AI",
-        "url": "https://www.technologyreview.com/feed/",
-        "lang": "en",
-        "category": "ai_news",
-        "authority": 8,
-    },
-]
+# PubMed E-utilities 配置 (免费，无需 API Key)
+PUBMED_BASE = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+PUBMED_SEARCH_URL = f"{PUBMED_BASE}/esearch.fcgi"
+PUBMED_FETCH_URL = f"{PUBMED_BASE}/efetch.fcgi"
 
-# 请求头（模拟浏览器）
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
+# 五个核心代谢物节点的 PubMed 检索式
+SEARCH_QUERIES = {
+    "Butyrate/SCFAs": (
+        '(butyrate OR "short-chain fatty acid" OR SCFA OR butyric) '
+        'AND (gut OR intestinal OR colon OR colonic) '
+        'AND (microbiome OR microbiota OR "gut microbiota")'
     ),
-    "Accept": "application/rss+xml, application/xml, text/xml, application/atom+xml, */*",
-    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+    "Bile Acids": (
+        '("bile acid" OR "bile acids" OR FXR OR TGR5 '
+        'OR hyodeoxycholic OR HDCA OR obeticholic) '
+        'AND (gut OR intestinal OR ileum OR colon) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    "Tryptophan Metabolites": (
+        '(tryptophan OR indole OR kynurenine OR "AhR" '
+        'OR "aryl hydrocarbon receptor") '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR metabolism)'
+    ),
+    "Polyamines": (
+        '(polyamine OR spermidine OR spermine OR putrescine OR cadaverine) '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria)'
+    ),
+    "Vitamin B12": (
+        '("vitamin B12" OR cobalamin OR "methylmalonyl-CoA" '
+        'OR "one-carbon metabolism") '
+        'AND (gut OR intestinal OR colon) '
+        'AND (microbiome OR microbiota OR bacteria OR propionate)'
+    ),
 }
 
-# 请求超时
-TIMEOUT = 30
+# 权威期刊白名单
+REPUTABLE_JOURNALS = [
+    "Nature", "Science", "Cell",
+    "Nature Microbiology", "Nature Communications", "Nature Medicine",
+    "Cell Host & Microbe", "Cell Metabolism", "Cell Reports",
+    "Gut Microbes", "Microbiome", "ISME Journal", "ISME Communications",
+    "Gastroenterology", "Gut", "Hepatology",
+    "mBio", "mSystems", "Microbiology Spectrum",
+    "eLife", "PNAS", "PLOS Biology",
+    "EMBO Journal", "EMBO Reports",
+    "Nucleic Acids Research", "Genome Biology",
+    "Microbial Genomics", "Environmental Microbiology",
+    "Applied and Environmental Microbiology",
+    "Journal of Biological Chemistry", "Molecular Systems Biology",
+    "Current Biology", "BMC Biology",
+    "FEMS Microbiology Ecology", "FEMS Microbiology Reviews",
+    "Trends in Microbiology", "Trends in Biotechnology",
+    "Annual Review of Microbiology", "Annual Review of Nutrition",
+    "British Journal of Nutrition", "Journal of Nutrition",
+    "American Journal of Clinical Nutrition",
+    "Animal Microbiome", "Animal Nutrition",
+    "Frontiers in Microbiology", "npj Biofilms and Microbiomes",
+]
 
-# 去重时间窗口（天）：只保留最近 N 天的文章
-DEDUP_WINDOW_DAYS = 3
+# 掠夺性/预警期刊黑名单关键词
+PREDATORY_KEYWORDS = [
+    "Hindawi", "MDPI", "PLOS ONE",
+    "Medicine (United States)",
+    "Cureus", "Heliyon",
+    "International Journal of Molecular Sciences",
+    "World Journal of",
+    "Scientific Reports",
+]
+
+HEADERS = {
+    "User-Agent": "AcademicLiteratureCrawler/1.0 (mailto:research@example.com)",
+}
+TIMEOUT = 30
+SEARCH_DAYS = 7
 
 
 # ==================== 工具函数 ====================
 
-def make_article_id(title: str, url: str) -> str:
-    """为文章生成唯一 ID（SHA256）"""
-    raw = f"{title}|{url}".encode("utf-8")
-    return hashlib.sha256(raw).hexdigest()[:12]
+def make_id(title: str, source: str) -> str:
+    return hashlib.sha256(f"{title}|{source}".encode("utf-8")).hexdigest()[:12]
 
 
-def clean_html(html_text: str) -> str:
-    """清理 HTML 标签，提取纯文本"""
-    soup = BeautifulSoup(html_text, "html.parser")
-    text = soup.get_text(separator=" ", strip=True)
-    # 合并多余空白
-    text = " ".join(text.split())
-    return text
+def clean_html(text: str) -> str:
+    if not text:
+        return ""
+    return " ".join(BeautifulSoup(text, "html.parser")
+                    .get_text(separator=" ", strip=True).split())
 
 
-def parse_date(date_str: Optional[str]) -> str:
-    """解析日期字符串，统一返回 ISO 格式"""
-    if not date_str:
-        return datetime.now().isoformat()
-    try:
-        dt = date_parser.parse(date_str)
-        return dt.isoformat()
-    except Exception:
-        return datetime.now().isoformat()
+def is_reputable(journal_name: str) -> bool:
+    """期刊权威性检查"""
+    jn = journal_name.lower()
+    for kw in PREDATORY_KEYWORDS:
+        if kw.lower() in jn:
+            return False
+    for good in REPUTABLE_JOURNALS:
+        if good.lower() in jn:
+            return True
+    # 不在任何名单中：标记为待评估
+    return True
 
 
-def is_ai_related(title: str, summary: str) -> bool:
-    """
-    简单关键词过滤：判断文章是否与 AI 相关
-    用于过滤 RSS 源中的非 AI 内容（如 36氪 的泛科技新闻）
-    """
-    ai_keywords = [
-        "AI", "ai", "人工智能", "机器学习", "深度学习", "大模型", "LLM", "GPT",
-        "OpenAI", "Google", "DeepMind", "Anthropic", "Claude", "Gemini",
-        "Llama", "神经网络", "transformer", "transformer", "智能",
-        "自然语言", "计算机视觉", "强化学习", "生成式", "AGI",
-        "Agent", "RAG", "推理", "训练", "参数", "开源模型",
-        "Stable Diffusion", "Midjourney", "Sora", "多模态",
-        "Copilot", "ChatGPT", "具身智能", "机器人",
-        "芯片", "GPU", "NVIDIA", "算力", "H100",
-        "token", "微调", "对齐", "RLHF", "预训练",
-        "Vector", "Embedding", "向量", "检索增强",
+def assign_nodes(title: str, abstract: str) -> list[str]:
+    """为文章分配所属代谢物节点"""
+    text = (title + " " + abstract).lower()
+    nodes = []
+    checks = [
+        ("Butyrate/SCFAs", ["butyrate", "butyric", "short-chain fatty acid", "scfa"]),
+        ("Bile Acids", ["bile acid", "fxr", "tgr5", "hyodeoxycholic", "hdca"]),
+        ("Tryptophan Metabolites", ["tryptophan", "indole", "kynurenine", "aryl hydrocarbon", "ahr"]),
+        ("Polyamines", ["polyamine", "spermidine", "spermine", "putrescine", "cadaverine"]),
+        ("Vitamin B12", ["vitamin b12", "cobalamin", "methylmalonyl-coa", "one-carbon"]),
     ]
-    text = f"{title} {summary}"
-    return any(kw.lower() in text.lower() for kw in ai_keywords)
+    for node, keywords in checks:
+        if any(kw in text for kw in keywords):
+            nodes.append(node)
+    return nodes or ["Unclassified"]
 
 
-# ==================== 爬虫核心 ====================
+# ==================== PubMed ====================
 
-def fetch_feed(source: dict) -> list[dict]:
-    """
-    从单个 RSS 源抓取文章列表
-    返回文章 dict 列表，失败返回空列表
-    """
-    articles = []
+def search_pubmed(query: str, max_results: int = 20) -> list[str]:
+    """搜索 PubMed，返回 PMID 列表"""
+    params = {
+        "db": "pubmed", "term": query,
+        "retmax": max_results, "retmode": "json", "sort": "date",
+        "datetype": "pdat",
+        "mindate": (datetime.now() - timedelta(days=SEARCH_DAYS)).strftime("%Y/%m/%d"),
+        "maxdate": datetime.now().strftime("%Y/%m/%d"),
+    }
     try:
-        resp = requests.get(
-            source["url"],
-            headers=HEADERS,
-            timeout=TIMEOUT,
-            allow_redirects=True,
-        )
+        resp = requests.get(PUBMED_SEARCH_URL, params=params,
+                           headers=HEADERS, timeout=TIMEOUT)
         resp.raise_for_status()
-
-        # feedparser 可以解析 RSS 2.0, Atom, RSS 1.0 等多种格式
-        feed = feedparser.parse(resp.content)
-
-        if feed.bozo and not feed.entries:
-            print(f"  ⚠ {source['name']}: 解析失败 - {feed.bozo_exception}")
-            return []
-
-        for entry in feed.entries[:30]:  # 每个源最多取 30 条
-            title = (entry.get("title") or "").strip()
-            link = (entry.get("link") or entry.get("id") or "").strip()
-            summary_raw = entry.get("summary") or entry.get("description") or ""
-            summary = clean_html(summary_raw)
-            published = entry.get("published") or entry.get("updated") or ""
-
-            if not title or not link:
-                continue
-
-            # 过滤非 AI 相关内容
-            if not is_ai_related(title, summary):
-                continue
-
-            article = {
-                "id": make_article_id(title, link),
-                "title": title,
-                "url": link,
-                "summary": summary[:500],  # 截取前 500 字
-                "source_name": source["name"],
-                "source_authority": source["authority"],
-                "category": source["category"],
-                "lang": source["lang"],
-                "published": parse_date(published),
-                "crawled_at": datetime.now().isoformat(),
-            }
-            articles.append(article)
-
-        print(f"  ✓ {source['name']}: {len(articles)} 条")
-        return articles
-
-    except requests.RequestException as e:
-        print(f"  ✗ {source['name']}: 请求失败 - {e}")
-        return []
+        return resp.json().get("esearchresult", {}).get("idlist", [])
     except Exception as e:
-        print(f"  ✗ {source['name']}: 未知错误 - {e}")
+        print(f"    PubMed search error: {e}")
         return []
 
 
-def deduplicate_articles(all_articles: list[dict]) -> list[dict]:
-    """按 ID 去重，保留最早出现的那条"""
-    seen = {}
-    for art in sorted(all_articles, key=lambda a: a.get("published", "")):
-        aid = art["id"]
-        if aid not in seen:
-            seen[aid] = art
-    return list(seen.values())
+def fetch_pubmed_details(pmids: list[str]) -> list[dict]:
+    """获取 PubMed 文章详情"""
+    if not pmids:
+        return []
+    params = {"db": "pubmed", "id": ",".join(pmids),
+              "retmode": "xml", "rettype": "abstract"}
+    try:
+        resp = requests.get(PUBMED_FETCH_URL, params=params,
+                           headers=HEADERS, timeout=TIMEOUT)
+        resp.raise_for_status()
+        root = ET.fromstring(resp.content)
+        articles = []
+        for art_elem in root.findall(".//PubmedArticle"):
+            try:
+                med = art_elem.find(".//MedlineCitation")
+                article = med.find(".//Article")
+                if article is None:
+                    continue
+
+                title_elem = article.find(".//ArticleTitle")
+                title = "".join(title_elem.itertext()) if title_elem is not None else ""
+
+                abst_elem = article.find(".//Abstract/AbstractText")
+                abstract = "".join(abst_elem.itertext()) if abst_elem is not None else ""
+
+                jn_elem = article.find(".//Journal/Title")
+                journal = jn_elem.text if jn_elem is not None else ""
+
+                doi_elem = article.find(".//ELocationID[@EIdType='doi']")
+                doi = doi_elem.text if doi_elem is not None else ""
+
+                pmid_elem = med.find(".//PMID")
+                pmid = pmid_elem.text if pmid_elem is not None else ""
+
+                pub_date_elem = article.find(".//Journal/JournalIssue/PubDate")
+                pub_date = ""
+                if pub_date_elem is not None:
+                    y = pub_date_elem.findtext("Year", "")
+                    m = pub_date_elem.findtext("Month", "")
+                    d = pub_date_elem.findtext("Day", "01")
+                    pub_date = f"{y}-{m}-{d}"
+
+                authors = []
+                for au in article.findall(".//AuthorList/Author"):
+                    ln = au.findtext("LastName", "")
+                    ini = au.findtext("Initials", "")
+                    if ln:
+                        authors.append(f"{ln} {ini}")
+
+                url = f"https://doi.org/{doi}" if doi else f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
+
+                articles.append({
+                    "journal": journal, "doi": doi, "pmid": pmid,
+                    "first_author": authors[0] if authors else "",
+                    "url": url, "title": title.strip(),
+                    "abstract": abstract.strip()[:800],
+                    "pub_date": pub_date, "source": "PubMed",
+                })
+            except Exception:
+                continue
+        return articles
+    except Exception as e:
+        print(f"    PubMed fetch error: {e}")
+        return []
 
 
-def filter_by_date(articles: list[dict], days: int = DEDUP_WINDOW_DAYS) -> list[dict]:
-    """只保留最近 N 天的文章"""
-    cutoff = datetime.now() - timedelta(days=days)
-    filtered = []
-    for art in articles:
+# ==================== bioRxiv ====================
+
+def fetch_biorxiv() -> list[dict]:
+    """获取 bioRxiv 微生物学相关预印本"""
+    articles = []
+    for subject in ["microbiology", "systems_biology", "biochemistry"]:
         try:
-            pub_date = date_parser.parse(art["published"])
-            if pub_date.replace(tzinfo=None) >= cutoff:
-                filtered.append(art)
-        except Exception:
-            # 解析失败的保留
-            filtered.append(art)
-    return filtered
+            date_start = (datetime.now() - timedelta(days=SEARCH_DAYS)).strftime("%Y-%m-%d")
+            date_end = datetime.now().strftime("%Y-%m-%d")
+            url = f"https://api.biorxiv.org/details/biorxiv/{date_start}/{date_end}/0/15"
+            resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+            resp.raise_for_status()
+            for paper in resp.json().get("collection", []):
+                title = paper.get("title", "").strip()
+                abstract = paper.get("abstract", "").strip()
+                # 节点关键词过滤
+                if not assign_nodes(title, abstract):
+                    continue
+                doi = paper.get("doi", "")
+                articles.append({
+                    "journal": f"bioRxiv ({subject})",
+                    "doi": doi, "pmid": "",
+                    "first_author": paper.get("author_corresponding", ""),
+                    "url": f"https://doi.org/{doi}" if doi else f"https://www.biorxiv.org/content/10.1101/{doi}",
+                    "title": title[:300], "abstract": abstract[:800],
+                    "pub_date": paper.get("date", ""), "source": "bioRxiv",
+                })
+        except Exception as e:
+            print(f"    bioRxiv ({subject}) error: {e}")
+            continue
+    return articles
 
 
-def save_articles(articles: list[dict], filepath: str):
-    """保存文章到 JSON 文件"""
-    os.makedirs(os.path.dirname(filepath), exist_ok=True)
-    with open(filepath, "w", encoding="utf-8") as f:
-        json.dump(articles, f, ensure_ascii=False, indent=2)
-    print(f"\n💾 已保存 {len(articles)} 条文章到 {filepath}")
-
-
-# ==================== 主入口 ====================
+# ==================== 主流程 ====================
 
 def main():
     print("=" * 60)
-    print("📡 AI 资讯爬虫启动")
-    print(f"   时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"   数据源: {len(RSS_SOURCES)} 个")
+    print("  Co-Metabolism Literature Crawler (5 Nodes)")
+    print(f"  Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
-    print()
 
     all_articles = []
 
-    for source in RSS_SOURCES:
-        print(f"🔍 [{source['name']}] {source['url']}")
-        articles = fetch_feed(source)
-        all_articles.extend(articles)
-        # 礼貌延迟，避免请求过于密集
-        time.sleep(0.5)
+    # PubMed
+    print("\n[PubMed]")
+    for node_name, query in SEARCH_QUERIES.items():
+        print(f"  [{node_name}]")
+        pmids = search_pubmed(query)
+        if pmids:
+            details = fetch_pubmed_details(pmids)
+            for art in details:
+                art["query_node"] = node_name
+            all_articles.extend(details)
+            print(f"    {len(details)} papers")
+        else:
+            print(f"    No results")
+        time.sleep(0.4)
 
-    print(f"\n📊 总计爬取: {len(all_articles)} 条（去重前）")
+    # bioRxiv
+    print("\n[bioRxiv]")
+    biorxiv_articles = fetch_biorxiv()
+    print(f"    {len(biorxiv_articles)} preprints")
+    all_articles.extend(biorxiv_articles)
 
     # 去重
-    unique = deduplicate_articles(all_articles)
-    print(f"📊 去重后: {len(unique)} 条")
+    seen = {}
+    unique = []
+    for art in all_articles:
+        key = art.get("title", "")[:80]
+        if hashlib.md5(key.encode()).hexdigest() not in seen:
+            seen[hashlib.md5(key.encode()).hexdigest()] = True
+            unique.append(art)
+    print(f"\n  Dedup: {len(all_articles)} -> {len(unique)}")
 
-    # 时间过滤
-    recent = filter_by_date(unique)
-    print(f"📊 时间过滤后 (最近{DEDUP_WINDOW_DAYS}天): {len(recent)} 条")
+    # 期刊过滤
+    filtered = []
+    rejected = 0
+    for art in unique:
+        jn = art.get("journal", "")
+        if is_reputable(jn):
+            filtered.append(art)
+        else:
+            rejected += 1
+    print(f"  Journal filter: {len(filtered)} kept, {rejected} rejected")
 
-    # 按发布时间倒序排列
-    recent.sort(
-        key=lambda a: date_parser.parse(a.get("published", "")),
-        reverse=True,
-    )
+    # 统一格式
+    articles = []
+    for art in filtered:
+        nodes = assign_nodes(art.get("title", ""), art.get("abstract", ""))
+        articles.append({
+            "id": make_id(art.get("title", ""), art.get("source", "")),
+            "title": art.get("title", ""),
+            "url": art.get("url", ""),
+            "abstract": art.get("abstract", "")[:500],
+            "journal": art.get("journal", ""),
+            "doi": art.get("doi", ""),
+            "pmid": art.get("pmid", ""),
+            "first_author": art.get("first_author", ""),
+            "pub_date": art.get("pub_date", ""),
+            "source": art.get("source", ""),
+            "nodes": nodes,
+            "crawled_at": datetime.now().isoformat(),
+        })
 
-    # 输出统计
-    source_counts = {}
-    for art in recent:
-        src = art["source_name"]
-        source_counts[src] = source_counts.get(src, 0) + 1
+    articles.sort(key=lambda a: a.get("pub_date", ""), reverse=True)
 
-    print("\n📊 各来源统计:")
-    for src, count in sorted(source_counts.items(), key=lambda x: -x[1]):
-        print(f"   {src}: {count} 条")
+    # 统计
+    node_counts = {}
+    for art in articles:
+        for n in art["nodes"]:
+            node_counts[n] = node_counts.get(n, 0) + 1
+    print(f"\n  Node distribution:")
+    for node in ["Butyrate/SCFAs", "Bile Acids", "Tryptophan Metabolites",
+                  "Polyamines", "Vitamin B12"]:
+        print(f"    {node}: {node_counts.get(node, 0)}")
 
-    # 保存
-    save_articles(recent, RAW_ARTICLES_FILE)
+    os.makedirs(DATA_DIR, exist_ok=True)
+    with open(RAW_ARTICLES_FILE, "w", encoding="utf-8") as f:
+        json.dump(articles, f, ensure_ascii=False, indent=2)
+    print(f"\n  Saved: {len(articles)} articles to {RAW_ARTICLES_FILE}")
 
-    # 返回文章数量供后续脚本使用
-    return len(recent)
+    with open(os.path.join(DATA_DIR, "crawl_count.txt"), "w") as f:
+        f.write(str(len(articles)))
+    return len(articles)
 
 
 if __name__ == "__main__":
-    count = main()
-    # 将数量写入临时文件，供 GitHub Actions 步骤间传递
-    with open(os.path.join(DATA_DIR, "crawl_count.txt"), "w") as f:
-        f.write(str(count))
-    sys.exit(0)
+    sys.exit(0 if main() >= 0 else 1)

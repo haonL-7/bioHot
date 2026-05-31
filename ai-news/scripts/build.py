@@ -36,74 +36,81 @@ def load_json(filepath: str) -> dict | list:
 
 def build_news_data(scored_articles: list[dict]) -> list[dict]:
     """
-    将评分后的文章转换为前端可直接使用的格式
-    精简字段，减少前端加载的 JSON 体积
+    Flatten nested evaluation structure -> frontend-friendly flat fields
     """
-    news_list = []
+    papers = []
     for art in scored_articles:
-        scores = art.get("scores", {})
-        news_item = {
+        ev = art.get("evaluation", art.get("scores", {}))
+        papers.append({
             "id": art.get("id", ""),
             "title": art.get("title", ""),
             "url": art.get("url", ""),
-            "summary": art.get("summary", "")[:300],  # 最多 300 字摘要
-            "source": art.get("source_name", ""),
-            "date": art.get("published", ""),
-            "lang": art.get("lang", "zh"),
-            "category": art.get("category", ""),
-            # 评分
-            "authority": scores.get("authority", 5),
-            "novelty": scores.get("novelty", 5),
-            "value": scores.get("value", 5),
-            "total": scores.get("total", 5),
-            "tags": scores.get("tags", []),
-            "reason": scores.get("reason", ""),
-            "evalMethod": scores.get("eval_method", "local"),
-        }
-        news_list.append(news_item)
+            "abstract": art.get("abstract", "")[:500],
+            "journal": art.get("journal", art.get("source", "")),
+            "doi": art.get("doi", ""),
+            "pmid": art.get("pmid", ""),
+            "firstAuthor": art.get("first_author", ""),
+            "pubDate": art.get("pub_date", ""),
+            "source": art.get("source", ""),
+            # Evidence framework
+            "evidenceLevel": ev.get("evidence_level", "L1"),
+            "evidenceJustification": ev.get("evidence_justification", ""),
+            "effectiveness": ev.get("effectiveness", 0),
+            "safety": ev.get("safety", 0),
+            "coupling": ev.get("coupling", 0),
+            "measurementDepth": ev.get("measurement_depth", 0),
+            "totalScore": ev.get("total_score", 0),
+            "journalQuality": ev.get("journal_quality", "unknown"),
+            "modelSystem": ev.get("model_system", ""),
+            "porcineRelevant": ev.get("porcine_relevant", False),
+            "keyLimitation": ev.get("key_limitation", ""),
+            "nodes": ev.get("nodes", art.get("nodes", [])),
+            "summary": ev.get("summary", ""),
+            "evalMethod": ev.get("eval_method", "local"),
+            "evalModel": ev.get("eval_model", ""),
+        })
 
-    # 按总分降序排列
-    news_list.sort(key=lambda n: n["total"], reverse=True)
-    return news_list
+    level_order = {"L4": 5, "L3": 4, "L2b": 3, "L2a": 2, "L1": 1}
+    papers.sort(key=lambda p: (
+        -level_order.get(p["evidenceLevel"], 1),
+        -p["totalScore"],
+    ))
+    return papers
 
 
-def build_stats(news_list: list[dict], eval_stats: dict) -> dict:
-    """生成统计信息"""
+def build_stats(papers: list[dict], eval_stats: dict) -> dict:
+    """Generate stats from paper list"""
     now = datetime.now()
-    tags_counter = {}
-    source_counter = {}
-    total_auth = 0
-    total_novelty = 0
-    total_value = 0
+    node_counter = {}
+    journal_counter = {}
+    level_counter = {}
+    total_eff = total_saf = total_cou = total_dep = 0
 
-    for item in news_list:
-        # 标签统计
-        for tag in item.get("tags", []):
-            tags_counter[tag] = tags_counter.get(tag, 0) + 1
-        # 来源统计
-        src = item.get("source", "未知")
-        source_counter[src] = source_counter.get(src, 0) + 1
-        # 累计分数
-        total_auth += item.get("authority", 5)
-        total_novelty += item.get("novelty", 5)
-        total_value += item.get("value", 5)
+    for p in papers:
+        for node in p.get("nodes", []):
+            node_counter[node] = node_counter.get(node, 0) + 1
+        jn = p.get("journal", "Unknown")
+        journal_counter[jn] = journal_counter.get(jn, 0) + 1
+        lv = p.get("evidenceLevel", "L1")
+        level_counter[lv] = level_counter.get(lv, 0) + 1
+        total_eff += p.get("effectiveness", 0)
+        total_saf += p.get("safety", 0)
+        total_cou += p.get("coupling", 0)
+        total_dep += p.get("measurementDepth", 0)
 
-    n = max(len(news_list), 1)
-
+    n = max(len(papers), 1)
     return {
         "updated_at": now.isoformat(),
         "updated_at_human": now.strftime("%Y-%m-%d %H:%M"),
-        "total_articles": len(news_list),
-        "avg_authority": round(total_auth / n, 1),
-        "avg_novelty": round(total_novelty / n, 1),
-        "avg_value": round(total_value / n, 1),
-        "top_tags": sorted(tags_counter.items(), key=lambda x: -x[1])[:10],
-        "source_distribution": source_counter,
-        "eval_methods": {
-            "deepseek": eval_stats.get("deepseek", 0),
-            "glm": eval_stats.get("glm", 0),
-            "local": eval_stats.get("local", 0),
-        },
+        "total_papers": len(papers),
+        "avg_effectiveness": round(total_eff / n, 1),
+        "avg_safety": round(total_saf / n, 1),
+        "avg_coupling": round(total_cou / n, 1),
+        "avg_measurement_depth": round(total_dep / n, 1),
+        "evidence_levels": level_counter,
+        "node_distribution": node_counter,
+        "journal_distribution": journal_counter,
+        "eval_methods": eval_stats,
     }
 
 
@@ -132,7 +139,7 @@ def write_news_json(news_list: list[dict], stats: dict):
     """将新闻数据和统计写入构建目录"""
     payload = {
         "stats": stats,
-        "news": news_list,
+        "papers": news_list,
     }
 
     # 写入构建目录（供 gh-pages 部署）
@@ -168,17 +175,14 @@ def print_summary(news_list: list[dict], stats: dict):
     print("\n" + "=" * 60)
     print("📊 构建摘要")
     print("=" * 60)
-    print(f"   文章总数: {stats['total_articles']}")
-    print(f"   平均权威度: {stats['avg_authority']}")
-    print(f"   平均新颖度: {stats['avg_novelty']}")
-    print(f"   平均价值度: {stats['avg_value']}")
-    print(f"   更新时间: {stats['updated_at_human']}")
-    print(f"\n   TOP 5 文章:")
-    for i, item in enumerate(news_list[:5], 1):
-        title = item.get("title", "")[:50]
-        total = item.get("total", 0)
-        print(f"   {i}. [{total}分] {title}...")
-    print(f"\n   热门标签: {', '.join([t[0] for t in stats['top_tags'][:5]])}")
+    print(f"   Papers: {stats['total_papers']}")
+    print(f"   Avg Effectiveness: {stats['avg_effectiveness']}")
+    print(f"   Avg Safety: {stats['avg_safety']}")
+    print(f"   Avg Coupling: {stats['avg_coupling']}")
+    print(f"   Avg Meas. Depth: {stats['avg_measurement_depth']}")
+    print(f"   Evidence levels: {stats['evidence_levels']}")
+    print(f"   Updated: {stats['updated_at_human']}")
+    print(f"\n   Top nodes: {dict(sorted(stats['node_distribution'].items(), key=lambda x: -x[1])[:5])}")
     print("=" * 60)
 
 
