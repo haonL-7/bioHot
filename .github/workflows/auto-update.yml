@@ -1,31 +1,16 @@
 name: Daily Update & Deploy
-# 🤖 AI 每日热点 — 自动更新工作流（gh-pages 分支部署）
-#
-# 触发条件：
-#   1. 每日北京时间凌晨 2:00 (UTC 18:00) 自动运行
-#   2. 手动触发（仓库 Actions 页面 → Run workflow）
-#
-# 工作流程：
-#   爬虫 → AI 评估 → 构建静态文件 → 推送到 gh-pages 分支 → GitHub Pages 自动部署
-#
-# 兼容 evidence-app 仓库：AI 新闻项目放在 ai-news/ 子目录，与原有 Railway 项目互不影响
-#
-# GitHub Pages 设置（一次性）：
-#   Settings → Pages → Source: Deploy from a branch → Branch: gh-pages → /root → Save
 
 on:
   schedule:
-    # 北京时间 02:00 = UTC 18:00
     - cron: "0 18 * * *"
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:
     inputs:
       max_articles:
-        description: '最多评估文章数（默认 50）'
+        description: '最多评估文章数'
         required: false
         default: '50'
         type: string
 
-# 并发控制：同一时间只允许一个运行
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -33,100 +18,63 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
-    # 授予 GITHUB_TOKEN 写权限（推送 gh-pages 分支）
     permissions:
       contents: write
-
-    # 所有步骤默认在 ai-news/ 子目录下执行
     defaults:
       run:
         working-directory: ai-news
-
     steps:
-      # ==================== 步骤 1: 检出代码 ====================
-      - name: 📥 检出仓库
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
 
-      # ==================== 步骤 2: 设置 Python ====================
-      - name: 🐍 设置 Python 3.11
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: pip
 
-      # ==================== 步骤 3: 安装依赖 ====================
-      - name: 📦 安装 Python 依赖
+      - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-          echo "✓ 依赖安装完成"
 
-      # ==================== 步骤 4: 爬取新闻 ====================
-      - name: 📡 爬取 AI 资讯
+      - name: Crawl news
         id: crawl
         continue-on-error: true
-        run: |
-          python scripts/crawler.py
-          if [ -f data/crawl_count.txt ]; then
-            echo "crawl_count=$(cat data/crawl_count.txt)" >> $GITHUB_OUTPUT
-          fi
+        run: python scripts/crawler.py
         timeout-minutes: 5
 
-      # ==================== 步骤 5: AI 评估 ====================
-      - name: 🤖 AI 评估打分
+      - name: AI evaluate
         id: evaluate
         continue-on-error: true
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           GLM_API_KEY: ${{ secrets.GLM_API_KEY }}
           MAX_ARTICLES: ${{ github.event.inputs.max_articles || '50' }}
-        run: |
-          python scripts/ai_evaluator.py
-          if [ -f data/eval_stats.txt ]; then
-            cat data/eval_stats.txt
-          fi
+        run: python scripts/ai_evaluator.py
         timeout-minutes: 15
 
-      # ==================== 步骤 6: 构建静态站点 ====================
-      - name: 🏗️ 构建静态站点
+      - name: Build site
         id: build
-        run: |
-          python scripts/build.py
-          echo "✓ 静态站点构建完成（输出目录: ai-news/_site）"
+        run: python scripts/build.py
         timeout-minutes: 2
 
-      # ==================== 步骤 7: 部署到 gh-pages 分支 ====================
-      - name: 🚀 部署到 GitHub Pages (gh-pages)
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ai-news/_site
           publish_branch: gh-pages
-          # 保留提交历史（方便回溯）
-          force_orphan: false
-          # 部署者的 Git 身份
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: '🤖 自动更新 AI 资讯 — ${{ github.sha }}'
-          full_commit_message: |
-            🤖 AI 每日热点 — 自动更新部署
+          commit_message: "auto: update AI news"
 
-            爬取时间: UTC
-            AI 评估: DeepSeek API
-            触发方式: ${{ github.event_name == 'schedule' && '每日定时' || '手动触发' }}
-
-      # ==================== 步骤 8: 生成摘要 ====================
-      - name: 📊 生成运行摘要
+      - name: Summary
         if: always()
         run: |
           echo "========================================="
-          echo "  Daily Update & Deploy - Run Summary"
+          echo "  Daily Update & Deploy - Summary"
           echo "========================================="
-          if [ -f ai-news/data/stats.json ]; then
-            python ai-news/scripts/print_stats.py
+          if [ -f data/stats.json ]; then
+            python scripts/print_stats.py
           else
             echo "  WARNING: stats.json not found"
           fi
