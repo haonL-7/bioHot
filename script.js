@@ -273,15 +273,17 @@
                 badge.className = 'level-badge level-' + level.toLowerCase();
             }
 
-            // Title
+            // Title — clicking opens evaluation detail modal
             var titleLink = card.querySelector('.paper-title a');
             if (titleLink) {
                 titleLink.textContent = paper.title || '';
-                if (paper.url) {
-                    titleLink.setAttribute('href', paper.url);
-                } else {
-                    titleLink.removeAttribute('href');
-                }
+                titleLink.setAttribute('href', '#');
+                titleLink.className = 'paper-title-link';
+                titleLink.setAttribute('data-paper-id', paper.id || '');
+                titleLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    openEvaluationModal(paper.id);
+                });
             }
 
             // Evidence levels line
@@ -301,34 +303,39 @@
             var absEl = card.querySelector('.paper-abstract');
             if (absEl) absEl.textContent = paper.abstract || '';
 
-            // Multi-backup links
+            // Multi-backup links (only render valid URLs)
             var linksEl = card.querySelector('.paper-links');
             if (linksEl) {
                 var links = paper.links || [];
-                if (links.length === 0 && paper.url) {
+                if (links.length === 0 && paper.url && paper.url.trim()) {
                     links = [{type: 'primary', label: 'Source', url: paper.url}];
                 }
-                links.forEach(function (link) {
-                    var a = document.createElement('a');
-                    a.href = link.url || '#';
-                    a.target = '_blank';
-                    a.rel = 'noopener noreferrer';
-                    a.className = 'paper-link paper-link-' + (link.type || 'primary');
-                    a.textContent = link.label || 'Link';
-                    linksEl.appendChild(a);
-                });
-                // Broken link report button
-                var reportBtn = document.createElement('button');
-                reportBtn.className = 'report-broken-btn';
-                reportBtn.setAttribute('data-paper-id', paper.id || '');
-                reportBtn.title = 'Report broken link';
-                reportBtn.textContent = 'Report';
-                reportBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    reportBrokenLink(paper.id, paper.title);
-                });
-                linksEl.appendChild(reportBtn);
+                var validLinks = links.filter(function (l) { return l.url && l.url.trim(); });
+                if (validLinks.length > 0) {
+                    validLinks.forEach(function (link) {
+                        var a = document.createElement('a');
+                        a.href = link.url;
+                        a.target = '_blank';
+                        a.rel = 'noopener noreferrer';
+                        a.className = 'paper-link paper-link-' + (link.type || 'primary');
+                        a.textContent = link.label || 'Link';
+                        linksEl.appendChild(a);
+                    });
+                    // Broken link report button
+                    var reportBtn = document.createElement('button');
+                    reportBtn.className = 'report-broken-btn';
+                    reportBtn.setAttribute('data-paper-id', paper.id || '');
+                    reportBtn.title = 'Report broken link';
+                    reportBtn.textContent = 'Report';
+                    reportBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        reportBrokenLink(paper.id, paper.title);
+                    });
+                    linksEl.appendChild(reportBtn);
+                } else {
+                    linksEl.style.display = 'none';
+                }
             }
 
             // Nodes
@@ -394,6 +401,136 @@
                 applyAllFilters();
             });
         });
+    });
+
+    // ---- Evaluation Detail Modal ----
+    function openEvaluationModal(paperId) {
+        if (!paperId) return;
+        // Find paper in loaded data
+        var paper = null;
+        for (var i = 0; i < state.papers.length; i++) {
+            if (state.papers[i].id === paperId) { paper = state.papers[i]; break; }
+        }
+        if (!paper) return;
+
+        var modal = document.getElementById('evalModal');
+        var content = document.getElementById('modalContent');
+        if (!modal || !content) return;
+
+        var lv = paper.evidenceLevel || 'L1';
+        var isKB = (paper.type || paper.source) === 'knowledge_base';
+
+        // Build badges
+        var badgesHtml = '';
+        if (paper.researchPriority) {
+            badgesHtml += '<span class="priority-badge priority-' + paper.researchPriority.toLowerCase() + '">' + paper.researchPriority + '</span>';
+        }
+        if (isKB) {
+            badgesHtml += '<span class="kb-badge">Curated</span>';
+        }
+
+        // Evidence levels comparison
+        var evParts = [];
+        if (paper.porcineEvidenceLevel) evParts.push('Porcine: ' + paper.porcineEvidenceLevel);
+        if (paper.murineEvidenceLevel) evParts.push('Murine: ' + paper.murineEvidenceLevel);
+        var evLine = evParts.length > 0 ? evParts.join(' | ') : (paper.modelSystem || '');
+
+        // 4-D Matrix
+        var dims = [
+            {id: 'effectiveness', label: 'Forward (Microbe→Host)', val: paper.effectiveness || 0},
+            {id: 'safety', label: 'Reverse (Host→Microbiome)', val: paper.safety || 0},
+            {id: 'coupling', label: 'Bidirectional Coupling', val: paper.coupling || 0},
+            {id: 'depth', label: 'Measurement Depth', val: paper.measurementDepth || 0}
+        ];
+        var matrixHtml = '';
+        dims.forEach(function (d) {
+            var pct = d.val / 5 * 100;
+            matrixHtml += '<div class="matrix-item" data-dim="' + d.id + '">' +
+                '<span class="matrix-label">' + d.label + '</span>' +
+                '<span class="matrix-bar"><span class="matrix-fill" style="width:' + pct + '%"></span></span>' +
+                '<span class="matrix-val">' + d.val + '/5</span></div>';
+        });
+
+        // Forward/Reverse justifications
+        var fwdJust = paper.forwardJustification || '';
+        var revJust = paper.reverseJustification || '';
+
+        // Nodes
+        var nodesHtml = '';
+        (paper.nodes || []).forEach(function (n) {
+            if (n.indexOf('SCFAs') >= 0 || n.indexOf('Vitamin') >= 0 || n.indexOf('Gut Strains') >= 0) return; // skip parent groups in modal
+            nodesHtml += '<span class="node-tag">' + n + '</span>';
+        });
+
+        // External links
+        var allLinks = paper.links || [];
+        if (allLinks.length === 0 && paper.url && paper.url.trim()) {
+            allLinks = [{type: 'primary', label: 'Source', url: paper.url}];
+        }
+        var extLinksHtml = '';
+        var validLinks = allLinks.filter(function (l) { return l.url && l.url.trim(); });
+        if (validLinks.length > 0) {
+            extLinksHtml = '<div class="modal-links"><h3>Original Paper Links</h3>';
+            validLinks.forEach(function (l) {
+                extLinksHtml += '<a href="' + l.url + '" target="_blank" rel="noopener noreferrer" class="paper-link paper-link-' + (l.type || 'primary') + '">' + (l.label || 'Link') + '</a> ';
+            });
+            extLinksHtml += '</div>';
+        } else {
+            extLinksHtml = '<p class="modal-no-link">No external link available (curated knowledge base entry)</p>';
+        }
+
+        content.innerHTML =
+            '<div class="modal-header">' +
+                '<span class="paper-journal">' + (paper.journal || '') + '</span>' +
+                '<div class="paper-badges" style="display:inline;margin-left:8px;">' + badgesHtml + '</div>' +
+                '<span class="level-badge level-' + lv.toLowerCase() + '">' + lv + '</span>' +
+            '</div>' +
+            '<h1 class="modal-title">' + (paper.title || '') + '</h1>' +
+            '<p class="modal-evidence">' + evLine + '</p>' +
+            '<div class="modal-section"><h3>Evidence Justification</h3><p>' + (paper.evidenceJustification || 'Not provided.') + '</p></div>' +
+            (fwdJust ? '<div class="modal-section"><h3>Forward Pathway (Microbe→Host)</h3><p>' + fwdJust + '</p></div>' : '') +
+            (revJust ? '<div class="modal-section"><h3>Reverse Pathway (Host→Microbiome)</h3><p>' + revJust + '</p></div>' : '') +
+            '<div class="modal-section"><h3>Four-Dimensional Matrix</h3><div class="paper-matrix" style="grid-template-columns: repeat(2,1fr);">' + matrixHtml + '</div></div>' +
+            '<div class="modal-section"><h3>Model System</h3><p>' + (paper.modelSystem || 'Not specified.') + '</p></div>' +
+            '<div class="modal-section"><h3>Key Limitation</h3><p>' + (paper.keyLimitation || 'Not specified.') + '</p></div>' +
+            '<div class="modal-section"><h3>Summary</h3><p>' + (paper.summary || '') + '</p></div>' +
+            '<div class="modal-nodes">' + nodesHtml + '</div>' +
+            extLinksHtml +
+            '<p class="modal-meta">ID: ' + paperId + ' | Source: ' + (paper.source || 'unknown') + ' | Date: ' + (paper.pubDate || '') + '</p>';
+
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        var modal = document.getElementById('evalModal');
+        if (modal) modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    // Modal event listeners
+    var modalClose = document.getElementById('modalClose');
+    if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
+    }
+    var modalOverlay = document.getElementById('evalModal');
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', function (e) {
+            if (e.target === modalOverlay) closeModal();
+        });
+    }
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    // Click handlers for pre-rendered paper title links
+    document.getElementById('feed').addEventListener('click', function (e) {
+        var link = e.target.closest('.paper-title-link');
+        if (link) {
+            e.preventDefault();
+            var paperId = link.getAttribute('data-paper-id');
+            if (paperId) openEvaluationModal(paperId);
+        }
     });
 
     // ---- Link health check (CORS-safe: uses img beacon) ----
