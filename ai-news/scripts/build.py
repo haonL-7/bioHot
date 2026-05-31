@@ -186,6 +186,87 @@ def write_news_json(news_list: list[dict], stats: dict):
         json.dump(stats, f, ensure_ascii=False, indent=2)
 
 
+def generate_static_html(papers: list[dict], stats: dict):
+    """Pre-render paper cards into static HTML. No JS needed for initial display."""
+    level_order = {"L4": 5, "L3": 4, "L2b": 3, "L2a": 2, "L1": 1}
+
+    cards_html = ""
+    for paper in papers:
+        lv = paper.get("evidenceLevel", "L1")
+        is_kb = (paper.get("type") or paper.get("source")) == "knowledge_base"
+        kb_class = ' kb-entry' if is_kb else ''
+
+        # Badges
+        badges = ""
+        if paper.get("researchPriority"):
+            badges += f'<span class="priority-badge priority-{paper["researchPriority"].lower()}">{paper["researchPriority"]}</span>'
+        if is_kb:
+            badges += '<span class="kb-badge">Curated</span>'
+
+        # Evidence levels line
+        ev_parts = []
+        if paper.get("porcineEvidenceLevel"):
+            ev_parts.append(f'Porcine: {paper["porcineEvidenceLevel"]}')
+        if paper.get("murineEvidenceLevel"):
+            ev_parts.append(f'Murine: {paper["murineEvidenceLevel"]}')
+        ev_line = " | ".join(ev_parts) if ev_parts else paper.get("modelSystem", "")
+
+        # Nodes
+        nodes_html = "".join(f'<span class="node-tag">{n}</span>' for n in paper.get("nodes", []))
+
+        # Matrix bars
+        dims = [
+            ("effectiveness", paper.get("effectiveness", 0)),
+            ("safety", paper.get("safety", 0)),
+            ("coupling", paper.get("coupling", 0)),
+            ("depth", paper.get("measurementDepth", 0)),
+        ]
+        dim_labels = ["Effectiveness", "Safety / Reverse", "Coupling", "Measurement Depth"]
+        matrix_html = ""
+        for (dim_id, val), label in zip(dims, dim_labels):
+            pct = val / 5 * 100
+            matrix_html += f'''<div class="matrix-item" data-dim="{dim_id}">
+                <span class="matrix-label">{label}</span>
+                <span class="matrix-bar"><span class="matrix-fill" style="width:{pct}%"></span></span>
+                <span class="matrix-val">{val}/5</span>
+            </div>'''
+
+        url = paper.get("url", "")
+        title_html = f'<a href="{url}" target="_blank" rel="noopener noreferrer">{paper.get("title", "")}</a>' if url else paper.get("title", "")
+
+        cards_html += f'''<article class="paper-card{kb_class}">
+            <div class="paper-header">
+                <div class="paper-source">
+                    <span class="paper-journal">{paper.get("journal", "")}</span>
+                    <span class="paper-badges">{badges}</span>
+                </div>
+                <div class="paper-right">
+                    <span class="paper-date">{paper.get("pubDate", "")}</span>
+                    <span class="level-badge level-{lv.lower()}">{lv}</span>
+                </div>
+            </div>
+            <h2 class="paper-title">{title_html}</h2>
+            <p class="paper-evidence-levels">{ev_line}</p>
+            <p class="paper-abstract">{paper.get("abstract", "")[:600]}</p>
+            <div class="paper-nodes">{nodes_html}</div>
+            <div class="paper-matrix">{matrix_html}</div>
+            <div class="paper-summary">{paper.get("summary", "")}</div>
+            <div class="paper-limitation">{'Limitation: ' + paper["keyLimitation"] if paper.get("keyLimitation") else ''}</div>
+        </article>'''
+
+    # Read template and inject cards
+    src_index = os.path.join(SRC_DIR, "index.html")
+    with open(src_index, "r", encoding="utf-8") as f:
+        template = f.read()
+
+    feed_html = f'''<div id="feed">
+        {cards_html}
+    </div>'''
+
+    result = template.replace("<!-- FEED_PLACEHOLDER -->", feed_html)
+    return result
+
+
 def create_nojekyll():
     """创建 .nojekyll 文件（告诉 GitHub Pages 不要用 Jekyll 处理）"""
     nojekyll_path = os.path.join(BUILD_DIR, ".nojekyll")
@@ -269,7 +350,21 @@ def main():
 
     stats = build_stats(all_papers, eval_stats)
     create_build_dir()
-    copy_frontend_files()
+
+    # Copy CSS and JS (unchanged)
+    for filename in os.listdir(SRC_DIR):
+        src_file = os.path.join(SRC_DIR, filename)
+        dst_file = os.path.join(BUILD_DIR, filename)
+        if os.path.isfile(src_file) and not filename.endswith('.html'):
+            shutil.copy2(src_file, dst_file)
+
+    # Generate pre-rendered HTML with all papers embedded
+    static_html = generate_static_html(all_papers, stats)
+    index_path = os.path.join(BUILD_DIR, "index.html")
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write(static_html)
+    print(f"  Generated static index.html with {len(all_papers)} pre-rendered papers")
+
     write_news_json(all_papers, stats)
     create_nojekyll()
     print(f"  Build directory ready: {BUILD_DIR}")
