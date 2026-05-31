@@ -12,6 +12,7 @@
         stats: null,
         searchQuery: '',
         evidenceFilter: 'all',
+        typeFilter: 'all',
         nodeFilter: null,
         sortBy: 'evidence',
     };
@@ -128,6 +129,13 @@
             );
         }
 
+        // Type filter
+        if (state.typeFilter === 'knowledge_base') {
+            items = items.filter(p => (p.type || p.source) === 'knowledge_base');
+        } else if (state.typeFilter === 'daily') {
+            items = items.filter(p => (p.type || p.source) !== 'knowledge_base');
+        }
+
         // Node filter
         if (state.nodeFilter) {
             items = items.filter(p =>
@@ -172,11 +180,34 @@
         items.forEach(paper => {
             const card = template.content.cloneNode(true);
 
-            // Header
-            card.querySelector('.paper-journal').textContent = paper.journal || paper.source || '';
-            card.querySelector('.paper-date').textContent = formatDate(paper.pubDate || paper.pub_date);
+            // KB entry vs daily paper
+            const isKB = (paper.type || paper.source) === 'knowledge_base';
+            card.classList.toggle('kb-entry', isKB);
 
-            // Evidence level badge
+            // Header
+            const journalEl = card.querySelector('.paper-journal');
+            journalEl.textContent = paper.journal || paper.source || '';
+            if (isKB) {
+                journalEl.textContent = paper.category + ' | ' + (paper.journal || '');
+            }
+
+            // Badges
+            const badgesEl = card.querySelector('.paper-badges');
+            if (paper.researchPriority) {
+                const prio = document.createElement('span');
+                prio.className = 'priority-badge priority-' + (paper.researchPriority || '').toLowerCase();
+                prio.textContent = paper.researchPriority;
+                badgesEl.appendChild(prio);
+            }
+            if (isKB) {
+                const kbBadge = document.createElement('span');
+                kbBadge.className = 'kb-badge';
+                kbBadge.textContent = 'Curated';
+                badgesEl.appendChild(kbBadge);
+            }
+
+            // Date & level
+            card.querySelector('.paper-date').textContent = formatDate(paper.pubDate || paper.pub_date);
             const level = paper.evidenceLevel || paper.evidence_level || 'L1';
             const badge = card.querySelector('.level-badge');
             badge.textContent = level;
@@ -188,8 +219,16 @@
             titleLink.href = paper.url || '#';
             if (!paper.url) titleLink.removeAttribute('href');
 
-            // Authors
-            card.querySelector('.paper-authors').textContent = paper.firstAuthor || paper.first_author || '';
+            // Porcine vs murine evidence levels
+            const levelsEl = card.querySelector('.paper-evidence-levels');
+            if (paper.porcineEvidenceLevel || paper.murineEvidenceLevel) {
+                const parts = [];
+                if (paper.porcineEvidenceLevel) parts.push('Porcine: ' + paper.porcineEvidenceLevel);
+                if (paper.murineEvidenceLevel) parts.push('Murine: ' + paper.murineEvidenceLevel);
+                levelsEl.textContent = parts.join(' | ');
+            } else if (paper.modelSystem) {
+                levelsEl.textContent = paper.modelSystem;
+            }
 
             // Abstract
             card.querySelector('.paper-abstract').textContent = paper.abstract || '';
@@ -272,6 +311,8 @@
                     state.evidenceFilter = btn.dataset.level;
                 } else if (btn.dataset.sort) {
                     state.sortBy = btn.dataset.sort;
+                } else if (btn.dataset.type) {
+                    state.typeFilter = btn.dataset.type;
                 }
                 applyAllFilters();
             });

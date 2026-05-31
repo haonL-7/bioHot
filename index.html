@@ -65,6 +65,12 @@
             <button class="filter-btn" data-level="L1">L1</button>
         </div>
         <div class="filter-group">
+            <span class="filter-label">Type:</span>
+            <button class="filter-btn active" data-type="all">All</button>
+            <button class="filter-btn" data-type="knowledge_base">Knowledge Base</button>
+            <button class="filter-btn" data-type="daily">Latest Papers</button>
+        </div>
+        <div class="filter-group">
             <span class="filter-label">Sort:</span>
             <button class="filter-btn active" data-sort="evidence">Evidence level</button>
             <button class="filter-btn" data-sort="date">Date</button>
@@ -95,16 +101,17 @@
         <div class="paper-header">
             <div class="paper-source">
                 <span class="paper-journal"></span>
-                <span class="paper-date"></span>
+                <span class="paper-badges"></span>
             </div>
-            <div class="paper-level">
+            <div class="paper-right">
+                <span class="paper-date"></span>
                 <span class="level-badge"></span>
             </div>
         </div>
         <h2 class="paper-title">
             <a href="#" target="_blank" rel="noopener noreferrer"></a>
         </h2>
-        <p class="paper-authors"></p>
+        <p class="paper-evidence-levels"></p>
         <p class="paper-abstract"></p>
         <div class="paper-nodes"></div>
         <div class="paper-matrix">
