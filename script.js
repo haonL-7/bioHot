@@ -4,6 +4,18 @@
 (function () {
     'use strict';
 
+    // closest() polyfill for IE/older browsers
+    if (!Element.prototype.closest) {
+        Element.prototype.closest = function (selector) {
+            var el = this;
+            while (el && el.nodeType === 1) {
+                if (el.matches(selector)) return el;
+                el = el.parentNode;
+            }
+            return null;
+        };
+    }
+
     var state = {
         papers: [],
         filtered: [],
@@ -236,6 +248,7 @@
             var article = card.querySelector('article');
             if (article) {
                 if (isKB) article.className += ' kb-entry';
+                article.setAttribute('data-paper-id', paper.id || '');
             }
 
             // Journal
@@ -406,10 +419,11 @@
     // ---- Evaluation Detail Modal ----
     function openEvaluationModal(paperId) {
         if (!paperId) return;
-        // Find paper in loaded data
+        // Find paper: try state.papers first, then embedded __PAPERS__ fallback
         var paper = null;
-        for (var i = 0; i < state.papers.length; i++) {
-            if (state.papers[i].id === paperId) { paper = state.papers[i]; break; }
+        var search = state.papers.length > 0 ? state.papers : (window.__PAPERS__ || []);
+        for (var i = 0; i < search.length; i++) {
+            if (search[i].id === paperId) { paper = search[i]; break; }
         }
         if (!paper) return;
 
@@ -523,13 +537,19 @@
         if (e.key === 'Escape') closeModal();
     });
 
-    // Click handlers for pre-rendered paper title links
+    // Click handlers for pre-rendered cards: click card or title → open modal
     document.getElementById('feed').addEventListener('click', function (e) {
-        var link = e.target.closest('.paper-title-link');
-        if (link) {
-            e.preventDefault();
-            var paperId = link.getAttribute('data-paper-id');
-            if (paperId) openEvaluationModal(paperId);
+        // Don't intercept clicks on external links or buttons
+        if (e.target.closest('a[target="_blank"]') || e.target.closest('button') || e.target.closest('.paper-link')) {
+            return;
+        }
+        var card = e.target.closest('.paper-card');
+        if (card) {
+            var paperId = card.getAttribute('data-paper-id');
+            if (paperId) {
+                e.preventDefault();
+                openEvaluationModal(paperId);
+            }
         }
     });
 
