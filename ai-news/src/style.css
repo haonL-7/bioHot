@@ -205,10 +205,50 @@ body {
     font-style: italic;
     color: var(--text-secondary);
 }
+.paper-badges {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+.priority-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border: 1px solid;
+}
+.priority-p1 { color: #922; border-color: #922; }
+.priority-p2 { color: #862; border-color: #862; }
+.priority-p3 { color: var(--text-muted); border-color: var(--text-muted); }
+.kb-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--accent);
+    color: #fff;
+}
+.paper-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 .paper-date {
     font-size: 12px;
     color: var(--text-muted);
-    margin-left: 12px;
+}
+.paper-evidence-levels {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+.kb-entry {
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
 }
 .level-badge {
     display: inline-block;

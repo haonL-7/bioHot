@@ -20,7 +20,23 @@ BUILD_DIR = os.path.join(PROJECT_ROOT, "_site")
 RAW_ARTICLES_FILE = os.path.join(DATA_DIR, "raw_articles.json")
 SCORED_ARTICLES_FILE = os.path.join(DATA_DIR, "scored_articles.json")
 NEWS_JSON_FILE = os.path.join(DATA_DIR, "news.json")
-STATS_FILE = os.path.join(DATA_DIR, "stats.json")
+KNOWLEDGE_BASE_FILE = os.path.join(DATA_DIR, "knowledge_base.json")
+
+
+def is_duplicate(new_title: str, existing: list[dict]) -> bool:
+    """Check if a new paper duplicates an existing entry (by title similarity)"""
+    new_key = "".join(c.lower() for c in new_title if c.isalnum())[:80]
+    for entry in existing:
+        exist_key = "".join(c.lower() for c in entry.get("title", "") if c.isalnum())[:80]
+        if new_key == exist_key:
+            return True
+        # Also check for high substring overlap
+        if len(new_key) > 40 and len(exist_key) > 40:
+            shorter = min(new_key, exist_key, key=len)
+            longer = max(new_key, exist_key, key=len)
+            if shorter in longer:
+                return True
+    return False
 
 
 # ==================== 构建逻辑 ====================
@@ -190,33 +206,45 @@ def print_summary(news_list: list[dict], stats: dict):
 
 def main():
     print("=" * 60)
-    print("🏗️  构建脚本启动")
-    print(f"   时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("  Co-Metabolism Evidence Monitor - Build")
+    print(f"  Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
-    # 步骤 1: 加载评分后的文章
-    print("\n📖 步骤 1/4: 加载评分文章...")
-    scored_articles = load_json(SCORED_ARTICLES_FILE)
-    if not scored_articles or not isinstance(scored_articles, list):
-        # 回退到原始文章（如果评估未运行）
-        print("⚠ 未找到评分文章，尝试加载原始文章...")
-        raw = load_json(RAW_ARTICLES_FILE)
-        if raw and isinstance(raw, list):
-            scored_articles = raw
-            print(f"✓ 回退到原始文章: {len(raw)} 条")
+    # Step 1: Always load the curated knowledge base
+    print("\n[1/4] Loading curated knowledge base...")
+    kb_entries = load_json(KNOWLEDGE_BASE_FILE)
+    if not isinstance(kb_entries, list):
+        kb_entries = []
+    print(f"  Knowledge base: {len(kb_entries)} curated entries")
+
+    # Step 2: Load daily crawled + AI-evaluated papers
+    print("\n[2/4] Loading daily crawled papers...")
+    scored = load_json(SCORED_ARTICLES_FILE)
+    if not isinstance(scored, list):
+        print("  No scored articles, checking raw...")
+        scored = load_json(RAW_ARTICLES_FILE)
+        if not isinstance(scored, list):
+            scored = []
+
+    # Convert crawled papers to frontend format
+    new_papers = build_news_data(scored)
+
+    # Deduplicate against knowledge base
+    fresh_papers = []
+    dup_count = 0
+    for paper in new_papers:
+        if is_duplicate(paper.get("title", ""), kb_entries):
+            dup_count += 1
         else:
-            print("✗ 无可用数据！请先运行 crawler.py 和 ai_evaluator.py")
-            # 生成空数据，让网站至少能显示
-            scored_articles = []
-    else:
-        print(f"✓ 加载评分文章: {len(scored_articles)} 条")
+            fresh_papers.append(paper)
+    print(f"  Crawled: {len(new_papers)} -> {len(fresh_papers)} new (removed {dup_count} duplicates)")
 
-    # 步骤 2: 转换为前端格式
-    print("\n🔧 步骤 2/4: 转换数据格式...")
-    news_list = build_news_data(scored_articles)
-    print(f"✓ 转换完成: {len(news_list)} 条")
+    # Step 3: Merge KB + new papers
+    print("\n[3/4] Building static site...")
+    all_papers = kb_entries + fresh_papers
+    print(f"  Total entries: {len(all_papers)} ({len(kb_entries)} curated + {len(fresh_papers)} new)")
 
-    # 加载评估统计
+    # Load eval stats
     eval_stats = {}
     stats_file = os.path.join(DATA_DIR, "eval_stats.txt")
     if os.path.exists(stats_file):
@@ -228,20 +256,19 @@ def main():
                         eval_stats[k] = int(v)
                     except ValueError:
                         eval_stats[k] = v
+    if not eval_stats:
+        eval_stats = {"deepseek": 0, "glm": 0, "local": 0, "total": 0}
 
-    # 步骤 3: 生成统计 & 构建目录
-    print("\n📦 步骤 3/4: 构建静态文件...")
-    stats = build_stats(news_list, eval_stats)
+    stats = build_stats(all_papers, eval_stats)
     create_build_dir()
     copy_frontend_files()
-    write_news_json(news_list, stats)
+    write_news_json(all_papers, stats)
     create_nojekyll()
-    print(f"✓ 构建目录准备就绪: {BUILD_DIR}")
+    print(f"  Build directory ready: {BUILD_DIR}")
 
-    # 步骤 4: 摘要
-    print("\n✅ 步骤 4/4: 构建完成!")
-    print_summary(news_list, stats)
-
+    # Step 4: Summary
+    print("\n[4/4] Build complete!")
+    print_summary(all_papers, stats)
     return 0
 
 
