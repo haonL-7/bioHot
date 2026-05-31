@@ -310,9 +310,14 @@ def generate_static_html(papers: list[dict], stats: dict):
     with open(src_index, "r", encoding="utf-8") as f:
         template = f.read()
 
+    # Embed paper data as inline JSON so modal works before JS loads news.json
+    papers_json = json.dumps(papers, ensure_ascii=False)
+    papers_script = f'<script>window.__PAPERS__ = {papers_json};</script>'
+
     feed_html = f'''<div id="feed">
         {cards_html}
-    </div>'''
+    </div>
+    {papers_script}'''
 
     result = template.replace("<!-- FEED_PLACEHOLDER -->", feed_html)
     return result

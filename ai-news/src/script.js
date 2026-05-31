@@ -406,10 +406,11 @@
     // ---- Evaluation Detail Modal ----
     function openEvaluationModal(paperId) {
         if (!paperId) return;
-        // Find paper in loaded data
+        // Find paper: try state.papers first, then embedded __PAPERS__ fallback
         var paper = null;
-        for (var i = 0; i < state.papers.length; i++) {
-            if (state.papers[i].id === paperId) { paper = state.papers[i]; break; }
+        var search = state.papers.length > 0 ? state.papers : (window.__PAPERS__ || []);
+        for (var i = 0; i < search.length; i++) {
+            if (search[i].id === paperId) { paper = search[i]; break; }
         }
         if (!paper) return;
 
