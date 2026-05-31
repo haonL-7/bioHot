@@ -175,6 +175,27 @@ SEARCH_QUERIES = {
     ),
 }
 
+# 父级分组 — 子节点自动归入父组，前端可大类筛选
+NODE_GROUPS = {
+    "SCFAs": ["Butyrate", "Propionate", "Acetate", "Branched SCFAs"],
+    "Vitamin B Family": ["Vitamin B12", "Folate/B9", "Riboflavin/B2", "Biotin/B7",
+                          "B-Vitamins (B1/B3/B5/B6)"],
+    "Fat-Soluble Vitamins": ["Vitamin A/Retinoic Acid", "Vitamin D"],
+    "Gut Strains": ["Phascolarctobacterium", "Lactobacillus", "Bifidobacterium",
+                    "Bacteroides", "Clostridium", "Prevotella",
+                    "Akkermansia", "Faecalibacterium"],
+}
+
+
+def add_parent_nodes(nodes: list[str]) -> list[str]:
+    """给定细粒度节点列表，自动补入父级分组标签"""
+    expanded = list(nodes)
+    for parent, children in NODE_GROUPS.items():
+        if any(child in nodes for child in children) and parent not in expanded:
+            expanded.append(parent)
+    return expanded
+
+
 # 权威期刊白名单
 REPUTABLE_JOURNALS = [
     "Nature", "Science", "Cell",
@@ -511,7 +532,7 @@ def main():
             "first_author": art.get("first_author", ""),
             "pub_date": art.get("pub_date", ""),
             "source": art.get("source", ""),
-            "nodes": nodes,
+            "nodes": add_parent_nodes(nodes),
             "crawled_at": datetime.now().isoformat(),
         })
 

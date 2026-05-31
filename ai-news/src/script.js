@@ -55,7 +55,7 @@
         document.getElementById('statNodes').textContent = Object.keys(allNodes).length || '--';
     }
 
-    // ---- Node filter chips (dynamic — no hardcoded node list) ----
+    // ---- Node filter chips (dynamic, with parent groups) ----
     function renderNodeFilters() {
         var counts = {};
         state.papers.forEach(function (p) {
@@ -64,42 +64,88 @@
             });
         });
 
-        // Sort nodes: SCFAs first, then metabolites, then vitamins, then strains
-        var scfaNodes = ['Butyrate', 'Propionate', 'Acetate', 'Branched SCFAs'];
-        var metabNodes = ['Bile Acids', 'Tryptophan Metabolites', 'Polyamines',
-                         'Lactate', 'Succinate', 'GABA/Glutamate'];
-        var vitNodes = ['Vitamin B12', 'Folate/B9', 'Riboflavin/B2', 'Biotin/B7',
-                       'Vitamin A/Retinoic Acid', 'Vitamin D', 'B-Vitamins (B1/B3/B5/B6)'];
-        var strainNodes = ['Phascolarctobacterium', 'Lactobacillus', 'Bifidobacterium',
-                          'Bacteroides', 'Clostridium', 'Prevotella',
-                          'Akkermansia', 'Faecalibacterium'];
+        // Parent group → children mapping (must match NODE_GROUPS in crawler.py)
+        var parentGroups = {
+            'SCFAs': ['Butyrate', 'Propionate', 'Acetate', 'Branched SCFAs'],
+            'Vitamin B Family': ['Vitamin B12', 'Folate/B9', 'Riboflavin/B2', 'Biotin/B7', 'B-Vitamins (B1/B3/B5/B6)'],
+            'Fat-Soluble Vitamins': ['Vitamin A/Retinoic Acid', 'Vitamin D'],
+            'Gut Strains': ['Phascolarctobacterium', 'Lactobacillus', 'Bifidobacterium', 'Bacteroides', 'Clostridium', 'Prevotella', 'Akkermansia', 'Faecalibacterium'],
+        };
+        var parentNames = Object.keys(parentGroups);
 
-        var order = scfaNodes.concat(metabNodes, vitNodes, strainNodes);
-        var orderedNodes = [];
-        order.forEach(function (n) {
-            if (counts[n]) orderedNodes.push(n);
-        });
-        // Catch any nodes not in the priority order list
-        Object.keys(counts).sort().forEach(function (n) {
-            if (orderedNodes.indexOf(n) < 0) orderedNodes.push(n);
-        });
-
+        // Build HTML: parent groups first, then children indented, then orphans
         var html = '';
-        orderedNodes.forEach(function (n) {
-            html += '<span class="node-chip" data-node="' + n + '">' + n + ' (' + counts[n] + ')</span>';
+        var rendered = {}; // track which nodes we've already rendered
+
+        parentNames.forEach(function (parent) {
+            if (!counts[parent]) return; // skip empty groups
+            html += '<span class="node-chip parent-chip" data-node="' + parent + '" data-group="true">' + parent + ' (' + counts[parent] + ')</span>';
+            rendered[parent] = true;
+            // Render children
+            (parentGroups[parent] || []).forEach(function (child) {
+                if (counts[child] && !rendered[child]) {
+                    html += '<span class="node-chip child-chip" data-node="' + child + '" data-parent="' + parent + '">' + child + ' (' + counts[child] + ')</span>';
+                    rendered[child] = true;
+                }
+            });
         });
+
+        // Standalone nodes (not in any parent group): metabolites without a parent
+        var standaloneOrder = ['Bile Acids', 'Tryptophan Metabolites', 'Polyamines', 'Lactate', 'Succinate', 'GABA/Glutamate'];
+        standaloneOrder.forEach(function (n) {
+            if (counts[n] && !rendered[n]) {
+                html += '<span class="node-chip" data-node="' + n + '">' + n + ' (' + counts[n] + ')</span>';
+                rendered[n] = true;
+            }
+        });
+        // Catch any remaining nodes
+        Object.keys(counts).sort().forEach(function (n) {
+            if (counts[n] && !rendered[n]) {
+                html += '<span class="node-chip" data-node="' + n + '">' + n + ' (' + counts[n] + ')</span>';
+                rendered[n] = true;
+            }
+        });
+
         var container = document.getElementById('nodeFilters');
         if (container) container.innerHTML = html;
 
+        // Click handler: parent chips expand/shrink to show/hide children
         container.querySelectorAll('.node-chip').forEach(function (chip) {
             chip.addEventListener('click', function () {
                 var node = chip.getAttribute('data-node');
+                var isGroup = chip.getAttribute('data-group') === 'true';
+
+                if (isGroup) {
+                    // Toggle child visibility
+                    var children = parentGroups[node] || [];
+                    var isExpanded = chip.classList.contains('expanded');
+                    if (isExpanded) {
+                        // Collapse: hide children, set filter to parent only
+                        chip.classList.remove('expanded');
+                        container.querySelectorAll('.child-chip[data-parent="' + node + '"]').forEach(function (c) {
+                            c.style.display = 'none';
+                        });
+                    } else {
+                        // Expand: show children, keep parent filter
+                        chip.classList.add('expanded');
+                        container.querySelectorAll('.child-chip[data-parent="' + node + '"]').forEach(function (c) {
+                            c.style.display = '';
+                        });
+                    }
+                }
+
+                // Toggle active filter
                 state.nodeFilter = state.nodeFilter === node ? null : node;
                 container.querySelectorAll('.node-chip').forEach(function (c) {
                     c.classList.toggle('active', c.getAttribute('data-node') === state.nodeFilter);
                 });
                 applyAllFilters();
             });
+        });
+
+        // Initially collapse child chips
+        container.querySelectorAll('.child-chip').forEach(function (c) {
+            c.style.display = 'none';
         });
     }
 
@@ -131,9 +177,20 @@
             items = items.filter(function (p) { return (p.type || p.source) !== 'knowledge_base'; });
         }
 
-        // Node filter
+        // Node filter — parent groups match all children
         if (state.nodeFilter) {
-            items = items.filter(function (p) { return (p.nodes || []).indexOf(state.nodeFilter) >= 0; });
+            var parentGroups = {
+                'SCFAs': ['Butyrate', 'Propionate', 'Acetate', 'Branched SCFAs'],
+                'Vitamin B Family': ['Vitamin B12', 'Folate/B9', 'Riboflavin/B2', 'Biotin/B7', 'B-Vitamins (B1/B3/B5/B6)'],
+                'Fat-Soluble Vitamins': ['Vitamin A/Retinoic Acid', 'Vitamin D'],
+                'Gut Strains': ['Phascolarctobacterium', 'Lactobacillus', 'Bifidobacterium', 'Bacteroides', 'Clostridium', 'Prevotella', 'Akkermansia', 'Faecalibacterium'],
+            };
+            var matchNodes = parentGroups[state.nodeFilter] || [state.nodeFilter];
+            items = items.filter(function (p) {
+                return (p.nodes || []).some(function (n) {
+                    return matchNodes.indexOf(n) >= 0;
+                });
+            });
         }
 
         // Sort

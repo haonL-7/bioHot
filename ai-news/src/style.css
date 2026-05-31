@@ -175,6 +175,37 @@ body {
 .node-chip:hover { border-color: var(--accent); }
 .node-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
+/* Parent group chips */
+.parent-chip {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.3px;
+    border-color: var(--border);
+    color: var(--text);
+    background: #f8f9fa;
+    padding: 4px 12px;
+    margin-right: 2px;
+}
+.parent-chip::after {
+    content: ' ▸';
+    font-size: 9px;
+    color: var(--text-muted);
+}
+.parent-chip.expanded::after {
+    content: ' ▾';
+}
+.parent-chip:hover { border-color: var(--accent); background: var(--accent-light); }
+.parent-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.parent-chip.active::after { color: rgba(255,255,255,0.7); }
+
+/* Child chips (hidden by default, shown when parent expanded) */
+.child-chip {
+    font-size: 10px;
+    padding: 2px 8px;
+    margin-left: 4px;
+    color: var(--text-muted);
+}
+
 /* ---- Paper Cards ---- */
 #feed {
     max-width: var(--max-width);

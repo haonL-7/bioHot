@@ -20,6 +20,26 @@ BUILD_DIR = os.path.join(PROJECT_ROOT, "_site")
 RAW_ARTICLES_FILE = os.path.join(DATA_DIR, "raw_articles.json")
 SCORED_ARTICLES_FILE = os.path.join(DATA_DIR, "scored_articles.json")
 NEWS_JSON_FILE = os.path.join(DATA_DIR, "news.json")
+
+# 父级分组（与 crawler.py 保持一致）
+NODE_GROUPS = {
+    "SCFAs": ["Butyrate", "Propionate", "Acetate", "Branched SCFAs"],
+    "Vitamin B Family": ["Vitamin B12", "Folate/B9", "Riboflavin/B2", "Biotin/B7",
+                          "B-Vitamins (B1/B3/B5/B6)"],
+    "Fat-Soluble Vitamins": ["Vitamin A/Retinoic Acid", "Vitamin D"],
+    "Gut Strains": ["Phascolarctobacterium", "Lactobacillus", "Bifidobacterium",
+                    "Bacteroides", "Clostridium", "Prevotella",
+                    "Akkermansia", "Faecalibacterium"],
+}
+
+
+def add_parent_nodes(nodes: list[str]) -> list[str]:
+    """给定细粒度节点列表，自动补入父级分组标签"""
+    expanded = list(nodes)
+    for parent, children in NODE_GROUPS.items():
+        if any(child in nodes for child in children) and parent not in expanded:
+            expanded.append(parent)
+    return expanded
 KNOWLEDGE_BASE_FILE = os.path.join(DATA_DIR, "knowledge_base.json")
 
 
@@ -337,8 +357,14 @@ def main():
             fresh_papers.append(paper)
     print(f"  Crawled: {len(new_papers)} -> {len(fresh_papers)} new (removed {dup_count} duplicates)")
 
-    # Step 3: Merge KB + new papers
+    # Step 3: Merge KB + new papers, apply parent node grouping
     print("\n[3/4] Building static site...")
+    # Add parent group nodes to KB entries
+    for entry in kb_entries:
+        entry["nodes"] = add_parent_nodes(entry.get("nodes", []))
+    # Add parent group nodes to crawled papers
+    for paper in fresh_papers:
+        paper["nodes"] = add_parent_nodes(paper.get("nodes", []))
     all_papers = kb_entries + fresh_papers
     print(f"  Total entries: {len(all_papers)} ({len(kb_entries)} curated + {len(fresh_papers)} new)")
 
