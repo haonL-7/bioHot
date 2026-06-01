@@ -7,7 +7,6 @@
 
     <!-- ==================== CDN 引入 ==================== -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/echarts@5/dist/echarts.min.js"></script>
 
     <style>
@@ -427,34 +426,6 @@
         <p class="subtitle">{{ t('subtitle') }}</p>
     </div>
 
-    <!-- ==================== 服务器地址配置面板 ==================== -->
-    <div class="server-config">
-        <span class="config-icon" :class="{ open: showConfig }" @click="toggleConfig" title="服务器设置">Settings</span>
-        <span class="config-status" :class="connStatus"></span>
-        <span class="config-label">{{ t('backend') }}:</span>
-        <span class="config-url" v-if="!showConfig" :title="backendUrl">{{ backendUrl }}</span>
-        <span class="config-hint" v-if="!showConfig && connStatus === 'err'" style="color:#e74c3c;">
-            {{ t('cantConnect') }} <a href="#" @click.prevent="toggleConfig">{{ t('modifyAddr') }}</a>
-        </span>
-        <div class="config-panel" :class="{ show: showConfig }">
-            <input
-                class="config-input"
-                v-model="customUrl"
-                @keyup.enter="saveBackendUrl"
-                placeholder="例：http://192.168.1.100:8000"
-            />
-            <button class="config-btn config-btn-save" @click="saveBackendUrl">{{ t('saveBtn') }}</button>
-            <button class="config-btn config-btn-test" @click="testConnection" :disabled="testingConn">
-                {{ testingConn ? '...' : t('testBtn') }}
-            </button>
-            <button class="config-btn config-btn-reset" @click="resetBackendUrl">{{ t('autoBtn') }}</button>
-            <span class="config-hint">
-                手机/平板访问时，请填入电脑的局域网 IP 地址。<br>
-                在电脑上按 <code>Win+R</code> → 输入 <code>cmd /k ipconfig</code> → 找到 <code>IPv4 地址</code>（如 192.168.x.x），然后在上面输入 <code>http://你的IP:8000</code> 并保存。
-            </span>
-        </div>
-    </div>
-
     <!-- 搜索栏 -->
     <div class="search-bar">
         <input
@@ -543,13 +514,12 @@
             </div>
         </div>
 
-        <!-- 本地知识库命中提示 -->
+        <!-- 命中提示 -->
         <div v-if="hasKBResults && aiData" class="local-hit">
-            本地知识库已收录 "<strong>{{ localMatch.name }}</strong>"（{{ localMatch.evidence_level }}）。
-            AI 分析已综合本地数据进行增强评估。
+            {{ t('kbMatched') }} "<strong>{{ tierData?.strain || query }}</strong>"（{{ tierData?.tier }}）。
         </div>
-        <div v-else-if="localMatch && !localMatch.found" class="local-hit" style="background:#fef9e7;border-left-color:#f39c12;">
-            本地知识库未收录 "<strong>{{ query }}</strong>"，以上评估完全由 DeepSeek AI 基于现有科学文献生成，可信度为 <strong>{{ aiData.confidence || 'low' }}</strong>。建议通过实验验证。
+        <div v-else-if="!hasKBResults && aiData" class="local-hit" style="background:#fef9e7;border-left-color:#f39c12;">
+            {{ t('kbNotFound') }} "<strong>{{ query }}</strong>"，以下为预计算 AI 分析，可信度为 <strong>{{ aiData.confidence || 'low' }}</strong>。
         </div>
     </template>
 
@@ -597,198 +567,193 @@
     <!-- 未搜索时的占位 -->
     <div v-if="!searched && !searching" style="text-align:center;padding:40px 20px;color:#b2bec3;">
         <p style="font-size:48px;margin-bottom:12px;"></p>
-        <p>输入菌株名或代谢物名，使用知识库搜索或 AI 深度分析开始评估</p>
+        <p>{{ t('emptyPlaceholder') }}</p>
         <p style="font-size:13px;margin-top:8px;">
-            已收录 {{ kbStats.probiotics }} 条益生菌条目 + {{ kbStats.metabolites }} 条代谢物条目
+            {{ t('emptyStats').replace('{p}', kbStats.probiotics).replace('{m}', kbStats.metabolites) }}
         </p>
+    </div>
+
+    <!-- ==================== DOI 查询 ==================== -->
+    <div style="background:#fff;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:16px 0;padding:16px 20px;">
+        <div style="font-weight:600;font-size:14px;color:#1a202c;margin-bottom:10px;">{{ t('doiLookup') }}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <input v-model="doiQuery" @keyup.enter="lookupDOI" :placeholder="t('doiPlaceholder')" style="flex:1;min-width:200px;padding:10px 14px;border:1px solid #e2e8f0;border-radius:20px;font-size:14px;outline:none;">
+            <button @click="lookupDOI" :disabled="doiLoading" style="padding:10px 20px;background:#2d3748;color:#fff;border:none;border-radius:20px;cursor:pointer;font-weight:600;font-size:14px;">{{ doiLoading ? t('doiSearching') : t('searchBtn') }}</button>
+        </div>
+        <div v-if="doiData" style="margin-top:12px;padding:12px;background:#f7fafc;border-radius:6px;font-size:14px;line-height:1.6;">
+            <div v-if="doiData.error" style="color:#e53e3e;">{{ doiData.error }}</div>
+            <template v-else>
+                <p><strong>{{ doiData.title }}</strong></p>
+                <p style="color:#7f8c8d;font-size:12px;">{{ doiData.authors?.join(', ') }} | {{ doiData.journal }}</p>
+                <p style="margin-top:6px;color:#4a5568;">{{ doiData.abstract || '(No abstract available)' }}</p>
+                <a :href="doiData.url" target="_blank" style="color:#3498db;font-size:13px;">{{ doiData.url }}</a>
+            </template>
+        </div>
     </div>
 </div>
 
-<!-- ==================== Vue 应用逻辑 ==================== -->
+<!-- ==================== Vue 应用逻辑（纯静态，无后端依赖） ==================== -->
 <script>
 const { createApp, ref, computed, nextTick, onMounted } = Vue;
 
 const app = createApp({
     setup() {
         /* ==================== 国际化词典 ==================== */
-        var L = {zh:{title:"益生菌/代谢物证据评估系统",subtitle:"本地知识库检索 + AI 增强分析 | 猪肠道微生物组与表观遗传学",placeholder:"菌株名或代谢物名",searchBtn:"搜索",searching:"搜索中...",kbSearching:"正在查询知识库...",aiAnalyzing:"AI 综合分析中...",aiTimeHint:"本地知识库未收录，已自动启动 AI 深度分析（联网搜索 + 专业评估），预计 10-30 秒",backend:"后端",saveBtn:"保存",testBtn:"测试",autoBtn:"自动",cantConnect:"无法连接",modifyAddr:"修改地址",configHint:"手机/平板访问时，请填入电脑的局域网 IP 地址。<br>电脑上按 <code>Win+R</code> → <code>cmd /k ipconfig</code> 查看 IPv4 地址。",aiResults:"AI 深度分析结果",sourceAI:"AI 综合分析",sourceKB:"本地知识库",evidenceLevel:"证据等级评估",matrixScore:"四维评分",experimentAdvice:"实验验证建议",summaryZH:"中文摘要",summaryEN:"English Summary",references:"关键参考文献",confidence:"可信度",type:"类型",probiotics:"益生菌",metabolites:"代谢物",unknown:"未知",researchPriority:"研究优先级",entry:"条目",kbMatched:"本地知识库已收录此条目。以下为已验证的结构化数据。",kbNotFound:"本地知识库未收录此条目。以下分析由 AI 基于现有科学文献生成。",emptyPlaceholder:"输入菌株名或代谢物名开始评估",emptyStats:"已收录 {p} 条益生菌条目 + {m} 条代谢物条目",effectiveness:"有效性",safety:"安全性",coupling:"耦合验证",measurement:"测量深度",forward:"Forward",reverse:"Reverse",coupling_en:"Coupling",measurement_en:"Measurement",needQuery:"请输入菌株名或代谢物名",tierError:"证据等级查询失败",matrixError:"四维评分查询失败",adviceError:"实验建议查询失败",aiError:"AI 分析请求失败",tierBadge:"证据等级",scoreOutOf:"/ 5",strongEvidence:"强证据",moderateEvidence:"中度证据"},en:{title:"Probiotic/Metabolite Evidence Assessment",subtitle:"Local KB + AI Analysis | Porcine Gut Microbiome & Epigenetics",placeholder:"Strain or metabolite name",searchBtn:"Search",searching:"Searching...",kbSearching:"Querying knowledge base...",aiAnalyzing:"AI analysis in progress...",aiTimeHint:"Not found in local KB. Auto-launching AI deep analysis (web search + expert evaluation), ~10-30s",backend:"Backend",saveBtn:"Save",testBtn:"Test",autoBtn:"Auto",cantConnect:"Cannot connect",modifyAddr:"Modify",configHint:"For mobile/tablet, enter the LAN IP of your PC.<br>On PC: <code>Win+R</code> → <code>cmd /k ipconfig</code> → IPv4 Address.",aiResults:"AI Deep Analysis",sourceAI:"AI Analysis",sourceKB:"Local KB",evidenceLevel:"Evidence Level",matrixScore:"Four-Dimensional Score",experimentAdvice:"Experiment Recommendations",summaryZH:"Chinese Summary",summaryEN:"English Summary",references:"Key References",confidence:"Confidence",type:"Type",probiotics:"Probiotics",metabolites:"Metabolites",unknown:"Unknown",researchPriority:"Research Priority",entry:"Entry",kbMatched:"This entry exists in the local knowledge base.",kbNotFound:"Not found in local KB. Analysis generated by AI based on scientific literature.",emptyPlaceholder:"Enter a strain or metabolite name",emptyStats:"{p} probiotic entries + {m} metabolite entries",effectiveness:"Effectiveness",safety:"Safety",coupling:"Coupling",measurement:"Depth",forward:"Forward",reverse:"Reverse",coupling_en:"Coupling",measurement_en:"Measurement",needQuery:"Please enter a strain or metabolite name",tierError:"Evidence query failed",matrixError:"Matrix query failed",adviceError:"Advice query failed",aiError:"AI analysis failed",tierBadge:"Evidence Level",scoreOutOf:"/ 5",strongEvidence:"Strong Evidence",moderateEvidence:"Moderate Evidence"}};
+        var L = {zh:{title:"益生菌/代谢物证据评估系统",subtitle:"本地知识库 + 预计算 AI 分析 | 猪肠道微生物组与表观遗传学",placeholder:"菌株名或代谢物名",searchBtn:"搜索",searching:"搜索中...",kbSearching:"正在查询知识库...",aiAnalyzing:"AI 综合分析中...",aiTimeHint:"知识库未收录，正在查找预计算分析结果...",kbNotFoundInAI:"本地知识库未收录，预计算分析中也未找到匹配项。请尝试其他关键词。",aiResults:"AI 分析结果",sourceAI:"预计算 AI 分析",sourceKB:"本地知识库",evidenceLevel:"证据等级评估",matrixScore:"四维评分",experimentAdvice:"实验验证建议",summaryZH:"中文摘要",summaryEN:"English Summary",references:"关键参考文献",confidence:"可信度",type:"类型",probiotics:"益生菌",metabolites:"代谢物",unknown:"未知",researchPriority:"研究优先级",entry:"条目",kbMatched:"本地知识库已收录此条目。",kbNotFound:"本地知识库未收录此条目。",emptyPlaceholder:"输入菌株名或代谢物名开始评估",emptyStats:"已收录 {p} 条益生菌条目 + {m} 条代谢物条目",effectiveness:"有效性",safety:"安全性",coupling:"耦合验证",measurement:"测量深度",forward:"Forward",reverse:"Reverse",coupling_en:"Coupling",measurement_en:"Measurement",needQuery:"请输入菌株名或代谢物名",tierError:"证据等级查询失败",matrixError:"四维评分查询失败",adviceError:"实验建议查询失败",aiError:"AI 分析请求失败",tierBadge:"证据等级",scoreOutOf:"/ 5",strongEvidence:"强证据",moderateEvidence:"中度证据",doiLookup:"DOI 查询",doiPlaceholder:"输入 DOI 查询论文摘要",doiSearching:"查询中...",doiError:"DOI 查询失败"},en:{title:"Probiotic/Metabolite Evidence Assessment",subtitle:"Local KB + Precomputed AI | Porcine Gut Microbiome & Epigenetics",placeholder:"Strain or metabolite name",searchBtn:"Search",searching:"Searching...",kbSearching:"Querying knowledge base...",aiAnalyzing:"AI analysis in progress...",aiTimeHint:"Not in KB. Searching precomputed analyses...",kbNotFoundInAI:"Not found in KB or precomputed analyses. Try another keyword.",aiResults:"AI Analysis",sourceAI:"Precomputed AI",sourceKB:"Local KB",evidenceLevel:"Evidence Level",matrixScore:"Four-Dimensional Score",experimentAdvice:"Experiment Recommendations",summaryZH:"Chinese Summary",summaryEN:"English Summary",references:"Key References",confidence:"Confidence",type:"Type",probiotics:"Probiotics",metabolites:"Metabolites",unknown:"Unknown",researchPriority:"Research Priority",entry:"Entry",kbMatched:"This entry exists in the local knowledge base.",kbNotFound:"Not found in local KB.",emptyPlaceholder:"Enter a strain or metabolite name",emptyStats:"{p} probiotics + {m} metabolites",effectiveness:"Effectiveness",safety:"Safety",coupling:"Coupling",measurement:"Depth",forward:"Forward",reverse:"Reverse",coupling_en:"Coupling",measurement_en:"Measurement",needQuery:"Please enter a strain or metabolite name",tierError:"Evidence query failed",matrixError:"Matrix query failed",adviceError:"Advice query failed",aiError:"AI analysis failed",tierBadge:"Evidence Level",scoreOutOf:"/ 5",strongEvidence:"Strong Evidence",moderateEvidence:"Moderate Evidence",doiLookup:"DOI Lookup",doiPlaceholder:"Enter DOI",doiSearching:"Looking up...",doiError:"DOI lookup failed"}};
         var t = function(k) { return L[lang.value]?.[k] || L['zh'][k] || k; };
         var setLang = function(l) { lang.value = l; localStorage.setItem('evidence_lang', l); };
 
-        // ==================== 智能后端地址检测 ====================
-        // 自动判断当前环境，决定后端 API 地址：
-        //   1. 页面通过 HTTP 加载 -> 使用同一主机名 + 端口 8000
-        //   2. 页面通过 file:// 打开 -> 默认 localhost:8000
-        //   3. 用户手动保存过地址 -> 优先使用 localStorage 中的地址
-        //   4. URL 参数 ?api=xxx -> 临时覆盖（方便分享链接）
-        const detectBackendUrl = function() {
-            var loc = window.location;
-            var host = loc.hostname;
-            var autoUrl;
-            if (loc.protocol === 'file:') {
-                // 本地文件打开：默认 localhost:8000
-                autoUrl = 'http://localhost:8000';
-            } else if (host === 'localhost' || host === '127.0.0.1') {
-                // 从本地 HTTP 服务加载：后端在 8000 端口
-                autoUrl = 'http://localhost:8000';
-            } else if (/^(\d{1,3}\.){3}\d{1,3}$/.test(host) || host === '[::1]') {
-                // 纯 IP 地址（局域网开发）：后端在 8000 端口
-                autoUrl = loc.protocol + '//' + host + ':8000';
-            } else {
-                // 生产环境域名（PythonAnywhere / Railway / 自定义域名）：
-                // 前端和后端在同一服务器，使用同源地址（无端口号）
-                autoUrl = loc.protocol + '//' + host;
+        /* ==================== 数据加载 ==================== */
+        var kbData = { probiotics: [], metabolites: [] };
+        var precomputedAI = {};
+
+        // 加载知识库 JSON
+        const loadKB = async () => {
+            try {
+                const resp = await fetch('knowledge_base.json');
+                kbData = await resp.json();
+                kbStats.value.probiotics = kbData.probiotics?.length || 0;
+                kbStats.value.metabolites = kbData.metabolites?.length || 0;
+            } catch (e) {
+                console.log('KB load error, using defaults');
             }
-            return autoUrl;
         };
 
-        // URL 参数 ?api=xxx 可临时覆盖（方便分享链接给手机）
-        var params = new URLSearchParams(window.location.search);
-        var urlParam = params.get('api');
+        // 加载预计算 AI 分析
+        const loadAI = async () => {
+            try {
+                const resp = await fetch('precomputed_ai.json');
+                const data = await resp.json();
+                for (const a of data.analyses || []) {
+                    precomputedAI[a._query_name.toLowerCase()] = a;
+                }
+            } catch (e) {
+                console.log('Precomputed AI not available yet, run precompute.py');
+            }
+        };
 
-        // 优先级：URL 参数 > localStorage > 自动检测
-        var storedUrl = localStorage.getItem('evidence_backend_url');
-        var initialUrl = urlParam || storedUrl || detectBackendUrl();
+        /* ==================== 客户端知识库搜索（与 api.py 逻辑一致） ==================== */
+        const searchKB = (query) => {
+            const q = query.trim().toLowerCase();
+            let best = null, bestScore = 0;
 
-        // ==================== 响应式状态 ====================
+            for (const cat of ['probiotics', 'metabolites']) {
+                for (const item of kbData[cat] || []) {
+                    let score = 0;
+                    const nameCn = (item.name || '').toLowerCase();
+                    const nameEn = (item.name_en || '').toLowerCase();
+                    const summary = (item.summary || '').toLowerCase();
+
+                    if (nameCn.includes(q)) score += 5;
+                    if (nameEn.includes(q)) score += 3;
+                    if (summary.includes(q)) score += 2;
+                    for (const token of q.split(/\s+/)) {
+                        if (token && (nameCn.includes(token) || nameEn.includes(token))) score += 2;
+                    }
+                    if (score > bestScore) {
+                        bestScore = score;
+                        best = { ...item, category: cat, _score: bestScore };
+                    }
+                }
+            }
+            return best;
+        };
+
+        /* ==================== 实验建议（拷贝 api.py 逻辑） ==================== */
+        const getAdvice = (evidenceLevel) => {
+            const common = [
+                "体外发酵实验：使用模拟结肠发酵系统，检测目标代谢物产量变化",
+                "16S rRNA 基因测序：确认菌株在复杂菌群中的相对丰度",
+                "靶向代谢组学（LC-MS/MS）：精确定量目标短链脂肪酸",
+                "Caco-2 / IPEC-J2 细胞模型：评估代谢物对肠上皮屏障功能的影响",
+                "动物模型验证：使用无菌小鼠定植菌株，检测肠道屏障指标"
+            ];
+            if (evidenceLevel?.includes('Level 4')) {
+                return [
+                    "该条目已达到 Level 4（确立证据），可作为猪用益生菌开发的候选菌株",
+                    "建议开展大规模田间试验验证其在不同猪群中的效果一致性",
+                    "可考虑商业化开发：菌剂制备工艺优化、稳定性评估、剂量标准化"
+                ].concat(common);
+            } else if (evidenceLevel?.includes('Level 3') || evidenceLevel?.includes('Level 2b')) {
+                return [
+                    "当前证据较强，但核心缺口是猪模型中的菌株特异性因果验证",
+                    "最高优先级：分离猪源菌株 + 断奶仔猪单菌定植实验（填补 Level 4 空白）",
+                    "补充猪肠道多隔室代谢物浓度同步测量",
+                    "验证核心代谢基因在猪源菌株中的保守性"
+                ].concat(common);
+            } else if (evidenceLevel?.includes('Level 2') || evidenceLevel?.includes('Level 2a')) {
+                return [
+                    "当前为中度证据，猪模型中已有间接验证但缺乏菌株特异性因果证据",
+                    "建议开展猪模型直接因果验证：单一代谢物干预 + 表观遗传标记测量",
+                    "设计跨隔室采样方案",
+                    "考虑从菌株功能验证升级为合成微生态体系验证"
+                ].concat(common);
+            } else {
+                return [
+                    "当前证据较弱，仅有关联推断或跨物种外推",
+                    "优先从体外实验开始：代谢通路酶活验证、底物转化效率测定",
+                    "猪模型基线数据建立",
+                    "使用同位素示踪法确认代谢物由目标菌株/通路产生"
+                ].concat(common);
+            }
+        };
+
+        /* ==================== DOI 查询（客户端直调 CrossRef） ==================== */
+        const doiData = ref(null);
+        const doiLoading = ref(false);
+        const doiQuery = ref('');
+        const lookupDOI = async () => {
+            const doi = doiQuery.value.trim();
+            if (!doi) return;
+            doiLoading.value = true;
+            doiData.value = null;
+            try {
+                let d = doi;
+                if (d.startsWith('https://doi.org/')) d = d.replace('https://doi.org/', '');
+                const resp = await fetch(`https://api.crossref.org/works/${encodeURIComponent(d)}`);
+                const data = await resp.json();
+                const msg = data.message || {};
+                const title = (msg.title || [''])[0] || '';
+                const abs = (msg.abstract || '').replace(/<[^>]+>/g, '').substring(0, 1500);
+                const authors = (msg.author || []).slice(0, 5).map(a => `${a.family || ''} ${a.given || ''}`.trim());
+                const journal = (msg['container-title'] || [''])[0] || msg.publisher || '';
+                doiData.value = { doi: d, title, abstract: abs, authors, journal, url: `https://doi.org/${d}` };
+            } catch (e) {
+                doiData.value = { error: t('doiError') + ': ' + e.message };
+            }
+            doiLoading.value = false;
+        };
+
+        /* ==================== 响应式状态 ==================== */
         var lang = ref(localStorage.getItem('evidence_lang') || 'zh');
         const query = ref('');
         var searching = ref(false);
         var searchPhase = ref('kb');
         const errorMsg = ref('');
         const searched = ref(false);
-
-        // 服务器连接状态
-        const backendUrl = ref(initialUrl);
-        const customUrl = ref(initialUrl);
-        const showConfig = ref(false);
-        const connStatus = ref('chk');
-        const testingConn = ref(false);
-
-        // 本地知识库结果
         const tierData = ref(null);
         const matrixData = ref(null);
         const adviceData = ref(null);
-
-        // AI 分析结果
         const aiData = ref(null);
-
-        // 知识库统计
         const kbStats = ref({ probiotics: 0, metabolites: 0 });
+        let bubbleChart = null, barChart = null, aiBarChart = null;
 
-        // ECharts 实例
-        let bubbleChart = null;
-        let barChart = null;
-        let aiBarChart = null;
-
-        // ==================== 计算属性 ====================
+        /* ==================== 计算属性 ==================== */
         const scores = computed(() => {
             const s = aiData.value?.scores || {};
-            return {
-                eff: s.effectiveness ?? 0,
-                saf: s.safety ?? 0,
-                acc: s.accessibility ?? 0,
-                evi: s.evidence_strength ?? 0
-            };
+            return { eff: s.effectiveness ?? 0, saf: s.safety ?? 0, acc: s.accessibility ?? 0, evi: s.evidence_strength ?? 0 };
         });
-
         const aiTierClass = computed(() => {
             const t = aiData.value?.evidence_level || '';
-            if (t.includes('Level 4') || t.includes('Level 3')) return 'badge-green';
-            if (t.includes('Level 2b')) return 'badge-blue';
-            if (t.includes('Level 2') || t.includes('Level 2a')) return 'badge-orange';
-            return 'badge-gray';
+            return (t.includes('Level 4')||t.includes('Level 3')) ? 'badge-green' : (t.includes('Level 2b') ? 'badge-blue' : (t.includes('Level 2')||t.includes('Level 2a') ? 'badge-orange' : 'badge-gray'));
         });
-
         const tierBadgeClass = computed(() => {
             const t = tierData.value?.tier || '';
-            if (t === 'L1' || t.includes('Level 4') || t.includes('Level 3')) return 'badge-green';
-            if (t === 'L2' || t.includes('Level 2b')) return 'badge-blue';
-            if (t.includes('Level 2') || t.includes('Level 2a')) return 'badge-orange';
-            return 'badge-gray';
+            return (t==='L1'||t.includes('Level 4')||t.includes('Level 3')) ? 'badge-green' : (t==='L2'||t.includes('Level 2b') ? 'badge-blue' : (t.includes('Level 2')||t.includes('Level 2a') ? 'badge-orange' : 'badge-gray'));
         });
 
-        // ==================== API 封装 ====================
-        const apiGet = async (endpoint, params) => {
-            try {
-                const res = await axios.get(`${backendUrl.value}${endpoint}`, { params });
-                return res.data;
-            } catch (err) {
-                const msg = err.response?.data?.error || err.message || '网络请求失败';
-                throw new Error(msg);
-            }
-        };
-
-        // ==================== 服务器配置方法 ====================
-        // 展开/收起配置面板
-        const toggleConfig = function() {
-            showConfig.value = !showConfig.value;
-            if (showConfig.value) {
-                customUrl.value = backendUrl.value;
-            }
-        };
-
-        // 保存用户自定义后端地址到 localStorage
-        const saveBackendUrl = function() {
-            var url = customUrl.value.trim();
-            // 去掉末尾斜杠
-            url = url.rstrip('/');
-            if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                url = 'http://' + url;
-            }
-            backendUrl.value = url;
-            customUrl.value = url;
-            localStorage.setItem('evidence_backend_url', url);
-            showConfig.value = false;
-            testConnection(true); // 保存后静默测试
-        };
-
-        // 重置为自动检测地址
-        const resetBackendUrl = function() {
-            localStorage.removeItem('evidence_backend_url');
-            var autoUrl = detectBackendUrl();
-            backendUrl.value = autoUrl;
-            customUrl.value = autoUrl;
-            showConfig.value = false;
-            testConnection(true);
-        };
-
-        // 测试后端连接（silent 为 true 时不显示"检查中"状态）
-        const testConnection = async function(silent) {
-            if (silent === undefined) silent = false;
-            if (!silent) {
-                connStatus.value = 'chk';
-                testingConn.value = true;
-            }
-            try {
-                var res = await axios.get(backendUrl.value + '/', { timeout: 5000 });
-                if (res.data && res.data.status) {
-                    connStatus.value = 'ok';
-                } else {
-                    connStatus.value = 'err';
-                }
-            } catch (e) {
-                connStatus.value = 'err';
-            } finally {
-                testingConn.value = false;
-            }
-        };
-
-        // ==================== 获取知识库统计 ====================
-        const fetchKBStats = async () => {
-            try {
-                const data = await apiGet('/api/knowledge_base');
-                kbStats.value = {
-                    probiotics: data.total_probiotics || 0,
-                    metabolites: data.total_metabolites || 0
-                };
-            } catch (e) {
-                // 静默失败
-            }
-        };
-
-        // ==================== 统一搜索（KB 优先，无匹配自动 AI） ====================
-        var unifiedSearch = async function() {
+        /* ==================== 统一搜索（纯客户端，KB 优先 → 预计算 AI 回退） ==================== */
+        var unifiedSearch = async () => {
             var q = query.value.trim();
             if (!q) { errorMsg.value = t('needQuery'); return; }
             errorMsg.value = '';
@@ -800,37 +765,81 @@ const app = createApp({
             matrixData.value = null;
             adviceData.value = null;
 
-            var results = await Promise.allSettled([
-                apiGet('/api/evaluate_tier',     { query: q }),
-                apiGet('/api/evaluate_matrix',   { query: q }),
-                apiGet('/api/experiment_advice', { query: q }),
-            ]);
-
-            var tierOk = results[0].status === 'fulfilled' ? results[0].value : null;
-            if (tierOk) tierData.value = tierOk;
-            else errorMsg.value += t('tierError') + ': ' + (results[0].reason?.message || '') + ' ';
-
-            if (results[1].status === 'fulfilled') matrixData.value = results[1].value;
-            else errorMsg.value += t('matrixError') + ': ' + (results[1].reason?.message || '') + ' ';
-
-            if (results[2].status === 'fulfilled') adviceData.value = results[2].value;
-            else errorMsg.value += t('adviceError') + ': ' + (results[2].reason?.message || '') + ' ';
-
-            var foundInKB = tierOk && tierOk.source === '知识库匹配';
-
-            if (foundInKB) {
+            // Step 1: 搜索本地知识库
+            var match = searchKB(q);
+            if (match) {
+                tierData.value = {
+                    success: true, query: q,
+                    tier: match.evidence_level || 'N/A',
+                    strain: match.name || '', metabolite: match.name || '',
+                    claim: (match.summary || '').substring(0, 100),
+                    category: match.category || '', source: '知识库匹配'
+                };
+                matrixData.value = {
+                    success: true, query: q,
+                    strain: match.name || '', metabolite: match.name || '',
+                    category: match.category || '',
+                    matrix: {
+                        '正向': (match.scores?.effectiveness || 0) / 5,
+                        '反向': (match.scores?.safety || 0) / 5,
+                        '耦合': (match.scores?.accessibility || 0) / 5,
+                        '测量深度': (match.scores?.evidence_strength || 0) / 5
+                    },
+                    scores_raw: match.scores || {}, source: '知识库匹配'
+                };
+                adviceData.value = {
+                    success: true, query: q,
+                    strain: match.name || '', category: match.category || '',
+                    evidence_level: match.evidence_level || '',
+                    advice: getAdvice(match.evidence_level || ''),
+                    source: '知识库匹配'
+                };
                 searching.value = false;
                 await nextTick();
                 renderBubbleChart();
                 renderBarChart();
-            } else {
+            }
+
+            // Step 2: KB 未命中，查预计算 AI
+            if (!match) {
                 searchPhase.value = 'ai';
-                try {
-                    var data = await apiGet('/api/ai_analyze', { query: q });
-                    aiData.value = data.ai_analysis;
-                } catch (err) {
-                    errorMsg.value += t('aiError') + ': ' + (err.message || '') + ' ';
-                    aiData.value = null;
+                var aiKey = q.toLowerCase();
+                var precomp = precomputedAI[aiKey];
+                // 模糊匹配 precomputed keys
+                if (!precomp) {
+                    var keys = Object.keys(precomputedAI);
+                    for (var k of keys) {
+                        if (k.includes(aiKey) || aiKey.includes(k)) {
+                            precomp = precomputedAI[k];
+                            break;
+                        }
+                    }
+                }
+                if (precomp) {
+                    aiData.value = precomp;
+                    tierData.value = {
+                        success: true, query: q, tier: precomp.evidence_level || 'N/A',
+                        strain: precomp.name || '', claim: (precomp.summary || '').substring(0, 100),
+                        category: precomp.type || '', source: '预计算AI'
+                    };
+                    matrixData.value = {
+                        success: true, query: q,
+                        strain: precomp.name || '',
+                        matrix: {
+                            '正向': (precomp.scores?.effectiveness || 0) / 5,
+                            '反向': (precomp.scores?.safety || 0) / 5,
+                            '耦合': (precomp.scores?.accessibility || 0) / 5,
+                            '测量深度': (precomp.scores?.evidence_strength || 0) / 5
+                        },
+                        scores_raw: precomp.scores || {}, source: '预计算AI'
+                    };
+                    adviceData.value = {
+                        success: true, query: q,
+                        strain: precomp.name || '', evidence_level: precomp.evidence_level || '',
+                        advice: getAdvice(precomp.evidence_level || ''), source: '预计算AI'
+                    };
+                } else {
+                    errorMsg.value = t('kbNotFoundInAI');
                 }
                 searching.value = false;
                 await nextTick();
@@ -962,21 +971,18 @@ const app = createApp({
         };
 
         // ==================== 初始化 ====================
-        onMounted(() => {
-            fetchKBStats();
-            testConnection(true);  // 页面加载时静默检测后端连接
+        onMounted(async () => {
+            await Promise.all([loadKB(), loadAI()]);
         });
 
         return {
             lang, query, searching, searchPhase, errorMsg, searched,
-            tierData, matrixData, adviceData,
-            aiData, kbStats,
-            hasKBResults: computed(function() { return tierData.value && tierData.value.source === "知识库匹配"; }),
+            tierData, matrixData, adviceData, aiData, kbStats,
+            hasKBResults: computed(() => tierData.value && tierData.value.source === '知识库匹配'),
             scores, aiTierClass, tierBadgeClass,
             t, setLang, unifiedSearch,
-            // 服务器连接
-            backendUrl, customUrl, showConfig, connStatus, testingConn,
-            toggleConfig, saveBackendUrl, resetBackendUrl, testConnection
+            // DOI lookup
+            doiQuery, doiData, doiLoading, lookupDOI,
         };
     }
 });
