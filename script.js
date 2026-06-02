@@ -39,12 +39,28 @@
                 renderStats();
                 renderNodeFilters();
                 applyAllFilters();
+                // Update the header timestamp
+                var updateEl = document.getElementById('updateTime');
+                if (updateEl && data.stats && data.stats.updated_at_human) {
+                    updateEl.textContent = 'Updated: ' + data.stats.updated_at_human;
+                } else if (updateEl && state.papers.length > 0) {
+                    updateEl.textContent = state.papers.length + ' papers indexed';
+                }
                 var loading = document.getElementById('feedLoading');
                 if (loading) loading.style.display = 'none';
             })
             .catch(function (err) {
+                // Fallback: use embedded __PAPERS__ from pre-rendered HTML
+                if (window.__PAPERS__ && window.__PAPERS__.length > 0) {
+                    state.papers = window.__PAPERS__;
+                    state.filtered = state.papers.slice();
+                    renderStats();
+                    renderNodeFilters();
+                    var updateEl = document.getElementById('updateTime');
+                    if (updateEl) updateEl.textContent = state.papers.length + ' papers (static snapshot)';
+                }
                 var loading = document.getElementById('feedLoading');
-                if (loading) loading.textContent = 'Data unavailable.';
+                if (loading) loading.textContent = 'Live data unavailable. Showing static snapshot.';
                 console.error(err);
             });
     }
@@ -52,7 +68,8 @@
     // ---- Stats ----
     function renderStats() {
         var papers = state.papers;
-        document.getElementById('statTotal').textContent = papers.length || '--';
+        var total = papers.length;
+        document.getElementById('statTotal').textContent = total > 0 ? total : '--';
 
         var l4 = 0, l3plus = 0;
         var allNodes = {};
@@ -62,9 +79,9 @@
             if (lv === 'L4' || lv === 'L3') l3plus++;
             (p.nodes || []).forEach(function (n) { allNodes[n] = true; });
         });
-        document.getElementById('statL4').textContent = l4 || '--';
-        document.getElementById('statL3').textContent = l3plus || '--';
-        document.getElementById('statNodes').textContent = Object.keys(allNodes).length || '--';
+        document.getElementById('statL4').textContent = l4 > 0 ? l4 : '--';
+        document.getElementById('statL3').textContent = l3plus > 0 ? l3plus : '--';
+        document.getElementById('statNodes').textContent = Object.keys(allNodes).length > 0 ? Object.keys(allNodes).length : '--';
     }
 
     // ---- Node filter chips (dynamic, with parent groups) ----
@@ -272,9 +289,16 @@
             var card = template.content.cloneNode(true);
 
             var isKB = (paper.type || paper.source) === 'knowledge_base';
+            // Detect unrated papers (crawler papers without AI evaluation)
+            var isUnrated = !isKB &&
+                (paper.effectiveness || 0) === 0 &&
+                (paper.safety || 0) === 0 &&
+                (paper.coupling || 0) === 0 &&
+                (paper.measurementDepth || 0) === 0;
             var article = card.querySelector('article');
             if (article) {
                 if (isKB) article.className += ' kb-entry';
+                if (isUnrated) article.className += ' unrated-entry';
                 article.setAttribute('data-paper-id', paper.id || '');
             }
 
@@ -299,6 +323,12 @@
                     kbBadge.textContent = 'Curated';
                     badgesEl.appendChild(kbBadge);
                 }
+                if (isUnrated) {
+                    var unratedBadge = document.createElement('span');
+                    unratedBadge.className = 'unrated-badge';
+                    unratedBadge.textContent = 'Unrated';
+                    badgesEl.appendChild(unratedBadge);
+                }
             }
 
             // Date
@@ -308,9 +338,14 @@
             // Evidence level badge
             var badge = card.querySelector('.level-badge');
             if (badge) {
-                var level = paper.evidenceLevel || 'L1';
-                badge.textContent = level;
-                badge.className = 'level-badge level-' + level.toLowerCase();
+                if (isUnrated) {
+                    badge.textContent = '—';
+                    badge.className = 'level-badge level-unrated';
+                } else {
+                    var level = paper.evidenceLevel || 'L1';
+                    badge.textContent = level;
+                    badge.className = 'level-badge level-' + level.toLowerCase();
+                }
             }
 
             // Title — clicking opens evaluation detail modal
@@ -396,8 +431,13 @@
                 var val = dims[i] || 0;
                 var fillEl = matrixItems[i].querySelector('.matrix-fill');
                 var valEl = matrixItems[i].querySelector('.matrix-val');
-                if (fillEl) fillEl.style.width = (val / 5 * 100) + '%';
-                if (valEl) valEl.textContent = val + '/5';
+                if (isUnrated) {
+                    if (fillEl) fillEl.style.width = '0%';
+                    if (valEl) { valEl.textContent = 'N/A'; valEl.style.color = '#b2bec3'; }
+                } else {
+                    if (fillEl) fillEl.style.width = (val / 5 * 100) + '%';
+                    if (valEl) valEl.textContent = val + '/5';
+                }
             }
 
             // Summary
@@ -760,9 +800,9 @@
 
         // 4-D Matrix
         var dims = [
-            {id: 'effectiveness', label: 'Forward (Microbe→Host)', val: paper.effectiveness || 0},
-            {id: 'safety', label: 'Reverse (Host→Microbiome)', val: paper.safety || 0},
-            {id: 'coupling', label: 'Bidirectional Coupling', val: paper.coupling || 0},
+            {id: 'effectiveness', label: 'Forward Pathway (Microbe→Host)', val: paper.effectiveness || 0},
+            {id: 'safety', label: 'Reverse Pathway (Host→Microbiome)', val: paper.safety || 0},
+            {id: 'coupling', label: 'Coupling Verification Depth', val: paper.coupling || 0},
             {id: 'depth', label: 'Measurement Depth', val: paper.measurementDepth || 0}
         ];
         var matrixHtml = '';
