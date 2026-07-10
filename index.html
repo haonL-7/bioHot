@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioHot — 生命科学智能快讯</title>
-    <meta name="description" content="BioHot — AI驱动的生命科学文献监控与证据评估平台。覆盖微生物组、益生菌、基因编辑、AI制药、合成生物学等领域。每日自动爬取、AI评估、结构化展示。">
+    <title>BioHot &mdash; AI-Powered Life Sciences Literature Intelligence</title>
+    <meta name="description" content="BioHot delivers AI-evaluated, evidence-structured literature monitoring across microbiome research, bioinformatics, genomics, synthetic biology, and drug discovery. Daily automated updates from PubMed, bioRxiv, Europe PMC, Semantic Scholar, and arXiv.">
     <style>
         :root {
-            --bg: #fafbfc;
-            --card-bg: #ffffff;
-            --text: #1a1a2e;
-            --text-secondary: #4a5568;
-            --text-muted: #a0aec0;
-            --accent: #2d3748;
-            --accent-light: #4a5568;
-            --border: #e2e8f0;
-            --green: #38a169;
-            --blue: #3182ce;
-            --purple: #6b46c1;
-            --orange: #d69e2e;
-            --red: #e53e3e;
-            --teal: #319795;
-            --max-width: 1040px;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --border: #d5d5d5;
+            --border-light: #e8e8e8;
+            --accent: #1a1a1a;
+            --link: #2874a6;
+            --max-width: 880px;
+            --font-serif: 'Georgia', 'Times New Roman', serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,385 +28,340 @@
             color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            font-size: 15px;
         }
 
         /* ===== Header ===== */
         .site-header {
-            background: var(--accent);
-            color: #fff;
-            padding: 48px 20px 36px;
-            text-align: center;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid var(--border);
         }
         .site-header .logo {
-            font-size: 42px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
-        }
-        .site-header .logo .bio { color: #68d391; }
-        .site-header .logo .hot { color: #fbd38d; }
-        .site-header .tagline {
-            font-size: 16px;
-            color: #cbd5e0;
+            font-family: var(--font-serif);
+            font-size: 36px;
             font-weight: 400;
-            margin-top: 8px;
+            letter-spacing: -0.3px;
+            color: var(--accent);
+        }
+        .site-header .logo .sep { color: var(--text-muted); font-weight: 300; }
+        .site-header .tagline {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-top: 10px;
         }
         .site-header .meta-line {
             font-size: 13px;
-            color: #a0aec0;
-            margin-top: 12px;
-        }
-
-        /* ===== Stats Bar ===== */
-        .stats-bar {
-            max-width: var(--max-width);
-            margin: -20px auto 0;
-            padding: 0 20px;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .stat-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            padding: 16px 24px;
-            text-align: center;
-            min-width: 120px;
-            flex: 1;
-            max-width: 200px;
-        }
-        .stat-card .stat-value {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        .stat-card .stat-label {
-            font-size: 11px;
             color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 2px;
+            margin-top: 6px;
+            font-style: italic;
         }
 
         /* ===== Main Content ===== */
         .main-content {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 20px 20px 40px;
+            padding: 0 20px 60px;
         }
 
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text);
-            margin: 32px 0 16px;
+        .section-header {
+            font-family: var(--font-serif);
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 48px 0 20px;
             padding-bottom: 8px;
-            border-bottom: 2px solid var(--border);
+            border-bottom: 1px solid var(--border-light);
         }
-        .section-title .live-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--green);
-            margin-right: 6px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-        /* ===== Channel Cards ===== */
-        .channel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 16px;
+        /* ===== Channel List (table-style) ===== */
+        .channel-list {
+            list-style: none;
         }
-        .channel-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-            padding: 24px;
-            cursor: pointer;
-            transition: transform 0.15s, box-shadow 0.15s;
+        .channel-item {
+            display: block;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border-light);
             text-decoration: none;
             color: inherit;
-            display: block;
-            border: 1px solid var(--border);
-            position: relative;
+            transition: background 0.1s;
         }
-        .channel-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .channel-card.featured {
-            border-color: var(--green);
-            border-width: 2px;
-        }
-        .channel-card .card-title {
-            font-size: 17px;
-            font-weight: 700;
+        .channel-item:hover { background: #fafafa; }
+        .channel-item:first-child { border-top: 1px solid var(--border-light); }
+
+        .channel-item .ch-name {
+            font-family: var(--font-serif);
+            font-size: 16px;
+            font-weight: 400;
             color: var(--text);
-            margin-bottom: 6px;
         }
-        .channel-card .card-desc {
+        .channel-item.live .ch-name { color: var(--accent); }
+        .channel-item.live .ch-name::after {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #1a6b3c;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .channel-item .ch-status {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 8px;
+        }
+        .channel-item .ch-desc {
             font-size: 13px;
             color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 12px;
+            margin-top: 4px;
+            line-height: 1.7;
         }
-        .channel-card .card-meta {
+        .channel-item .ch-tags {
+            margin-top: 6px;
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
-        .channel-card .card-tag {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            background: #edf2f7;
-            color: var(--text-secondary);
-        }
-        .channel-card .card-tag.live {
-            background: #f0fff4;
-            color: var(--green);
-        }
-        .channel-card .card-tag.soon {
-            background: #fffff0;
-            color: var(--orange);
-        }
-        .channel-card .card-badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
+        .ch-tag {
             font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 3px 10px;
-            border-radius: 10px;
-        }
-        .card-badge.live-badge {
-            background: #f0fff4;
-            color: var(--green);
-            animation: pulse 2s infinite;
-        }
-        .card-badge.soon-badge {
-            background: #fffff0;
-            color: var(--orange);
+            font-family: var(--font-sans);
+            color: var(--text-muted);
+            background: #f5f5f5;
+            padding: 2px 8px;
+            letter-spacing: 0.3px;
         }
 
-        /* ===== Framework Section ===== */
-        .framework-section {
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-            padding: 24px;
-            margin-top: 32px;
-            border: 1px solid var(--border);
+        /* ===== Methodology Section ===== */
+        .methodology {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
         }
-        .framework-section h3 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--accent);
+        .methodology h3 {
+            font-family: var(--font-serif);
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text);
             margin-bottom: 12px;
         }
-        .framework-section p {
+        .methodology p {
             font-size: 13px;
             color: var(--text-secondary);
             line-height: 1.8;
+            margin-bottom: 8px;
         }
-        .framework-section .paper-ref {
-            display: inline-block;
-            background: #f7fafc;
-            padding: 4px 12px;
-            border-radius: 4px;
+        .methodology .ref {
+            display: block;
             font-size: 12px;
-            color: var(--accent);
+            color: var(--text-secondary);
+            padding: 6px 0 6px 12px;
+            border-left: 2px solid var(--border);
             margin: 4px 0;
-            border-left: 3px solid var(--blue);
+            line-height: 1.6;
         }
+        .methodology .ref strong { color: var(--text); font-weight: 600; }
 
         /* ===== Footer ===== */
         .site-footer {
-            text-align: center;
+            max-width: var(--max-width);
+            margin: 0 auto;
             padding: 32px 20px;
+            border-top: 1px solid var(--border);
             color: var(--text-muted);
             font-size: 12px;
-            border-top: 1px solid var(--border);
-            margin-top: 40px;
+            text-align: center;
         }
-        .site-footer a {
-            color: var(--blue);
-            text-decoration: none;
-        }
+        .site-footer a { color: var(--link); text-decoration: none; }
         .site-footer a:hover { text-decoration: underline; }
 
         /* ===== Responsive ===== */
         @media (max-width: 640px) {
-            .site-header { padding: 32px 16px 24px; }
-            .site-header .logo { font-size: 30px; }
-            .channel-grid { grid-template-columns: 1fr; }
-            .stats-bar { gap: 8px; }
-            .stat-card { min-width: 80px; padding: 12px 16px; }
-            .stat-card .stat-value { font-size: 22px; }
+            .site-header { padding: 40px 16px 28px; }
+            .site-header .logo { font-size: 28px; }
+            .section-header { margin-top: 32px; }
+            .channel-item { padding: 14px 0; }
         }
     </style>
 </head>
 <body>
 
 <header class="site-header">
-    <div class="logo"><span class="bio">Bio</span><span class="hot">Hot</span></div>
-    <p class="tagline">AI-Powered Life Sciences Intelligence &mdash; Structured Evidence Assessment for Research Literature</p>
-    <p class="meta-line">Structured Evidence Rating &middot; Multi-Source Daily Updates &middot; Bilingual Interface</p>
+    <div class="logo">Bio<span class="sep">|</span>Hot</div>
+    <p class="tagline">AI-evaluated literature intelligence for the life sciences. Structured evidence assessment across microbiome research, bioinformatics, genomics, and drug discovery.</p>
+    <p class="meta-line">Updated daily from PubMed, bioRxiv, Europe PMC, Semantic Scholar, and arXiv</p>
 </header>
-
-<section class="stats-bar">
-    <div class="stat-card">
-        <div class="stat-value">1</div>
-        <div class="stat-label">活跃频道</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-value">101+</div>
-        <div class="stat-label">追踪论文</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-value">25+</div>
-        <div class="stat-label">共代谢节点</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-value">5</div>
-        <div class="stat-label">数据源</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-value" id="updateDate">每日</div>
-        <div class="stat-label">更新频率</div>
-    </div>
-</section>
 
 <main class="main-content">
 
-    <div class="section-title">
-        <span class="live-dot"></span>Active Channels
-    </div>
+    <div class="section-header">Active Channel</div>
 
-    <div class="channel-grid">
-        <!-- Co-Metabolism Evidence Monitor -->
-        <a href="evidence/" class="channel-card featured">
-            <span class="card-badge live-badge">Live</span>
-            <div class="card-title">Gut Microbiome Co-Metabolism Evidence Monitor</div>
-            <div class="card-desc">
-                Daily automated literature surveillance across PubMed, bioRxiv, Europe PMC, Semantic Scholar, and arXiv.
-                Evaluates each paper using Liu &amp; Feng (2025&ndash;2026) <strong>Six-Tier Evidence Framework</strong> and <strong>Compartmentalized Co-Metabolism Network Model</strong>,
-                scoring bidirectional pathways (Forward / Reverse / Coupling / Measurement Depth) across 25+ metabolite nodes and 8+ gut bacterial taxa.
+    <ul class="channel-list">
+        <!-- Live: Co-Metabolism Evidence Monitor -->
+        <a href="evidence/" class="channel-item live">
+            <span class="ch-name">Gut Microbiome Co-Metabolism Evidence Monitor</span>
+            <span class="ch-status">&mdash; Live</span>
+            <div class="ch-desc">
+                Automated daily surveillance and AI evaluation of research on microbial metabolite&ndash;host interactions in the porcine gut. Applies the <strong>Six-Tier Evidence Framework</strong> (L1a&ndash;L4) and <strong>Compartmentalized Co-Metabolism Network Model</strong> (Liu &amp; Feng, 2025&ndash;2026) for bidirectional pathway scoring. Tracks 25+ metabolite nodes and 8+ gut bacterial taxa across five literature sources.
             </div>
-            <div class="card-meta">
-                <span class="card-tag live">Daily Update</span>
-                <span class="card-tag live">AI-Evaluated</span>
-                <span class="card-tag">Porcine Model</span>
-                <span class="card-tag">Evidence Matrix</span>
-                <span class="card-tag">DeepSeek</span>
+            <div class="ch-tags">
+                <span class="ch-tag">Six-Tier Evidence</span>
+                <span class="ch-tag">4D Matrix Scoring</span>
+                <span class="ch-tag">Porcine Model</span>
+                <span class="ch-tag">DeepSeek API</span>
+                <span class="ch-tag">Daily Update</span>
             </div>
         </a>
+    </ul>
 
-        <!-- Probiotic Translation Tracker -->
-        <div class="channel-card">
-            <span class="card-badge soon-badge">Planned</span>
-            <div class="card-title">Probiotic Translational Readiness Tracker</div>
-            <div class="card-desc">
-                Applying the Six-Tier Evidence Framework (L1a&rarr;L4) to track <strong>strain-specific causal validation</strong> of candidate probiotic functional claims.
-                Covers Phascolarctobacterium, Lactobacillus, Bifidobacterium, Akkermansia, Faecalibacterium, and related taxa.
-                Addresses the murine-L3 to porcine-L4 translational gap.
-            </div>
-            <div class="card-meta">
-                <span class="card-tag soon">Planned</span>
-                <span class="card-tag">Strain-Specific</span>
-                <span class="card-tag">L3.5 Transitional Tier</span>
-            </div>
-        </div>
+    <div class="section-header">Planned Channels</div>
 
-        <!-- Gene Editing -->
-        <div class="channel-card">
-            <span class="card-badge soon-badge">Planned</span>
-            <div class="card-title">Gene Editing and CRISPR</div>
-            <div class="card-desc">
-                Monitoring advances in CRISPR-Cas systems, base editing, prime editing, and epigenetic editing.
-                Covers agricultural biotechnology (gene-edited livestock and crops), therapeutic gene editing, and microbiome editing at their intersections.
+    <ul class="channel-list">
+        <li class="channel-item">
+            <span class="ch-name">Computational Genomics &amp; Epigenomics</span>
+            <span class="ch-status">&mdash; Planned</span>
+            <div class="ch-desc">
+                Monitoring advances in genome assembly, variant calling, epigenomic profiling (DNA methylation, histone modifications, chromatin accessibility), and their integration with phenotypic data. Covers tools, algorithms, and large-scale consortium datasets (ENCODE, Roadmap, IHEC).
             </div>
-            <div class="card-meta">
-                <span class="card-tag soon">Planned</span>
-                <span class="card-tag">CRISPR</span>
-                <span class="card-tag">Agricultural Biotech</span>
+            <div class="ch-tags">
+                <span class="ch-tag">Variant Calling</span>
+                <span class="ch-tag">Epigenomics</span>
+                <span class="ch-tag">GWAS</span>
+                <span class="ch-tag">Chromatin</span>
             </div>
-        </div>
+        </li>
 
-        <!-- AI Drug Discovery -->
-        <div class="channel-card">
-            <span class="card-badge soon-badge">Planned</span>
-            <div class="card-title">AI-Driven Drug Discovery</div>
-            <div class="card-desc">
-                Tracking AI-enabled drug discovery: protein structure prediction, molecular docking, de novo drug design,
-                ADMET prediction, and AI-assisted clinical trial decision-making. Focus on small molecules, antibodies, and peptide therapeutics.
+        <li class="channel-item">
+            <span class="ch-name">Metagenomics &amp; Microbiome Informatics</span>
+            <span class="ch-status">&mdash; Planned</span>
+            <div class="ch-desc">
+                Tracking computational methods for metagenomic assembly, binning, taxonomic profiling, and functional annotation of microbial communities. Covers tools (MEGAHIT, MetaBAT, Kraken, HUMAnN), databases (MG-RAST, MGnify, GMrepo), and statistical methods for microbiome-wide association studies.
             </div>
-            <div class="card-meta">
-                <span class="card-tag soon">Planned</span>
-                <span class="card-tag">AlphaFold</span>
-                <span class="card-tag">Molecular Docking</span>
+            <div class="ch-tags">
+                <span class="ch-tag">Metagenomic Assembly</span>
+                <span class="ch-tag">Binning</span>
+                <span class="ch-tag">MWAS</span>
+                <span class="ch-tag">Taxonomic Profiling</span>
             </div>
-        </div>
+        </li>
 
-        <!-- Synthetic Biology -->
-        <div class="channel-card">
-            <span class="card-badge soon-badge">Planned</span>
-            <div class="card-title">Synthetic Biology</div>
-            <div class="card-desc">
-                Monitoring advances in genetic circuit design, metabolic engineering, cell-free synthesis, artificial cells,
-                biosensors, and synthetic genomics. Covers the full chain from fundamental research to industrial translation.
+        <li class="channel-item">
+            <span class="ch-name">Structural Bioinformatics &amp; Protein Science</span>
+            <span class="ch-status">&mdash; Planned</span>
+            <div class="ch-desc">
+                Monitoring protein structure prediction (AlphaFold, RoseTTAFold, ESMFold), molecular dynamics simulations, protein&ndash;ligand docking, and structure-based function annotation. Covers the PDB, AlphaFold DB, and emerging methods for disordered proteins and conformational ensembles.
             </div>
-            <div class="card-meta">
-                <span class="card-tag soon">Planned</span>
-                <span class="card-tag">Metabolic Engineering</span>
-                <span class="card-tag">Genetic Circuits</span>
+            <div class="ch-tags">
+                <span class="ch-tag">AlphaFold</span>
+                <span class="ch-tag">Molecular Dynamics</span>
+                <span class="ch-tag">Docking</span>
+                <span class="ch-tag">PDB</span>
             </div>
-        </div>
+        </li>
 
-        <!-- Epigenetics-Microbiome -->
-        <div class="channel-card">
-            <span class="card-badge soon-badge">Planned</span>
-            <div class="card-title">Epigenetic&ndash;Microbiome Interactions</div>
-            <div class="card-desc">
-                Based on the Compartmentalized Co-Metabolism Network Model, monitoring microbial metabolites (SCFAs, bile acids, tryptophan metabolites, polyamines, vitamin B12)
-                as regulators of the host epigenome, and host epigenetic status as a modulator of the gut microbiome.
+        <li class="channel-item">
+            <span class="ch-name">Systems Biology &amp; Network Analysis</span>
+            <span class="ch-status">&mdash; Planned</span>
+            <div class="ch-desc">
+                Tracking gene regulatory network inference, metabolic network modeling (FBA, kinetic models), protein&ndash;protein interaction networks, and multi-omics integration frameworks. Covers tools (Cytoscape, COBRA, CellNetAnalyzer) and community standards (SBML, SBGN).
             </div>
-            <div class="card-meta">
-                <span class="card-tag soon">Planned</span>
-                <span class="card-tag">HDAC</span>
-                <span class="card-tag">DNA Methylation</span>
-                <span class="card-tag">Histone Modification</span>
+            <div class="ch-tags">
+                <span class="ch-tag">Network Inference</span>
+                <span class="ch-tag">Flux Balance Analysis</span>
+                <span class="ch-tag">Multi-Omics Integration</span>
             </div>
-        </div>
-    </div>
+        </li>
 
-    <!-- Framework Reference -->
-    <div class="framework-section">
+        <li class="channel-item">
+            <span class="ch-name">Machine Learning for Biological Data</span>
+            <span class="ch-status">&mdash; Planned</span>
+            <div class="ch-desc">
+                Monitoring applications of deep learning, graph neural networks, large language models, and representation learning to biological sequence, structure, and image data. Covers protein language models (ESM, ProtBERT), single-cell foundation models, and interpretable ML for biomedicine.
+            </div>
+            <div class="ch-tags">
+                <span class="ch-tag">Protein Language Models</span>
+                <span class="ch-tag">GNNs</span>
+                <span class="ch-tag">scFoundation</span>
+                <span class="ch-tag">Interpretability</span>
+            </div>
+        </li>
+
+        <li class="channel-item">
+            <span class="ch-name">Single-Cell &amp; Spatial Omics</span>
+            <span class="ch-status">&mdash; Planned</span>
+            <div class="ch-desc">
+                Tracking computational methods for single-cell RNA-seq, ATAC-seq, and multiome data analysis: normalization, clustering, trajectory inference, cell&ndash;cell communication, and spatial transcriptomics. Covers tools (Seurat, Scanpy, Monocle, CellChat, Squidpy).
+            </div>
+            <div class="ch-tags">
+                <span class="ch-tag">scRNA-seq</span>
+                <span class="ch-tag">Trajectory Inference</span>
+                <span class="ch-tag">Spatial Transcriptomics</span>
+            </div>
+        </li>
+
+        <li class="channel-item">
+            <span class="ch-name">Biological Databases &amp; Knowledge Graphs</span>
+            <span class="ch-status">&mdash; Planned</span>
+            <div class="ch-desc">
+                Monitoring new biological database releases, knowledge graph construction methods, ontology development (Gene Ontology, Uberon, MONDO), and semantic web technologies for life sciences. Covers data integration frameworks and FAIR data principles.
+            </div>
+            <div class="ch-tags">
+                <span class="ch-tag">Gene Ontology</span>
+                <span class="ch-tag">Knowledge Graphs</span>
+                <span class="ch-tag">FAIR Data</span>
+                <span class="ch-tag">Semantic Web</span>
+            </div>
+        </li>
+
+        <li class="channel-item">
+            <span class="ch-name">AI-Driven Drug Discovery</span>
+            <span class="ch-status">&mdash; Planned</span>
+            <div class="ch-desc">
+                Tracking computational approaches to drug discovery: virtual screening, de novo molecular generation, ADMET prediction, drug repurposing, and AI-assisted clinical trial design. Covers small molecules, antibodies, PROTACs, and RNA-targeting therapeutics.
+            </div>
+            <div class="ch-tags">
+                <span class="ch-tag">Virtual Screening</span>
+                <span class="ch-tag">Molecular Generation</span>
+                <span class="ch-tag">ADMET</span>
+                <span class="ch-tag">Drug Repurposing</span>
+            </div>
+        </li>
+
+        <li class="channel-item">
+            <span class="ch-name">Synthetic Biology &amp; Genome Engineering</span>
+            <span class="ch-status">&mdash; Planned</span>
+            <div class="ch-desc">
+                Monitoring genetic circuit design, genome-scale engineering (CRISPR, prime editing, base editing), metabolic pathway optimization, and cell-free synthetic biology. Covers Cello, Asimov, and automated strain engineering platforms.
+            </div>
+            <div class="ch-tags">
+                <span class="ch-tag">CRISPR</span>
+                <span class="ch-tag">Genetic Circuits</span>
+                <span class="ch-tag">Metabolic Engineering</span>
+                <span class="ch-tag">Cell-Free Systems</span>
+            </div>
+        </li>
+    </ul>
+
+    <!-- Methodology -->
+    <div class="methodology">
         <h3>Evaluation Methodology</h3>
         <p>
-            The BioHot evaluation framework is based on two methodological manuscripts by Liu Haoan and Feng Wen, Yulin University:
+            The evidence assessment framework underpinning BioHot is derived from two methodological manuscripts by Liu Haoan and Feng Wen (Yulin University, 2025&ndash;2026):
         </p>
-        <p style="margin-top:8px;">
-            <span class="paper-ref">
-                <strong>MS1</strong> &mdash; Liu H, Feng W. "Compartmentalized Co-metabolism in the Porcine Gut: Systematic Evidence Mapping and a Theoretical Framework for Epigenetic&ndash;Microbiome Interactions" (2025&ndash;2026)
-            </span>
-            <br>
-            <span class="paper-ref" style="margin-top:4px;">
-                <strong>MS2</strong> &mdash; Liu H, Feng W. "A Tiered Evidence Framework for Assessing Translational Readiness of Candidate Probiotics in Livestock: A Systematic Evidence Mapping with Methodological Development" (2025&ndash;2026)
-            </span>
-        </p>
-        <p style="margin-top:12px;">
-            The evaluation engine is powered by the <strong>DeepSeek API</strong>, performing structured evidence rating on newly indexed papers daily.
-            All AI-generated assessments include confidence indicators and evaluation method transparency. Independent verification is recommended before citing.
+        <span class="ref">
+            <strong>MS1</strong> Liu H, Feng W. "Compartmentalized Co-metabolism in the Porcine Gut: Systematic Evidence Mapping and a Theoretical Framework for Epigenetic&ndash;Microbiome Interactions." Defines the Compartmentalized Co-Metabolism Interaction Network Model and the Four-Dimensional Matrix Rating System (Forward Pathway, Reverse Pathway, Coupling Verification Depth, Measurement Depth).
+        </span>
+        <span class="ref">
+            <strong>MS2</strong> Liu H, Feng W. "A Tiered Evidence Framework for Assessing Translational Readiness of Candidate Probiotics in Livestock: A Systematic Evidence Mapping with Methodological Development." Defines the Six-Tier Evidence Framework (L1a&ndash;L4) with strain-specificity and target-host validation as core dimensions.
+        </span>
+        <p>
+            Literature evaluation is powered by the <strong>DeepSeek API</strong>, with GLM-4-Flash as fallback and local rule-based heuristics as final backup. All AI-generated assessments include confidence indicators and evaluation method attribution. Independent verification is recommended before citing.
         </p>
     </div>
 
@@ -419,35 +369,14 @@
 
 <footer class="site-footer">
     <p>
-        A project for the life sciences research community. Methodology inspired by <a href="https://aihot.virxact.com/" target="_blank">AIHot</a>.
+        BioHot &mdash; a research infrastructure project for the life sciences community.
+        Methodology inspired by <a href="https://aihot.virxact.com/" target="_blank">AIHot</a>.
     </p>
     <p>
-        &copy; 2026 BioHot · 榆林学院 ·
+        &copy; 2026 Liu Haoan &amp; Feng Wen, Yulin University &middot;
         <a href="https://github.com/haonL-7/bioHot" target="_blank">GitHub</a>
     </p>
 </footer>
-
-<script>
-// Auto-update the date
-(function() {
-    var d = new Date();
-    var dateStr = d.getFullYear() + '-' +
-        String(d.getMonth() + 1).padStart(2, '0') + '-' +
-        String(d.getDate()).padStart(2, '0');
-    var el = document.getElementById('updateDate');
-    if (el) el.textContent = '今日';
-
-    // Try to fetch stats from evidence monitor
-    fetch('evidence/data/stats.json')
-        .then(function(r) { return r.json(); })
-        .then(function(s) {
-            if (s.total_papers) {
-                document.querySelectorAll('.stat-value')[1].textContent = s.total_papers + '+';
-            }
-        })
-        .catch(function() { /* evidence data not yet deployed */ });
-})();
-</script>
 
 </body>
 </html>
