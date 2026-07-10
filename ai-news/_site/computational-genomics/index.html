@@ -40,16 +40,16 @@ h1 { font-family: var(--font-serif); font-size: 24px; font-weight: 400; margin-b
 <div class="container">
 <a href="../" class="back-link">&larr; bioHot</a>
 <h1>Computational Genomics & Epigenomics</h1>
-<p class="channel-desc">AI-curated selection of methods, tools, and resources for genome analysis, variant calling, epigenomic profiling, and genotype-phenotype integration.</p>
-<p class="channel-stats">20 papers curated &middot; High: 5 &middot; Medium: 15 &middot; Low: 0 &middot; Updated: 2026-07-10</p>
+<p class="channel-desc">AI-curated selection from open-access journals: variant calling, genome assembly, epigenomic profiling, and genotype-phenotype integration.</p>
+<p class="channel-stats">5 papers curated &middot; High: 1 &middot; Medium: 4 &middot; Low: 0 &middot; Updated: 2026-07-10</p>
 <article class="paper-item">
             <div class="paper-meta">
                 <span class="journal">bioRxiv (Bioinformatics)</span>
                 <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
+                <span class="sig sig-high">High</span>
             </div>
             <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.06.736690v1?rss=1" target="_blank" rel="noopener">A deep-learning-informed prior and Bayesian model for differential AP-MS interactome analysis</a></h3>
-            <p class="paper-summary">A new computational framework, BayesInteractomics, improves the analysis of affinity-purification mass spectrometry (AP-MS) data by using a neural network trained on protein structures to predict direct binding, then integrating this prior knowledge into a Bayesian model. This approach outperforms existing tools like SAINTexpress and CompPASS by accounting for correlated signals and leveraging structural information, leading to more accurate identification of genuine protein-protein interactions.</p>
+            <p class="paper-summary">This paper introduces BayesInteractomics, a new computational framework that combines deep learning with Bayesian statistics to improve the analysis of affinity-purification mass spectrometry (AP-MS) data. By using a neural network trained on protein structures to predict direct binding and incorporating this as prior knowledge, the method outperforms existing tools in identifying genuine protein-protein interactions while reducing false positives from non-specific background.</p>
             <div class="paper-tags"><span class="tag">proteomics</span><span class="tag">machine-learning</span><span class="tag">tool</span></div>
         </article><article class="paper-item">
             <div class="paper-meta">
@@ -58,8 +58,8 @@ h1 { font-family: var(--font-serif); font-size: 24px; font-weight: 400; margin-b
                 <span class="sig sig-medium">Medium</span>
             </div>
             <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.06.736701v1?rss=1" target="_blank" rel="noopener">scJET: Full-gene Space Single-cell Expression Generation with Patch-based Transformer Modeling</a></h3>
-            <p class="paper-summary">scJET is a new deep learning method that uses a patch-based Transformer to generate and denoise full-gene expression data from single cells, overcoming the limitations of previous models that only work with a subset of highly variable genes. It preserves both global and local biological patterns as well as gene-level programs, making it a more comprehensive tool for single-cell transcriptomics.</p>
-            <div class="paper-tags"><span class="tag">single-cell</span><span class="tag">transcriptomics</span><span class="tag">deep-learning</span></div>
+            <p class="paper-summary">scJET is a new deep learning model that can generate realistic single-cell gene expression data across the entire transcriptome, not just a subset of highly variable genes. It uses a patch-based Transformer approach to efficiently handle the full gene space while preserving both global and local biological patterns. This provides a more complete and scalable framework for generating synthetic single-cell data for downstream analyses.</p>
+            <div class="paper-tags"><span class="tag">single-cell</span><span class="tag">deep-learning</span><span class="tag">transcriptomics</span></div>
         </article><article class="paper-item">
             <div class="paper-meta">
                 <span class="journal">bioRxiv (Bioinformatics)</span>
@@ -67,7 +67,7 @@ h1 { font-family: var(--font-serif); font-size: 24px; font-weight: 400; margin-b
                 <span class="sig sig-medium">Medium</span>
             </div>
             <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.06.736558v1?rss=1" target="_blank" rel="noopener">SPECTER-Based Semantic Triage of Biomedical Literature for Systematic Reviews in Mutational Signature Analysis</a></h3>
-            <p class="paper-summary">This paper presents a reproducible pipeline that uses SPECTER scientific-document embeddings and similarity metrics to automatically rank biomedical literature for systematic reviews, specifically applied to mutational signature analysis. The method outperforms keyword-only and TF-IDF approaches in screening efficiency, reducing the manual workload for systematic reviews in computational biology.</p>
+            <p class="paper-summary">This paper presents a reproducible pipeline that uses SPECTER scientific-document embeddings and similarity scoring to automatically rank and prioritize biomedical literature for systematic reviews, specifically in mutational signature analysis. The method outperforms keyword-only and TF-IDF approaches in screening efficiency, reducing the manual review burden by identifying relevant studies more effectively.</p>
             <div class="paper-tags"><span class="tag">machine-learning</span><span class="tag">tool</span><span class="tag">methodology</span></div>
         </article><article class="paper-item">
             <div class="paper-meta">
@@ -76,152 +76,17 @@ h1 { font-family: var(--font-serif); font-size: 24px; font-weight: 400; margin-b
                 <span class="sig sig-medium">Medium</span>
             </div>
             <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.06.736742v1?rss=1" target="_blank" rel="noopener">BBBP_Atlas: Unified Interpretable Modeling of Blood Brain Barrier Permeability across Small Molecules and Peptides</a></h3>
-            <p class="paper-summary">This paper introduces BBBP_Atlas, a unified computational framework that predicts blood-brain barrier permeability for both small molecules and peptides using interpretable machine learning, overcoming limitations of previous models that were restricted to small molecules or required predefined descriptors. The authors also standardized fragmented public datasets to reduce data leakage and improve model reliability.</p>
+            <p class="paper-summary">This paper introduces BBBP_Atlas, a unified and interpretable model that predicts blood-brain barrier permeability for both small molecules and peptides, overcoming limitations of existing models that rely on predefined descriptors or small-molecule-only training data. The authors also address data fragmentation and leakage issues by standardizing public BBBP datasets, improving model reliability for CNS drug discovery.</p>
             <div class="paper-tags"><span class="tag">machine-learning</span><span class="tag">drug-discovery</span><span class="tag">tool</span></div>
         </article><article class="paper-item">
             <div class="paper-meta">
                 <span class="journal">bioRxiv (Bioinformatics)</span>
                 <span class="date"></span>
-                <span class="sig sig-high">High</span>
+                <span class="sig sig-medium">Medium</span>
             </div>
             <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.07.737047v1?rss=1" target="_blank" rel="noopener">Mutational bias shapes protein evolution across RNA viruses</a></h3>
-            <p class="paper-summary">This study shows that mutational biases, not just natural selection, play a major role in shaping protein evolution in RNA viruses. Using SARS-CoV-2 as a model, the authors demonstrate that the virus's mutational spectrum predicts over 50% of observed amino acid changes and overall proteome composition shifts during the pandemic.</p>
+            <p class="paper-summary">This study demonstrates that mutational biases, not just natural selection, play a major role in shaping protein evolution in RNA viruses. Using SARS-CoV-2 as a model, the authors show that the virus's mutational spectrum explains over 50% of observed amino acid substitutions and accurately predicts proteome-wide composition changes during the pandemic. This work provides a quantitative framework for disentangling mutation and selection in viral evolution.</p>
             <div class="paper-tags"><span class="tag">evolution</span><span class="tag">genomics</span><span class="tag">methodology</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.06.736674v1?rss=1" target="_blank" rel="noopener">Metabolic Rewiring in Triple-Negative Breast Cancer: Systems Analysis of TCGA-BRCA Transcriptome Reveals Prognostic Hub Genes</a></h3>
-            <p class="paper-summary">This study uses a systems biology approach to analyze metabolic rewiring in triple-negative breast cancer (TNBC), identifying ATP1A2 as a key prognostic marker. By integrating transcriptomic data from TCGA-BRCA, the authors found 764 differentially expressed genes and 89 enriched metabolic pathways, highlighting coordinated metabolic adaptations in TNBC. The findings provide potential targets for prognosis and therapy in this aggressive cancer subtype.</p>
-            <div class="paper-tags"><span class="tag">transcriptomics</span><span class="tag">systems-biology</span><span class="tag">cancer</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-high">High</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.05.736582v1?rss=1" target="_blank" rel="noopener">Learning the spatial cell-cell communication network to decode multi-channel signaling and predict network-hub vulnerabilities with MOSANIC</a></h3>
-            <p class="paper-summary">MOSANIC is a new computational tool that learns spatial cell-cell communication networks from multi-channel imaging data, enabling the identification of signaling hubs, relays, and network vulnerabilities. By modeling the tissue-wide signaling network as a whole, it can predict how communication patterns change when a single cell type is lost, offering insights into rational points of therapeutic intervention.</p>
-            <div class="paper-tags"><span class="tag">spatial-omics</span><span class="tag">network-analysis</span><span class="tag">tool</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.03.736447v1?rss=1" target="_blank" rel="noopener">Assessing tensor decomposition quality of immune profiling data from a dictionary learning perspective</a></h3>
-            <p class="paper-summary">This paper presents new metrics for assessing the quality of tensor decompositions applied to immune profiling data, drawing inspiration from the experimental data model. The authors demonstrate that these metrics can guide the selection of rank and trial for Non-negative CANDECOMP/PARAFAC (NCPD) decomposition, and show how interpreting results through a dictionary learning framework provides additional insights.</p>
-            <div class="paper-tags"><span class="tag">methodology</span><span class="tag">machine-learning</span><span class="tag">immunology</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.05.735302v1?rss=1" target="_blank" rel="noopener">Generative AI Models Reveal Dynamic Views of Aging (DyViA) Phenotypes in Healthy Individuals</a></h3>
-            <p class="paper-summary">This paper introduces DyViA, a generative AI platform that uses diffusion models and GANs to predict personalized aging trajectories for healthy individuals. The platform can forecast how specific phenotypes will progress with age, offering a new tool for studying healthy aging.</p>
-            <div class="paper-tags"><span class="tag">machine-learning</span><span class="tag">deep-learning</span><span class="tag">aging</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.04.736469v1?rss=1" target="_blank" rel="noopener">A five-dimensional functional state space for fingerprinting disease transcriptomes</a></h3>
-            <p class="paper-summary">This paper introduces a five-dimensional functional state space framework that maps disease transcriptomes into coordinated activity patterns across major biological systems, enabling systematic comparison across conditions. The approach transforms fragmented gene lists into interpretable functional scores, facilitating human-AI interpretation and cross-disease analysis.</p>
-            <div class="paper-tags"><span class="tag">transcriptomics</span><span class="tag">methodology</span><span class="tag">systems-biology</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.04.736167v1?rss=1" target="_blank" rel="noopener">Gene-specific exponent-corrected normalization for library size in bulk RNA-seq</a></h3>
-            <p class="paper-summary">This paper identifies that standard library size normalization methods for bulk RNA-seq often fail to fully remove correlation between expression counts and sequencing depth in large datasets. The authors propose a gene-specific exponent-corrected normalization approach that more effectively eliminates this technical artifact, improving the reliability of differential expression analyses.</p>
-            <div class="paper-tags"><span class="tag">transcriptomics</span><span class="tag">methodology</span><span class="tag">tool</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-high">High</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.09.737510v1?rss=1" target="_blank" rel="noopener">IgGM2: An All-Atom Foundation Model for Adaptive Immune Receptor Design</a></h3>
-            <p class="paper-summary">IgGM2 is a new AI model that can simultaneously predict the 3D structure and design the sequence of immune receptors like antibodies and T-cell receptors. Unlike previous methods that handle structure and sequence separately, this unified approach models them together, which could improve the design of therapeutic antibodies.</p>
-            <div class="paper-tags"><span class="tag">deep-learning</span><span class="tag">protein-structure</span><span class="tag">drug-discovery</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.05.736629v1?rss=1" target="_blank" rel="noopener">Gene Program Negotiation Defines Cellular Identity in Single-Cell Transcriptomes</a></h3>
-            <p class="paper-summary">This paper introduces Gene Program Negotiation (GPN), a graph-based computational framework that models how multiple simultaneously active gene programs collectively determine cellular identity in single-cell transcriptomes, rather than analyzing each program independently. By reconstructing cell-specific program interactions, GPN provides deeper insight into regulatory decision-making and cellular heterogeneity.</p>
-            <div class="paper-tags"><span class="tag">single-cell</span><span class="tag">transcriptomics</span><span class="tag">methodology</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.07.736950v1?rss=1" target="_blank" rel="noopener">Rectangle: robust and scalable multiscale deconvolution informed by single-cell RNA sequencing data</a></h3>
-            <p class="paper-summary">Rectangle is a new Python framework for deconvolving bulk RNA-seq data using single-cell references. It improves resolution of closely related cell types, scales to large datasets, and accounts for unknown cellular content not in the reference.</p>
-            <div class="paper-tags"><span class="tag">transcriptomics</span><span class="tag">single-cell</span><span class="tag">tool</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.05.736638v1?rss=1" target="_blank" rel="noopener">Mind the Alignment Gap: A Spatial Transcriptomics Benchmark for Scientific Coding Agents</a></h3>
-            <p class="paper-summary">This paper introduces a framework for automatically building benchmarks to evaluate scientific coding agents, using spatial transcriptomics alignment as a case study. The authors construct 40 tasks from peer-reviewed papers where agents must produce coordinate tables, addressing the challenge of verifying ambiguous outputs in scientific research tasks.</p>
-            <div class="paper-tags"><span class="tag">spatial-omics</span><span class="tag">machine-learning</span><span class="tag">tool</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-high">High</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.07.737048v1?rss=1" target="_blank" rel="noopener">Coding agents author interpretable single-cell embedding models from the literature</a></h3>
-            <p class="paper-summary">This paper introduces a method where coding agents automatically generate interpretable single-cell embedding models by extracting marker-gene programs from the literature, rather than learning dense dimensions de novo from expression data. This approach produces embeddings with named, literature-cited dimensions that require less post-hoc interpretation and batch correction.</p>
-            <div class="paper-tags"><span class="tag">single-cell</span><span class="tag">machine-learning</span><span class="tag">tool</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.06.736651v1?rss=1" target="_blank" rel="noopener">LeafRank: A phylodynamic framework for inferring relative fitness from single-cell phylogenies in chromosomally unstable tumors</a></h3>
-            <p class="paper-summary">LeafRank is a new computational method that uses single-cell DNA sequencing data to estimate the relative fitness of individual cancer cells in tumors with chromosomal instability. By modeling tumor evolution as a branching process, it can infer which cells have growth advantages even in complex scenarios like whole-genome duplication. This provides a way to quantify fitness diversity that was previously difficult to measure.</p>
-            <div class="paper-tags"><span class="tag">cancer</span><span class="tag">single-cell</span><span class="tag">tool</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-high">High</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.08.737313v1?rss=1" target="_blank" rel="noopener">EZSolver: Template-free prediction of polar enzymatic mechanisms via bidirectional flow matching and search</a></h3>
-            <p class="paper-summary">EZSolver is a new computational tool that predicts how enzymes catalyze reactions without relying on pre-defined reaction templates, using a generative AI approach called flow matching. It outperforms existing rule-based methods, especially for novel or unusual chemical reactions, and can help researchers understand enzyme function and design new enzymes.</p>
-            <div class="paper-tags"><span class="tag">machine-learning</span><span class="tag">tool</span><span class="tag">methodology</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.04.736527v1?rss=1" target="_blank" rel="noopener">BertST: BERT-based Spatial Domain Identification in Patient Data</a></h3>
-            <p class="paper-summary">This paper presents BertST, a BERT-based method for identifying spatial domains in spatial transcriptomics data. By leveraging the Transformer architecture, BertST models both local and long-range spatial dependencies to partition tissue into coherent regions, offering an alternative to existing Graph Neural Network approaches.</p>
-            <div class="paper-tags"><span class="tag">spatial-omics</span><span class="tag">transcriptomics</span><span class="tag">machine-learning</span></div>
-        </article><article class="paper-item">
-            <div class="paper-meta">
-                <span class="journal">bioRxiv (Bioinformatics)</span>
-                <span class="date"></span>
-                <span class="sig sig-medium">Medium</span>
-            </div>
-            <h3 class="paper-title"><a href="https://www.biorxiv.org/content/10.64898/2026.07.04.736459v1?rss=1" target="_blank" rel="noopener">Thematic Shifts in Early-High-Impact Cancer Genomics and Diagnostics Research: A Bibliometric and Semantic Analysis</a></h3>
-            <p class="paper-summary">This study uses bibliometric and semantic analysis to identify the most influential recent publications in cancer genomics and diagnostics, revealing thematic shifts in topics that attract early citation prominence. The findings can inform research strategy and clinical translation by highlighting emerging high-impact areas.</p>
-            <div class="paper-tags"><span class="tag">cancer</span><span class="tag">genomics</span><span class="tag">machine-learning</span></div>
         </article>
 </div>
 <footer class="site-footer">

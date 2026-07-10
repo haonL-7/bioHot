@@ -11,50 +11,59 @@ import requests
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ai-news", "data")
 HEADERS = {"User-Agent": "bioHot-Curator/1.0 (mailto:research@example.com)"}
 TIMEOUT = 30
-SEARCH_DAYS = 7
+SEARCH_DAYS = 30  # Bulk seed: 30 days. Daily update will use 3 days.
 
-# Broad bioinformatics queries — one per lightweight channel
+# Simple keyword queries — compatible with both Europe PMC and Semantic Scholar
 CHANNEL_QUERIES = {
     "computational-genomics": [
-        '(genomics OR genome) AND (computational OR bioinformatics OR algorithm) AND (variant OR assembly OR annotation OR GWAS)',
-        '(epigenomics OR epigenetics) AND (methylation OR "histone modification" OR chromatin) AND (computational OR tool OR pipeline)',
+        "computational genomics variant calling",
+        "genome assembly algorithm method",
+        "epigenomics computational tool pipeline",
+        "GWAS genotype phenotype prediction",
     ],
     "metagenomics-informatics": [
-        '(metagenomics OR metagenome) AND (assembly OR binning OR "taxonomic profiling" OR "functional annotation")',
-        '("microbiome-wide association" OR MWAS) AND (method OR tool OR pipeline)',
+        "metagenomics assembly binning tool",
+        "microbiome functional annotation method",
+        "taxonomic profiling metagenome pipeline",
     ],
     "structural-bioinformatics": [
-        '("protein structure" OR AlphaFold OR "molecular dynamics" OR docking) AND (prediction OR simulation)',
-        '("structure-based" OR "rational design") AND (protein OR enzyme OR antibody)',
+        "protein structure prediction AlphaFold",
+        "molecular dynamics simulation docking",
+        "protein design structure-based computational",
     ],
     "systems-biology": [
-        '("gene regulatory network" OR GRN) AND (inference OR reconstruction)',
-        '("flux balance analysis" OR FBA OR "metabolic model") AND (genome-scale OR constraint-based)',
+        "gene regulatory network inference",
+        "metabolic network modeling flux balance",
+        "multi-omics integration systems biology",
     ],
     "ml-biology": [
-        '("machine learning" OR "deep learning" OR "graph neural network") AND (protein OR genome OR sequence) AND (method OR tool)',
-        '("language model" OR LLM) AND (protein OR DNA OR RNA OR biological)',
+        "deep learning protein sequence structure",
+        "language model biological sequence",
+        "graph neural network genomics biology",
     ],
     "single-cell-omics": [
-        '("single-cell" OR "single cell") AND (RNA-seq OR ATAC-seq OR multiome) AND (method OR tool OR algorithm)',
-        '("spatial transcriptomics" OR "spatial genomics") AND (computation OR analysis)',
+        "single-cell RNA-seq computational method",
+        "spatial transcriptomics analysis tool",
+        "single-cell ATAC-seq multiome pipeline",
     ],
     "databases-knowledge-graphs": [
-        '("biological database" OR "knowledge graph" OR ontology) AND (resource OR update OR release)',
-        '("FAIR data" OR "data integration") AND (biology OR life sciences)',
+        "biological database resource release",
+        "knowledge graph biology ontology",
+        "FAIR data integration life sciences",
     ],
     "ai-drug-discovery": [
-        '("drug discovery" OR "virtual screening") AND ("machine learning" OR "deep learning" OR AI)',
-        '("ADMET" OR "drug repurposing") AND (prediction OR computational)',
+        "machine learning drug discovery screening",
+        "deep learning drug design generation",
+        "ADMET prediction computational drug repurposing",
     ],
 }
 
-def fetch_europepmc(query: str, max_results: int = 20) -> list:
-    """Fetch OA papers from Europe PMC."""
+def fetch_europepmc(query: str, max_results: int = 40) -> list:
+    """Fetch OA papers from Europe PMC. Uses simple keyword query."""
     articles = []
     base = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
     params = {
-        "query": f"({query}) AND (OPEN_ACCESS:Y)",
+        "query": f"{query} AND (OPEN_ACCESS:Y)",
         "format": "json", "pageSize": max_results,
         "sort": "FIRST_PUBLICATION_DATE desc",
         "resultType": "core",
@@ -84,7 +93,7 @@ def fetch_europepmc(query: str, max_results: int = 20) -> list:
         print(f"    Europe PMC error: {e}")
     return articles
 
-def fetch_semantic_scholar(query: str, max_results: int = 15) -> list:
+def fetch_semantic_scholar(query: str, max_results: int = 25) -> list:
     """Fetch OA papers from Semantic Scholar API."""
     articles = []
     base = "https://api.semanticscholar.org/graph/v1/paper/search"
@@ -152,13 +161,15 @@ def crawl_channel(channel_key: str) -> list:
         return []
 
     all_articles = []
-    for q in queries[:2]:
-        all_articles.extend(fetch_europepmc(q, 15))
+    for q in queries:  # Use ALL queries, not just first 2
+        all_articles.extend(fetch_europepmc(q, 40))
         time.sleep(0.3)
-        all_articles.extend(fetch_semantic_scholar(q, 10))
+        all_articles.extend(fetch_semantic_scholar(q, 25))
         time.sleep(0.5)
 
-    all_articles.extend(fetch_biorxiv())
+    # Reduced bioRxiv weight — only 5 papers as supplementary
+    biorxiv_papers = fetch_biorxiv()[:5]
+    all_articles.extend(biorxiv_papers)
 
     # Deduplicate
     seen = set()
