@@ -54,16 +54,16 @@
         var papers = state.papers;
         document.getElementById('statTotal').textContent = papers.length || '--';
 
-        var l4 = 0, l3plus = 0;
+        var l4 = 0, l35plus = 0;
         var allNodes = {};
         papers.forEach(function (p) {
             var lv = p.evidenceLevel || '';
             if (lv === 'L4') l4++;
-            if (lv === 'L4' || lv === 'L3') l3plus++;
+            if (lv === 'L4' || lv === 'L3.5' || lv === 'L3') l35plus++;
             (p.nodes || []).forEach(function (n) { allNodes[n] = true; });
         });
         document.getElementById('statL4').textContent = l4 || '--';
-        document.getElementById('statL3').textContent = l3plus || '--';
+        document.getElementById('statL3').textContent = l35plus || '--';
         document.getElementById('statNodes').textContent = Object.keys(allNodes).length || '--';
     }
 
@@ -221,7 +221,7 @@
         }
 
         // Sort
-        var levelOrder = { L4: 5, L3: 4, L2b: 3, L2a: 2, L1: 1 };
+        var levelOrder = { L4: 9, 'L3.5': 8, L3: 7, L2b: 6, L2a: 5, L1b: 4, L1a: 3, L1: 2, L0: 1 };
         if (state.sortBy === 'date') {
             items.sort(function (a, b) { return (b.pubDate || '').localeCompare(a.pubDate || ''); });
         } else if (state.sortBy === 'score') {
@@ -389,15 +389,53 @@
                 });
             }
 
-            // Matrix bars
+            // Matrix bars — use new unified field names with correct scales
             var matrixItems = card.querySelectorAll('.matrix-item');
-            var dims = [paper.effectiveness || 0, paper.safety || 0, paper.coupling || 0, paper.measurementDepth || 0];
+            // Resolve values: new field names take precedence, fall back to old names
+            var fwd = paper.forwardPathway !== undefined ? paper.forwardPathway : (paper.effectiveness || 0);
+            var rev = paper.reversePathway !== undefined ? paper.reversePathway : (paper.safety || 0);
+            var coup = paper.couplingDepth !== undefined ? paper.couplingDepth : (paper.coupling || 0);
+            var depth = paper.measurementDepth || 0;
+            var scales = [4, 4, 4, 2];  // Forward, Reverse, Coupling: /4; Depth: /2
+            var dims = [fwd, rev, coup, depth];
             for (var i = 0; i < matrixItems.length; i++) {
                 var val = dims[i] || 0;
+                var scale = scales[i] || 4;
+                var suffix = (i === 3) ? '/2' : '/4';
                 var fillEl = matrixItems[i].querySelector('.matrix-fill');
                 var valEl = matrixItems[i].querySelector('.matrix-val');
-                if (fillEl) fillEl.style.width = (val / 5 * 100) + '%';
-                if (valEl) valEl.textContent = val + '/5';
+                if (fillEl) fillEl.style.width = Math.min(val / Math.max(scale, 1) * 100, 100) + '%';
+                if (valEl) valEl.textContent = val + suffix;
+            }
+
+            // Compartment tags (new)
+            var comps = paper.compartmentsCovered || [];
+            if (comps.length > 0) {
+                var nodesContainer = card.querySelector('.paper-nodes');
+                if (nodesContainer) {
+                    var compIcons = { luminal: 'Lumen', epithelial: 'Epi', microenvironment: 'MicroEnv' };
+                    var compDiv = document.createElement('div');
+                    compDiv.className = 'paper-compartments';
+                    comps.forEach(function (c) {
+                        var tag = document.createElement('span');
+                        tag.className = 'compartment-tag comp-' + c;
+                        tag.textContent = compIcons[c] || c;
+                        compDiv.appendChild(tag);
+                    });
+                    nodesContainer.parentNode.insertBefore(compDiv, nodesContainer.nextSibling);
+                }
+            }
+
+            // Framework alignment tag (new)
+            var fwAlign = paper.frameworkAlignment || '';
+            if (fwAlign && fwAlign !== 'Pending AI assessment' && fwAlign !== 'Pending') {
+                var sumEl = card.querySelector('.paper-summary');
+                if (sumEl) {
+                    var fwDiv = document.createElement('div');
+                    fwDiv.className = 'paper-framework';
+                    fwDiv.textContent = 'Framework: ' + fwAlign;
+                    sumEl.parentNode.insertBefore(fwDiv, sumEl.nextSibling);
+                }
             }
 
             // Summary
@@ -758,20 +796,24 @@
         if (paper.murineEvidenceLevel) evParts.push('Murine: ' + paper.murineEvidenceLevel);
         var evLine = evParts.length > 0 ? evParts.join(' | ') : (paper.modelSystem || '');
 
-        // 4-D Matrix
+        // 4-D Matrix — unified framework with correct scales
+        var fwd = paper.forwardPathway !== undefined ? paper.forwardPathway : (paper.effectiveness || 0);
+        var rev = paper.reversePathway !== undefined ? paper.reversePathway : (paper.safety || 0);
+        var coup = paper.couplingDepth !== undefined ? paper.couplingDepth : (paper.coupling || 0);
+        var depth = paper.measurementDepth || 0;
         var dims = [
-            {id: 'effectiveness', label: 'Forward (Microbe→Host)', val: paper.effectiveness || 0},
-            {id: 'safety', label: 'Reverse (Host→Microbiome)', val: paper.safety || 0},
-            {id: 'coupling', label: 'Bidirectional Coupling', val: paper.coupling || 0},
-            {id: 'depth', label: 'Measurement Depth', val: paper.measurementDepth || 0}
+            {id: 'forwardPathway', label: 'Forward (Microbe→Host)', val: fwd, scale: 4, suffix: '/4'},
+            {id: 'reversePathway', label: 'Reverse (Host→Microbiome)', val: rev, scale: 4, suffix: '/4'},
+            {id: 'couplingDepth', label: 'Bidirectional Coupling', val: coup, scale: 4, suffix: '/4'},
+            {id: 'measurementDepth', label: 'Measurement Depth', val: depth, scale: 2, suffix: '/2'}
         ];
         var matrixHtml = '';
         dims.forEach(function (d) {
-            var pct = d.val / 5 * 100;
+            var pct = Math.min(d.val / Math.max(d.scale, 1) * 100, 100);
             matrixHtml += '<div class="matrix-item" data-dim="' + d.id + '">' +
                 '<span class="matrix-label">' + d.label + '</span>' +
                 '<span class="matrix-bar"><span class="matrix-fill" style="width:' + pct + '%"></span></span>' +
-                '<span class="matrix-val">' + d.val + '/5</span></div>';
+                '<span class="matrix-val">' + d.val + d.suffix + '</span></div>';
         });
 
         // Forward/Reverse justifications

@@ -424,6 +424,9 @@
     <div class="header">
         <h1>{{ t('title') }}</h1>
         <p class="subtitle">{{ t('subtitle') }}</p>
+        <p style="font-size:12px;color:#a0aec0;margin-top:6px;line-height:1.6;">
+            {{ t('frameworkRef') }}
+        </p>
     </div>
 
     <!-- 搜索栏 -->
@@ -599,7 +602,7 @@ const { createApp, ref, computed, nextTick, onMounted } = Vue;
 const app = createApp({
     setup() {
         /* ==================== 国际化词典 ==================== */
-        var L = {zh:{title:"益生菌/代谢物证据评估系统",subtitle:"本地知识库 + 预计算 AI 分析 | 猪肠道微生物组与表观遗传学",placeholder:"菌株名或代谢物名",searchBtn:"搜索",searching:"搜索中...",kbSearching:"正在查询知识库...",aiAnalyzing:"AI 综合分析中...",aiTimeHint:"知识库未收录，正在查找预计算分析结果...",kbNotFoundInAI:"本地知识库未收录，预计算分析中也未找到匹配项。请尝试其他关键词。",aiResults:"AI 分析结果",sourceAI:"预计算 AI 分析",sourceKB:"本地知识库",evidenceLevel:"证据等级评估",matrixScore:"四维评分",experimentAdvice:"实验验证建议",summaryZH:"中文摘要",summaryEN:"English Summary",references:"关键参考文献",confidence:"可信度",type:"类型",probiotics:"益生菌",metabolites:"代谢物",unknown:"未知",researchPriority:"研究优先级",entry:"条目",kbMatched:"本地知识库已收录此条目。",kbNotFound:"本地知识库未收录此条目。",emptyPlaceholder:"输入菌株名或代谢物名开始评估",emptyStats:"已收录 {p} 条益生菌条目 + {m} 条代谢物条目",effectiveness:"有效性",safety:"安全性",coupling:"耦合验证",measurement:"测量深度",forward:"Forward",reverse:"Reverse",coupling_en:"Coupling",measurement_en:"Measurement",needQuery:"请输入菌株名或代谢物名",tierError:"证据等级查询失败",matrixError:"四维评分查询失败",adviceError:"实验建议查询失败",aiError:"AI 分析请求失败",tierBadge:"证据等级",scoreOutOf:"/ 5",strongEvidence:"强证据",moderateEvidence:"中度证据",doiLookup:"DOI 查询",doiPlaceholder:"输入 DOI 查询论文摘要",doiSearching:"查询中...",doiError:"DOI 查询失败"},en:{title:"Probiotic/Metabolite Evidence Assessment",subtitle:"Local KB + Precomputed AI | Porcine Gut Microbiome & Epigenetics",placeholder:"Strain or metabolite name",searchBtn:"Search",searching:"Searching...",kbSearching:"Querying knowledge base...",aiAnalyzing:"AI analysis in progress...",aiTimeHint:"Not in KB. Searching precomputed analyses...",kbNotFoundInAI:"Not found in KB or precomputed analyses. Try another keyword.",aiResults:"AI Analysis",sourceAI:"Precomputed AI",sourceKB:"Local KB",evidenceLevel:"Evidence Level",matrixScore:"Four-Dimensional Score",experimentAdvice:"Experiment Recommendations",summaryZH:"Chinese Summary",summaryEN:"English Summary",references:"Key References",confidence:"Confidence",type:"Type",probiotics:"Probiotics",metabolites:"Metabolites",unknown:"Unknown",researchPriority:"Research Priority",entry:"Entry",kbMatched:"This entry exists in the local knowledge base.",kbNotFound:"Not found in local KB.",emptyPlaceholder:"Enter a strain or metabolite name",emptyStats:"{p} probiotics + {m} metabolites",effectiveness:"Effectiveness",safety:"Safety",coupling:"Coupling",measurement:"Depth",forward:"Forward",reverse:"Reverse",coupling_en:"Coupling",measurement_en:"Measurement",needQuery:"Please enter a strain or metabolite name",tierError:"Evidence query failed",matrixError:"Matrix query failed",adviceError:"Advice query failed",aiError:"AI analysis failed",tierBadge:"Evidence Level",scoreOutOf:"/ 5",strongEvidence:"Strong Evidence",moderateEvidence:"Moderate Evidence",doiLookup:"DOI Lookup",doiPlaceholder:"Enter DOI",doiSearching:"Looking up...",doiError:"DOI lookup failed"}};
+        var L = {zh:{title:"益生菌/代谢物证据评估系统",subtitle:"本地知识库 + 预计算 AI 分析 | 猪肠道微生物组与表观遗传学",frameworkRef:"评估框架：Liu & Feng (2025-2026) 区室化共代谢网络模型 + 六级证据评估体系。榆林学院。",placeholder:"菌株名或代谢物名",searchBtn:"搜索",searching:"搜索中...",kbSearching:"正在查询知识库...",aiAnalyzing:"AI 综合分析中...",aiTimeHint:"知识库未收录，正在查找预计算分析结果...",kbNotFoundInAI:"本地知识库未收录，预计算分析中也未找到匹配项。请尝试其他关键词。",aiResults:"AI 分析结果",sourceAI:"预计算 AI 分析",sourceKB:"本地知识库",evidenceLevel:"证据等级评估",matrixScore:"四维评分",experimentAdvice:"实验验证建议",summaryZH:"中文摘要",summaryEN:"English Summary",references:"关键参考文献",confidence:"可信度",type:"类型",probiotics:"益生菌",metabolites:"代谢物",unknown:"未知",researchPriority:"研究优先级",entry:"条目",kbMatched:"本地知识库已收录此条目。",kbNotFound:"本地知识库未收录此条目。",emptyPlaceholder:"输入菌株名或代谢物名开始评估",emptyStats:"已收录 {p} 条益生菌条目 + {m} 条代谢物条目",effectiveness:"正向通路",safety:"反向通路",coupling:"耦合验证",measurement:"测量深度",forward:"Forward",reverse:"Reverse",coupling_en:"Coupling",measurement_en:"Measurement",needQuery:"请输入菌株名或代谢物名",tierError:"证据等级查询失败",matrixError:"四维评分查询失败",adviceError:"实验建议查询失败",aiError:"AI 分析请求失败",tierBadge:"证据等级",scoreOutOf:"",strongEvidence:"强证据",moderateEvidence:"中度证据",doiLookup:"DOI 查询",doiPlaceholder:"输入 DOI 查询论文摘要",doiSearching:"查询中...",doiError:"DOI 查询失败"},en:{title:"Probiotic/Metabolite Evidence Assessment",subtitle:"Local KB + Precomputed AI | Porcine Gut Microbiome & Epigenetics",frameworkRef:"Framework: Liu & Feng (2025-2026) Compartmentalized Co-metabolism Network + Six-Tier Evidence System. Yulin University.",placeholder:"Strain or metabolite name",searchBtn:"Search",searching:"Searching...",kbSearching:"Querying knowledge base...",aiAnalyzing:"AI analysis in progress...",aiTimeHint:"Not in KB. Searching precomputed analyses...",kbNotFoundInAI:"Not found in KB or precomputed analyses. Try another keyword.",aiResults:"AI Analysis",sourceAI:"Precomputed AI",sourceKB:"Local KB",evidenceLevel:"Evidence Level",matrixScore:"Four-Dimensional Score",experimentAdvice:"Experiment Recommendations",summaryZH:"Chinese Summary",summaryEN:"English Summary",references:"Key References",confidence:"Confidence",type:"Type",probiotics:"Probiotics",metabolites:"Metabolites",unknown:"Unknown",researchPriority:"Research Priority",entry:"Entry",kbMatched:"This entry exists in the local knowledge base.",kbNotFound:"Not found in local KB.",emptyPlaceholder:"Enter a strain or metabolite name",emptyStats:"{p} probiotics + {m} metabolites",effectiveness:"Forward",safety:"Reverse",coupling:"Coupling",measurement:"Depth",forward:"Forward",reverse:"Reverse",coupling_en:"Coupling",measurement_en:"Measurement",needQuery:"Please enter a strain or metabolite name",tierError:"Evidence query failed",matrixError:"Matrix query failed",adviceError:"Advice query failed",aiError:"AI analysis failed",tierBadge:"Evidence Level",scoreOutOf:"",strongEvidence:"Strong Evidence",moderateEvidence:"Moderate Evidence",doiLookup:"DOI Lookup",doiPlaceholder:"Enter DOI",doiSearching:"Looking up...",doiError:"DOI lookup failed"}};
         var t = function(k) { return L[lang.value]?.[k] || L['zh'][k] || k; };
         var setLang = function(l) { lang.value = l; localStorage.setItem('evidence_lang', l); };
 
@@ -718,7 +721,7 @@ const app = createApp({
             return bestScore >= 2 ? best : null;
         };
 
-        /* ==================== 实验建议（拷贝 api.py 逻辑） ==================== */
+        /* ==================== 实验建议（对齐两篇手稿框架） ==================== */
         const getAdvice = (evidenceLevel) => {
             const common = [
                 "体外发酵实验：使用模拟结肠发酵系统，检测目标代谢物产量变化",
@@ -727,29 +730,50 @@ const app = createApp({
                 "Caco-2 / IPEC-J2 细胞模型：评估代谢物对肠上皮屏障功能的影响",
                 "动物模型验证：使用无菌小鼠定植菌株，检测肠道屏障指标"
             ];
-            if (evidenceLevel?.includes('Level 4')) {
+            if (evidenceLevel?.includes('Level 4') || evidenceLevel === 'L4') {
                 return [
-                    "该条目已达到 Level 4（确立证据），可作为猪用益生菌开发的候选菌株",
+                    "该条目已达到 L4（确立证据），可作为猪用益生菌开发的候选菌株",
                     "建议开展大规模田间试验验证其在不同猪群中的效果一致性",
                     "可考虑商业化开发：菌剂制备工艺优化、稳定性评估、剂量标准化"
                 ].concat(common);
-            } else if (evidenceLevel?.includes('Level 3') || evidenceLevel?.includes('Level 2b')) {
+            } else if (evidenceLevel?.includes('Level 3.5') || evidenceLevel === 'L3.5') {
+                return [
+                    "该条目已达到 L3.5（过渡验证），人源菌株已在猪模型中验证",
+                    "下一步最高优先级：分离猪源菌株 + 断奶仔猪单菌定植（推进到 L4）",
+                    "对比人源菌株与猪源菌株在猪肠道中的代谢效能差异",
+                    "补充跨隔室 + 多时间点采样设计"
+                ].concat(common);
+            } else if (evidenceLevel?.includes('Level 3') || evidenceLevel?.includes('Level 2b') || evidenceLevel === 'L3' || evidenceLevel === 'L2b') {
                 return [
                     "当前证据较强，但核心缺口是猪模型中的菌株特异性因果验证",
-                    "最高优先级：分离猪源菌株 + 断奶仔猪单菌定植实验（填补 Level 4 空白）",
-                    "补充猪肠道多隔室代谢物浓度同步测量",
-                    "验证核心代谢基因在猪源菌株中的保守性"
+                    "最高优先级：分离猪源菌株 + 断奶仔猪单菌定植实验（填补 L4 空白）",
+                    "或先进行 L3.5 过渡实验：人源菌株在猪模型中单菌定植",
+                    "补充猪肠道多隔室代谢物浓度同步测量（提升测量深度至 Level 1-2）"
                 ].concat(common);
-            } else if (evidenceLevel?.includes('Level 2') || evidenceLevel?.includes('Level 2a')) {
+            } else if (evidenceLevel?.includes('Level 2') || evidenceLevel?.includes('Level 2a') || evidenceLevel === 'L2a') {
                 return [
-                    "当前为中度证据，猪模型中已有间接验证但缺乏菌株特异性因果证据",
+                    "当前为中度证据（L2a），猪模型中已有间接验证但缺乏菌株特异性因果证据",
                     "建议开展猪模型直接因果验证：单一代谢物干预 + 表观遗传标记测量",
-                    "设计跨隔室采样方案",
+                    "设计跨隔室采样方案（肠腔+上皮+微环境）",
                     "考虑从菌株功能验证升级为合成微生态体系验证"
+                ].concat(common);
+            } else if (evidenceLevel?.includes('L1b') || evidenceLevel === 'L1b') {
+                return [
+                    "当前为关联推断（L1b），仅基于宏基因组统计关联",
+                    "优先开展体外纯培养代谢实验验证生化通路活性",
+                    "结合靶向代谢组学确认目标代谢物由该菌株/通路产生",
+                    "猪模型基线数据建立，为后续因果验证奠定基础"
+                ].concat(common);
+            } else if (evidenceLevel?.includes('L1a') || evidenceLevel === 'L1a') {
+                return [
+                    "当前为体外机制证据（L1a），尚未在任何动物模型中验证",
+                    "优先确认体外发现能否在猪肠道类器官/IPEC-J2细胞中复现",
+                    "使用同位素示踪法确认代谢物由目标菌株/通路产生",
+                    "考虑升级到猪模型中的关联分析（→L1b）"
                 ].concat(common);
             } else {
                 return [
-                    "当前证据较弱，仅有关联推断或跨物种外推",
+                    "当前证据较弱（L0或未分级），仅有关联推断或跨物种外推",
                     "优先从体外实验开始：代谢通路酶活验证、底物转化效率测定",
                     "猪模型基线数据建立",
                     "使用同位素示踪法确认代谢物由目标菌株/通路产生"
@@ -799,16 +823,37 @@ const app = createApp({
 
         /* ==================== 计算属性 ==================== */
         const scores = computed(() => {
+            // Support both new unified field names and old precomputed_ai.json scores
             const s = aiData.value?.scores || {};
-            return { eff: s.effectiveness ?? 0, saf: s.safety ?? 0, acc: s.accessibility ?? 0, evi: s.evidence_strength ?? 0 };
+            const fwd = aiData.value?.forward_pathway ?? s.effectiveness ?? 0;
+            const rev = aiData.value?.reverse_pathway ?? s.safety ?? 0;
+            const coup = aiData.value?.coupling_depth ?? s.accessibility ?? 0;
+            const depth = aiData.value?.measurement_depth ?? s.evidence_strength ?? 0;
+            return { eff: fwd, saf: rev, acc: coup, evi: depth };
         });
         const aiTierClass = computed(() => {
             const t = aiData.value?.evidence_level || '';
-            return (t.includes('Level 4')||t.includes('Level 3')) ? 'badge-green' : (t.includes('Level 2b') ? 'badge-blue' : (t.includes('Level 2')||t.includes('Level 2a') ? 'badge-orange' : 'badge-gray'));
+            if (t.includes('Level 4') || t === 'L4') return 'badge-green';
+            if (t.includes('Level 3.5') || t === 'L3.5') return 'badge-purple';
+            if (t.includes('Level 3') || t === 'L3') return 'badge-green';
+            if (t.includes('Level 2b') || t === 'L2b') return 'badge-blue';
+            if (t.includes('Level 2a') || t.includes('Level 2') || t === 'L2a') return 'badge-orange';
+            if (t.includes('Level 1b') || t === 'L1b') return 'badge-orange';
+            if (t.includes('Level 1a') || t === 'L1a' || t === 'L1') return 'badge-gray';
+            if (t.includes('Level 0') || t === 'L0') return 'badge-gray';
+            return 'badge-gray';
         });
         const tierBadgeClass = computed(() => {
             const t = tierData.value?.tier || '';
-            return (t==='L1'||t.includes('Level 4')||t.includes('Level 3')) ? 'badge-green' : (t==='L2'||t.includes('Level 2b') ? 'badge-blue' : (t.includes('Level 2')||t.includes('Level 2a') ? 'badge-orange' : 'badge-gray'));
+            if (t === 'L4' || t.includes('Level 4')) return 'badge-green';
+            if (t === 'L3.5' || t.includes('Level 3.5')) return 'badge-purple';
+            if (t === 'L3' || t.includes('Level 3')) return 'badge-green';
+            if (t === 'L2b' || t.includes('Level 2b')) return 'badge-blue';
+            if (t === 'L2a' || t.includes('Level 2a')) return 'badge-orange';
+            if (t === 'L1b' || t.includes('Level 1b')) return 'badge-orange';
+            if (t === 'L1a' || t === 'L1' || t.includes('Level 1')) return 'badge-gray';
+            if (t === 'L0' || t.includes('Level 0')) return 'badge-gray';
+            return 'badge-gray';
         });
 
         /* ==================== 统一搜索（纯客户端，KB 优先 → 预计算 AI 回退） ==================== */
@@ -905,9 +950,9 @@ const app = createApp({
             if (bubbleChart) bubbleChart.dispose();
             bubbleChart = echarts.init(dom);
 
-            const tierSizeMap = { 'L1': 100, 'L2': 70, 'L3': 45, 'L4': 25 };
-            const tier = tierData.value.tier || 'L4';
-            const bubbleSize = tierSizeMap[tier] || 25;
+            const tierSizeMap = { 'L0': 120, 'L1': 100, 'L1a': 95, 'L1b': 90, 'L2': 70, 'L2a': 65, 'L2b': 55, 'L3': 40, 'L3.5': 30, 'L4': 20 };
+            const tier = tierData.value.tier || 'L1a';
+            const bubbleSize = tierSizeMap[tier] || 50;
 
             const option = {
                 title: {
@@ -951,23 +996,32 @@ const app = createApp({
             barChart = echarts.init(dom);
 
             const m = matrixData.value.matrix || {};
-            const dims = ['正向', '反向', '耦合', '测量深度'];
-            const vals = [m['正向'] || 0, m['反向'] || 0, m['耦合'] || 0, m['测量深度'] || 0];
-            const colors = vals.map(v => v >= 0.7 ? '#38a169' : v >= 0.4 ? '#3182ce' : '#a0aec0');
+            // Support both old (/5) and new (/4 + /2) score formats
+            const rawVals = [m['正向'] || 0, m['反向'] || 0, m['耦合'] || 0, m['测量深度'] || 0];
+            // Normalize: forward/reverse/coupling to /4, depth to /2 (if raw values suggest new format)
+            const dims = ['正向通路\n(Forward)', '反向通路\n(Reverse)', '耦合验证\n(Coupling)', '测量深度\n(Depth)'];
+            const vals = [...rawVals];
+            const suffixes = rawVals[3] <= 2 ? ['/4', '/4', '/4', '/2'] : ['/5', '/5', '/5', '/5'];
+            const maxVals = rawVals[3] <= 2 ? [4, 4, 4, 2] : [5, 5, 5, 5];
+            const normalizedVals = vals.map((v, i) => v / Math.max(maxVals[i], 1));
+            const colors = normalizedVals.map(v => v >= 0.7 ? '#38a169' : v >= 0.4 ? '#3182ce' : '#a0aec0');
 
             const option = {
                 title: { text: '四维评分', subtext: `条目：${matrixData.value.strain || '未知'}`, left: 'center', textStyle: { fontSize: 14 } },
-                xAxis: { type: 'category', data: dims, axisLabel: { fontSize: 13 } },
-                yAxis: { type: 'value', min: 0, max: 1, name: '评分 (0-1)', axisLabel: { formatter: '{value}' } },
+                xAxis: { type: 'category', data: dims, axisLabel: { fontSize: 11 } },
+                yAxis: { type: 'value', min: 0, max: 1, name: '评分 (归一化)', axisLabel: { formatter: '{value}' } },
                 series: [{
                     type: 'bar',
-                    data: vals.map((v, i) => ({ value: v, itemStyle: { color: colors[i], borderRadius: [6, 6, 0, 0] } })),
+                    data: normalizedVals.map((v, i) => ({
+                        value: v,
+                        itemStyle: { color: colors[i], borderRadius: [6, 6, 0, 0] }
+                    })),
                     barWidth: '50%',
-                    label: { show: true, position: 'top', formatter: '{c}', fontWeight: 'bold' },
+                    label: { show: true, position: 'top', formatter: (p) => vals[p.dataIndex] + suffixes[p.dataIndex], fontWeight: 'bold' },
                     emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0,0,0,0.15)' } }
                 }],
                 grid: { left: 45, right: 30, top: 80, bottom: 40 },
-                tooltip: { formatter: (p) => `${p.name}：${p.value}（满分 1.0）` }
+                tooltip: { formatter: (p) => `${p.name.replace('\n', ' ')}：${vals[p.dataIndex]}${suffixes[p.dataIndex]}` }
             };
 
             barChart.setOption(option);
@@ -982,36 +1036,52 @@ const app = createApp({
             if (aiBarChart) aiBarChart.dispose();
             aiBarChart = echarts.init(dom);
 
+            // Support both old (scores 0-5) and new (forward/reverse/coupling 0-4, depth 0-2) formats
             const s = aiData.value.scores || {};
-            const dims = ['有效性\n(Forward)', '安全性\n(Reverse)', '耦合验证\n(Coupling)', '测量深度\n(Measurement)'];
-            const vals = [s.effectiveness || 0, s.safety || 0, s.accessibility || 0, s.evidence_strength || 0];
-            const colors = vals.map(v => v >= 4 ? '#38a169' : v >= 2 ? '#3182ce' : v >= 1 ? '#d69e2e' : '#a0aec0');
+            const fwdVal = aiData.value.forward_pathway ?? s.effectiveness ?? 0;
+            const revVal = aiData.value.reverse_pathway ?? s.safety ?? 0;
+            const coupVal = aiData.value.coupling_depth ?? s.accessibility ?? 0;
+            const depthRaw = aiData.value.measurement_depth ?? s.evidence_strength ?? 0;
+
+            // Determine if using new format (depth <=2, others <=4) or old (all <=5)
+            const isNewFormat = aiData.value.forward_pathway !== undefined || aiData.value.compartments_covered !== undefined;
+
+            const dims = ['正向通路\n(Forward)', '反向通路\n(Reverse)', '耦合验证\n(Coupling)', '测量深度\n(Depth)'];
+            const vals = [fwdVal, revVal, coupVal, depthRaw];
+            const maxVals = isNewFormat ? [4, 4, 4, 2] : [5, 5, 5, 5];
+            const suffixes = isNewFormat ? ['/4', '/4', '/4', '/2'] : ['/5', '/5', '/5', '/5'];
+
+            const colors = vals.map((v, i) => {
+                const pct = v / Math.max(maxVals[i], 1);
+                return pct >= 0.8 ? '#38a169' : pct >= 0.4 ? '#3182ce' : pct >= 0.2 ? '#d69e2e' : '#a0aec0';
+            });
+
+            const yAxisMax = isNewFormat ? 4 : 5;
+            const markLines = isNewFormat
+                ? [{ yAxis: 3, label: { formatter: '强证据' }, lineStyle: { color: '#38a169', type: 'dashed' } },
+                   { yAxis: 1, label: { formatter: '中度证据' }, lineStyle: { color: '#d69e2e', type: 'dashed' } }]
+                : [{ yAxis: 4, label: { formatter: '强证据' }, lineStyle: { color: '#38a169', type: 'dashed' } },
+                   { yAxis: 2, label: { formatter: '中度证据' }, lineStyle: { color: '#d69e2e', type: 'dashed' } }];
 
             const option = {
                 title: {
                     text: '四维矩阵评分（AI 评估）',
-                    subtext: '满分 5 分 | 基于 DeepSeek 综合分析',
+                    subtext: `满分 ${isNewFormat ? 'Forward/Reverse/Coupling: 4分, Depth: 2分' : '5 分'} | 基于 DeepSeek 综合分析`,
                     left: 'center',
                     textStyle: { fontSize: 14 }
                 },
                 xAxis: { type: 'category', data: dims, axisLabel: { fontSize: 11 } },
-                yAxis: { type: 'value', min: 0, max: 5, name: '评分 (0-5)', axisLabel: { formatter: '{value}' } },
+                yAxis: { type: 'value', min: 0, max: yAxisMax, name: `评分 (0-${yAxisMax})`, axisLabel: { formatter: '{value}' } },
                 series: [{
                     type: 'bar',
                     data: vals.map((v, i) => ({ value: v, itemStyle: { color: colors[i], borderRadius: [6, 6, 0, 0] } })),
                     barWidth: '45%',
-                    label: { show: true, position: 'top', formatter: '{c}/5', fontWeight: 'bold', fontSize: 14 },
+                    label: { show: true, position: 'top', formatter: (p) => p.value + suffixes[p.dataIndex], fontWeight: 'bold', fontSize: 14 },
                     emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(108,92,231,0.3)' } },
-                    markLine: {
-                        silent: true,
-                        data: [
-                            { yAxis: 4, label: { formatter: '强证据' }, lineStyle: { color: '#38a169', type: 'dashed' } },
-                            { yAxis: 2, label: { formatter: '中度证据' }, lineStyle: { color: '#d69e2e', type: 'dashed' } }
-                        ]
-                    }
+                    markLine: { silent: true, data: markLines }
                 }],
                 grid: { left: 50, right: 30, top: 80, bottom: 40 },
-                tooltip: { formatter: (p) => `${p.name.replace('\n', ' ')}：${p.value} / 5` }
+                tooltip: { formatter: (p) => `${p.name.replace('\n', ' ')}：${p.value}${suffixes[p.dataIndex]}` }
             };
 
             aiBarChart.setOption(option);

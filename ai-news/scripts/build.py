@@ -74,17 +74,24 @@ def build_news_data(scored_articles: list[dict]) -> list[dict]:
     """
     Flatten nested evaluation structure -> frontend-friendly flat fields
     Exclude papers marked should_include=false by the evaluator
+    Supports BOTH old field names (effectiveness/safety/coupling/measurement_depth 0-5)
+    and new unified field names (forward_pathway/reverse_pathway/coupling_depth/measurement_depth with 0-4/0-2).
     """
     papers = []
     for art in scored_articles:
         ev = art.get("evaluation", art.get("scores", {}))
-        # Skip papers the evaluator explicitly rejected
         if ev.get("should_include") is False:
             continue
-        # Skip papers without any node assignment
         nodes = ev.get("nodes", art.get("nodes", []))
         if not nodes or nodes == ["Unclassified"]:
             continue
+
+        # Resolve field names: new unified names take precedence, fall back to old names
+        fwd = ev.get("forward_pathway", ev.get("effectiveness", 0))
+        rev = ev.get("reverse_pathway", ev.get("safety", 0))
+        coup = ev.get("coupling_depth", ev.get("coupling", 0))
+        depth = ev.get("measurement_depth", 0)  # new: 0-2; old: 0-5
+
         papers.append({
             "id": art.get("id", ""),
             "title": art.get("title", ""),
@@ -97,18 +104,28 @@ def build_news_data(scored_articles: list[dict]) -> list[dict]:
             "pubDate": art.get("pub_date", ""),
             "links": art.get("links", []),
             "source": art.get("source", ""),
-            # Evidence framework — bidirectional
-            "evidenceLevel": ev.get("evidence_level", "L1"),
+            # Evidence framework — unified names
+            "evidenceLevel": ev.get("evidence_level", "L1a"),
             "evidenceJustification": ev.get("evidence_justification", ""),
-            "effectiveness": ev.get("effectiveness", 0),
-            "safety": ev.get("safety", 0),
-            "coupling": ev.get("coupling", 0),
-            "measurementDepth": ev.get("measurement_depth", 0),
+            "forwardPathway": fwd,
+            "reversePathway": rev,
+            "couplingDepth": coup,
+            "measurementDepth": depth,
             "totalScore": ev.get("total_score", 0),
-            "forwardScore": ev.get("forward_score", ev.get("effectiveness", 0)),
-            "reverseScore": ev.get("reverse_score", ev.get("safety", 0)),
+            # Legacy compatibility aliases
+            "effectiveness": fwd,
+            "safety": rev,
+            "coupling": coup,
+            # Justifications
             "forwardJustification": ev.get("forward_justification", ""),
             "reverseJustification": ev.get("reverse_justification", ""),
+            # Compartment tracking (new)
+            "compartmentsCovered": ev.get("compartments_covered", []),
+            # Framework alignment (new)
+            "frameworkAlignment": ev.get("framework_alignment", ""),
+            # Priority (new, from evaluator)
+            "researchPriority": ev.get("research_priority", "N/A"),
+            # Other
             "journalQuality": ev.get("journal_quality", "unknown"),
             "modelSystem": ev.get("model_system", ""),
             "porcineRelevant": ev.get("porcine_relevant", False),
@@ -119,7 +136,7 @@ def build_news_data(scored_articles: list[dict]) -> list[dict]:
             "evalModel": ev.get("eval_model", ""),
         })
 
-    level_order = {"L4": 5, "L3": 4, "L2b": 3, "L2a": 2, "L1": 1}
+    level_order = {"L4": 9, "L3.5": 8, "L3": 7, "L2b": 6, "L2a": 5, "L1b": 4, "L1a": 3, "L1": 2, "L0": 1}
     papers.sort(key=lambda p: (
         -level_order.get(p["evidenceLevel"], 1),
         -p["totalScore"],
@@ -128,37 +145,38 @@ def build_news_data(scored_articles: list[dict]) -> list[dict]:
 
 
 def build_stats(papers: list[dict], eval_stats: dict) -> dict:
-    """Generate stats from paper list"""
+    """Generate stats from paper list, using unified field names"""
     now = datetime.now()
     node_counter = {}
     journal_counter = {}
     level_counter = {}
-    total_eff = total_saf = total_cou = total_dep = 0
-    total_fwd = total_rev = 0
+    total_fwd = total_rev = total_coup = total_dep = 0
 
     for p in papers:
         for node in p.get("nodes", []):
             node_counter[node] = node_counter.get(node, 0) + 1
         jn = p.get("journal", "Unknown")
         journal_counter[jn] = journal_counter.get(jn, 0) + 1
-        lv = p.get("evidenceLevel", "L1")
+        lv = p.get("evidenceLevel", "L1a")
         level_counter[lv] = level_counter.get(lv, 0) + 1
-        total_eff += p.get("effectiveness", 0)
-        total_saf += p.get("safety", 0)
-        total_cou += p.get("coupling", 0)
+        total_fwd += p.get("forwardPathway", p.get("effectiveness", 0))
+        total_rev += p.get("reversePathway", p.get("safety", 0))
+        total_coup += p.get("couplingDepth", p.get("coupling", 0))
         total_dep += p.get("measurementDepth", 0)
-        total_fwd += p.get("forwardScore", p.get("effectiveness", 0))
-        total_rev += p.get("reverseScore", p.get("safety", 0))
 
     n = max(len(papers), 1)
     return {
         "updated_at": now.isoformat(),
         "updated_at_human": now.strftime("%Y-%m-%d %H:%M"),
         "total_papers": len(papers),
-        "avg_effectiveness": round(total_eff / n, 1),
-        "avg_safety": round(total_saf / n, 1),
-        "avg_coupling": round(total_cou / n, 1),
+        "avg_forward_pathway": round(total_fwd / n, 1),
+        "avg_reverse_pathway": round(total_rev / n, 1),
+        "avg_coupling_depth": round(total_coup / n, 1),
         "avg_measurement_depth": round(total_dep / n, 1),
+        # Legacy keys
+        "avg_effectiveness": round(total_fwd / n, 1),
+        "avg_safety": round(total_rev / n, 1),
+        "avg_coupling": round(total_coup / n, 1),
         "avg_forward": round(total_fwd / n, 1),
         "avg_reverse": round(total_rev / n, 1),
         "evidence_levels": level_counter,
@@ -169,35 +187,38 @@ def build_stats(papers: list[dict], eval_stats: dict) -> dict:
 
 
 def create_build_dir():
-    """创建构建输出目录"""
+    """创建构建输出目录。BioHot 首页在根目录，Evidence Monitor 在 /evidence/ 子目录。"""
     if os.path.exists(BUILD_DIR):
         shutil.rmtree(BUILD_DIR)
     os.makedirs(BUILD_DIR, exist_ok=True)
+    # Evidence monitor goes to /evidence/
+    evidence_dir = os.path.join(BUILD_DIR, "evidence")
+    os.makedirs(evidence_dir, exist_ok=True)
+    return evidence_dir
 
 
-def copy_frontend_files():
-    """复制前端文件到构建目录，并确保 news.json 在正确位置"""
-    # 复制 src 目录下所有文件
+def copy_frontend_files(evidence_dir: str):
+    """复制前端文件到 /evidence/ 构建目录"""
     src_path = SRC_DIR
 
     for filename in os.listdir(src_path):
         src_file = os.path.join(src_path, filename)
-        dst_file = os.path.join(BUILD_DIR, filename)
+        dst_file = os.path.join(evidence_dir, filename)
         if os.path.isfile(src_file):
             shutil.copy2(src_file, dst_file)
 
-    print(f"  Copied frontend files to {BUILD_DIR}")
+    print(f"  Copied frontend files to {evidence_dir}")
 
 
-def write_news_json(news_list: list[dict], stats: dict):
-    """将新闻数据和统计写入构建目录"""
+def write_news_json(news_list: list[dict], stats: dict, evidence_dir: str):
+    """将新闻数据和统计写入 /evidence/ 构建目录"""
     payload = {
         "stats": stats,
         "papers": news_list,
     }
 
-    # 写入构建目录（供 gh-pages 部署）
-    build_data_dir = os.path.join(BUILD_DIR, "data")
+    # 写入 /evidence/data/news.json（供 gh-pages 部署）
+    build_data_dir = os.path.join(evidence_dir, "data")
     os.makedirs(build_data_dir, exist_ok=True)
     news_json_path = os.path.join(build_data_dir, "news.json")
     with open(news_json_path, "w", encoding="utf-8") as f:
@@ -208,7 +229,7 @@ def write_news_json(news_list: list[dict], stats: dict):
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
     file_size = os.path.getsize(news_json_path)
-    print(f"  Generated news.json ({file_size / 1024:.1f} KB)")
+    print(f"  Generated /evidence/data/news.json ({file_size / 1024:.1f} KB)")
 
     # 写入统计文件
     stats_path = os.path.join(DATA_DIR, "stats.json")
@@ -217,19 +238,20 @@ def write_news_json(news_list: list[dict], stats: dict):
 
 
 def generate_static_html(papers: list[dict], stats: dict):
-    """Pre-render paper cards into static HTML. No JS needed for initial display."""
-    level_order = {"L4": 5, "L3": 4, "L2b": 3, "L2a": 2, "L1": 1}
+    """Pre-render paper cards into static HTML using unified framework fields."""
+    level_order = {"L4": 9, "L3.5": 8, "L3": 7, "L2b": 6, "L2a": 5, "L1b": 4, "L1a": 3, "L1": 2, "L0": 1}
 
     cards_html = ""
     for paper in papers:
-        lv = paper.get("evidenceLevel", "L1")
+        lv = paper.get("evidenceLevel", "L1a")
         is_kb = (paper.get("type") or paper.get("source")) == "knowledge_base"
         kb_class = ' kb-entry' if is_kb else ''
 
         # Badges
         badges = ""
-        if paper.get("researchPriority"):
-            badges += f'<span class="priority-badge priority-{paper["researchPriority"].lower()}">{paper["researchPriority"]}</span>'
+        rp = paper.get("researchPriority", "")
+        if rp and rp != "N/A":
+            badges += f'<span class="priority-badge priority-{rp.lower()}">{rp}</span>'
         if is_kb:
             badges += '<span class="kb-badge">Curated</span>'
 
@@ -244,21 +266,36 @@ def generate_static_html(papers: list[dict], stats: dict):
         # Nodes
         nodes_html = "".join(f'<span class="node-tag">{n}</span>' for n in paper.get("nodes", []))
 
-        # Matrix bars
+        # Compartment tags (new)
+        comps = paper.get("compartmentsCovered", [])
+        comp_html = ""
+        if comps:
+            comp_icons = {"luminal": "Lumen", "epithelial": "Epi", "microenvironment": "MicroEnv"}
+            comp_tags = "".join(
+                f'<span class="compartment-tag comp-{c}">{comp_icons.get(c, c)}</span>'
+                for c in comps
+            )
+            comp_html = f'<div class="paper-compartments">{comp_tags}</div>'
+
+        # Matrix bars — unified dimensions with correct scales
+        fwd = paper.get("forwardPathway", paper.get("effectiveness", 0))
+        rev = paper.get("reversePathway", paper.get("safety", 0))
+        coup = paper.get("couplingDepth", paper.get("coupling", 0))
+        depth = paper.get("measurementDepth", 0)
+
         dims = [
-            ("effectiveness", paper.get("effectiveness", 0)),
-            ("safety", paper.get("safety", 0)),
-            ("coupling", paper.get("coupling", 0)),
-            ("depth", paper.get("measurementDepth", 0)),
+            ("forwardPathway", "Forward (Microbe→Host)", fwd, 4, "/4"),
+            ("reversePathway", "Reverse (Host→Microbiome)", rev, 4, "/4"),
+            ("couplingDepth", "Bidirectional Coupling", coup, 4, "/4"),
+            ("measurementDepth", "Measurement Depth", depth, 2, "/2"),
         ]
-        dim_labels = ["Forward (Microbe→Host)", "Reverse (Host→Microbiome)", "Bidirectional Coupling", "Measurement Depth"]
         matrix_html = ""
-        for (dim_id, val), label in zip(dims, dim_labels):
-            pct = val / 5 * 100
+        for dim_id, label, val, scale, suffix in dims:
+            pct = min(val / max(scale, 1) * 100, 100)
             matrix_html += f'''<div class="matrix-item" data-dim="{dim_id}">
                 <span class="matrix-label">{label}</span>
                 <span class="matrix-bar"><span class="matrix-fill" style="width:{pct}%"></span></span>
-                <span class="matrix-val">{val}/5</span>
+                <span class="matrix-val">{val}{suffix}</span>
             </div>'''
 
         # Title: clicking opens evaluation detail modal
@@ -300,9 +337,11 @@ def generate_static_html(papers: list[dict], stats: dict):
             <p class="paper-abstract">{paper.get("abstract", "")[:600]}</p>
             {links_html}
             <div class="paper-nodes">{nodes_html}</div>
+            {comp_html}
             <div class="paper-matrix">{matrix_html}</div>
             <div class="paper-summary">{paper.get("summary", "")}</div>
             <div class="paper-limitation">{'Limitation: ' + paper["keyLimitation"] if paper.get("keyLimitation") else ''}</div>
+            <div class="paper-framework">{'Framework: ' + paper["frameworkAlignment"] if paper.get("frameworkAlignment") and paper["frameworkAlignment"] != "Pending AI assessment" else ''}</div>
         </article>'''
 
     # Read template and inject cards
@@ -411,25 +450,39 @@ def main():
         eval_stats = {"deepseek": 0, "glm": 0, "local": 0, "total": 0}
 
     stats = build_stats(all_papers, eval_stats)
-    create_build_dir()
+    evidence_dir = create_build_dir()
 
-    # Copy CSS and JS (unchanged)
+    # Copy CSS and JS to /evidence/
     for filename in os.listdir(SRC_DIR):
         src_file = os.path.join(SRC_DIR, filename)
-        dst_file = os.path.join(BUILD_DIR, filename)
+        dst_file = os.path.join(evidence_dir, filename)
         if os.path.isfile(src_file) and not filename.endswith('.html'):
             shutil.copy2(src_file, dst_file)
 
-    # Generate pre-rendered HTML with all papers embedded
+    # Generate pre-rendered HTML for evidence monitor → /evidence/index.html
     static_html = generate_static_html(all_papers, stats)
-    index_path = os.path.join(BUILD_DIR, "index.html")
-    with open(index_path, "w", encoding="utf-8") as f:
+    evidence_index_path = os.path.join(evidence_dir, "index.html")
+    with open(evidence_index_path, "w", encoding="utf-8") as f:
         f.write(static_html)
-    print(f"  Generated static index.html with {len(all_papers)} pre-rendered papers")
+    print(f"  Generated /evidence/index.html with {len(all_papers)} pre-rendered papers")
 
-    write_news_json(all_papers, stats)
+    write_news_json(all_papers, stats, evidence_dir)
     create_nojekyll()
+
+    # Deploy BioHot main page → /index.html
+    biohot_src = os.path.join(PROJECT_ROOT, "..", "biohot.html")
+    if not os.path.exists(biohot_src):
+        # Fallback: look in project root
+        biohot_src = os.path.join(PROJECT_ROOT, "biohot.html")
+    if os.path.exists(biohot_src):
+        shutil.copy2(biohot_src, os.path.join(BUILD_DIR, "index.html"))
+        print(f"  Deployed BioHot homepage → /index.html")
+    else:
+        print(f"  WARNING: biohot.html not found at {biohot_src}")
+
     print(f"  Build directory ready: {BUILD_DIR}")
+    print(f"    /index.html — BioHot homepage")
+    print(f"    /evidence/index.html — Co-Metabolism Evidence Monitor")
 
     # Step 4: Summary
     print("\n[4/4] Build complete!")
