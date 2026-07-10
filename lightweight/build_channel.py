@@ -19,10 +19,47 @@ BUILD_DIR = os.path.join(_project_root, "ai-news", "_site")
 CHANNEL_META = {
     "computational-genomics": {
         "title": "Computational Genomics & Epigenomics",
-        "desc": "AI-curated selection of methods, tools, and resources for genome analysis, variant calling, epigenomic profiling, and genotype-phenotype integration.",
+        "desc": "AI-curated selection from open-access journals: variant calling, genome assembly, epigenomic profiling, and genotype-phenotype integration.",
+        "category": "Bioinformatics & Computational Biology",
+    },
+    "metagenomics-informatics": {
+        "title": "Metagenomics & Microbiome Informatics",
+        "desc": "Computational methods for metagenomic assembly, binning, taxonomic profiling, and functional annotation of microbial communities.",
+        "category": "Bioinformatics & Computational Biology",
+    },
+    "structural-bioinformatics": {
+        "title": "Structural Bioinformatics & Protein Science",
+        "desc": "AI-curated selection: protein structure prediction, molecular dynamics, docking, and structure-based function annotation.",
+        "category": "Bioinformatics & Computational Biology",
+    },
+    "systems-biology": {
+        "title": "Systems Biology & Network Analysis",
+        "desc": "Gene regulatory network inference, metabolic network modeling (FBA), and multi-omics integration frameworks.",
+        "category": "Bioinformatics & Computational Biology",
+    },
+    "ml-biology": {
+        "title": "Machine Learning for Biological Data",
+        "desc": "Deep learning, protein language models, GNNs, and foundation models applied to biological sequence and structure.",
+        "category": "Bioinformatics & Computational Biology",
+    },
+    "single-cell-omics": {
+        "title": "Single-Cell & Spatial Omics",
+        "desc": "Computational methods for scRNA-seq, ATAC-seq, trajectory inference, cell-cell communication, and spatial transcriptomics.",
+        "category": "Bioinformatics & Computational Biology",
+    },
+    "databases-knowledge-graphs": {
+        "title": "Biological Databases & Knowledge Graphs",
+        "desc": "New database releases, knowledge graph construction, ontology development, and FAIR data infrastructure.",
+        "category": "Bioinformatics & Computational Biology",
+    },
+    "ai-drug-discovery": {
+        "title": "AI-Driven Drug Discovery",
+        "desc": "Virtual screening, molecular generation, ADMET prediction, and computational drug repurposing from open-access literature.",
         "category": "Bioinformatics & Computational Biology",
     },
 }
+
+LIVE_CHANNELS = list(CHANNEL_META.keys())
 
 def build(channel_key: str, max_papers: int = 60, delay: float = 0.5):
     """Full build pipeline for one channel."""

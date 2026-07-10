@@ -60,13 +60,17 @@ jobs:
         run: python scripts/build.py
         timeout-minutes: 2
 
-      - name: Lightweight curation — Computational Genomics
-        id: curate-genomics
+      - name: Lightweight curation — All channels
+        id: curate-all
         continue-on-error: true
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-        run: python lightweight/build_channel.py computational-genomics
-        timeout-minutes: 10
+        run: |
+          for ch in computational-genomics metagenomics-informatics structural-bioinformatics systems-biology ml-biology single-cell-omics databases-knowledge-graphs ai-drug-discovery; do
+            echo "=== $ch ==="
+            python lightweight/build_channel.py $ch
+          done
+        timeout-minutes: 60
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
