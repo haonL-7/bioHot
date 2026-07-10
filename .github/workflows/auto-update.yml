@@ -68,7 +68,7 @@ jobs:
         run: |
           for ch in computational-genomics metagenomics-informatics structural-bioinformatics systems-biology ml-biology single-cell-omics databases-knowledge-graphs ai-drug-discovery; do
             echo "=== $ch ==="
-            python lightweight/build_channel.py $ch
+            python ../lightweight/build_channel.py $ch
           done
         timeout-minutes: 60
 
