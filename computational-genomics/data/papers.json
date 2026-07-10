@@ -1,8 +1,782 @@
 {
   "channel": "computational-genomics",
-  "generated_at": "2026-07-10T05:51:34.976156",
-  "count": 20,
+  "generated_at": "2026-07-10T06:14:12.529987",
+  "count": 30,
   "papers": [
+    {
+      "id": "f49f7ce3fc45",
+      "title": "Research on Structural Variation Detection Methods of Wheat Genome Based on Deep Learning",
+      "abstract": "Due to the complexity of genome structure and technical conditions, wheat genome structure variation has not yet been comprehensively and accurately detected and evaluated for genetic effects. The aim of this study is to construct a method based on deep learning algorithm to accurately detect genomic structure variation in wheat. The method converts genomic data into image form by genomic structure variation image generation algorithm. A gene structure variation prediction model is constructed based on deep learning, and efficient and accurate structure variation prediction is realized by auto",
+      "journal": "Journal of Combinatorial Mathematics and Combinatorial Computing",
+      "doi": "10.61091/jcmcc127b-394",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2025",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.61091%2Fjcmcc127b-394",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.61091%2Fjcmcc127b-394"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/0a07fceb0f75c2471441ed9a159b3e358af99bd6"
+        }
+      ],
+      "summary": "This study develops a deep learning method to detect structural variations in the wheat genome by converting genomic data into images and using a prediction model. The approach aims to improve accuracy and comprehensiveness in identifying structural variants, which have been challenging to detect due to genome complexity.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "deep-learning",
+        "plants"
+      ]
+    },
+    {
+      "id": "43d55d44e6c6",
+      "title": "Tradeoffs in alignment and assembly-based methods for structural variant detection with long-read sequencing data",
+      "abstract": "Long-read sequencing offers long contiguous DNA fragments, facilitating diploid genome assembly and structural variant (SV) detection. Efficient and robust algorithms for SV identification are crucial with increasing data availability. Alignment-based methods, favored for their computational efficiency and lower coverage requirements, are prominent. Alternative approaches, relying solely on available reads for de novo genome assembly and employing assembly-based tools for SV detection via comparison to a reference genome, demand significantly more computational resources. However, the lack of ",
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-024-46614-z",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2024",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1038%2Fs41467-024-46614-z",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41467-024-46614-z"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/2a5b33ea86b69473731d5ba383af61da43a73710"
+        }
+      ],
+      "summary": "This study compares alignment-based and assembly-based methods for detecting structural variants (SVs) from long-read sequencing data, finding that while alignment-based methods are computationally efficient and require less coverage, assembly-based methods may offer advantages in certain contexts. The authors highlight tradeoffs between accuracy, computational cost, and coverage requirements, providing guidance for researchers choosing SV detection strategies.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "ec0a32e86424",
+      "title": "Haplotype-resolved assembly of auto-polyploid genomes via combining Hi-C and gametic data",
+      "abstract": "Haplotype-resolved genome assembly plays a crucial role in understanding allele-specific functions. However, obtaining haplotype-resolved assembly for auto-polyploid genomes remains challenging. Existing methods can be classified into reference-based phasing, assembly-based phasing, and gamete binning. Nevertheless, there is a lack of cost-effective and efficient methods for haplotyping auto-polyploid genomes. In this study, we propose a novel phasing algorithm called PolyGH, which combines Hi-C and gametic data. We conducted experiments on tetraploid potato cultivars and divided the method in",
+      "journal": "Scientific Reports",
+      "doi": "10.1038/s41598-024-58623-5",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2024",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1038%2Fs41598-024-58623-5",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41598-024-58623-5"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/24901d757107c153096aa2598788a45139ac348c"
+        }
+      ],
+      "summary": "This paper introduces PolyGH, a new algorithm that combines Hi-C and gametic data to achieve cost-effective, haplotype-resolved genome assembly for auto-polyploid organisms. Tested on tetraploid potato cultivars, it addresses a key gap in existing methods for phasing complex polyploid genomes.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "8ec723072eba",
+      "title": "Pasa: leveraging population pangenome graph to scaffold prokaryote genome assemblies",
+      "abstract": "Abstract Whole genome sequencing has increasingly become the essential method for studying the genetic mechanisms of antimicrobial resistance and for surveillance of drug-resistant bacterial pathogens. The majority of bacterial genomes sequenced to date have been sequenced with Illumina sequencing technology, owing to its high-throughput, excellent sequence accuracy, and low cost. However, because of the short-read nature of the technology, these assemblies are fragmented into large numbers of contigs, hindering the obtaining of full information of the genome. We develop Pasa, a graph-based al",
+      "journal": "Nucleic Acids Research",
+      "doi": "10.1093/nar/gkad1170",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2023",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1093%2Fnar%2Fgkad1170",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fnar%2Fgkad1170"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/56fc647af1afcb49d514207fd20fa3ad16fc163d"
+        }
+      ],
+      "summary": "Pasa is a new tool that uses population pangenome graphs to scaffold fragmented prokaryote genome assemblies, improving contiguity by leveraging structural variation across related strains. This addresses a key limitation of short-read sequencing, enabling more complete bacterial genomes for applications like antimicrobial resistance surveillance.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "microbiology"
+      ]
+    },
+    {
+      "id": "6cd50c432645",
+      "title": "Pasa: Leverage population pangenome graph to scaffold prokaryote genome assemblies",
+      "abstract": "Whole genome sequencing has increasingly become the essential method for studying the genetic mechanisms of antimicrobial resistance and for surveillance of drug-resistant bacterial pathogens. The majority of bacterial genomes sequenced to date have been sequenced with Illumina sequencing technology, owing to its high-throughput, excellent sequence accuracy, and low cost. However, because of the short-read nature of the technology, these assemblies are fragmented into large numbers of contigs, hindering the obtaining of full information of the genome. We develop Pasa, a graph-based algorithm t",
+      "journal": "bioRxiv",
+      "doi": "10.1101/2023.07.09.548288",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2023",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1101%2F2023.07.09.548288",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1101%2F2023.07.09.548288"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/73f35e5f76a5329685ab8dca5f2867c9a9baff7b"
+        }
+      ],
+      "summary": "Pasa is a new graph-based algorithm that uses population pangenome graphs to scaffold fragmented prokaryote genome assemblies, particularly those from short-read sequencing like Illumina. This approach helps overcome the limitation of fragmented assemblies by leveraging shared genomic information across related strains, enabling more complete genome reconstruction for antimicrobial resistance studies.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "microbiology"
+      ]
+    },
+    {
+      "id": "cc54555b35d1",
+      "title": "Localized assembly for long reads enables genome-wide analysis of repetitive regions at single-base resolution in human genomes",
+      "abstract": "Background Long-read sequencing technologies have the potential to overcome the limitations of short reads and provide a comprehensive picture of the human genome. However, the characterization of repetitive sequences by reconstructing genomic structures at high resolution solely from long reads remains difficult. Here, we developed a localized assembly method (LoMA) that constructs highly accurate consensus sequences (CSs) from long reads. Methods We developed LoMA by combining minimap2, MAFFT, and our algorithm, which classifies diploid haplotypes based on structural variants and CSs. Using ",
+      "journal": "Human Genomics",
+      "doi": "10.1186/s40246-023-00467-7",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2022",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1186%2Fs40246-023-00467-7",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1186%2Fs40246-023-00467-7"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/cceb24f5daa8e02786b48830d826c18fc8d1438c"
+        }
+      ],
+      "summary": "Researchers developed LoMA, a localized assembly method that constructs highly accurate consensus sequences from long reads, enabling genome-wide analysis of repetitive regions at single-base resolution in human genomes. This approach overcomes limitations of short reads and improves characterization of repetitive sequences by combining existing tools with a new algorithm for classifying diploid haplotypes.",
+      "significance": "High",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "1df64641ff58",
+      "title": "Algorithm for DNA sequence assembly by quantum annealing",
+      "abstract": "The assembly task is an indispensable step in sequencing genomes of new organisms and studying structural genomic changes. In recent years, the dynamic development of next-generation sequencing (NGS) methods raises hopes for making whole-genome sequencing a fast and reliable tool used, for example, in medical diagnostics. However, this is hampered by the slowness and computational requirements of the current processing algorithms, which raises the need to develop more efficient algorithms. One possible approach, still little explored, is the use of quantum computing. We present a proof of conc",
+      "journal": "BMC Bioinformatics",
+      "doi": "10.1186/s12859-022-04661-7",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2022",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1186%2Fs12859-022-04661-7",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1186%2Fs12859-022-04661-7"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/f0b3f7a8e5d2108c6c739a35165c44a6b0d9aab7"
+        }
+      ],
+      "summary": "This paper explores the use of quantum annealing, a quantum computing approach, to solve the DNA sequence assembly problem more efficiently than classical algorithms. The authors present a proof-of-concept algorithm that maps the assembly task onto a quantum annealing framework, aiming to address the computational bottlenecks of current next-generation sequencing processing methods. This work highlights a novel but still early-stage application of quantum computing to a fundamental bioinformatics challenge.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "fda668bf49b9",
+      "title": "GAMBIT (Genomic Approximation Method for Bacterial Identification and Tracking): A methodology to rapidly leverage whole genome sequencing of bacterial isolates for clinical identification",
+      "abstract": "Whole genome sequencing of clinical bacterial isolates has the potential to transform the fields of medicine and public health, with particular impact on molecular epidemiology, infection control and assessing the spread of antibiotic resistance. To realize this potential, bioinformatic software needs to be developed that meets the quality standards of a diagnostic test to allow the reporting of identification results. Our research group has developed a methodology (GAMBIT: Genomic Approximation Method for Bacterial Identification and Tracking) using k-mer based strategies for identification o",
+      "journal": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0277575",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2022",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1371%2Fjournal.pone.0277575",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1371%2Fjournal.pone.0277575"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/a02c6deaa123a61f6bd34e8c837076038c6ba965"
+        }
+      ],
+      "summary": "GAMBIT is a new k-mer based bioinformatics method that uses whole genome sequencing data to rapidly and accurately identify clinical bacterial isolates, meeting diagnostic quality standards. This approach could improve molecular epidemiology, infection control, and antibiotic resistance tracking in clinical settings.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "clinical"
+      ]
+    },
+    {
+      "id": "becd61e56a88",
+      "title": "A novel high-accuracy genome assembly method utilizing a high-throughput workflow",
+      "abstract": "Across domains of biological research using genome sequence data, high-quality reference genome sequences are essential for characterizing genetic variation and understanding the genetic basis of phenotypes. However, the construction of genome assemblies for various species is often hampered by complexities of genome organization, especially repetitive and complex sequences, leading to mis-assembly and missing regions. Here, we describe a high-throughput gold standard genome assembly workflow using a large-scale bacterial artificial chromosome (BAC) library with a refined two-step pooling stra",
+      "journal": "bioRxiv",
+      "doi": "10.1101/2020.11.26.400507",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2020",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1101%2F2020.11.26.400507",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1101%2F2020.11.26.400507"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/0ada692d8a77ff1a3530222aa50892bceb5d3a53"
+        }
+      ],
+      "summary": "This paper presents a new genome assembly method that uses a high-throughput BAC library with a refined two-step pooling strategy to overcome challenges from repetitive and complex sequences, producing high-accuracy reference genomes. The workflow addresses common issues like mis-assembly and missing regions, offering a gold standard approach for diverse species.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "methodology",
+        "tool"
+      ]
+    },
+    {
+      "id": "e250e62609e3",
+      "title": "A Near Chromosome Assembly of the Dromedary Camel Genome",
+      "abstract": "The dromedary camel is an economically and socially important species of livestock in many parts of the world, being used for transport and the production of milk and meat. Much like cattle and horses, the camel may be found in industrial farming conditions as well as used in sporting. Camel racing is a multi-million dollar industry, with some specimens being valued at upward of 9.5 million USD. Despite its apparent value to humans, the dromedary camel is a neglected species in genomics. While cattle and other domesticated species have had much attention in terms of genome assembly, the camel ",
+      "journal": "Frontiers in Genetics",
+      "doi": "10.3389/fgene.2019.00032",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2019",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.3389%2Ffgene.2019.00032",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3389%2Ffgene.2019.00032"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/b0f8155bb9743fc3ccfe532dad77d20835abdd95"
+        }
+      ],
+      "summary": "This study presents a near chromosome-level genome assembly for the dromedary camel, a species that has been relatively neglected in genomics despite its economic and cultural importance. The improved assembly provides a valuable genomic resource for future research on camel biology, breeding, and adaptation.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "evolution",
+        "tool"
+      ]
+    },
+    {
+      "id": "82afdc0c59b9",
+      "title": "A stochastic de novo assembly algorithm for viral-sized genomes obtains correct genomes and builds consensus",
+      "abstract": "",
+      "journal": "Inf. Sci.",
+      "doi": "10.1016/j.ins.2017.07.039",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2017",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1016%2Fj.ins.2017.07.039",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.ins.2017.07.039"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/7726c1d5c53890643758631cfc264af3ba5707fc"
+        }
+      ],
+      "summary": "This paper presents a new stochastic algorithm for de novo assembly of viral-sized genomes that can accurately reconstruct complete genomes and build consensus sequences. The method addresses challenges in viral genome assembly by using a probabilistic approach to handle sequencing errors and repetitive regions.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "b79451891faa",
+      "title": "ChopStitch: exon annotation and splice graph construction using transcriptome assembly and whole genome sequencing data",
+      "abstract": "Motivation: Sequencing studies on non‐model organisms often interrogate both genomes and transcriptomes with massive amounts of short sequences. Such studies require de novo analysis tools and techniques, when the species and closely related species lack high quality reference resources. For certain applications such as de novo annotation, information on putative exons and alternative splicing may be desirable. Results: Here we present ChopStitch, a new method for finding putative exons de novo and constructing splice graphs using an assembled transcriptome and whole genome shotgun sequencing ",
+      "journal": "Bioinformatics",
+      "doi": "10.1093/bioinformatics/btx839",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2017",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtx839",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtx839"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/5ce73cc1073dfd3e393afce9e02b07a8670ec9bf"
+        }
+      ],
+      "summary": "ChopStitch is a new computational method that identifies putative exons and constructs splice graphs de novo using assembled transcriptome and whole genome sequencing data, without requiring a high-quality reference genome. This tool is particularly useful for non-model organisms where reference resources are lacking, enabling better annotation of exon structures and alternative splicing events.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "transcriptomics",
+        "tool"
+      ]
+    },
+    {
+      "id": "ed586f5d7a89",
+      "title": "HapCUT2: robust and accurate haplotype assembly for diverse sequencing technologies",
+      "abstract": "Many tools have been developed for haplotype assembly—the reconstruction of individual haplotypes using reads mapped to a reference genome sequence. Due to increasing interest in obtaining haplotype-resolved human genomes, a range of new sequencing protocols and technologies have been developed to enable the reconstruction of whole-genome haplotypes. However, existing computational methods designed to handle specific technologies do not scale well on data from different protocols. We describe a new algorithm, HapCUT2, that extends our previous method (HapCUT) to handle multiple sequencing tech",
+      "journal": "Genome Research",
+      "doi": "10.1101/gr.213462.116",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2017",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1101%2Fgr.213462.116",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1101%2Fgr.213462.116"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/1cc74dc973f837fc6a599c9cba64d694e99939e1"
+        }
+      ],
+      "summary": "HapCUT2 is a new algorithm for haplotype assembly that works robustly across diverse sequencing technologies, including Illumina, PacBio, and 10X Genomics linked reads. It extends the previous HapCUT method to handle different data types without sacrificing accuracy or scalability, enabling whole-genome haplotype reconstruction from various protocols.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "a2d7c2da3d27",
+      "title": "Fast-SG: an alignment-free algorithm for hybrid assembly",
+      "abstract": "Long read sequencing technologies are the ultimate solution for genome repeats, allowing near reference level reconstructions of large genomes. However, long read de novo assembly pipelines are computationally intense and require a considerable amount of coverage, thereby hindering their broad application to the assembly of large genomes. Alternatively, hybrid assembly methods which combine short and long read sequencing technologies can reduce the time and cost required to produce de novo assemblies of large genomes. In this paper, we propose a new method, called FAST-SG, which uses a new ult",
+      "journal": "GigaScience",
+      "doi": "10.1093/gigascience/giy048",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2017",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1093%2Fgigascience%2Fgiy048",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fgigascience%2Fgiy048"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/8c7f7f13d7b7f5989a2282e83c84ef1e9aea7bcc"
+        }
+      ],
+      "summary": "FAST-SG is a new alignment-free algorithm for hybrid genome assembly that combines short and long sequencing reads more efficiently than existing methods. By avoiding computationally expensive alignment steps, it reduces the time and cost required to assemble large genomes, making hybrid assembly more accessible.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "0fe6df37fb76",
+      "title": "Recycler: an algorithm for detecting plasmids from de novo assembly graphs",
+      "abstract": "Plasmids are central contributors to microbial evolution and genome innovation. Recently, they have been found to have important roles in antibiotic resistance and in affecting production of metabolites used in industrial and agricultural applications. However, their characterization through deep sequencing remains challenging, in spite of rapid drops in cost and throughput increases for sequencing. Here, we attempt to ameliorate this situation by introducing a new plasmid-specific assembly algorithm, leveraging assembly graphs provided by a conventional de novo assembler and alignments of pai",
+      "journal": "Bioinformatics",
+      "doi": "10.1093/bioinformatics/btw651",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2016",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtw651",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtw651"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/b8a63f9bac54db22f9066e47ed3334ef230b095a"
+        }
+      ],
+      "summary": "Recycler is a new algorithm that identifies plasmid sequences from microbial DNA sequencing data by analyzing assembly graphs produced by standard de novo assemblers, using paired-end read alignments to distinguish plasmids from chromosomal DNA. This tool addresses the challenge of characterizing plasmids, which are important for antibiotic resistance and industrial applications, by improving detection from deep sequencing data.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "microbiology"
+      ]
+    },
+    {
+      "id": "a878f056f808",
+      "title": "A Short Sequence Splicing Method for Genome Assembly Using a Three-Dimensional Mixing-Pool of BAC Clones and High-throughput Technology",
+      "abstract": "Current genome sequencing techniques are expensive, and it is still a major challenge to obtain an individual whole-genome sequence. To reduce the cost of sequencing, this paper presents a high-throughput sequencing strategy using a three-dimensional mixing-pool, which is based on the cube. BAC clones are injected into each vertex of the cube, and sequencing of each plane provides information for multiple clones, thereby significantly reducing the cost of sequencing. In addition, Velvet was used to assemble sequencing data. The scaffold generated from Velvet contain a number of contigs, but th",
+      "journal": "The Open Biotechnology Journal",
+      "doi": "10.2174/1874070701509010210",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2015",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.2174%2F1874070701509010210",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.2174%2F1874070701509010210"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/7fad46d4338ebc6d11b851ff646464239bcbc2b5"
+        }
+      ],
+      "summary": "This paper presents a cost-saving genome sequencing strategy using a three-dimensional mixing-pool of BAC clones arranged in a cube, where sequencing each plane provides information for multiple clones simultaneously. The approach uses Velvet for assembly, but the resulting scaffolds still contain many contigs, indicating limitations in the assembly quality.",
+      "significance": "Low",
+      "tags": [
+        "genomics",
+        "methodology"
+      ]
+    },
+    {
+      "id": "19d76341f8f5",
+      "title": "A novel method of consensus pan-chromosome assembly and large-scale comparative analysis reveal the highly flexible pan-genome of Acinetobacter baumannii",
+      "abstract": "Infections by pan-drug resistant Acinetobacter baumannii plague military and civilian healthcare systems. Previous A. baumannii pan-genomic studies used modest sample sizes of low diversity and comparisons to a single reference genome, limiting our understanding of gene order and content. A consensus representation of multiple genomes will provide a better framework for comparison. A large-scale comparative study will identify genomic determinants associated with their diversity and adaptation as a successful pathogen. We determine draft-level genomic sequence of 50 diverse military isolates a",
+      "journal": "Genome Biology",
+      "doi": "10.1186/s13059-015-0701-6",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2015",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1186%2Fs13059-015-0701-6",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1186%2Fs13059-015-0701-6"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/7694b073cd23bc85c577fdf30433ba931709bb10"
+        }
+      ],
+      "summary": "This study presents a new method for constructing a consensus pan-chromosome assembly and applies it to 50 diverse military isolates of Acinetobacter baumannii, revealing a highly flexible pan-genome. The large-scale comparative analysis identifies genomic determinants associated with the pathogen's diversity and adaptation, overcoming limitations of previous studies that relied on single reference genomes and low-diversity samples.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "methodology",
+        "microbiology"
+      ]
+    },
+    {
+      "id": "8338ed0756fc",
+      "title": "A Memory Efficient Short Read De Novo Assembly Algorithm",
+      "abstract": ": Sequencing the whole genome of various species has many applications, not only in understanding biological systems, but also in medicine, pharmacy, and agriculture. In recent years, the emergence of high-throughput next generation sequencing technologies has dramatically reduced the time and costs for whole genome sequencing. These new technologies provide ultrahigh throughput with a lower per-unit data cost. However, the data are generated from very short fragments of DNA. Thus, it is very important to develop algorithms for merging these fragments. One method of merging these fragments wit",
+      "journal": "Inf. Media Technol.",
+      "doi": "10.2197/IPSJTBIO.8.2",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2015",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.2197%2FIPSJTBIO.8.2",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.2197%2FIPSJTBIO.8.2"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/f159fb56f463dbb00d36c1df0b5364276e924b13"
+        }
+      ],
+      "summary": "This paper presents a memory-efficient algorithm for assembling short DNA sequence reads into longer contiguous sequences, addressing a key computational challenge posed by high-throughput sequencing technologies. The method reduces memory usage while maintaining assembly accuracy, enabling whole genome assembly on standard computing hardware. This work is important for making genome assembly more accessible and scalable as sequencing data volumes continue to grow.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "1ad153bd7c70",
+      "title": "Oxford Nanopore sequencing, hybrid error correction, and de novo assembly of a eukaryotic genome",
+      "abstract": "Monitoring the progress of DNA molecules through a membrane pore has been postulated as a method for sequencing DNA for several decades. Recently, a nanopore-based sequencing instrument, the Oxford Nanopore MinION, has become available that we used for sequencing the S. cerevisiae genome. To make use of these data, we developed a novel open-source hybrid error correction algorithm Nanocorr (https://github.com/jgurtowski/nanocorr) specifically for Oxford Nanopore reads, as existing packages were incapable of assembling the long read lengths (5-50kbp) at such high error rate (between ∼5 and 40% ",
+      "journal": "Genome Research",
+      "doi": "10.1101/gr.191395.115",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2015",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1101%2Fgr.191395.115",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1101%2Fgr.191395.115"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/e18b489f02530ff144db28cb44537173e4296616"
+        }
+      ],
+      "summary": "This paper presents the first sequencing of a eukaryotic genome (S. cerevisiae) using the Oxford Nanopore MinION, demonstrating its ability to generate very long reads (5-50 kbp) despite high error rates (5-40%). The authors developed a new open-source hybrid error correction algorithm, Nanocorr, to correct these error-prone reads using high-accuracy short reads, enabling successful de novo genome assembly. This work established a foundational approach for using long-read nanopore sequencing in genomics.",
+      "significance": "High",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "d238bcf34907",
+      "title": "De novo finished 2.8 Mbp Staphylococcus aureus genome assembly from 100 bp short and long range paired-end reads",
+      "abstract": "",
+      "journal": "Bioinformatics",
+      "doi": "10.1093/bioinformatics/btt590",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2014",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtt590",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtt590"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/bac57b955be05910f7d07c36a4ae01b698cdc5fe"
+        }
+      ],
+      "summary": "This paper presents a method to assemble a complete 2.8 Mbp Staphylococcus aureus genome using only 100 bp short reads and long-range paired-end data, achieving a finished assembly without long-read sequencing. The approach demonstrates that combining short reads with long-range information can produce high-quality genomes, reducing the need for more expensive sequencing technologies.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "3ca8408a6ac5",
+      "title": "Efficient Synergistic Single-Cell Genome Assembly",
+      "abstract": "As the vast majority of all microbes are unculturable, single-cell sequencing has become a significant method to gain insight into microbial physiology. Single-cell sequencing methods, currently powered by multiple displacement genome amplification (MDA), have passed important milestones such as finishing and closing the genome of a prokaryote. However, the quality and reliability of genome assemblies from single cells are still unsatisfactory due to uneven coverage depth and the absence of scattered chunks of the genome in the final collection of reads caused by MDA bias. In this work, our ne",
+      "journal": "Frontiers in Bioengineering and Biotechnology",
+      "doi": "10.3389/fbioe.2016.00042",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2014",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.3389%2Ffbioe.2016.00042",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3389%2Ffbioe.2016.00042"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/9a6f8ba7f8730dd4919b8fcaddc9c9ba438c85be"
+        }
+      ],
+      "summary": "This paper presents a new computational method to improve genome assembly from single microbial cells by addressing biases caused by multiple displacement amplification (MDA). The approach synergistically combines data to reduce uneven coverage and fill in missing genome regions, leading to more complete and reliable assemblies for unculturable microbes.",
+      "significance": "Medium",
+      "tags": [
+        "single-cell",
+        "genomics",
+        "methodology"
+      ]
+    },
+    {
+      "id": "4dbb6b146023",
+      "title": "Comparative study of de novo assembly and genome-guided assembly strategies for transcriptome reconstruction based on RNA-Seq",
+      "abstract": "Transcriptome reconstruction is an important application of RNA-Seq, providing critical information for further analysis of transcriptome. Although RNA-Seq offers the potential to identify the whole picture of transcriptome, it still presents special challenges. To handle these difficulties and reconstruct transcriptome as completely as possible, current computational approaches mainly employ two strategies: de novo assembly and genome-guided assembly. In order to find the similarities and differences between them, we firstly chose five representative assemblers belonging to the two classes re",
+      "journal": "Science China Life Sciences",
+      "doi": "10.1007/s11427-013-4442-z",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2013",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1007%2Fs11427-013-4442-z",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1007%2Fs11427-013-4442-z"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/c1187edee50091dff9da539dfdc34bbf1746a642"
+        }
+      ],
+      "summary": "This study compares de novo and genome-guided assembly strategies for transcriptome reconstruction from RNA-Seq data, evaluating five representative assemblers. The findings highlight the strengths and limitations of each approach, providing guidance for selecting appropriate methods based on data quality and research goals.",
+      "significance": "Medium",
+      "tags": [
+        "transcriptomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "3fbc7083c102",
+      "title": "Arapan-S: a fast and highly accurate whole-genome assembly software for viruses and small genomes",
+      "abstract": "Genome assembly is considered to be a challenging problem in computational biology, and has been studied extensively by many researchers. It is extremely difficult to build a general assembler that is able to reconstruct the original sequence instead of many contigs. However, we believe that creating specific assemblers, for solving specific cases, will be much more fruitful than creating general assemblers. In this paper, we present Arapan-S, a whole-genome assembly program dedicated to handling small genomes. It provides only one contig (along with the reverse complement of this contig) in m",
+      "journal": "BMC Research Notes",
+      "doi": "10.1186/1756-0500-5-243",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2012",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1186%2F1756-0500-5-243",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1186%2F1756-0500-5-243"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/f42742d1c0df44ca76b0f73ddef5925473878849"
+        }
+      ],
+      "summary": "Arapan-S is a new genome assembly software designed specifically for small genomes and viruses, aiming to reconstruct a single complete contig rather than multiple fragments. The authors argue that specialized assemblers for specific cases are more effective than general-purpose assemblers.",
+      "significance": "Low",
+      "tags": [
+        "tool",
+        "genomics",
+        "methodology"
+      ]
+    },
+    {
+      "id": "db85a26e285b",
+      "title": "An MCMC algorithm for haplotype assembly from whole-genome sequence data.",
+      "abstract": "In comparison to genotypes, knowledge about haplotypes (the combination of alleles present on a single chromosome) is much more useful for whole-genome association studies and for making inferences about human evolutionary history. Haplotypes are typically inferred from population genotype data using computational methods. Whole-genome sequence data represent a promising resource for constructing haplotypes spanning hundreds of kilobases for an individual. In this article, we propose a Markov chain Monte Carlo (MCMC) algorithm, HASH (haplotype assembly for single human), for assembling haploty",
+      "journal": "Genome research",
+      "doi": "10.1101/gr.077065.108",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2008",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1101%2Fgr.077065.108",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1101%2Fgr.077065.108"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/63c3d4ded5925f8e6123b48bf035ec5efebebba0"
+        }
+      ],
+      "summary": "This paper presents a new Markov chain Monte Carlo (MCMC) algorithm called HASH that assembles haplotypes from whole-genome sequence data for a single individual. Haplotypes are more informative than genotypes for genetic studies, and this method improves the ability to construct long-range haplotypes from sequencing reads.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "dd03ec3f551b",
+      "title": "Barnacle: An Assembly Algorithm for Clone-based Sequences of Whole Genomes",
+      "abstract": "We propose an assembly algorithm Barnacle for sequences generated by the clone-based approach. We illustrate our approach by assembling the human genome. Our novel method abandons the original physical-mapping-first framework. As we show, Barnacle more effectively resolves conflicts due to repeated sequences which is the main difficulty of the sequence assembly problem. In addition, we are able to detect inconsistencies in the underlying data. We present and compare our results on the December 2001 freeze of the public working draft of the human genome with NCBI's assembly (Build 28). The asse",
+      "journal": "Gene",
+      "doi": "10.1016/S0378-1119(03)00825-4",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2003",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1016%2FS0378-1119%2803%2900825-4",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2FS0378-1119%2803%2900825-4"
+        },
+        {
+          "type": "semantic-scholar",
+          "label": "Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/0a6e1c5e465a70b0ffd469fffe4d2d8ea485eb2a"
+        }
+      ],
+      "summary": "This paper presents Barnacle, a new assembly algorithm designed for clone-based whole genome sequences, which abandons the traditional physical-mapping-first approach. The algorithm more effectively resolves conflicts caused by repeated sequences and can detect data inconsistencies, as demonstrated on the human genome. It offers an improved method for assembling complex genomes compared to existing approaches like NCBI's Build 28.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "tool",
+        "methodology"
+      ]
+    },
     {
       "id": "567d9d8d4102",
       "title": "A deep-learning-informed prior and Bayesian model for differential AP-MS interactome analysis",
@@ -21,7 +795,7 @@
           "url": "https://www.biorxiv.org/content/10.64898/2026.07.06.736690v1?rss=1"
         }
       ],
-      "summary": "This paper introduces BayesInteractomics, a new computational framework that combines deep learning with Bayesian statistics to improve the analysis of affinity-purification mass spectrometry (AP-MS) data for mapping protein-protein interactions. By using a neural network trained on protein structures to predict direct binding and incorporating this as prior knowledge, the method outperforms existing tools like SAINTexpress and CompPASS in distinguishing genuine interactors from background noise.",
+      "summary": "This paper introduces BayesInteractomics, a new computational framework that combines deep learning with Bayesian statistics to improve the analysis of affinity-purification mass spectrometry (AP-MS) data. By using a neural network trained on protein structures to predict direct binding and incorporating this as prior knowledge, the method outperforms existing tools in identifying genuine protein-protein interactions while reducing false positives from non-specific background.",
       "significance": "Medium",
       "tags": [
         "proteomics",
@@ -47,12 +821,12 @@
           "url": "https://www.biorxiv.org/content/10.64898/2026.07.06.736701v1?rss=1"
         }
       ],
-      "summary": "scJET is a new generative model for single-cell RNA-seq data that works with all genes (full-gene space), not just a subset of highly variable genes. It uses a patch-based Transformer approach to denoise and generate expression matrices while preserving both global and local biological structure. This enables more complete transcriptome-wide analysis than previous methods.",
+      "summary": "scJET is a new deep learning method that uses a patch-based Transformer to generate and denoise single-cell gene expression data across the entire transcriptome, not just a subset of highly variable genes. This approach better preserves the complex structure of gene expression programs and relationships between cells, offering a more comprehensive framework for single-cell data analysis.",
       "significance": "Medium",
       "tags": [
         "single-cell",
-        "transcriptomics",
-        "deep-learning"
+        "deep-learning",
+        "transcriptomics"
       ]
     },
     {
@@ -73,7 +847,7 @@
           "url": "https://www.biorxiv.org/content/10.64898/2026.07.06.736558v1?rss=1"
         }
       ],
-      "summary": "This paper presents a new pipeline that uses SPECTER embeddings and similarity scoring to automatically rank biomedical papers for systematic reviews, tested on mutational signature analysis literature. The method outperforms keyword-only and TF-IDF approaches in identifying relevant studies from a large set of 2,231 records. It offers a reproducible way to reduce manual screening effort in computational biology systematic reviews.",
+      "summary": "This paper introduces a reproducible pipeline that uses SPECTER embeddings and similarity metrics to automatically rank biomedical literature for systematic reviews, specifically for mutational signature analysis. Tested on over 2,200 records, the method improves screening efficiency by prioritizing relevant studies, reducing manual effort in systematic reviews.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -99,11 +873,11 @@
           "url": "https://www.biorxiv.org/content/10.64898/2026.07.06.736742v1?rss=1"
         }
       ],
-      "summary": "The BBBP_Atlas is a unified computational framework that predicts blood-brain barrier permeability for both small molecules and peptides, overcoming limitations of existing models that rely on predefined descriptors or small-molecule-only training data. It integrates standardized, redundancy-controlled datasets with interpretable modeling to improve transferability and reduce overestimation risks in CNS drug discovery.",
+      "summary": "The authors introduce BBBP_Atlas, a unified and interpretable deep learning model that predicts blood-brain barrier permeability for both small molecules and peptides, overcoming limitations of prior models that were restricted to small molecules or required predefined descriptors. They also compile and standardize fragmented public BBBP datasets with improved redundancy control to reduce data leakage and overestimation of model performance.",
       "significance": "Medium",
       "tags": [
-        "drug-discovery",
         "machine-learning",
+        "drug-discovery",
         "tool"
       ]
     },
@@ -125,401 +899,12 @@
           "url": "https://www.biorxiv.org/content/10.64898/2026.07.07.737047v1?rss=1"
         }
       ],
-      "summary": "This study shows that mutational bias, not just natural selection, plays a major role in shaping protein evolution in RNA viruses. Using SARS-CoV-2, the authors found that the virus's mutational spectrum explains over 50% of observed amino acid changes and predicts shifts in protein composition over time.",
+      "summary": "This study shows that mutational biases, not just natural selection, significantly shape protein evolution in RNA viruses. Using SARS-CoV-2, the authors demonstrate that the virus's mutation spectrum explains over half of the observed amino acid changes and predicts shifts in protein composition during the pandemic.",
       "significance": "Medium",
       "tags": [
         "evolution",
-        "genomics",
-        "virology"
-      ]
-    },
-    {
-      "id": "571c7fd8d19f",
-      "title": "Metabolic Rewiring in Triple-Negative Breast Cancer: Systems Analysis of TCGA-BRCA Transcriptome Reveals Prognostic Hub Genes",
-      "abstract": "Triple Negative Breast Cancer (TNBC) is the deadliest and most aggressive subtype of breast cancer, with poor prognosis and high rates of metastasis. Despite knowledge of metabolic rewiring in TNBC, the systems-level coordination of these adaptive pathways remains unmapped. This integrative systems-level analysis reveals key metabolic hub genes and identifies ATP1A2 as a significant prognostic marker. Analysis identified 764 differentially expressed genes, with 89 enriched biological processes predominantly involving metabolic pathways. Co-expression network analysis of 261 genes identified me",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.06.736674v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.06.736674v1?rss=1"
-        }
-      ],
-      "summary": "This study uses a systems biology approach to analyze transcriptomic data from TNBC patients, identifying key metabolic hub genes that are rewired in this aggressive cancer subtype. The authors pinpoint ATP1A2 as a significant prognostic marker, suggesting its potential as a therapeutic target. The work provides a systems-level map of metabolic coordination in TNBC, which could inform future treatment strategies.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "systems-biology",
-        "cancer"
-      ]
-    },
-    {
-      "id": "3f384714477c",
-      "title": "Learning the spatial cell-cell communication network to decode multi-channel signaling and predict network-hub vulnerabilities with MOSANIC",
-      "abstract": "Intercellular signaling governs the central decisions of tissue biology, from proliferation and immune recruitment to metabolic adaptation and cell death, and its dysregulation is a hallmark of disease. What matters most are properties of the signaling network as a whole rather than of individual interactions: the hubs that hold the network together and mark rational points of intervention, the relays through which a signal propagates across intermediate cells to reach partners it does not directly contact, the response of tissue-wide communication to the loss of a single node, and the metabol",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.05.736582v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.05.736582v1?rss=1"
-        }
-      ],
-      "summary": "MOSANIC is a new computational method that learns spatial cell-cell communication networks from multi-channel imaging data, enabling the identification of signaling hubs, relays, and network vulnerabilities. By modeling the entire signaling network rather than individual interactions, it can predict how tissues respond to perturbations like the loss of a single cell type. This approach provides a systems-level view of intercellular communication in tissues.",
-      "significance": "High",
-      "tags": [
-        "spatial-omics",
-        "network-analysis",
-        "methodology"
-      ]
-    },
-    {
-      "id": "cdde7a81820d",
-      "title": "Assessing tensor decomposition quality of immune profiling data from a dictionary learning perspective",
-      "abstract": "Systems-level immune profiling data arising from longitudinal studies of vaccination or infection has an inherent multi-index array structure. While tensor decomposition of such datasets has gained popularity, choosing a rank and trial for a decomposition is not straightforward. We show that taking into account the experimental data model can inspire the development of new metrics to assess the quality of a Non-negative CANDECOMP/PARAFAC (NCPD) decomposition, and can thus be used to choose a rank and trial for the decomposition. Moreover, we show how framing the results via a dictionary learni",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.03.736447v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.03.736447v1?rss=1"
-        }
-      ],
-      "summary": "This paper presents new metrics for assessing the quality of non-negative tensor decompositions applied to immune profiling data, helping researchers choose appropriate rank and trial parameters. The authors show that considering the underlying experimental data model can guide the development of these metrics, and they reframe the results through a dictionary learning perspective.",
-      "significance": "Medium",
-      "tags": [
-        "methodology",
-        "machine-learning",
-        "immunology"
-      ]
-    },
-    {
-      "id": "d5924e8f3cd7",
-      "title": "Generative AI Models Reveal Dynamic Views of Aging (DyViA) Phenotypes in Healthy Individuals",
-      "abstract": "Background and objectives: In recent years, the need to develop analytical strategies for healthy aging has assumed great importance. In this study, we introduce DyViA, a generative artificial intelligence (genAI) platform that can construct personalized trajectories capable of predicting the plausible progression of selected phenotypes with advancing age. Research design and methods: DyViA presents a suite of deep learning models covering two major GenAI approaches: DyViA-Diff, a new diffusion model; and DyViA-mGAN, an improved version of a recent Generative Adversarial Network model. It demo",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.05.735302v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.05.735302v1?rss=1"
-        }
-      ],
-      "summary": "DyViA is a generative AI platform that uses diffusion models and GANs to create personalized trajectories predicting how specific health phenotypes change with age in healthy individuals. This approach offers a new way to model healthy aging dynamics at an individual level.",
-      "significance": "Medium",
-      "tags": [
-        "machine-learning",
-        "deep-learning",
-        "aging"
-      ]
-    },
-    {
-      "id": "3a0b5d56e124",
-      "title": "A five-dimensional functional state space for fingerprinting disease transcriptomes",
-      "abstract": "High-throughput transcriptomics has transformed disease biology, but its outputs often remain fragmented into gene and pathway lists that are difficult to compare across conditions or use for human-AI interpretation. We developed a five-dimensional (5-D) functional state space that represents disease transcriptomes as coordinated activity patterns across major biological systems. The framework maps transcriptomic signals onto five functional systems, 14 subcategories, and a distinct infrastructure layer, and was implemented as a reproducible pipeline for functional scoring, cross-condition pro",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.04.736469v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.04.736469v1?rss=1"
-        }
-      ],
-      "summary": "This paper introduces a five-dimensional functional state space framework that maps disease transcriptomes onto coordinated activity patterns across major biological systems, enabling easier comparison across conditions. The approach transforms fragmented gene and pathway lists into interpretable functional scores, facilitating human-AI interpretation of transcriptomic data.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "methodology",
-        "systems-biology"
-      ]
-    },
-    {
-      "id": "cc29e51d7fce",
-      "title": "Gene-specific exponent-corrected normalization for library size in bulk RNA-seq",
-      "abstract": "Correcting for library size is an essential step in bulk RNA-seq analyses, as differences in sequencing depth across samples can obscure biological signal with technical noise. While numerous normalization methods and model-based strategies have been proposed, we demonstrate here that library size-normalized counts and differential expression results obtained from such widely adopted approaches often remain strongly correlated with library size in large-scale RNA-seq experiments. Through a systematic analysis of over 100 publicly available GEO and TCGA RNA-seq datasets with raw count data, we ",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.04.736167v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.04.736167v1?rss=1"
-        }
-      ],
-      "summary": "This paper identifies a persistent technical artifact in bulk RNA-seq data: after standard library size normalization, expression counts and differential expression results often remain correlated with sequencing depth. The authors propose a gene-specific exponent-corrected normalization method that removes this residual library-size dependency, improving the accuracy of downstream analyses.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "methodology"
-      ]
-    },
-    {
-      "id": "857ca0cf4799",
-      "title": "IgGM2: An All-Atom Foundation Model for Adaptive Immune Receptor Design",
-      "abstract": "Accurate immune receptor design requires modeling the coupled variation of amino-acid sequence, full-atom conformation, and target-binding geometry across antibodies, nanobodies, and T-cell receptors (TCRs). Existing methods often address only part of this problem, either by separating structure generation from sequence design, relying on fixed-backbone inverse folding, or focusing on a single receptor class. We introduce IgGM2, a unified all-atom generative framework for immune receptor structure prediction and CDR sequence-structure co-design. IgGM2 follows a structure-to-design strategy: it",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.09.737510v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.09.737510v1?rss=1"
-        }
-      ],
-      "summary": "IgGM2 is a new AI model that can simultaneously predict the 3D structure and design the amino acid sequence of immune receptors like antibodies and T-cell receptors. Unlike previous methods that handle structure and sequence separately, this unified approach models the full atomic details and binding geometry, potentially enabling more accurate design of therapeutic antibodies and nanobodies.",
-      "significance": "High",
-      "tags": [
-        "deep-learning",
-        "protein-structure",
-        "drug-discovery"
-      ]
-    },
-    {
-      "id": "1786f23593b7",
-      "title": "Gene Program Negotiation Defines Cellular Identity in Single-Cell Transcriptomes",
-      "abstract": "Single-cell transcriptomics has transformed the characterization of cellular heterogeneity by enabling systematic analysis of biological gene programs. However, existing computational approaches primarily quantify the activity of individual programs independently and therefore provide limited insight into how multiple simultaneously active programs collectively determine cellular identity. Here we present Gene Program Negotiation (GPN), a graph-based computational framework that models regulatory decision-making among concurrently active biological programs. GPN reconstructs cell-specific prog",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.05.736629v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.05.736629v1?rss=1"
-        }
-      ],
-      "summary": "This paper introduces Gene Program Negotiation (GPN), a graph-based computational framework that models how multiple simultaneously active gene programs collectively determine cellular identity in single-cell transcriptomes, overcoming limitations of existing methods that analyze programs independently. GPN reconstructs cell-specific program interactions to provide deeper insight into regulatory decision-making and cellular heterogeneity.",
-      "significance": "Medium",
-      "tags": [
-        "single-cell",
-        "transcriptomics",
-        "methodology"
-      ]
-    },
-    {
-      "id": "c324dcddccae",
-      "title": "Rectangle: robust and scalable multiscale deconvolution informed by single-cell RNA sequencing data",
-      "abstract": "Bulk RNA-seq enables effective profiling of large cohorts and complex experimental designs, but current single-cell-informed deconvolution methods incompletely resolve closely related cell phenotypes, do not scale efficiently to large single-cell datasets, or fail to account for cellular content not represented in the reference. Here, we present Rectangle, an scverse Python framework for single-cell-informed deconvolution of bulk RNA-seq data. Rectangle combines multiscale deconvolution, capturing cellular composition across multiple resolution levels, with explicit modeling of unknown cellula",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.07.736950v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.07.736950v1?rss=1"
-        }
-      ],
-      "summary": "Rectangle is a new Python framework for deconvolving bulk RNA-seq data using single-cell references. It improves resolution of closely related cell types, scales efficiently to large datasets, and accounts for unknown cellular content not present in the reference.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "single-cell",
-        "tool"
-      ]
-    },
-    {
-      "id": "ec2b112ed8a3",
-      "title": "Mind the Alignment Gap: A Spatial Transcriptomics Benchmark for Scientific Coding Agents",
-      "abstract": "Scientific coding agents are difficult to benchmark because many research tasks require executable work yet produce ambiguous or hard-to-verify outputs. Because benchmark construction requires substantial time and resources, automation offers a path to accelerating methods evaluation. We introduce an interactive framework for constructing scientific-agent benchmarks from peer-reviewed papers and diagnosing agent behavior through trace inspection. We apply it as a case study in spatial transcriptomics alignment, constructing 40 tasks from SABench in which agents submit coordinate tables alignin",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.05.736638v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.05.736638v1?rss=1"
-        }
-      ],
-      "summary": "This paper presents a new framework for automatically building benchmarks to evaluate scientific coding agents, using spatial transcriptomics alignment as a case study. The authors created 40 tasks from peer-reviewed papers where agents must produce coordinate tables, addressing the challenge of verifying ambiguous outputs in scientific research tasks.",
-      "significance": "Medium",
-      "tags": [
-        "spatial-omics",
-        "tool",
-        "methodology"
-      ]
-    },
-    {
-      "id": "3ccedc78fd70",
-      "title": "Coding agents author interpretable single-cell embedding models from the literature",
-      "abstract": "The single-cell literature catalogs cell states as validated marker-gene programs - a sparse, compositional prior. Conventional embedding methods do not leverage this prior and learn cell-state structure de novo from the expression matrix, producing dense dimensions needing post-hoc interpretation and batch correction. Here we show coding agents can author single-cell embedding models directly from the literature. Given a scenario that focuses this literature lens on a chosen biological subdomain, the agent edits a structured Python template, curating named, literature-cited gene programs and ",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.07.737048v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.07.737048v1?rss=1"
-        }
-      ],
-      "summary": "This paper introduces a method where coding agents automatically generate interpretable single-cell embedding models by extracting marker-gene programs from the literature, rather than learning dense dimensions de novo. This approach produces embeddings with named, literature-cited gene programs that require less post-hoc interpretation and batch correction. It represents a novel integration of literature mining with single-cell analysis to create more interpretable models.",
-      "significance": "Medium",
-      "tags": [
-        "single-cell",
-        "machine-learning",
-        "tool"
-      ]
-    },
-    {
-      "id": "567d781ab599",
-      "title": "LeafRank: A phylodynamic framework for inferring relative fitness from single-cell phylogenies in chromosomally unstable tumors",
-      "abstract": "Tumors contain cancer cells with diverse growth potentials that shape evolutionary trajectories, yet this fitness diversity remains difficult to quantify in cases of whole-genome duplication (WGD) and chromosomal instability. We present LeafRank, a mathematical framework that leverages single-cell DNA-seq phylogenies to infer the relative fitness of individual cells. Using a multi-type branching process model, LeafRank integrates full tree topology, including branch lengths and bifurcation patterns, to estimate marginal fitness probabilities under punctuated evolutionary regimes driven by rare",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.06.736651v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.06.736651v1?rss=1"
-        }
-      ],
-      "summary": "LeafRank is a new computational method that uses single-cell DNA sequencing data to estimate the relative growth advantage (fitness) of individual cancer cells within tumors, even in complex cases like whole-genome duplication and chromosomal instability. By modeling tumor evolution as a branching process and analyzing the structure of cell lineage trees, it can identify which cells are most likely to drive tumor progression. This approach provides a way to quantify hidden fitness differences that shape cancer evolution.",
-      "significance": "High",
-      "tags": [
-        "cancer",
-        "single-cell",
-        "methodology"
-      ]
-    },
-    {
-      "id": "172fbd02e802",
-      "title": "EZSolver: Template-free prediction of polar enzymatic mechanisms via bidirectional flow matching and search",
-      "abstract": "Predicting enzymatic reaction mechanisms is critical for understanding enzyme function and for designing and dis-covering new enzymes. Current computational predictors rely on deterministic, rule-based dictionaries, which per-form well on in-distribution tasks but fail to generalize to out-of-distribution (OOD) chemistry. To address this limita-tion, we present EZSolver, a template-free, generative framework for polar enzymatic mechanism prediction. Powered by a flow matching predictor (EZFlow) and navigated by an evaluator-guided bidirectional beam search, EZSolver learns the chemistry of ele",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.08.737313v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.08.737313v1?rss=1"
-        }
-      ],
-      "summary": "EZSolver is a new AI framework that predicts how enzymes catalyze reactions without relying on pre-defined rule templates, using a flow matching model and bidirectional search to explore chemical possibilities. It outperforms existing methods on novel chemical reactions, offering a more generalizable approach to understanding and designing enzyme mechanisms.",
-      "significance": "High",
-      "tags": [
-        "machine-learning",
-        "tool",
-        "structural-biology"
-      ]
-    },
-    {
-      "id": "04a64a2eb7f6",
-      "title": "BertST: BERT-based Spatial Domain Identification in Patient Data",
-      "abstract": "Spatial transcriptomics enables the study of gene expression within its native tissue context, providing critical insights into cellular organization and microenvironment-driven biological processes. A key challenge in this field is spatial domain identification, which aims to partition tissue into coherent regions by jointly leveraging gene expression and spatial information. Existing approaches are predominantly based on Graph Neural Networks (GNNs), and approach based on Transformers particularly, Bidirectional Encoder Reppresentation Transformer (BERT) model for modelling both local and lo",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.04.736527v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.04.736527v1?rss=1"
-        }
-      ],
-      "summary": "This paper introduces BertST, a BERT-based method for identifying spatial domains in spatial transcriptomics data. Unlike existing GNN-based approaches, BertST uses a Transformer architecture to jointly model local and long-range dependencies in gene expression and spatial information, improving the accuracy of tissue region partitioning.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "spatial-omics",
-        "deep-learning"
-      ]
-    },
-    {
-      "id": "7e4aaf09e541",
-      "title": "Thematic Shifts in Early-High-Impact Cancer Genomics and Diagnostics Research: A Bibliometric and Semantic Analysis",
-      "abstract": "Cancer genomics and diagnostics is a rapidly evolving field in which identifying which topics attract early citation prominence can inform laboratory investment, clinical translation, and research strategy. We developed a bibliometric framework to identify and characterize the most influential recent publications in this domain across two consecutive annual cohorts. Using a mathematically exact threshold-expansion algorithm, we ranked over 10,000 OpenAlex-indexed research articles per cohort by 18-month post-publication citation count. Large language model (LLM)-based topical relevance filteri",
-      "journal": "bioRxiv (Bioinformatics)",
-      "doi": "",
-      "pmid": "",
-      "first_author": "",
-      "pub_date": "",
-      "source": "bioRxiv",
-      "url": "https://www.biorxiv.org/content/10.64898/2026.07.04.736459v1?rss=1",
-      "links": [
-        {
-          "type": "biorxiv",
-          "label": "bioRxiv",
-          "url": "https://www.biorxiv.org/content/10.64898/2026.07.04.736459v1?rss=1"
-        }
-      ],
-      "summary": "This study uses a bibliometric framework and LLM-based filtering to identify the most influential recent publications in cancer genomics and diagnostics, revealing thematic shifts in topics that attract early citation prominence. The findings can help guide research investment and clinical translation strategies.",
-      "significance": "Medium",
-      "tags": [
-        "cancer",
-        "genomics",
-        "machine-learning"
+        "virology",
+        "genomics"
       ]
     }
   ]
