@@ -469,19 +469,32 @@ def main():
     write_news_json(all_papers, stats, evidence_dir)
     create_nojekyll()
 
-    # Deploy BioHot main page → /index.html
+    # Deploy bioHot main page → /index.html
     biohot_src = os.path.join(PROJECT_ROOT, "..", "biohot.html")
     if not os.path.exists(biohot_src):
-        # Fallback: look in project root
         biohot_src = os.path.join(PROJECT_ROOT, "biohot.html")
     if os.path.exists(biohot_src):
         shutil.copy2(biohot_src, os.path.join(BUILD_DIR, "index.html"))
-        print(f"  Deployed BioHot homepage → /index.html")
+        print(f"  Deployed bioHot homepage -> /index.html")
     else:
         print(f"  WARNING: biohot.html not found at {biohot_src}")
 
+    # Deploy manuscript sub-pages
+    for ms_dir in ["ms1", "ms2"]:
+        ms_src = os.path.join(PROJECT_ROOT, "..", ms_dir)
+        if not os.path.exists(ms_src):
+            ms_src = os.path.join(PROJECT_ROOT, ms_dir)
+        if os.path.exists(ms_src):
+            ms_dst = os.path.join(BUILD_DIR, ms_dir)
+            if os.path.exists(ms_dst):
+                shutil.rmtree(ms_dst)
+            shutil.copytree(ms_src, ms_dst)
+            print(f"  Deployed /{ms_dir}/ manuscript page")
+
     print(f"  Build directory ready: {BUILD_DIR}")
-    print(f"    /index.html — BioHot homepage")
+    print(f"    /index.html — bioHot homepage")
+    print(f"    /ms1/ — MS1 manuscript page")
+    print(f"    /ms2/ — MS2 manuscript page")
     print(f"    /evidence/index.html — Co-Metabolism Evidence Monitor")
 
     # Step 4: Summary
