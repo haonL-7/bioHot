@@ -5,26 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MS1: Compartmentalized Co-metabolism in the Porcine Gut</title>
 <style>
-:root { --bg: #fff; --text: #1a1a1a; --text-secondary: #4a4a4a; --text-muted: #8c8c8c; --border: #d5d5d5; --accent: #1a5276; --max-width: 780px; --font-serif: 'Georgia','Times New Roman',serif; --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; }
+:root { --bg: #fff; --text: #1a1a1a; --text-secondary: #4a4a4a; --text-muted: #8c8c8c; --border: #d5d5d5; --border-light: #eaeaea; --accent: #1a5276; --max-width: 800px; --font-serif: 'Georgia','Times New Roman',serif; --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; }
 .top-bar { background: #1a1a1a; color: #ccc; font-size: 12px; padding: 8px 20px; }
 .top-bar a { color: #fff; text-decoration: none; }
 .container { max-width: var(--max-width); margin: 0 auto; padding: 40px 20px 60px; }
-h1 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; line-height: 1.4; margin-bottom: 8px; }
-.authors { font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; }
-.affiliation { font-size: 12px; color: var(--text-muted); margin-bottom: 24px; }
-.section-title { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; margin: 32px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); display: inline-block; }
-.abstract { font-family: var(--font-serif); font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; padding: 16px 20px; background: #fafafa; border-left: 3px solid var(--accent); }
-p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 12px; }
-.matrix-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
-.matrix-item { border: 1px solid var(--border); padding: 14px 16px; }
-.matrix-item h4 { font-family: var(--font-serif); font-size: 14px; font-weight: 400; margin-bottom: 4px; }
-.matrix-item p { font-size: 12px; margin-bottom: 0; }
-.key-finding { padding: 14px 18px; background: #fef9e7; border-left: 3px solid #d69e2e; font-size: 13px; color: var(--text-secondary); margin: 16px 0; }
+h1 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; line-height: 1.4; margin-bottom: 6px; }
+h2 { font-family: var(--font-serif); font-size: 17px; font-weight: 400; margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.authors { font-size: 14px; color: var(--text-secondary); margin-bottom: 2px; }
+.affil { font-size: 12px; color: var(--text-muted); margin-bottom: 24px; }
+.section-title { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); display: inline-block; }
+.abstract { font-family: var(--font-serif); font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px; padding: 18px 22px; background: #fafafa; border-left: 3px solid var(--accent); }
+p, li { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 10px; }
+.tier-table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 13px; }
+.tier-table th { text-align: left; padding: 10px 12px; background: #f5f5f5; font-weight: 600; font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border); }
+.tier-table td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); color: var(--text-secondary); vertical-align: top; line-height: 1.6; }
+.tier-table .lvl { font-weight: 600; color: var(--text); white-space: nowrap; min-width: 70px; }
+.key-finding { padding: 14px 18px; background: #fef9e7; border-left: 3px solid #d69e2e; font-size: 13px; color: var(--text-secondary); margin: 14px 0; line-height: 1.7; }
+.callout { padding: 14px 18px; background: #eaf0f6; border-left: 3px solid var(--accent); font-size: 13px; color: var(--text-secondary); margin: 14px 0; line-height: 1.7; }
+.compartments { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0 20px; }
+.comp { border: 1px solid var(--border); padding: 16px; }
+.comp h4 { font-family: var(--font-serif); font-size: 14px; font-weight: 400; margin-bottom: 6px; }
+.comp p { font-size: 12px; margin-bottom: 0; }
+.ref-list { list-style: none; padding: 0; }
+.ref-list li { font-size: 12px; color: var(--text-muted); padding: 3px 0; }
 .back-link { font-size: 12px; color: var(--accent); text-decoration: none; }
 .back-link:hover { text-decoration: underline; }
-@media (max-width: 640px) { h1 { font-size: 18px; } .matrix-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { h1 { font-size: 18px; } .compartments { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -33,37 +41,96 @@ p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bott
 <a href="../" class="back-link">&larr; bioHot</a>
 <h1>Compartmentalized Co-metabolism in the Porcine Gut: Systematic Evidence Mapping and a Theoretical Framework for Epigenetic&ndash;Microbiome Interactions</h1>
 <p class="authors">Liu Haoan, Feng Wen<sup>*</sup></p>
-<p class="affiliation">Yulin University, Yulin, Shaanxi 719000, China &middot; Correspondence: wfeng@yulinu.edu.cn</p>
+<p class="affil">Yulin University, Yulin, Shaanxi 719000, China &middot; wfeng@yulinu.edu.cn &middot; ORCID: 0000-0001-8485-5345 (W.F.), 0009-0008-1764-0908 (H.L.)</p>
+<p class="affil">Manuscript in preparation &middot; Full text available on request</p>
 
-<div class="section-title">Abstract</div>
+<h2>Abstract</h2>
 <div class="abstract">
-The epigenome&ndash;microbiome axis is supported by substantial evidence for bidirectional interactions between gut microbes and host epigenetics; however, a theoretical framework that explicitly integrates spatial organization with temporal dynamics has not yet been proposed. This study constructs the <strong>Compartmentalized Co-metabolism Interaction Network Model</strong>, specifying three functionally distinct intestinal compartments (luminal, epithelial, microenvironment) with their associated metabolite concentration ranges and temporal dynamics. A <strong>Four-Dimensional Matrix Rating System</strong> is developed to evaluate evidence across forward and reverse pathways. A systematic evidence mapping of 26 studies reveals systematic evidence asymmetry: forward pathways are well-validated in porcine models (primarily SCFAs&ndash;HDAC&ndash;barrier axis), while reverse pathways lack causal validation entirely. A universal finding is that all included studies scored Level 0 on Measurement Depth, indicating that no study has simultaneously measured metabolites and epigenetic marks across multiple compartments and multiple timepoints. The model generates four testable, falsifiable predictions and provides a research priority matrix (P1&ndash;P3).
+<strong>Background.</strong> The epigenome&ndash;microbiome axis is supported by substantial evidence for bidirectional interactions between gut microbes and host epigenetics; however, a theoretical framework that explicitly integrates spatial organization with temporal dynamics has not yet been proposed. The "epigenome&ndash;microbiome axis" (Pepke et al.) and the "MDME axis" (Lei et al.) have established the forward and reverse pathways as a foundational paradigm. Neither framework accounts for spatial compartmentalization or the temporal dynamics of metabolite concentration gradients across the gut.<br><br>
+<strong>Methods.</strong> We construct the <strong>Compartmentalized Co-metabolism Interaction Network Model</strong>, specifying three functionally distinct intestinal compartments (luminal, epithelial, microenvironment) with their associated metabolite concentration ranges and temporal dynamics. We develop a <strong>Four-Dimensional Matrix Rating System</strong> (Forward Pathway, Reverse Pathway, Coupling Verification Depth, Measurement Depth) as a diagnostic tool for evidence mapping. A systematic evidence mapping following PRISMA-ScR guidelines was conducted across PubMed, CNKI, and Wanfang Data, with 26 studies included in qualitative synthesis.<br><br>
+<strong>Results.</strong> The forward pathway (microbes &rarr; metabolites &rarr; host epigenetics) is well-validated in porcine models, primarily through the SCFAs&ndash;HDAC&ndash;barrier axis. The reverse pathway (host epigenetics &rarr; microbial regulation) lacks direct causal validation in porcine models. A universal and critical finding: <strong>all 22 empirical studies scored Level 0 on Measurement Depth</strong> (Dimension IV), indicating no study has simultaneously measured metabolites and epigenetic marks across multiple compartments and multiple timepoints. Shared metabolites (butyrate/SCFAs, bile acids, tryptophan metabolites, polyamines, vitamin B12) act as interaction nodes with forward effects partially validated but reverse roles entirely unexplored.<br><br>
+<strong>Conclusions.</strong> The model shifts the paradigm from a "bidirectional axis" to a "compartmentalized co-metabolism network," generating four testable, falsifiable predictions with specific numerical thresholds. A Research Priority Matrix (P1&ndash;P3) guides community validation efforts, with butyrate at the lumen&ndash;epithelium interface identified as the minimum verifiable unit (P1, 2&ndash;3 yr timeline).
 </div>
 
-<div class="section-title">The Compartmentalized Co-Metabolism Network Model</div>
-<p>The model divides the porcine gut into three functionally distinct compartments. A molecule has different concentrations, functions, and dynamics in each compartment; interactions occur only at compartment interfaces.</p>
-<div class="matrix-grid">
-<div class="matrix-item"><h4>Luminal Compartment</h4><p>Site of microbial metabolism. SCFAs at millimolar concentrations (butyrate ~4&ndash;20 mM). Timescale: minutes to hours.</p></div>
-<div class="matrix-item"><h4>Epithelial Compartment</h4><p>Site of host epigenetic regulation. Intracellular concentrations ~3 orders of magnitude lower than luminal. MCT1-mediated transport. Timescale: hours to days.</p></div>
-<div class="matrix-item"><h4>Microenvironment Compartment</h4><p>Site of feedback pathways. Host-secreted immune factors, pH, oxygen, mucus layer. Timescale: days to weeks.</p></div>
+<h2>1. The Compartmentalized Co-Metabolism Network Model</h2>
+<p>The model divides the porcine gut into three functionally distinct but interconnected compartments. The compartments are conceptual constructs, not strict anatomical divisions, acknowledging that biological parameters exist along continuous gradients. A molecule has different concentrations, functions, and dynamics in each compartment; interactions occur only at compartment interfaces.</p>
+
+<div class="compartments">
+<div class="comp">
+<h4>Luminal Compartment</h4>
+<p>Site of microbial metabolism. SCFAs produced at <strong>millimolar concentrations</strong> (butyrate ~4&ndash;20 mM in porcine cecal and proximal colonic contents). Carrier-independent passive diffusion across the apical membrane. Timescale: minutes to hours.</p>
+</div>
+<div class="comp">
+<h4>Epithelial Compartment</h4>
+<p>Site of host epigenetic regulation. Intracellular butyrate concentrations <strong>~3 orders of magnitude lower</strong> than luminal (micromolar range). MCT1-mediated active transport across the apical membrane; majority of imported butyrate is rapidly metabolically consumed. Timescale: hours to days.</p>
+</div>
+<div class="comp">
+<h4>Microenvironment Compartment</h4>
+<p>Site of feedback pathways. Host-secreted immune factors (IgA, defensins, cytokines), pH, oxygen concentration, and mucus layer thickness. Chemical and physical gradients regulated by both microbial metabolism and host epithelial activity. Timescale: days to weeks.</p>
+</div>
 </div>
 
-<div class="section-title">Four-Dimensional Matrix Rating System</div>
-<div class="matrix-grid">
-<div class="matrix-item"><h4>Dimension I: Forward Pathway</h4><p>Microbial metabolites &rarr; host epigenetic regulation. Scored Level 0&ndash;4, from no evidence to porcine causal validation with independent replication.</p></div>
-<div class="matrix-item"><h4>Dimension II: Reverse Pathway</h4><p>Host epigenetics &rarr; gut microbial regulation. Same grading criteria as Dimension I.</p></div>
-<div class="matrix-item"><h4>Dimension III: Coupling Verification Depth</h4><p>Whether forward and reverse pathways are simultaneously validated within the same experimental system. Level 0&ndash;4.</p></div>
-<div class="matrix-item"><h4>Dimension IV: Measurement Depth</h4><p>Completeness of compartmental and temporal sampling. <strong>Level 0&ndash;2 only</strong>, reflecting the current technological ceiling.</p></div>
+<div class="callout"><strong>Core principle:</strong> The forward and reverse pathways are not independent causal chains but are connected through shared metabolites acting as interaction nodes bridging compartments at concentrations differing by three orders of magnitude and on timescales differing by days. This spatial and temporal asynchrony may explain inconsistent SCFA intervention effects in weaned piglets.</div>
+
+<h2>2. Four-Dimensional Matrix Rating System</h2>
+<p>All operational definitions below are reproduced from <strong>Supplementary Table S3</strong>. Dimensions I&ndash;III are scored Level 0&ndash;4 (five levels); Dimension IV is scored Level 0&ndash;2 (three levels), reflecting the current technological ceiling.</p>
+
+<table class="tier-table">
+<tr><th>Dimension</th><th>Level</th><th>Operational Definition</th></tr>
+<tr><td class="lvl" rowspan="7">I. Forward Pathway<br>(Microbe &rarr; Host)</td><td class="lvl">0</td><td>No study has tested whether microbial metabolites regulate host epigenetic marks in any model system.</td></tr>
+<tr><td class="lvl">1</td><td>Association inferred from co-occurrence network analysis or statistical correlation in porcine gut metagenomic/metabolomic data.</td></tr>
+<tr><td class="lvl">2a</td><td>In vitro porcine model validation (e.g., porcine ileal organoids, IPEC-J2 cells) demonstrating that specific metabolites regulate epigenetic marks.</td></tr>
+<tr><td class="lvl">2b</td><td>In vivo porcine model validation (e.g., oral metabolite supplementation) demonstrating that metabolites regulate epigenetic marks in the porcine gut.</td></tr>
+<tr><td class="lvl">3</td><td>Causal validation in murine models (e.g., mono-colonization, gene knockout) confirming the forward pathway causal chain.</td></tr>
+<tr><td class="lvl">4</td><td>Causal validation in porcine models with independent replication by a separate laboratory.</td></tr>
+<tr><td colspan="3"></td></tr>
+<tr><td class="lvl" rowspan="7">II. Reverse Pathway<br>(Host &rarr; Microbiome)</td><td class="lvl">0</td><td>No study has tested whether host epigenetic status regulates the gut microbiota in any model system.</td></tr>
+<tr><td class="lvl">1</td><td>Association inferred from host genetic&ndash;microbiome correlation studies, maternal nutritional programming studies, or germ-free pig transcriptome comparisons.</td></tr>
+<tr><td class="lvl">2a</td><td>In vitro porcine model validation demonstrating that host epigenetic changes alter microbial community composition or function.</td></tr>
+<tr><td class="lvl">2b</td><td>In vivo porcine model validation (e.g., HDAC inhibitor treatment, dietary methyl-donor manipulation) demonstrating that host epigenetic changes alter the gut microbiota.</td></tr>
+<tr><td class="lvl">3</td><td>Causal validation in murine models (e.g., SIRT1, HDAC6, Tet2, or KDM5 knockout) confirming the reverse pathway causal chain.</td></tr>
+<tr><td class="lvl">4</td><td>Causal validation in porcine models with independent replication by a separate laboratory.</td></tr>
+<tr><td colspan="3"></td></tr>
+<tr><td class="lvl" rowspan="6">III. Coupling Verification Depth</td><td class="lvl">0</td><td>Neither the forward nor the reverse pathway has been verified for this node in any model system.</td></tr>
+<tr><td class="lvl">1</td><td>Forward and reverse pathways have been independently verified, but not within the same experimental system.</td></tr>
+<tr><td class="lvl">2</td><td>Forward and reverse effects have been simultaneously observed within the same experiment, but without interventional proof of causal connection between the two pathways.</td></tr>
+<tr><td class="lvl">3</td><td>An intervention experiment demonstrates that blocking one pathway (e.g., forward) affects the effect of the other pathway (e.g., reverse), establishing causal coupling.</td></tr>
+<tr><td class="lvl">4</td><td>Cross-scale coupling verified through simultaneous multi-compartment, multi-timepoint measurement within a single experiment, demonstrating that forward effects temporally precede reverse effects.</td></tr>
+<tr><td colspan="3"></td></tr>
+<tr><td class="lvl" rowspan="4">IV. Measurement Depth</td><td class="lvl">0</td><td>Single compartment measured at a single timepoint; no simultaneous measurement of metabolites and epigenetic marks across multiple compartments.</td></tr>
+<tr><td class="lvl">1</td><td>Multiple compartments measured OR multiple timepoints sampled.</td></tr>
+<tr><td class="lvl">2</td><td>Multiple compartments measured AND multiple timepoints sampled within a single experimental system.</td></tr>
+</table>
+
+<h2>3. Key Findings</h2>
+
+<div class="key-finding">
+<strong>Universal Measurement Depth Deficiency.</strong> All 22 empirical studies (20 from systematic search + 2 supplementary in vitro studies) scored <strong>Level 0</strong> on Measurement Depth. No study has simultaneously measured metabolites and epigenetic marks across multiple compartments and multiple timepoints. This is not a failure of individual studies but reflects a systemic methodological gap: the field has not yet adopted multi-compartment, multi-timepoint experimental designs.
 </div>
 
-<div class="key-finding"><strong>Key Finding:</strong> All 22 empirical studies scored Level 0 on Measurement Depth (Dimension IV). No published study has simultaneously measured metabolites and epigenetic marks across multiple compartments and multiple timepoints.</div>
-
-<div class="section-title">Research Priority Matrix</div>
-<div class="matrix-grid">
-<div class="matrix-item"><h4>P1: Butyrate</h4><p>High feasibility, high importance. The minimum verifiable unit at the lumen&ndash;epithelium interface. Timeline: 2&ndash;3 years.</p></div>
-<div class="matrix-item"><h4>P2: Bile Acids &amp; Tryptophan Metabolites</h4><p>Medium feasibility, high importance. Requires multi-compartment sampling infrastructure.</p></div>
-<div class="matrix-item"><h4>P3: Polyamines &amp; Vitamin B12</h4><p>Low feasibility, medium importance. Cross-species extrapolation required; porcine models absent.</p></div>
+<div class="key-finding">
+<strong>Systematic Evidence Asymmetry.</strong> The forward pathway (SCFAs &rarr; HDAC inhibition &rarr; histone acetylation &rarr; intestinal barrier maintenance) carries in vivo validation evidence in porcine models (Level 2b), including the landmark study by Xiong et al. (2016). The reverse pathway&mdash;defined as experimental manipulation of a host epigenetic enzyme followed by measurement of gut microbiota compositional change&mdash;remains entirely absent from the porcine literature (Level 0). Shared metabolites (butyrate/SCFAs, bile acids, tryptophan metabolites, polyamines, vitamin B12) have had forward effects partially validated, while reverse roles remain unexplored. Interaction nodes represent the most unbalanced region in the current evidence distribution.
 </div>
+
+<h2>4. Research Priority Matrix &amp; Falsifiable Predictions</h2>
+
+<table class="tier-table">
+<tr><th>Priority</th><th>Node</th><th>Feasibility</th><th>Importance</th><th>Key Experiment</th><th>Timeline</th></tr>
+<tr><td class="lvl">P1</td><td>Butyrate (lumen&ndash;epithelium interface)</td><td>High</td><td>High</td><td>Intracellular butyrate &rarr; HDAC &rarr; histone acetylation, with simultaneous luminal + epithelial + microenvironment sampling</td><td>2&ndash;3 yr</td></tr>
+<tr><td class="lvl">P2</td><td>Bile acids; Tryptophan metabolites</td><td>Medium</td><td>High</td><td>FXR/TGR5 and AhR pathway validation with multi-compartment sampling</td><td>&mdash;</td></tr>
+<tr><td class="lvl">P3</td><td>Polyamines; Vitamin B12</td><td>Low</td><td>Medium</td><td>Cross-species extrapolation needed; porcine models absent at any level for polyamines and B12</td><td>&mdash;</td></tr>
+</table>
+
+<div class="callout">
+<strong>Falsifiable prediction (core):</strong> Intracellular butyrate concentration is a better predictor of host epigenetic changes than luminal butyrate concentration. Specifically: (a) intracellular butyrate concentration is predicted to correlate with H3K9 acetylation at r &ge; 0.7, while (b) luminal butyrate concentration is predicted to correlate with H3K9 acetylation at r &le; 0.3. The core claim&mdash;that intracellular concentration is the better predictor&mdash;survives the failure of any specific numerical threshold; the thresholds are empirically informed benchmarks (Xiong et al. 2016 effect sizes) proposed as testable hypotheses.
+</div>
+
+<h2>5. Methods</h2>
+<p>Systematic evidence mapping following <strong>PRISMA-ScR guidelines</strong>. Primary search: PubMed (MEDLINE), May 20, 2026 (n = 12 records). Supplementary searches: CNKI and Wanfang Data (Chinese-language studies). Reference list checking (snowballing) identified 8 additional empirical studies and 6 framework/review articles. After deduplication, 26 studies were included in qualitative synthesis (20 empirical + 6 framework/review). Three reviewers with doctoral-level expertise in porcine gut microbiome or epigenetics independently completed the matrix rating. Complete search strategies and the PRISMA-ScR checklist are provided in the <strong>Supplementary Information</strong> (available on request).</p>
+
+<h2>6. Relationship to MS2</h2>
+<p>This manuscript (<a href="../ms2/">MS2</a>) provides a complementary framework. MS1 operates at the <strong>metabolite-node level</strong> (diagnosing evidence distribution across a co-metabolism network), while MS2 operates at the <strong>strain level</strong> (assessing translational readiness of specific probiotic candidates). Together they form the methodological foundation for the Gut Microbiome Co-Metabolism Evidence Monitor channel on <a href="../">bioHot</a>.</p>
+
 </div>
 </body>
 </html>
