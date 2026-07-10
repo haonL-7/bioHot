@@ -16,7 +16,7 @@ from nacl import encoding, public
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 REPO_OWNER = "haonL-7"
-REPO_NAME = "evidence-app"
+REPO_NAME = "bioHot"
 SECRET_NAME = "DEEPSEEK_API_KEY"
 
 # API Key — 从项目 .env 或参数读取
