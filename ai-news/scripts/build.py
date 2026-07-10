@@ -491,11 +491,16 @@ def main():
             shutil.copytree(ms_src, ms_dst)
             print(f"  Deployed /{ms_dir}/ manuscript page")
 
-    print(f"  Build directory ready: {BUILD_DIR}")
-    print(f"    /index.html — bioHot homepage")
-    print(f"    /ms1/ — MS1 manuscript page")
-    print(f"    /ms2/ — MS2 manuscript page")
-    print(f"    /evidence/index.html — Co-Metabolism Evidence Monitor")
+    # Deploy lightweight curation channels (already built by lightweight/build_channel.py)
+    lightweight_dir = os.path.join(PROJECT_ROOT, "..", "lightweight")
+    if not os.path.exists(lightweight_dir):
+        lightweight_dir = os.path.join(PROJECT_ROOT, "lightweight")
+    for ch_key in ["computational-genomics"]:
+        ch_src = os.path.join(BUILD_DIR, ch_key)
+        if os.path.exists(ch_src):
+            print(f"  Lightweight channel /{ch_key}/ ready ({' '.join(os.listdir(ch_src))})")
+        else:
+            print(f"  NOTE: /{ch_key}/ not built yet. Run: python lightweight/build_channel.py {ch_key}")
 
     # Step 4: Summary
     print("\n[4/4] Build complete!")
