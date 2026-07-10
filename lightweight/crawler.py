@@ -1,108 +1,151 @@
 #!/usr/bin/env python3
 """
-Broad OA literature crawler — covers free SCI journals via Europe PMC + Semantic Scholar.
-No node-specific queries; uses broad topical searches with open-access filters.
+Lightweight broad crawler — PubMed E-utilities primary, Semantic Scholar supplementary.
+Target: free full-text articles across bioinformatics channels.
 """
 import json, os, sys, time, hashlib
 from datetime import datetime, timedelta
 from urllib.parse import quote
+from xml.etree import ElementTree as ET
 import requests
+import feedparser
+from bs4 import BeautifulSoup
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ai-news", "data")
 HEADERS = {"User-Agent": "bioHot-Curator/1.0 (mailto:research@example.com)"}
 TIMEOUT = 30
-SEARCH_DAYS = 30  # Bulk seed: 30 days. Daily update will use 3 days.
+SEARCH_DAYS = 30
 
-# Simple keyword queries — compatible with both Europe PMC and Semantic Scholar
+PUBMED_SEARCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+PUBMED_FETCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+
+# PubMed-optimized queries — free full text filter applied automatically
 CHANNEL_QUERIES = {
     "computational-genomics": [
-        "computational genomics variant calling",
-        "genome assembly algorithm method",
-        "epigenomics computational tool pipeline",
-        "GWAS genotype phenotype prediction",
+        '((genomic*[Title/Abstract] OR genome[Title/Abstract]) AND (computational[Title/Abstract] OR bioinformatic*[Title/Abstract] OR algorithm[Title/Abstract]) AND (variant[Title/Abstract] OR assembly[Title/Abstract] OR annotation[Title/Abstract] OR GWAS[Title/Abstract]))',
+        '((epigenomic*[Title/Abstract] OR epigenetic*[Title/Abstract]) AND (methylation[Title/Abstract] OR histone[Title/Abstract] OR chromatin[Title/Abstract]) AND (computational[Title/Abstract] OR tool[Title/Abstract] OR pipeline[Title/Abstract]))',
     ],
     "metagenomics-informatics": [
-        "metagenomics assembly binning tool",
-        "microbiome functional annotation method",
-        "taxonomic profiling metagenome pipeline",
+        '((metagenomic*[Title/Abstract] OR metagenome[Title/Abstract]) AND (assembly[Title/Abstract] OR binning[Title/Abstract] OR taxonomic[Title/Abstract] OR functional annotation[Title/Abstract]))',
+        '((microbiome[Title/Abstract] OR microbiota[Title/Abstract]) AND (bioinformatic*[Title/Abstract] OR computational[Title/Abstract] OR method[Title/Abstract] OR tool[Title/Abstract]))',
     ],
     "structural-bioinformatics": [
-        "protein structure prediction AlphaFold",
-        "molecular dynamics simulation docking",
-        "protein design structure-based computational",
+        '((protein structure[Title/Abstract] OR AlphaFold[Title/Abstract] OR molecular dynamics[Title/Abstract] OR docking[Title/Abstract]) AND (prediction[Title/Abstract] OR simulation[Title/Abstract] OR computational[Title/Abstract]))',
+        '((structure-based[Title/Abstract] OR rational design[Title/Abstract]) AND (protein[Title/Abstract] OR enzyme[Title/Abstract]))',
     ],
     "systems-biology": [
-        "gene regulatory network inference",
-        "metabolic network modeling flux balance",
-        "multi-omics integration systems biology",
+        '((gene regulatory network[Title/Abstract] OR GRN[Title/Abstract]) AND (inference[Title/Abstract] OR reconstruction[Title/Abstract] OR modeling[Title/Abstract]))',
+        '((flux balance[Title/Abstract] OR FBA[Title/Abstract] OR metabolic model[Title/Abstract]) AND (genome-scale[Title/Abstract] OR constraint-based[Title/Abstract]))',
+        '((network biology[Title/Abstract] OR systems biology[Title/Abstract]) AND (computational[Title/Abstract] OR model[Title/Abstract] OR analysis[Title/Abstract]) AND (pathway[Title/Abstract] OR interactome[Title/Abstract] OR multi-omics[Title/Abstract]))',
     ],
     "ml-biology": [
-        "deep learning protein sequence structure",
-        "language model biological sequence",
-        "graph neural network genomics biology",
+        '((machine learning[Title/Abstract] OR deep learning[Title/Abstract] OR graph neural network[Title/Abstract]) AND (protein[Title/Abstract] OR genomic*[Title/Abstract] OR sequence[Title/Abstract]) AND (method[Title/Abstract] OR tool[Title/Abstract] OR model[Title/Abstract]))',
+        '((language model[Title/Abstract] OR LLM[Title/Abstract] OR transformer[Title/Abstract]) AND (protein[Title/Abstract] OR DNA[Title/Abstract] OR RNA[Title/Abstract] OR biological[Title/Abstract]))',
     ],
     "single-cell-omics": [
-        "single-cell RNA-seq computational method",
-        "spatial transcriptomics analysis tool",
-        "single-cell ATAC-seq multiome pipeline",
+        '((single-cell[Title/Abstract] OR single cell[Title/Abstract]) AND (RNA-seq[Title/Abstract] OR ATAC-seq[Title/Abstract] OR multiome[Title/Abstract]) AND (method[Title/Abstract] OR tool[Title/Abstract] OR algorithm[Title/Abstract]))',
+        '((spatial transcriptomic*[Title/Abstract] OR spatial genomic*[Title/Abstract]) AND (computational[Title/Abstract] OR analysis[Title/Abstract] OR method[Title/Abstract]))',
     ],
     "databases-knowledge-graphs": [
-        "biological database resource release",
-        "knowledge graph biology ontology",
-        "FAIR data integration life sciences",
+        '((biological database[Title/Abstract] OR knowledge graph[Title/Abstract] OR ontology[Title/Abstract]) AND (resource[Title/Abstract] OR update[Title/Abstract] OR release[Title/Abstract]))',
+        '((FAIR data[Title/Abstract] OR data integration[Title/Abstract]) AND (biology[Title/Abstract] OR life science*[Title/Abstract]))',
     ],
     "ai-drug-discovery": [
-        "machine learning drug discovery screening",
-        "deep learning drug design generation",
-        "ADMET prediction computational drug repurposing",
+        '((drug discovery[Title/Abstract] OR virtual screening[Title/Abstract]) AND (machine learning[Title/Abstract] OR deep learning[Title/Abstract] OR AI[Title/Abstract]))',
+        '((ADMET[Title/Abstract] OR drug repurposing[Title/Abstract]) AND (prediction[Title/Abstract] OR computational[Title/Abstract]))',
     ],
 }
 
-def fetch_europepmc(query: str, max_results: int = 40) -> list:
-    """Fetch OA papers from Europe PMC. Uses simple keyword query."""
-    articles = []
-    base = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+def _make_id(title, source):
+    return hashlib.sha256(f"{title}|{source}".encode()).hexdigest()[:12]
+
+def _clean_html(text):
+    if not text: return ""
+    return " ".join(BeautifulSoup(text, "html.parser").get_text(separator=" ", strip=True).split())
+
+# ---- PubMed E-utilities (primary source) ----
+
+def search_pubmed(query: str, max_results: int = 30) -> list[str]:
+    """Search PubMed, return PMIDs. Filter for free full text."""
+    full_query = f"{query} AND (free full text[sb])"
     params = {
-        "query": f"{query} AND (OPEN_ACCESS:Y)",
-        "format": "json", "pageSize": max_results,
-        "sort": "FIRST_PUBLICATION_DATE desc",
-        "resultType": "core",
+        "db": "pubmed", "term": full_query,
+        "retmax": max_results, "retmode": "json", "sort": "date",
+        "datetype": "pdat",
+        "mindate": (datetime.now() - timedelta(days=SEARCH_DAYS)).strftime("%Y/%m/%d"),
+        "maxdate": datetime.now().strftime("%Y/%m/%d"),
     }
     try:
-        resp = requests.get(base, params=params, headers=HEADERS, timeout=TIMEOUT)
+        resp = requests.get(PUBMED_SEARCH, params=params, headers=HEADERS, timeout=TIMEOUT)
         resp.raise_for_status()
-        for item in resp.json().get("resultList", {}).get("result", []):
-            title = (item.get("title") or "").strip()
-            abstract = (item.get("abstractText") or "")[:600]
-            if not title: continue
-            doi = item.get("doi", "")
-            pmid = str(item.get("pmid", ""))
-            journal = item.get("journalTitle", "") or item.get("bookOrReportDetails", {}).get("publisher", "")
-            pub_date = item.get("firstPublicationDate", "")
-            url = f"https://doi.org/{quote(doi, safe='')}" if doi else f"https://europepmc.org/article/MED/{pmid}"
-            links = []
-            if doi: links.append({"type": "doi", "label": "DOI", "url": url})
-            if pmid: links.append({"type": "pubmed", "label": "PubMed", "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"})
-            articles.append({
-                "id": hashlib.sha256(f"{title}|europepmc".encode()).hexdigest()[:12],
-                "title": title[:300], "abstract": abstract, "journal": journal,
-                "doi": doi, "pmid": pmid, "first_author": "",
-                "pub_date": pub_date, "source": "Europe PMC", "url": url, "links": links,
-            })
+        return resp.json().get("esearchresult", {}).get("idlist", [])
     except Exception as e:
-        print(f"    Europe PMC error: {e}")
-    return articles
+        print(f"    PubMed search: {e}")
+        return []
 
-def fetch_semantic_scholar(query: str, max_results: int = 25) -> list:
-    """Fetch OA papers from Semantic Scholar API."""
+def fetch_pubmed_details(pmids: list[str]) -> list[dict]:
+    """Fetch article details from PubMed by PMID."""
+    if not pmids: return []
+    params = {"db": "pubmed", "id": ",".join(pmids), "retmode": "xml", "rettype": "abstract"}
+    try:
+        resp = requests.get(PUBMED_FETCH, params=params, headers=HEADERS, timeout=TIMEOUT)
+        resp.raise_for_status()
+        root = ET.fromstring(resp.content)
+        articles = []
+        for art_elem in root.findall(".//PubmedArticle"):
+            try:
+                med = art_elem.find(".//MedlineCitation")
+                article = med.find(".//Article")
+                if article is None: continue
+                title_elem = article.find(".//ArticleTitle")
+                title = "".join(title_elem.itertext()) if title_elem is not None else ""
+                abst_elem = article.find(".//Abstract/AbstractText")
+                abstract = "".join(abst_elem.itertext()) if abst_elem is not None else ""
+                jn_elem = article.find(".//Journal/Title")
+                journal = jn_elem.text if jn_elem is not None else ""
+                doi_elem = article.find(".//ELocationID[@EIdType='doi']")
+                doi = doi_elem.text if doi_elem is not None else ""
+                pmid = med.find(".//PMID").text if med.find(".//PMID") is not None else ""
+                pub_date_elem = article.find(".//Journal/JournalIssue/PubDate")
+                y = pub_date_elem.findtext("Year", "") if pub_date_elem is not None else ""
+                m = pub_date_elem.findtext("Month", "") if pub_date_elem is not None else ""
+                d = pub_date_elem.findtext("Day", "01") if pub_date_elem is not None else ""
+                pub_date = f"{y}-{m}-{d}" if y else ""
+                authors = []
+                for au in article.findall(".//AuthorList/Author"):
+                    ln = au.findtext("LastName", "")
+                    ini = au.findtext("Initials", "")
+                    if ln: authors.append(f"{ln} {ini}")
+                url = f"https://doi.org/{quote(doi, safe='')}" if doi else f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
+                links = []
+                if doi: links.append({"type": "doi", "label": "DOI", "url": url})
+                if pmid: links.append({"type": "pubmed", "label": "PubMed", "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"})
+                articles.append({
+                    "id": _make_id(title, "pubmed"),
+                    "title": title.strip(), "abstract": abstract.strip()[:600],
+                    "journal": journal, "doi": doi, "pmid": pmid,
+                    "first_author": authors[0] if authors else "",
+                    "pub_date": pub_date, "source": "PubMed",
+                    "url": url, "links": links,
+                })
+            except Exception:
+                continue
+        return articles
+    except Exception as e:
+        print(f"    PubMed fetch: {e}")
+        return []
+
+# ---- Supplementary sources ----
+
+def fetch_semantic_scholar(query: str, max_results: int = 15) -> list:
+    """Supplementary papers from Semantic Scholar."""
     articles = []
     base = "https://api.semanticscholar.org/graph/v1/paper/search"
-    fields = "title,abstract,year,externalIds,journal,publicationDate,authors,openAccessPdf"
-    params = {"query": query, "limit": max_results, "fields": fields, "openAccessPdf": ""}
+    params = {"query": query.replace("[Title/Abstract]", ""), "limit": max_results,
+              "fields": "title,abstract,year,externalIds,journal,publicationDate,authors,openAccessPdf"}
     try:
         resp = requests.get(base, params=params, headers=HEADERS, timeout=TIMEOUT)
-        if resp.status_code == 429:
-            time.sleep(5); return articles
+        if resp.status_code == 429: time.sleep(5); return []
         resp.raise_for_status()
         for item in resp.json().get("data", []):
             title = (item.get("title") or "").strip()
@@ -111,65 +154,42 @@ def fetch_semantic_scholar(query: str, max_results: int = 25) -> list:
             doi = (item.get("externalIds") or {}).get("DOI", "")
             journal = (item.get("journal") or {}).get("name", "") if item.get("journal") else ""
             pub_date = str(item.get("year", ""))
-            paper_id = item.get("paperId", "")
-            url = f"https://doi.org/{quote(doi, safe='')}" if doi else f"https://www.semanticscholar.org/paper/{paper_id}"
-            links = []
-            if doi: links.append({"type": "doi", "label": "DOI", "url": url})
-            links.append({"type": "semantic-scholar", "label": "Semantic Scholar", "url": f"https://www.semanticscholar.org/paper/{paper_id}"})
-            # Only include if OA PDF is available or DOI exists
-            if item.get("openAccessPdf") or doi:
-                articles.append({
-                    "id": hashlib.sha256(f"{title}|s2".encode()).hexdigest()[:12],
-                    "title": title[:300], "abstract": abstract, "journal": journal,
-                    "doi": doi, "pmid": "", "first_author": "",
-                    "pub_date": pub_date, "source": "Semantic Scholar", "url": url, "links": links,
-                })
-    except Exception as e:
-        print(f"    Semantic Scholar error: {e}")
-    return articles
-
-def fetch_biorxiv() -> list:
-    """Fetch recent bioinformatics preprints from bioRxiv."""
-    articles = []
-    try:
-        import feedparser
-        feed = feedparser.parse("https://connect.biorxiv.org/biorxiv_xml.php?subject=bioinformatics")
-        for entry in feed.entries[:20]:
-            title = entry.get("title", "").strip()
-            abstract = entry.get("summary", "").strip()
-            from bs4 import BeautifulSoup
-            abstract = " ".join(BeautifulSoup(abstract, "html.parser").get_text(separator=" ", strip=True).split())[:600]
-            if not title: continue
-            link = entry.get("link", "")
-            pub_date = entry.get("published", "")
+            url = f"https://doi.org/{quote(doi, safe='')}" if doi else ""
+            if not url: continue
             articles.append({
-                "id": hashlib.sha256(f"{title}|biorxiv".encode()).hexdigest()[:12],
-                "title": title[:300], "abstract": abstract, "journal": "bioRxiv (Bioinformatics)",
-                "doi": "", "pmid": "", "first_author": "", "pub_date": pub_date,
-                "source": "bioRxiv", "url": link,
-                "links": [{"type": "biorxiv", "label": "bioRxiv", "url": link}],
+                "id": _make_id(title, "s2"), "title": title[:300], "abstract": abstract,
+                "journal": journal, "doi": doi, "pmid": "", "first_author": "",
+                "pub_date": pub_date, "source": "Semantic Scholar", "url": url,
+                "links": [{"type": "doi", "label": "DOI", "url": url}],
             })
     except Exception as e:
-        print(f"    bioRxiv error: {e}")
+        print(f"    S2: {e}")
     return articles
 
-def crawl_channel(channel_key: str) -> list:
-    """Crawl papers for one lightweight channel."""
+def crawl_channel(channel_key: str, max_pubmed_per_query: int = 30) -> list:
+    """Primary: PubMed free full text. Supplementary: Semantic Scholar."""
     queries = CHANNEL_QUERIES.get(channel_key, [])
     if not queries:
         print(f"  Unknown channel: {channel_key}")
         return []
 
     all_articles = []
-    for q in queries:  # Use ALL queries, not just first 2
-        all_articles.extend(fetch_europepmc(q, 40))
-        time.sleep(0.3)
-        all_articles.extend(fetch_semantic_scholar(q, 25))
-        time.sleep(0.5)
+    for q in queries:
+        # PubMed primary
+        pmids = search_pubmed(q, max_pubmed_per_query)
+        if pmids:
+            details = fetch_pubmed_details(pmids)
+            all_articles.extend(details)
+            print(f"    PubMed: {len(details)} papers")
+        else:
+            print(f"    PubMed: 0 papers")
+        time.sleep(0.4)
 
-    # Reduced bioRxiv weight — only 5 papers as supplementary
-    biorxiv_papers = fetch_biorxiv()[:5]
-    all_articles.extend(biorxiv_papers)
+    # Semantic Scholar supplementary (just first query, simplified)
+    if queries:
+        s2_papers = fetch_semantic_scholar(queries[0], 10)
+        all_articles.extend(s2_papers)
+        print(f"    S2: {len(s2_papers)} papers")
 
     # Deduplicate
     seen = set()
@@ -184,23 +204,10 @@ def crawl_channel(channel_key: str) -> list:
     unique.sort(key=lambda a: a.get("pub_date", ""), reverse=True)
     return unique
 
-def crawl_all(channels: list = None) -> dict:
-    """Crawl all specified channels, returning {channel_key: [papers]}."""
-    if channels is None:
-        channels = list(CHANNEL_QUERIES.keys())
-    results = {}
-    for ch in channels:
-        print(f"\n[{ch}]")
-        papers = crawl_channel(ch)
-        print(f"  {len(papers)} papers")
-        results[ch] = papers
-    return results
-
 if __name__ == "__main__":
-    # Test: crawl one channel
     ch = sys.argv[1] if len(sys.argv) > 1 else "computational-genomics"
     papers = crawl_channel(ch)
-    print(f"\nTotal: {len(papers)} papers for {ch}")
-    for p in papers[:3]:
-        print(f"  - {p['title'][:80]}")
-        print(f"    {p['journal']} | {p['pub_date']}")
+    print(f"\nTotal: {len(papers)} papers")
+    for p in papers[:5]:
+        print(f"  [{p['source']}] {p['title'][:70]}")
+        print(f"    {p['journal'][:50]} | {p['pub_date']}")
