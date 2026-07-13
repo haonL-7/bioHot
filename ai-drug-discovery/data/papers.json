@@ -1,6 +1,6 @@
 {
   "channel": "ai-drug-discovery",
-  "generated_at": "2026-07-12T19:57:22.131354",
+  "generated_at": "2026-07-13T20:16:47.176928",
   "count": 30,
   "papers": [
     {
@@ -26,43 +26,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42396081/"
         }
       ],
-      "summary": "This study presents a generative AI framework that incorporates structural information of the ATP-binding pocket to design novel inhibitors targeting EGFR, including those with resistance mutations like T790M and C797S. The approach uses structure-aware conditioning and multiplatform docking validation to identify promising drug candidates. This work demonstrates the potential of target-aware generative models for overcoming drug resistance in kinase inhibitor development.",
+      "summary": "This study presents a generative AI framework that incorporates structural information from the ATP-binding pocket to design novel EGFR inhibitors capable of overcoming common resistance mutations (T790M and C797S). The approach uses structure-aware conditioning to generate target-specific molecules, which are then validated through multiplatform docking simulations. This work demonstrates a practical application of generative AI for designing resistance-circumventing kinase inhibitors.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
         "deep-learning",
         "machine-learning"
-      ]
-    },
-    {
-      "id": "4950ea8e5275",
-      "title": "Integrating evolutionary and compositional features with ML and DL for robust and interpretable druggable protein prediction.",
-      "abstract": "Druggable proteins are essential targets in contemporary therapeutic discovery, and their precise identification is necessary for the progression of rational drug design. Traditional biochemical screening techniques are costly, laborious, and protracted, whereas current computational models typically attain only moderate efficacy and seldom offer robust statistical validation or biological interpretability. To mitigate these limitations, we offer a hybrid computational approach that integrates evolutionary and compositional information by merging Average Block-based Position-Specific Scoring M",
-      "journal": "Journal of computer-aided molecular design",
-      "doi": "10.1007/s10822-026-00818-1",
-      "pmid": "42380674",
-      "first_author": "Rehman M",
-      "pub_date": "2026-Jun-30",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1007%2Fs10822-026-00818-1",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1007%2Fs10822-026-00818-1"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42380674/"
-        }
-      ],
-      "summary": "This study presents a hybrid computational method that combines evolutionary and compositional protein features with machine learning and deep learning to improve the prediction of druggable proteins. The approach aims to overcome the limitations of traditional screening and existing computational models by providing better accuracy and biological interpretability.",
-      "significance": "Medium",
-      "tags": [
-        "machine-learning",
-        "deep-learning",
-        "drug-discovery"
       ]
     },
     {
@@ -88,7 +57,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42427989/"
         }
       ],
-      "summary": "DeepMech is a new machine learning framework that can predict the complete step-by-step mechanism of chemical reactions, including intermediates and transition states, without relying on expensive quantum chemistry calculations. This approach addresses a major gap in current deep learning methods, which typically only predict final reaction outcomes. The framework has broad potential applications in drug discovery, materials science, and prebiotic chemistry.",
+      "summary": "DeepMech is a new machine learning framework that can predict the complete step-by-step mechanisms of chemical reactions, including intermediates, rather than just final products. This approach could accelerate discovery in fields like drug development and materials science by replacing expensive quantum chemistry calculations or time-consuming expert analysis.",
       "significance": "High",
       "tags": [
         "machine-learning",
@@ -119,7 +88,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436376/"
         }
       ],
-      "summary": "This paper presents a method to prioritize molecules for virtual screening by generating preliminary, interpretable rankings based on low-feature likelihood models of drug-target activity. This approach reduces computational demands by providing informed guidance before applying more intensive AI-based screening to billion-scale compound libraries.",
+      "summary": "This paper introduces a method to prioritize which compounds to screen in virtual screening by using a simple, interpretable ranking based on a few key features, reducing the computational burden of evaluating billion-scale libraries. The approach provides a preliminary likelihood-based ranking of drug-target activity before applying more complex AI methods, making the overall screening process more efficient.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -150,11 +119,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42432671/"
         }
       ],
-      "summary": "This systematic review examines how AI is being used to repurpose existing drugs for neurological disorders like Alzheimer's, Parkinson's, and ALS. It evaluates the validation strategies, challenges, and opportunities in this approach, noting that despite advanced drug delivery systems, success rates remain low. The paper provides a comprehensive overview of the current state and future potential of AI-assisted drug repurposing in neurology.",
+      "summary": "This systematic review examines how AI is being used to repurpose existing drugs for neurological disorders like Alzheimer's, Parkinson's, and ALS. It evaluates the validation strategies, challenges, and opportunities in this approach, highlighting that despite advanced technologies, drug development success for these conditions remains low.",
       "significance": "Medium",
       "tags": [
-        "drug-discovery",
         "machine-learning",
+        "drug-discovery",
         "review"
       ]
     },
@@ -181,12 +150,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42430439/"
         }
       ],
-      "summary": "Researchers used a deep learning model and molecular docking to screen natural products for inhibitors of Cathepsin L, a target for kidney injury. They identified several active candidates and characterized their binding modes, offering a new AI-guided approach to finding potential therapeutics.",
+      "summary": "Researchers developed an AI-assisted strategy combining deep learning and molecular docking to identify natural compounds that inhibit Cathepsin L (CTSL), a therapeutic target for kidney injury. They screened 200 natural products, validated active candidates experimentally, and used molecular dynamics simulations to characterize binding interactions. This approach identified novel CTSL inhibitors with potential for treating renal injury.",
       "significance": "Medium",
       "tags": [
-        "machine-learning",
         "drug-discovery",
-        "methodology"
+        "machine-learning",
+        "deep-learning"
       ]
     },
     {
@@ -212,7 +181,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42426033/"
         }
       ],
-      "summary": "This paper presents a novel approach that integrates quantum annealing computing with deep generative models to improve the design of drug-like small molecules. The key innovation is a neural hash function that serves both as a regularization and binarization scheme, enabling the generation of molecules beyond the training data distribution. This method addresses the common problem of low frequency of drug-like compounds in molecular generative models.",
+      "summary": "This paper presents a novel approach to molecular design that uses quantum annealing to optimize deep generative models, addressing the common problem of low frequency of drug-like compounds. The key innovation is a neural hash function that serves both as a regularization and binarization scheme, enabling the generation of molecules beyond the training data distribution.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -243,12 +212,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42425941/"
         }
       ],
-      "summary": "This perspective article examines the current use of artificial intelligence in neuropsychiatric drug discovery, noting that while AI-driven small molecules have entered clinical trials, no commercially available compounds have been developed solely using AI approaches. The authors discuss the challenges and future directions for applying AI to discover novel drug targets, biomarkers, and treatments for neuropsychiatric disorders.",
+      "summary": "This perspective article examines the current use of artificial intelligence in neuropsychiatric drug discovery, noting that while AI has identified several small molecules now in clinical trials, no commercially available drugs have been developed solely through AI approaches. The authors discuss the unique challenges and future directions for applying AI to discover novel drug targets, biomarkers, and treatments for neuropsychiatric disorders.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
         "machine-learning",
         "neuroscience"
+      ]
+    },
+    {
+      "id": "75ff54c62d08",
+      "title": "AlphaFold-based peptide structure prediction: Opportunities, limitations, and future directions.",
+      "abstract": "Accurate prediction of peptide structures and peptide-receptor complexes is essential for rational peptide drug development. However, the inherent conformational flexibility of short and disordered peptides presents a fundamental challenge. The AlphaFold model series, which has progressed from AlphaFold2 through AlphaFold-Multimer to AlphaFold3, has substantially advanced computational peptide structure prediction through innovations in geometric reasoning (invariant point attention) and interface-focused confidence metrics (ipTM score), achieving high accuracy for both monomeric peptide struc",
+      "journal": "Biotechnology advances",
+      "doi": "10.1016/j.biotechadv.2026.108977",
+      "pmid": "42425235",
+      "first_author": "Zhang B",
+      "pub_date": "2026-Jul-09",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.biotechadv.2026.108977",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.biotechadv.2026.108977"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42425235/"
+        }
+      ],
+      "summary": "This review examines the use of AlphaFold models for predicting peptide structures and peptide-receptor complexes, a key step in peptide drug development. It highlights how AlphaFold2, AlphaFold-Multimer, and AlphaFold3 have improved accuracy through geometric reasoning and confidence metrics, despite the challenge of peptide flexibility. The paper discusses current limitations and future directions for applying these tools in drug discovery.",
+      "significance": "Medium",
+      "tags": [
+        "protein-structure",
+        "drug-discovery",
+        "review"
       ]
     },
     {
@@ -274,12 +274,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42420390/"
         }
       ],
-      "summary": "This paper introduces 3Br-MGD, a deep learning framework that combines a three-branch encoder with meta-learning to predict compound toxicity from limited data. The method addresses the common problem of small training datasets in early drug discovery by learning from multiple related tasks, improving prediction accuracy for new compounds.",
+      "summary": "This paper introduces 3Br-MGD, a deep learning framework that combines a three-branch encoder with meta-learning to predict drug toxicity from limited data. The method outperforms existing approaches by better capturing complex molecular features, addressing a key bottleneck in early-stage drug discovery.",
       "significance": "Medium",
       "tags": [
-        "deep-learning",
+        "machine-learning",
         "drug-discovery",
-        "machine-learning"
+        "deep-learning"
       ]
     },
     {
@@ -305,12 +305,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42428845/"
         }
       ],
-      "summary": "This paper introduces AD-LSF, a new deep learning framework for predicting drug-target interactions by integrating multiple data types. The method uses asymmetric dynamic gating and adaptive fusion to better capture complex relationships between drug and target features, addressing limitations of current multimodal approaches.",
+      "summary": "This paper presents AD-LSF, a new deep learning framework that improves drug-target interaction prediction by better handling complex relationships between different data types (like drug chemical structures and protein sequences). The method uses asymmetric dynamic gating and adaptive fusion to overcome limitations of existing multimodal approaches, potentially aiding drug discovery and repurposing efforts.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
-        "machine-learning",
-        "deep-learning"
+        "deep-learning",
+        "machine-learning"
       ]
     },
     {
@@ -336,11 +336,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42414338/"
         }
       ],
-      "summary": "Researchers generated an open dataset of 32 million 3D structures covering all possible pentapeptide sequences made from standard amino acids, enabling high-throughput virtual screening without needing to model peptide flexibility from scratch. The dataset was created using an automated pipeline combining UCSF ChimeraX, Reduce, and RDKit, and is freely available for drug discovery and structural biology applications.",
-      "significance": "Medium",
+      "summary": "Researchers generated an open dataset of 32 million 3D structures covering all possible pentapeptide sequences, providing a resource for high-throughput virtual screening of peptide binders and modulators. The automated workflow using ChimeraX, Reduce, and RDKit enables rapid structure generation from sequence alone.",
+      "significance": "High",
       "tags": [
-        "drug-discovery",
         "structural-biology",
+        "drug-discovery",
         "database"
       ]
     },
@@ -367,12 +367,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42414289/"
         }
       ],
-      "summary": "Researchers developed ARCADIAMP, a platform that uses a diffusion model and a protein language model to design new antimicrobial peptides with high activity and low toxicity. Eight out of ten designed peptides showed antimicrobial activity, demonstrating the platform's potential for discovering new antibiotics against multidrug-resistant bacteria.",
+      "summary": "Researchers developed ARCADIAMP, a platform combining a diffusion model with an AI classifier to design new antimicrobial peptides. The system successfully generated peptides with strong activity against bacteria and low toxicity, with 8 out of 10 tested candidates showing antimicrobial effects.",
       "significance": "High",
       "tags": [
         "deep-learning",
         "drug-discovery",
-        "machine-learning"
+        "microbiology"
       ]
     },
     {
@@ -398,7 +398,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42410671/"
         }
       ],
-      "summary": "This paper introduces ScrambleBench, a standardized workflow for comparing structure-based de novo generative AI models used in drug discovery. The tool addresses the lack of consistent evaluation criteria for these models, helping researchers determine if they are robust enough for practical medicinal chemistry applications.",
+      "summary": "This paper introduces ScrambleBench, a standardized workflow for comparing structure-based generative AI models used in drug discovery. The authors address the problem of non-standardized evaluation criteria by providing a consistent framework to assess the robustness and reliability of these models for de novo small molecule design.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -429,8 +429,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42410651/"
         }
       ],
-      "summary": "This study presents a machine learning approach for predicting IC50 values of inhibitors against ASK1 from SMILES strings, developed for a drug discovery competition. The method focuses on selecting optimal molecular encoders and applying data augmentation to improve prediction accuracy. The work demonstrates a practical pipeline for quantitative bioactivity prediction in early-stage drug discovery.",
-      "significance": "Low",
+      "summary": "This study presents a machine learning approach for predicting inhibitor potency (IC50 values) against ASK1 from SMILES strings, developed for a drug discovery competition. The methodology focuses on selecting optimal molecular encoders and using data augmentation to improve prediction accuracy. This work demonstrates a practical pipeline for early-stage drug discovery using SMILES-based bioactivity prediction.",
+      "significance": "Medium",
       "tags": [
         "machine-learning",
         "drug-discovery",
@@ -460,12 +460,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42401580/"
         }
       ],
-      "summary": "Researchers developed MFTabPFN, a machine learning model that integrates low- and high-quality data through a hierarchical transformer architecture to improve prediction accuracy and uncertainty quantification, particularly useful in scenarios with limited data or high-dimensional inputs. The model captures correlations between different data fidelities, enhancing performance in applications like drug discovery and disease diagnostics.",
+      "summary": "This paper introduces MFTabPFN, a machine learning model that integrates low- and high-quality data to improve predictions and quantify uncertainty, especially when data is limited or high-dimensional. The model uses a hierarchical transformer architecture to learn from both data sources, enhancing accuracy in applications like drug discovery and diagnostics.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "deep-learning",
-        "drug-discovery"
+        "drug-discovery",
+        "methodology"
       ]
     },
     {
@@ -491,12 +491,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42400817/"
         }
       ],
-      "summary": "SMASH is a new, free, open-source tool that makes molecular docking and virtual screening faster and easier to use on standard computers. It uses machine learning to predict binding sites and combines this with energy scoring to improve accuracy, while also handling large datasets efficiently.",
+      "summary": "SMASH is an upgraded, free, and open-source virtual screening tool that uses machine learning to predict binding sites and combines it with energy scoring functions to accelerate molecular docking on standard hardware. It automatically handles titration states and uses GPU acceleration, making large-scale drug screening projects more accessible and efficient for researchers.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
         "machine-learning",
         "tool"
+      ]
+    },
+    {
+      "id": "9141cfce1d1b",
+      "title": "Targeting HsDHODH: Shape and machine-learning guided discovery and structural validation of SARS-CoV-2 antivirals.",
+      "abstract": "The frequent emergence of novel RNA viruses and the rapid development of viral resistance highlight the urgent need for new antiviral therapies. In this study, we employed an integrated computational pipeline combining shape-based models, machine-learning (ML)-based models, and hotspot analysis to identify novel human dihydroorotate dehydrogenase (HsDHODH) inhibitors. A virtual screening (VS) campaign of the H3D chemical library identified H3D-002856 as the primary hit (IC50 = 2.92 ± 0.07 μM), which subsequently guided a similarity-based hit expansion (Tanimoto coefficient≥0.7) of 17 structura",
+      "journal": "European journal of medicinal chemistry",
+      "doi": "10.1016/j.ejmech.2026.119123",
+      "pmid": "42435557",
+      "first_author": "Cruz LV",
+      "pub_date": "2026-Jul-03",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.ejmech.2026.119123",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.ejmech.2026.119123"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42435557/"
+        }
+      ],
+      "summary": "Researchers used a combination of shape-based modeling, machine learning, and hotspot analysis to discover new inhibitors of human dihydroorotate dehydrogenase (HsDHODH) as potential antivirals against SARS-CoV-2. The virtual screening campaign identified H3D-002856 as a primary hit with an IC50 of 2.92 μM, and similarity-based expansion yielded 17 additional structural analogs. This integrated computational approach offers a promising strategy for rapid antiviral drug discovery.",
+      "significance": "Medium",
+      "tags": [
+        "drug-discovery",
+        "machine-learning",
+        "methodology"
       ]
     },
     {
@@ -522,12 +553,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42400020/"
         }
       ],
-      "summary": "This paper introduces P2MAT, a machine learning software that predicts melting points of organic compounds using 2D and 3D molecular descriptors, outperforming traditional group contribution methods. The tool addresses a longstanding challenge in predictive chemistry with potential applications in materials science and drug discovery.",
+      "summary": "This paper introduces P2MAT, a machine learning software that predicts melting points of organic compounds using 2D and 3D molecular descriptors, outperforming traditional group contribution methods. The tool addresses a long-standing challenge in predictive chemistry with potential applications in materials science and drug discovery.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "tool",
-        "drug-discovery"
+        "drug-discovery",
+        "tool"
       ]
     },
     {
@@ -553,12 +584,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42399464/"
         }
       ],
-      "summary": "This paper explores the use of self-supervised generative models for designing large molecules, a domain that is more complex and less explored than small molecule design. The authors evaluate the scalability and performance of these models, establishing strong baselines for generating large molecules with potential applications in drug discovery.",
+      "summary": "This paper establishes strong baselines for generating large molecules using self-supervised generative models, addressing the unique challenges of complexity and scalability in this underexplored domain. The authors evaluate AI models originally designed for small molecules, demonstrating their potential for efficient and valid large molecule drug design.",
       "significance": "Medium",
       "tags": [
-        "drug-discovery",
         "machine-learning",
-        "deep-learning"
+        "drug-discovery",
+        "methodology"
       ]
     },
     {
@@ -584,7 +615,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42399444/"
         }
       ],
-      "summary": "This survey reviews recent advances in using generative AI to design protein sequences with targeted functions, addressing the challenge of exploring the vast combinatorial space of possible proteins. It covers methods for controllable sequence generation, which could accelerate drug discovery and enzyme engineering by reducing time and cost.",
+      "summary": "This survey reviews recent advances in using generative AI to design novel protein sequences with targeted functions, which is crucial for drug discovery and enzyme engineering. It highlights how AI is transforming the field by enabling navigation of the vast protein sequence space more efficiently than traditional methods.",
       "significance": "Medium",
       "tags": [
         "protein-structure",
@@ -615,7 +646,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42397470/"
         }
       ],
-      "summary": "This commentary discusses the opportunities and challenges of using AI models in life sciences, emphasizing the need to demystify complex models and avoid misconceptions about their capabilities. It highlights best practices for integrating AI into interdisciplinary research, particularly in drug discovery.",
+      "summary": "This commentary discusses the opportunities and challenges of using AI models in life sciences, emphasizing the need to demystify complex models and avoid misconceptions about their capabilities. It highlights best practices for AI in interdisciplinary research, including drug discovery, to ensure meaningful impact on experimental programs.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -646,11 +677,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42393762/"
         }
       ],
-      "summary": "This study uses machine learning to predict vapor pressure of liquid lubricants, enabling virtual screening for new compounds suitable for the vacuum conditions of space. The approach addresses the limited availability of low-volatility lubricants that currently constrain mechanical assembly designs for space applications.",
+      "summary": "This study uses machine learning to predict vapor pressure of liquid lubricants, enabling virtual screening for compounds stable in space vacuum conditions. The approach addresses the scarcity of suitable lubricants for moving mechanical assemblies in spacecraft by computationally identifying new candidates.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "drug-discovery"
+        "drug-discovery",
+        "tool"
       ]
     },
     {
@@ -676,12 +708,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42390120/"
         }
       ],
-      "summary": "3DICE is a new deep learning method that predicts drug-target interactions by learning 3D structural representations of both drugs and proteins, improving accuracy and generalizability over existing methods that rely on simpler representations like SMILES strings. The model is designed to be interpretable and performs well in cold-start scenarios where new drugs or targets are encountered. This approach could accelerate large-scale drug discovery by enabling more reliable computational screening.",
+      "summary": "This paper presents 3DICE, a deep learning method that uses 3D structural information from both drugs and targets to improve drug-target interaction prediction. The model achieves better performance in cold-start scenarios, where it must predict interactions for unseen drugs or targets, and can be applied to large-scale drug discovery.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
         "deep-learning",
-        "structural-biology"
+        "machine-learning"
       ]
     },
     {
@@ -707,12 +739,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42412801/"
         }
       ],
-      "summary": "XMolRL is a new AI framework that combines information about cellular-level effects (phenotype) and specific protein targets to generate better drug candidate molecules. It uses multi-objective reinforcement learning to bridge the gap between these two approaches, potentially reducing experimental costs while improving molecule quality.",
+      "summary": "XMolRL is a new AI framework that combines information about cellular effects (phenotype) and specific protein targets to generate better drug candidate molecules. It uses multi-objective reinforcement learning to balance these two types of information, overcoming limitations of current approaches that focus on only one aspect.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
         "machine-learning",
-        "deep-learning"
+        "methodology"
       ]
     },
     {
@@ -738,7 +770,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42412783/"
         }
       ],
-      "summary": "This paper introduces Agentomics, an AI agent system that autonomously designs and implements state-of-the-art machine learning solutions for biomedical problems, outperforming both existing automated ML tools and human-engineered models. The system leverages large language models to iteratively develop, test, and refine complete ML codebases tailored to specific biomedical datasets.",
+      "summary": "Agentomics is a new AI agent system that can autonomously design and implement machine learning solutions for biomedical problems, outperforming both existing automated ML tools and human-engineered models. It combines the flexibility of large language models with robust code generation to produce reproducible, state-of-the-art results across diverse biomedical tasks.",
       "significance": "High",
       "tags": [
         "machine-learning",
@@ -769,43 +801,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42394908/"
         }
       ],
-      "summary": "This review discusses how hydrogels can be used to create 3D tumor microenvironment models for cervical cancer, which better mimic the in vivo conditions than traditional 2D cultures. The authors highlight that these 3D hydrogel models improve drug screening accuracy by incorporating HPV-driven signaling, immune interactions, and stromal components specific to cervical cancer.",
+      "summary": "This review discusses how hydrogels can be used to create 3D tumor microenvironment models for cervical cancer, which better replicate in vivo conditions than traditional 2D cultures. The authors highlight that these 3D models improve drug screening accuracy by capturing HPV-driven signaling, immune interactions, and stromal components unique to cervical cancer.",
       "significance": "Medium",
       "tags": [
         "cancer",
         "drug-discovery",
         "review"
-      ]
-    },
-    {
-      "id": "f50fc8f14fcc",
-      "title": "Large-scale discovery platform enables identification of peptides targeting drug-resistant candidiasis.",
-      "abstract": "Natural products have an unparalleled track record as sources of clinical drugs. Among them, nonribosomal peptides (NRPs) stand as one of the most therapeutically significant classes, encompassing numerous approved anti-infective and anticancer agents. Yet, discovering bioactive NRPs remains profoundly challenging due to their complex biosynthesis and chemical architecture. Here, we present NPDiscover, a pathogen-oriented, scalable bioinformatics platform that integrates genome mining, metabolomics, and machine learning to identify NRPs active against drug-resistant pathogens. Applying NPDisco",
-      "journal": "Cell reports methods",
-      "doi": "10.1016/j.crmeth.2026.101510",
-      "pmid": "42385700",
-      "first_author": "Behsaz B",
-      "pub_date": "2026-Jul-01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1016%2Fj.crmeth.2026.101510",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1016%2Fj.crmeth.2026.101510"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42385700/"
-        }
-      ],
-      "summary": "Researchers developed NPDiscover, a bioinformatics platform that combines genome mining, metabolomics, and machine learning to identify nonribosomal peptides (NRPs) active against drug-resistant pathogens. The platform successfully discovered peptides targeting drug-resistant candidiasis, addressing a major challenge in natural product drug discovery.",
-      "significance": "High",
-      "tags": [
-        "drug-discovery",
-        "machine-learning",
-        "methodology"
       ]
     },
     {
@@ -831,7 +832,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42430343/"
         }
       ],
-      "summary": "GraphTransDTI is a new deep learning method that combines graph transformers and CNN-BiLSTM networks to better predict drug-protein interactions by simultaneously capturing drug molecular structures and protein sequence context. The approach uses cross-attention to model interactions between these representations, potentially improving drug discovery and repurposing efforts.",
+      "summary": "GraphTransDTI is a new deep learning framework that combines a Graph Transformer for drug molecular structures with a CNN-BiLSTM network for protein sequences, using cross-attention to model their interactions. It improves drug-protein interaction prediction, which could accelerate drug discovery and repurposing by reducing experimental costs.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -862,7 +863,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42428571/"
         }
       ],
-      "summary": "This review discusses how AI-driven drug repositioning can accelerate pandemic preparedness by rapidly identifying new uses for existing drugs against emerging pathogens, overcoming the slow and random nature of traditional methods. The authors highlight that AI integrates multi-source data to dramatically speed up the discovery process, making it a key strategy for emergency responses.",
+      "summary": "This review discusses how AI-driven drug repositioning can accelerate pandemic preparedness by rapidly identifying new uses for existing drugs against emerging pathogens, overcoming the slow speed and randomness of traditional methods. The authors argue that AI's ability to integrate multi-source data makes it a key strategy for providing therapies faster than conventional drug development.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -893,7 +894,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42422074/"
         }
       ],
-      "summary": "This review covers the historical development of computer-aided drug discovery (CADD) and highlights how recent AI and machine learning tools have improved predictive performance and accessibility. It also discusses emerging ethical considerations in the field, providing a comprehensive overview for researchers and practitioners.",
+      "summary": "This review covers the historical evolution of computer-aided drug discovery (CADD) over four decades, highlighting its role in approved therapeutics. It then surveys recent AI/ML tools that improve predictive performance and accessibility, while also discussing emerging ethical considerations in their application.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -924,7 +925,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42404174/"
         }
       ],
-      "summary": "This review highlights how computational methods—including genomics, AI, and molecular simulations—are transforming parasitology by enabling faster, cheaper, and scalable studies of parasite biology, drug resistance, and vaccine development. These in silico approaches are revolutionizing the field and offering new strategies for intervention.",
+      "summary": "This review highlights how computational methods—including genomics, AI, and structural biology—are transforming parasitology by enabling faster, cheaper analysis of parasite biology, drug resistance, and vaccine targets. These in silico approaches are now essential for discovering diagnostic markers and prioritizing therapeutic interventions.",
       "significance": "Medium",
       "tags": [
         "genomics",

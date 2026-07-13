@@ -1,6 +1,6 @@
 {
   "channel": "single-cell-omics",
-  "generated_at": "2026-07-12T19:55:17.193640",
+  "generated_at": "2026-07-13T20:14:45.125896",
   "count": 17,
   "papers": [
     {
@@ -26,12 +26,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42427615/"
         }
       ],
-      "summary": "This paper presents new droplet-based methods for measuring chromatin accessibility (PIP-ATAC-seq) and combined gene expression and chromatin accessibility (PIP-Multiome-seq) in single nuclei without requiring microfluidic devices. The methods are simple, cost-effective, and produce high-quality data comparable to established techniques, making single-cell epigenomic profiling more accessible.",
+      "summary": "This paper introduces PIP-ATAC-seq and PIP-Multiome-seq, new microfluidic-free, droplet-based methods for measuring chromatin accessibility and gene expression in single nuclei. These methods are cost-effective, easy to implement, and produce high-quality data comparable to established techniques, making them valuable tools for single-cell epigenomic and multiomic studies.",
       "significance": "Medium",
       "tags": [
-        "methodology",
         "epigenomics",
-        "single-cell"
+        "single-cell",
+        "methodology"
       ]
     },
     {
@@ -57,12 +57,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42395557/"
         }
       ],
-      "summary": "This paper introduces a new computational method that uses cell lineage information to model how gene expression changes dynamically during development and disease, overcoming the limitations of static snapshot analyses. By incorporating phylogenetic relationships from lineage tracing, the method provides more precise identification of when transcriptional changes occur compared to existing approaches that rely on Gaussian assumptions.",
-      "significance": "Medium",
+      "summary": "This paper introduces a new computational method that uses cell lineage information to model how gene expression changes dynamically during development and disease, overcoming the limitations of static snapshot analyses. By incorporating phylogenetic relationships from lineage tracing, the approach provides more precise insights into when and where transcriptional changes occur. This represents a methodological advance for studying gene expression dynamics in single-cell data.",
+      "significance": "High",
       "tags": [
         "single-cell",
-        "transcriptomics",
-        "methodology"
+        "methodology",
+        "transcriptomics"
       ]
     },
     {
@@ -88,7 +88,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42332576/"
         }
       ],
-      "summary": "pyVIPER is a new Python package that enables fast and scalable estimation of protein activity and identification of master regulator proteins from single-cell RNA sequencing data. It addresses the computational challenges posed by large scRNA-seq datasets, allowing researchers to perform gene regulatory network analysis more efficiently.",
+      "summary": "pyVIPER is a new Python package that adapts the VIPER algorithm for large-scale single-cell RNA sequencing data, enabling fast and scalable estimation of protein activity and identification of master regulator proteins. It addresses the computational challenges of analyzing noisy scRNA-seq data by providing an efficient implementation that can handle growing dataset sizes.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -119,12 +119,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42331557/"
         }
       ],
-      "summary": "SpatialCD is a new computational method that improves cell-type deconvolution for spatial transcriptomics data without requiring a reference single-cell RNA-seq dataset. By incorporating spatial information—the fact that neighboring spots tend to have similar cell compositions—it outperforms existing reference-free approaches like STdeconvolve. This makes it a practical tool for analyzing tissue heterogeneity when matched single-cell data is unavailable.",
+      "summary": "SpatialCD is a new computational method for analyzing spatial transcriptomics data that infers cell types without requiring a reference single-cell RNA-seq dataset. Unlike previous reference-free methods, it incorporates spatial information by assuming that neighboring tissue spots have similar cell type compositions, leading to more accurate deconvolution of tissue heterogeneity.",
       "significance": "Medium",
       "tags": [
         "spatial-omics",
         "transcriptomics",
-        "tool"
+        "methodology"
       ]
     },
     {
@@ -150,7 +150,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42328733/"
         }
       ],
-      "summary": "CAPER is a new computational framework that disentangles true biological signals from unwanted variations in multi-condition single-cell RNA-seq data, overcoming limitations of existing methods that often over-correct or discard important biological information. It uses matrix factorization to separate shared biological states from condition-specific changes, enabling more accurate identification of cell-type-specific responses across different experimental conditions.",
+      "summary": "CAPER is a new matrix factorization method for multi-condition single-cell RNA-seq data that separates true biological signals from unwanted technical variations, overcoming limitations of existing methods that either over-correct or fail to capture cell-type-specific responses. It directly outputs condition-associated patterns, enabling researchers to recover meaningful biological insights from complex experimental designs.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -181,7 +181,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42221827/"
         }
       ],
-      "summary": "This study benchmarks six computational methods for analyzing alternative splicing in single-cell RNA-seq data, finding that scQuint performs best for tasks like cell clustering and detecting differential splicing. The work provides guidance for researchers choosing tools to study splicing diversity at cellular resolution.",
+      "summary": "This study benchmarks six computational methods for analyzing alternative splicing in single-cell RNA-seq data, finding that scQuint performs best for tasks like cell clustering and detecting differential splicing. The work provides guidance for researchers choosing tools to study splicing diversity at single-cell resolution.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -212,8 +212,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42315933/"
         }
       ],
-      "summary": "MANTRA is a new computational framework that integrates multi-omics data of different shapes (e.g., 3D drug-response tensors with 2D gene expression matrices) into a unified, interpretable model. It combines group factor analysis and tensor decomposition to learn latent factors that capture shared and dataset-specific signals, enabling better understanding of complex diseases.",
-      "significance": "High",
+      "summary": "MANTRA is a new computational method that integrates different types of molecular data (like drug response tensors and gene expression matrices) into a single analysis, overcoming limitations of existing tools that cannot handle datasets with varying dimensions. The framework combines group factor analysis and tensor decomposition to learn interpretable latent factors, making it easier to study complex diseases from multi-modal data.",
+      "significance": "Medium",
       "tags": [
         "methodology",
         "machine-learning",
@@ -243,7 +243,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42367874/"
         }
       ],
-      "summary": "This study presents a new annotation-based method for linking distal regulatory elements to their target genes, improving upon proximity- and correlation-based approaches that often misassign or miss regulatory links. Applied to human kidney single-cell multi-omic data, the method better predicts gene expression by incorporating three-dimensional chromatin architecture, offering a more accurate framework for interpreting non-coding genomic data.",
+      "summary": "This study develops a new method, called Annotation-Based Gene-Peak Links (ABGPL), to better predict which distal regulatory elements control which genes by integrating chromatin accessibility and gene expression data from single-cell multi-omics. The authors show that ABGPL outperforms traditional proximity-based and correlation-based approaches in linking enhancers to their target genes, particularly in human kidney datasets. This improved linking enhances the accuracy of regulatory network predictions and interpretation of non-coding genomic variation.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -274,7 +274,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42289676/"
         }
       ],
-      "summary": "This study identifies APLP2 as a key molecule linking immune regulation and bone metabolism in hepatocellular carcinoma (HCC), using single-cell RNA sequencing and functional experiments. The findings suggest APLP2 could serve as a biomarker or therapeutic target to improve responses to immune checkpoint inhibitors in HCC patients.",
+      "summary": "This study uses single-cell RNA sequencing and functional experiments to identify APLP2 as a key molecule linking immune regulation and bone metabolism in hepatocellular carcinoma (HCC). The findings suggest APLP2 could serve as a biomarker to understand resistance to immune checkpoint inhibitors and improve treatment responses in HCC patients.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -305,12 +305,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42288737/"
         }
       ],
-      "summary": "The authors developed BAGE, a Bayesian framework for predicting chronological age from bulk RNA-seq data of peripheral blood mononuclear cells (PBMCs), filling a gap where no such predictor existed. By aggregating 16 public datasets, they created a model that outperforms existing methods for this specific sample type, offering a useful tool for aging research.",
+      "summary": "This paper introduces BAGE, a Bayesian framework for predicting chronological age from bulk RNA-seq data of peripheral blood mononuclear cells (PBMCs). The authors aggregated 16 public datasets to train the model, addressing a gap in age predictors specifically for PBMC bulk transcriptomic data.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
-        "machine-learning",
-        "aging"
+        "aging",
+        "machine-learning"
       ]
     },
     {
@@ -336,7 +336,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42378259/"
         }
       ],
-      "summary": "CAdir is a new tool for single-cell RNA-seq analysis that jointly clusters cells and identifies marker genes, automatically determining the number of clusters without supervision. It includes a visualization-driven approach to assess cluster quality, addressing common issues with UMAP/t-SNE distortions. This provides a more reliable and interpretable clustering workflow for single-cell transcriptomics.",
+      "summary": "CAdir is a new tool for single-cell RNA-seq analysis that simultaneously clusters cells and identifies marker genes, while also providing a visualization-driven method to assess cluster quality. It addresses common limitations of existing algorithms by inferring the number of clusters without supervision and avoiding distortions seen in UMAP/t-SNE embeddings.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -367,7 +367,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42398025/"
         }
       ],
-      "summary": "This paper introduces PLNFGL, a method that jointly estimates gene regulatory networks across multiple conditions from single-cell RNA-seq data, addressing challenges like dropout events and distributional mismatch that make traditional Gaussian graphical models unsuitable. By leveraging information across conditions, it improves network inference compared to estimating each condition separately.",
+      "summary": "This paper introduces PLNFGL, a method that jointly estimates gene regulatory networks across multiple conditions from single-cell RNA-seq data, addressing challenges like dropout events and distributional mismatch that make traditional Gaussian graphical models unsuitable. By modeling multiple conditions simultaneously, it improves network inference and enables comparative analysis of gene networks across different biological states.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -398,12 +398,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42242209/"
         }
       ],
-      "summary": "STACCato is a new computational tool that uses supervised tensor analysis to identify cell-cell communication events related to specific biological conditions, overcoming limitations of existing methods such as poor interpretability and inability to adjust for confounders or model dependencies. It provides a clearer and more robust way to link intercellular signaling to health and disease states.",
+      "summary": "STACCato is a new supervised tensor analysis tool that identifies cell-cell communication events associated with specific biological conditions, overcoming limitations of existing methods by providing clear interpretation, adjusting for confounders, and modeling dependencies among communication events.",
       "significance": "Medium",
       "tags": [
         "tool",
-        "methodology",
-        "single-cell"
+        "single-cell",
+        "methodology"
       ]
     },
     {
@@ -460,12 +460,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42008746/"
         }
       ],
-      "summary": "Researchers developed a new gene signature called PRECISE to better predict outcomes in papillary thyroid carcinoma patients. Using single-cell and single-nucleus RNA sequencing, they created a thyrocyte-specific signature that improved risk stratification across multiple patient cohorts.",
+      "summary": "Researchers developed a new gene signature called PRECISE to better predict outcomes in papillary thyroid carcinoma. Using single-cell and single-nucleus RNA sequencing, they created a signature based on thyrocyte-specific genes that improved risk stratification across multiple patient cohorts.",
       "significance": "Medium",
       "tags": [
-        "transcriptomics",
+        "cancer",
         "single-cell",
-        "cancer"
+        "transcriptomics"
       ]
     },
     {
@@ -491,12 +491,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42434346/"
         }
       ],
-      "summary": "GAHIB is a new variational autoencoder for single-cell RNA-seq data that jointly models local cell graph structure, hyperbolic geometry, and information bottleneck compression in a single framework. The method uses a graph-attention encoder, a 2D information bottleneck, and a Lorentz-hyperbolic loss to learn biologically structured cell representations. The authors note that evaluation relies on clustering benchmarks with proxy labels rather than definitive biological ground truth.",
+      "summary": "GAHIB is a new variational autoencoder that integrates graph attention, hyperbolic geometry, and an information bottleneck to better represent single-cell RNA-seq data. The model aims to capture both local cell graph structure and global latent geometry, though its evaluation relies on clustering benchmarks rather than true biological labels.",
       "significance": "Medium",
       "tags": [
         "single-cell",
-        "transcriptomics",
-        "machine-learning"
+        "machine-learning",
+        "transcriptomics"
       ]
     },
     {
@@ -522,7 +522,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42412755/"
         }
       ],
-      "summary": "This study identifies key genes linking oxidative stress to sarcopenia in type 2 diabetes by combining single-cell and bulk RNA sequencing with machine learning. The findings reveal specific hub genes that may serve as biomarkers or therapeutic targets for diabetes-associated muscle loss.",
+      "summary": "This study identifies key genes linking oxidative stress to sarcopenia in type 2 diabetes by combining single-cell and bulk RNA sequencing with machine learning. The findings reveal potential molecular targets for understanding and treating muscle loss in diabetic patients.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
