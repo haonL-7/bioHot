@@ -1,7 +1,7 @@
 {
   "channel": "structural-bioinformatics",
-  "generated_at": "2026-07-13T20:10:02.211727",
-  "count": 30,
+  "generated_at": "2026-07-14T20:01:51.292527",
+  "count": 57,
   "papers": [
     {
       "id": "5b6d0686b965",
@@ -26,12 +26,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42433475/"
         }
       ],
-      "summary": "Researchers used a deep learning framework called EITLEM-Kinetics to redesign a PET hydrolase enzyme, achieving a variant with enhanced activity for breaking down post-consumer PET plastic. This AI-driven approach successfully engineered an enzyme that depolymerizes real-world PET waste more efficiently, offering a promising solution to plastic pollution.",
-      "significance": "High",
+      "summary": "Researchers used a deep learning framework called EITLEM-Kinetics to computationally redesign a PET hydrolase enzyme, resulting in a variant with enhanced activity for breaking down post-consumer PET plastic. This AI-driven approach successfully engineered a more efficient enzyme for plastic depolymerization, offering a promising solution to plastic pollution.",
+      "significance": "Medium",
       "tags": [
         "deep-learning",
         "synthetic-biology",
-        "protein-structure"
+        "enzyme-engineering"
       ]
     },
     {
@@ -57,7 +57,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436766/"
         }
       ],
-      "summary": "This study identified and validated oxidative stress-related diagnostic genes for interstitial cystitis using transcriptomic analysis and experiments. The findings provide potential biomarkers to improve diagnosis and understanding of this chronic pain syndrome.",
+      "summary": "This study identifies and validates oxidative stress-related genes as potential diagnostic biomarkers for interstitial cystitis by combining computational analysis of transcriptomic data with experimental confirmation. The findings suggest that specific oxidative stress genes could help improve diagnosis and understanding of this chronic pain condition.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -66,34 +66,219 @@
       ]
     },
     {
-      "id": "3d615a0e170a",
-      "title": "Incorporating Surfaced-Induced Dissociation Mass Spectrometry Data into an AlphaFold-derived deep learning network improves protein structure prediction.",
-      "abstract": "Surface-Induced Dissociation native Mass Spectrometry (SID-nMS) is a tandem MS activation method that yields information on the connectivity and stoichiometry of protein complexes. While insufficient for direct structure elucidation, the data derived from SID-nMS has considerable potential to inform multimeric protein structure prediction. We hypothesized that incorporating this data into a machine-learning framework could improve multimer prediction accuracy beyond that of existing deep-learning methods. To this end, we developed SIDFold, a novel AlphaFold-based deep-learning network. SIDFold",
-      "journal": "bioRxiv : the preprint server for biology",
-      "doi": "10.64898/2026.06.26.734850",
-      "pmid": "42427745",
-      "first_author": "Bolz RM",
-      "pub_date": "2026-Jun-29",
+      "id": "ab370eb34783",
+      "title": "Monodisperse PEG engineering for quantifiable surface conjugation on PLGA nanoparticles.",
+      "abstract": "Surface PEGylation is a well-established strategy to enhance the stability, functionality, and bioavailability of nanoparticles (NPs) in biomedical applications. However, the widespread use of polydisperse PEG derivatives limits the ability to precisely quantify surface PEGylation efficiency (mol%) and evaluate its effect on NP properties. In this study, we present a systematic approach to engineer PLGA NPs using structurally defined monodisperse PEG-diamine derivatives of varying chain lengths (PEG6, PEG26, PEG45), synthesized and purified by chromatographic methods and covalently attached vi",
+      "journal": "Nanoscale advances",
+      "doi": "10.1039/d6na00116e",
+      "pmid": "42438481",
+      "first_author": "Basavci E",
+      "pub_date": "2026-Jun-30",
       "source": "PubMed",
-      "url": "https://doi.org/10.64898%2F2026.06.26.734850",
+      "url": "https://doi.org/10.1039%2Fd6na00116e",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.64898%2F2026.06.26.734850"
+          "url": "https://doi.org/10.1039%2Fd6na00116e"
         },
         {
           "type": "pubmed",
           "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42427745/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42438481/"
         }
       ],
-      "summary": "SIDFold is a new deep-learning network that improves protein structure prediction by incorporating data from Surface-Induced Dissociation mass spectrometry into the AlphaFold framework. This approach enhances the accuracy of predicting multimeric protein structures beyond current deep-learning methods.",
+      "summary": "This paper presents a method for engineering PLGA nanoparticles with precisely defined monodisperse PEG chains, enabling accurate quantification of surface PEGylation efficiency. The approach overcomes limitations of traditional polydisperse PEG derivatives, allowing better control over nanoparticle properties for biomedical applications.",
       "significance": "Medium",
       "tags": [
-        "protein-structure",
-        "deep-learning",
-        "methodology"
+        "methodology",
+        "drug-discovery"
+      ]
+    },
+    {
+      "id": "c31393cb32fd",
+      "title": "Enterovirus RNase L inhibiting RNAs are highly conserved with limited phylogenetic distribution.",
+      "abstract": "RNA molecules form specific 3D structures that facilitate a variety of functions through interactions with other macromolecules. Many RNA viral genomes maintain these structures to interact with and evade host immunity machinery. One such element, the competitive inhibitor RNA (ciRNA), discovered in the protein coding region of the poliovirus serotype 1 (PV1) genome, inhibits a host antiviral protein, ribonuclease L (RNase L). Although some functionally essential structural motifs of the PV1 ciRNA have been studied, the extent of its evolutionary conservation and other structural requirements ",
+      "journal": "bioRxiv : the preprint server for biology",
+      "doi": "10.64898/2026.06.29.735259",
+      "pmid": "42427532",
+      "first_author": "Zangari SI",
+      "pub_date": "2026-Jun-30",
+      "source": "PubMed",
+      "url": "https://doi.org/10.64898%2F2026.06.29.735259",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.64898%2F2026.06.29.735259"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42427532/"
+        }
+      ],
+      "summary": "This study investigates the evolutionary conservation of competitive inhibitor RNAs (ciRNAs) that allow enteroviruses to evade host antiviral defenses by inhibiting RNase L. The researchers found that these ciRNA elements are highly conserved across enteroviruses but have a limited phylogenetic distribution, suggesting they evolved in specific viral lineages. The findings provide insight into how RNA structures in viral genomes can be maintained to counteract host immunity.",
+      "significance": "Medium",
+      "tags": [
+        "evolution",
+        "virology",
+        "RNA"
+      ]
+    },
+    {
+      "id": "2973d9de6a5e",
+      "title": "Pep2Mol: 3D Molecule Generation Targeting Protein-Protein Interfaces with Diffusion Models.",
+      "abstract": "Protein-protein interactions (PPIs) are central to biological processes. Designing small molecules that modulate dysregulated PPIs holds strong promise for targeting undruggable proteins. However, existing structure-based drug design approaches focus on well-defined small-molecule binding pockets and struggle to generalize to large, shallow, and chemically complex PPI interfaces. Here, we introduce Pep2Mol, a diffusion-based generative model for 3D molecule design that targets orthosteric PPI sites by explicitly incorporating binding peptides or proteins as structural guidance, moving beyond c",
+      "journal": "bioRxiv : the preprint server for biology",
+      "doi": "10.64898/2026.06.28.734975",
+      "pmid": "42427787",
+      "first_author": "Yue R",
+      "pub_date": "2026-Jun-29",
+      "source": "PubMed",
+      "url": "https://doi.org/10.64898%2F2026.06.28.734975",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.64898%2F2026.06.28.734975"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42427787/"
+        }
+      ],
+      "summary": "Pep2Mol is a new AI model that uses diffusion to generate 3D small molecules specifically designed to target protein-protein interaction (PPI) interfaces, which are often difficult to drug. By incorporating the structure of binding peptides as guidance, it overcomes limitations of existing methods that struggle with the shallow, complex surfaces of PPI sites. This approach could enable drug discovery for previously 'undruggable' proteins involved in many diseases.",
+      "significance": "High",
+      "tags": [
+        "drug-discovery",
+        "machine-learning",
+        "structural-biology"
+      ]
+    },
+    {
+      "id": "a8d7e3ae8f38",
+      "title": "Thioredoxin Reductase as a Target for Antibacterial Gold Compounds in Burkholderia cenocepacia: Disclosing the Molecular Basis of Enzyme Inhibition.",
+      "abstract": "Thioredoxin reductase from Burkholderia cenocepacia (Bc-TrxR) is a recognized intracellular target of antibacterial gold(I) compounds, yet the molecular basis of enzyme inhibition remains unclear. Here, we report an integrated structural, biophysical, and biochemical investigation of recombinant Bc-TrxR and its interaction with three prototypical gold(I) agents: auranofin (AF) and two trimethylphosphine-thiolate derivatives (Au1 and Au2), previously identified as potent enzyme inhibitors. The enzyme was expressed, purified, and its crystal structure solved at 2.52 Å resolution, revealing a hom",
+      "journal": "Chembiochem : a European journal of chemical biology",
+      "doi": "10.1002/cbic.70462",
+      "pmid": "42427218",
+      "first_author": "Zineddu S",
+      "pub_date": "2026-Jul-14",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1002%2Fcbic.70462",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1002%2Fcbic.70462"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42427218/"
+        }
+      ],
+      "summary": "This study reveals how gold-based antibacterial compounds inhibit thioredoxin reductase in Burkholderia cenocepacia, a pathogen causing lung infections. By solving the enzyme's crystal structure and analyzing its interactions with three gold compounds, the researchers provide the first detailed molecular understanding of this inhibition mechanism. This work could guide development of new antibiotics against drug-resistant bacteria.",
+      "significance": "Medium",
+      "tags": [
+        "structural-biology",
+        "drug-discovery",
+        "microbiology"
+      ]
+    },
+    {
+      "id": "f8f441b4ecdc",
+      "title": "Insights into the toxic effects of moxifloxacin in Allium cepa through multiparametric experimental and in silico analyses.",
+      "abstract": "In this study, the cytogenetic and biochemical effects of moxifloxacin (MOX), a fourth-generation fluoroquinolone antibiotic, on Allium cepa L., a non-target plant model, were investigated using a combination of experimental and in silico approaches. Onion roots were exposed to MOX at concentrations of 15, 29, and 57 µg/L. Genotoxicity was assessed using the mitotic index (MI), micronucleus (MN), chromosomal aberrations (CAs), and the Comet assay. The findings showed that MOX reduced mitotic activity in a dose-dependent manner (by 21% in the highest dose group) and significantly increased the ",
+      "journal": "Scientific reports",
+      "doi": "10.1038/s41598-026-62306-8",
+      "pmid": "42443396",
+      "first_author": "Kuloğlu SS",
+      "pub_date": "2026-Jul-13",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs41598-026-62306-8",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41598-026-62306-8"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42443396/"
+        }
+      ],
+      "summary": "This study shows that the antibiotic moxifloxacin (MOX) causes genotoxic and biochemical damage in onion plants (Allium cepa), a non-target organism. Exposure to MOX reduced cell division and increased DNA damage in a dose-dependent manner, raising concerns about its environmental impact.",
+      "significance": "Low",
+      "tags": [
+        "genomics",
+        "toxicology",
+        "plants"
+      ]
+    },
+    {
+      "id": "d5c47e5b21a0",
+      "title": "Cryo-EM structure of the complex between transglutaminase 2 and the 45 kDa domain of fibronectin.",
+      "abstract": "Fibronectin (FN) and transglutaminase 2 (TG2) engage in a high-affinity interaction. This interaction affects anchoring, migration and survival of cells, and high cellular expression of TG2 is associated with metastasis potential of cancers. Previous work has mapped the interaction to involve the N-terminal part of TG2 and an N-terminally located 45 kDa domain of FN (FN45). In particular, the I8 module of FN45 is reported to be necessary and sufficient for TG2 binding. Here, we present the cryo-EM structure of a complex between human TG2 and FN45 at 2.8 Å resolution. In the structure, the dist",
+      "journal": "The Journal of biological chemistry",
+      "doi": "10.1016/j.jbc.2026.113326",
+      "pmid": "42442505",
+      "first_author": "Heggelund JE",
+      "pub_date": "2026-Jul-13",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.jbc.2026.113326",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.jbc.2026.113326"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42442505/"
+        }
+      ],
+      "summary": "This study presents the first high-resolution cryo-EM structure of the complex between transglutaminase 2 (TG2) and the 45 kDa domain of fibronectin (FN45), revealing the molecular details of their high-affinity interaction. The structure shows how the I8 module of FN45 binds to TG2, providing insights into how this interaction influences cell adhesion, migration, and cancer metastasis.",
+      "significance": "High",
+      "tags": [
+        "structural-biology",
+        "cancer",
+        "protein-structure"
+      ]
+    },
+    {
+      "id": "3b345d8ab847",
+      "title": "Rational engineering of the Arabidopsis thaliana plant cysteine oxidase 4 active site can reduce biochemical activity and improve submergence tolerance.",
+      "abstract": "The increase in flooding events due to climate change is having devastating effects on food security. Plants can respond to submergence by reducing their energy requirements and switching their metabolism from oxidative phosphorylation to fermentation. This response is promoted by group VII ethylene response factors (ERF-VIIs) whose stability is dependent on oxygen availability; in normoxia, plant cysteine oxidase (PCO) enzymes catalyze oxidation of ERF-VII N-terminal Cys residues to trigger ERF-VII degradation via the Cys/Arg-N-degron pathway. In hypoxia, reduced PCO activity prevents ERF-VII",
+      "journal": "The Journal of biological chemistry",
+      "doi": "10.1016/j.jbc.2026.113331",
+      "pmid": "42442504",
+      "first_author": "Dirr A",
+      "pub_date": "2026-Jul-13",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.jbc.2026.113331",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.jbc.2026.113331"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42442504/"
+        }
+      ],
+      "summary": "This study shows that engineering the active site of the Arabidopsis cysteine oxidase PCO4 can reduce its biochemical activity, which in turn improves submergence tolerance in plants. By slowing the oxygen-dependent degradation of group VII ethylene response factors (ERF-VIIs), the engineered enzyme helps plants better survive flooding conditions.",
+      "significance": "Medium",
+      "tags": [
+        "plants",
+        "biochemistry",
+        "engineering"
       ]
     },
     {
@@ -119,7 +304,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42437781/"
         }
       ],
-      "summary": "This study used computational modeling and high-throughput docking to screen over 1,100 fungal secondary metabolites for activity against a key enzyme in Leishmania major, identifying 11 promising candidates for further testing. The work highlights fungal compounds as potential new treatments for drug-resistant cutaneous leishmaniasis.",
+      "summary": "This study used computational modeling and high-throughput docking to screen over 1,100 fungal secondary metabolites against a key enzyme (LmCYP51) from Leishmania major, identifying 11 promising candidates for anti-leishmanial drug development. The findings highlight fungal natural products as a potential source of new therapeutics for cutaneous leishmaniasis, which faces growing drug resistance.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -150,7 +335,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42437278/"
         }
       ],
-      "summary": "This study investigates how a novel anthraquinone derivative binds to telomeric G-quadruplex DNA, a structure linked to cancer cell immortality. Using multiple techniques, the researchers show that the compound selectively interacts with G-quadruplexes through π-π end-stacking, providing a detailed structural basis for designing potential anticancer agents.",
+      "summary": "This study investigates how a novel anthraquinone derivative binds to telomeric G-quadruplex DNA, a potential anticancer target. Using multiple techniques including NMR and computational modeling, the researchers found that the compound interacts through π-π end-stacking with the G-quadruplex structure, showing selectivity over duplex DNA. This work provides mechanistic insights that could aid in designing more effective G-quadruplex-targeting anticancer drugs.",
       "significance": "Medium",
       "tags": [
         "structural-biology",
@@ -181,12 +366,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436307/"
         }
       ],
-      "summary": "Researchers computationally identified a novel defensin-like peptide from the Datura stramonium plant and analyzed its potential to bind multiple cancer-related receptor targets (EGFR, ERBB2, VEGFR-3). This in silico study suggests the peptide could serve as a multi-target therapeutic candidate, addressing limitations of current cancer therapies like resistance and toxicity.",
-      "significance": "Low",
+      "summary": "Researchers computationally identified a new defensin-like peptide from the Datura stramonium plant and analyzed its potential to bind multiple cancer-related receptors (EGFR, ERBB2, VEGFR-3), suggesting it could serve as a multi-target therapeutic candidate. The study combines sequence isolation with in silico interaction analysis to propose a novel peptide-based approach for overcoming limitations of current cancer therapies.",
+      "significance": "Medium",
       "tags": [
         "drug-discovery",
-        "machine-learning",
-        "cancer"
+        "structural-biology",
+        "machine-learning"
       ]
     },
     {
@@ -212,12 +397,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436212/"
         }
       ],
-      "summary": "Researchers used computational methods to design a multi-epitope vaccine against the drug-resistant fungus Candida auris by targeting a surface protein involved in host infection. The vaccine showed high binding affinity in simulations, suggesting it could be a promising candidate for further testing.",
+      "summary": "This study uses computational methods to design a multi-epitope vaccine against the drug-resistant fungus Candida auris by targeting a key surface protein. The vaccine candidate shows promise in computer simulations for triggering immune responses, but requires experimental validation.",
       "significance": "Medium",
       "tags": [
         "immunology",
         "drug-discovery",
-        "methodology"
+        "microbiology"
       ]
     },
     {
@@ -243,8 +428,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436199/"
         }
       ],
-      "summary": "Researchers designed and tested a new class of imidazo[1,2-a]pyridine compounds that potently inhibit α-glucosidase, an enzyme targeted for managing diabetes. The best compound (10s) was 60 times more effective than the standard drug acarbose and showed selective inhibition without affecting α-amylase, suggesting fewer side effects.",
-      "significance": "Low",
+      "summary": "Researchers designed and synthesized a new series of imidazo[1,2-a]pyridine derivatives that are potent α-glucosidase inhibitors, with the best compound (10s) showing 62-fold better activity than the standard drug acarbose. The compound acts as a competitive inhibitor and does not inhibit α-amylase, suggesting potential for diabetes treatment with reduced side effects.",
+      "significance": "Medium",
       "tags": [
         "drug-discovery",
         "methodology"
@@ -273,12 +458,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42435652/"
         }
       ],
-      "summary": "This study reveals that melatonin protects against retinal ischemia-reperfusion injury by reprogramming antioxidant defenses to suppress ferroptosis, acting through a non-canonical Homer1a/mGluR1-Nrf2/xCT signaling pathway rather than its usual receptors. The findings identify a novel regulatory mechanism linking melatonin to ferroptosis suppression, with potential therapeutic implications for retinal diseases involving oxidative stress.",
+      "summary": "This study reveals that melatonin protects against retinal ischemia-reperfusion injury by activating the Homer1a/mGluR1-Nrf2/xCT signaling pathway, which reprograms antioxidant defenses and suppresses ferroptosis. The findings identify a non-canonical mechanism of melatonin action beyond its known receptors, offering potential therapeutic targets for retinal diseases involving oxidative stress and iron-dependent cell death.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
         "neuroscience",
-        "clinical"
+        "signaling"
       ]
     },
     {
@@ -304,7 +489,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42433452/"
         }
       ],
-      "summary": "This study identifies a compound (HTS00019) that selectively kills liver cancer cells (HepG2) and uses computational methods to predict its molecular targets, revealing GSTP1 and TRAP1 as potential candidates. The work provides a starting point for developing targeted therapies against hepatocellular carcinoma.",
+      "summary": "This study identified a compound (HTS00019) that selectively kills liver cancer cells (HepG2) and used computational methods to predict its molecular targets, revealing GSTP1 and TRAP1 as likely candidates. This work provides a foundation for developing targeted therapies against hepatocellular carcinoma.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -335,12 +520,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42432584/"
         }
       ],
-      "summary": "This study investigates the link between serum perfluoroalkyl substances (PFAS) and chronic obstructive pulmonary disease (COPD) risk using population data, computational analysis, and in vitro experiments. The findings suggest that PFAS exposure may contribute to COPD, potentially through lipid metabolism pathways, providing new insights into environmental risk factors for the disease.",
+      "summary": "This study investigates the link between perfluoroalkyl substances (PFAS) in blood and chronic obstructive pulmonary disease (COPD) risk, using population data, computational analysis, and lab experiments. The findings suggest PFAS exposure may contribute to COPD, potentially through lipid metabolism disruption, providing new evidence for environmental causes of COPD in non-smokers.",
       "significance": "Medium",
       "tags": [
         "toxicology",
         "clinical",
-        "metabolomics"
+        "environmental-health"
       ]
     },
     {
@@ -366,8 +551,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42432042/"
         }
       ],
-      "summary": "Researchers designed and synthesized new pyrazole-based compounds to combat antimicrobial resistance, testing them against bacteria. The study combined chemical synthesis with computational analysis to identify promising antimicrobial candidates.",
-      "significance": "Low",
+      "summary": "This study reports the design and synthesis of new pyrazole-based compounds as potential antimicrobial agents to combat drug resistance. The compounds were tested against bacteria, showing promising activity, and computational analysis supported their mechanism of action. This work provides a new chemical scaffold for further antimicrobial development.",
+      "significance": "Medium",
       "tags": [
         "drug-discovery",
         "methodology"
@@ -396,12 +581,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42432022/"
         }
       ],
-      "summary": "This study developed Pickering emulsions using chemically modified lactoferrin (phosphorylated or succinylated) complexed with luteolin, a flavonoid, via a pH-driven method. The succinylated lactoferrin-luteolin emulsion showed superior properties, including smaller droplet sizes, up to 80% encapsulation efficiency, and enhanced storage stability, with molecular dynamics simulations providing mechanistic insights. This work demonstrates a promising food-grade carrier system for bioactive compounds with improved stability and functionality.",
+      "summary": "This study developed Pickering emulsions using chemically modified lactoferrin (phosphorylated or succinylated) complexed with luteolin, finding that succinylated lactoferrin produced smaller droplets, higher encapsulation efficiency (up to 80%), and better storage stability. Molecular dynamics simulations helped explain the improved performance of the succinylated formulation. The work provides a food-grade delivery system for bioactive compounds with enhanced stability.",
       "significance": "Medium",
       "tags": [
         "methodology",
-        "drug-discovery",
-        "structural-biology"
+        "drug-discovery"
       ]
     },
     {
@@ -427,12 +611,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42431456/"
         }
       ],
-      "summary": "This study investigates how the aroma of baked green tea arises from perceptual interactions between odorant molecules in binary mixtures, using molecular sensory omics to predict these interactions. The authors identify key odorants and model their combined effects, addressing a gap in understanding how complex tea aromas emerge from simple mixtures. This work advances the field by integrating perceptual complexity with matrix effects, though it remains focused on a specific tea cultivar.",
+      "summary": "This study investigates how binary mixtures of odorants from baked green tea interact perceptually, using molecular sensory omics to model these interactions. The authors identify key odorants and predict the mechanisms behind their perceptual blending, addressing a gap in understanding complex tea aroma.",
       "significance": "Medium",
       "tags": [
         "metabolomics",
-        "food-science",
-        "machine-learning"
+        "food-science"
       ]
     },
     {
@@ -458,11 +641,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42431449/"
         }
       ],
-      "summary": "This study shows that adding the yeast Kluyveromyces marxianus to a traditional bacterial starter culture accelerates protein breakdown in fermented milk, leading to improved texture and increased bioactive peptide content. The three-strain co-fermentation produced stronger acidification and proteolysis compared to the bacterial-only control, suggesting a promising approach for developing functional dairy products with enhanced properties.",
+      "summary": "This study shows that adding the yeast Kluyveromyces marxianus to a standard bacterial starter culture accelerates protein breakdown in fermented milk, resulting in improved texture and increased bioactive peptide content. The three-strain co-fermentation produced milk with stronger acidification and proteolytic activity compared to the bacterial-only control.",
       "significance": "Low",
       "tags": [
         "microbiology",
-        "food-science"
+        "metabolomics"
       ]
     },
     {
@@ -488,41 +671,444 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42431448/"
         }
       ],
-      "summary": "This study uses computational modeling to investigate how different milk-derived β-casomorphin peptides (BCM3-BCM11) bind to four types of opioid receptors (μ, δ, κ, and NOP). The findings reveal subtype-selective binding patterns, extending beyond the well-studied BCM7-μ receptor interaction to other peptide-receptor combinations.",
+      "summary": "This study uses computational modeling to investigate how different milk-derived opioid peptides (β-casomorphins) bind to various opioid receptors, revealing that different peptide lengths have distinct receptor preferences. The findings provide molecular-level insights into how these dietary peptides might selectively activate different opioid receptor subtypes, which could explain their varied physiological effects.",
       "significance": "Medium",
       "tags": [
         "structural-biology",
-        "molecular-docking",
-        "methodology"
+        "machine-learning",
+        "drug-discovery"
       ]
     },
     {
-      "id": "5409a05af471",
-      "title": "Molecular Dynamics Simulation of the Gas Hydrate Nucleation Process in a Coal Matrix.",
-      "abstract": "To investigate the mechanism by which gas hydrates nucleate within a coal matrix, a graphene slit model with properties similar to those of coal was constructed to represent the coal matrix in molecular dynamics simulations. Molecular dynamics simulations of gas hydrate formation were then conducted under different temperature and pressure conditions in both coal matrix systems and pure water systems. The results revealed that the pure water system generated significantly more clathrate cage structures than the coal system did. In the coal matrix, the evolution of density distribution reveals ",
-      "journal": "ACS omega",
-      "doi": "10.1021/acsomega.6c02427",
-      "pmid": "42428853",
-      "first_author": "Liu C",
-      "pub_date": "2026-Jul-07",
+      "id": "75f2c864f8d7",
+      "title": "Mechano-reprogramming of tumor-associated macrophages by engineering nanogel stiffness for suppression of tumor development.",
+      "abstract": "Nanoparticle mechanical properties, as critical factors in tumor targeting drug delivery, have recently been revealed to regulate cellular biological functions. While macroscopic mechanical stimuli are demonstrated to reprogram tumor-associated macrophages (TAMs), it is unclear how TAMs respond to microscopic stimuli from nanoparticles. Herein, we demonstrated that the stiff 15%NGs presented stronger interactions with integrin than the soft 2%NGs, promoting the polymerization of actin and the activation of yes-associated protein 1. Therefore, the pro-inflammatory phenotype of TAMs was enhanced",
+      "journal": "Journal of nanobiotechnology",
+      "doi": "10.1186/s12951-026-04793-5",
+      "pmid": "42432658",
+      "first_author": "Lin H",
+      "pub_date": "2026-Jul-10",
       "source": "PubMed",
-      "url": "https://doi.org/10.1021%2Facsomega.6c02427",
+      "url": "https://doi.org/10.1186%2Fs12951-026-04793-5",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.1021%2Facsomega.6c02427"
+          "url": "https://doi.org/10.1186%2Fs12951-026-04793-5"
         },
         {
           "type": "pubmed",
           "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42428853/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42432658/"
         }
       ],
-      "summary": "This study uses molecular dynamics simulations to compare gas hydrate nucleation in a coal matrix (modeled as a graphene slit) versus pure water. The key finding is that the coal matrix produces significantly fewer clathrate cage structures than pure water, indicating that the coal environment inhibits hydrate formation.",
+      "summary": "This study shows that the stiffness of nanogels used for drug delivery can reprogram tumor-associated macrophages (TAMs) from a pro-tumor to a pro-inflammatory state. Stiffer nanogels interact more strongly with integrin on TAMs, activating actin polymerization and YAP1 signaling to enhance anti-tumor immune responses. This mechano-reprogramming strategy offers a new approach to suppress tumor development by engineering nanoparticle mechanical properties.",
+      "significance": "Medium",
+      "tags": [
+        "immunology",
+        "cancer",
+        "drug-discovery"
+      ]
+    },
+    {
+      "id": "aef18286af7b",
+      "title": "Design and Engineering of an Artificial Bifunctional N-Deacetylase/N-Sulfotransferase for the Biosynthesis of N-Sulfated Heparosan.",
+      "abstract": "Heparin is a widely used anticoagulant, while its traditional animal-derived production faces significant challenges in safety and scalability. The active expression of the initiating-step bifunctional enzyme N-deacetylase/N-sulfotransferase (NDST) in bacteria remains a key bottleneck in heparin biosynthesis. Here, we firstly mined and characterized diverse polysaccharide N-deacetylases (NDases) in Escherichia coli and revealed several NDases that are active toward the deacetylation of heparosan. An artificial NDDr-RL-ST was designed and constructed by fusing an active NDase with a heterogenou",
+      "journal": "Advanced science (Weinheim, Baden-Wurttemberg, Germany)",
+      "doi": "10.1002/advs.76499",
+      "pmid": "42429608",
+      "first_author": "Xi X",
+      "pub_date": "2026-Jul-10",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1002%2Fadvs.76499",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1002%2Fadvs.76499"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42429608/"
+        }
+      ],
+      "summary": "This study addresses a key bottleneck in heparin biosynthesis by engineering an artificial bifunctional enzyme that can perform both deacetylation and sulfation steps in bacteria. The researchers identified active bacterial deacetylases and fused them with a sulfotransferase to create a functional enzyme for producing N-sulfated heparosan, a heparin precursor. This work could enable more scalable and safer production of heparin compared to traditional animal-derived methods.",
+      "significance": "Medium",
+      "tags": [
+        "synthetic-biology",
+        "drug-discovery",
+        "methodology"
+      ]
+    },
+    {
+      "id": "d11fd5921985",
+      "title": "Host-dependent optimization of rabies virus-like particle making in insect cells using a low-level control system.",
+      "abstract": "Rabies causes over 59,000 deaths annually, highlighting the need for scalable and cost-effective vaccines. Virus-like particles (VLP) are promising candidates, but their production depends on host physiology and process parameters. Here, rabies VLP were produced in Spodoptera frugiperda (Sf9) and High Five insect cells, employing a three-level full factorial design to optimize the impact of the expression system, time of infection (TOI), and harvest time (HT). The cell lines exhibited complementary expression profiles: Sf9 achieved the highest rabies virus glycoprotein (RVGP) expression, reach",
+      "journal": "Journal of microbiological methods",
+      "doi": "10.1016/j.mimet.2026.107627",
+      "pmid": "42425379",
+      "first_author": "Rabello JP",
+      "pub_date": "2026-Jul-09",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.mimet.2026.107627",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.mimet.2026.107627"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42425379/"
+        }
+      ],
+      "summary": "This study optimized the production of rabies virus-like particles (VLPs) in two insect cell lines (Sf9 and High Five) using a three-level factorial design to improve vaccine scalability. The key finding is that Sf9 cells achieved the highest rabies glycoprotein expression, while the two cell lines showed complementary expression profiles depending on infection and harvest timing. This work provides a systematic approach to enhance VLP yield for cost-effective rabies vaccine development.",
+      "significance": "Medium",
+      "tags": [
+        "methodology",
+        "vaccine",
+        "synthetic-biology"
+      ]
+    },
+    {
+      "id": "fa98dee79297",
+      "title": "Aromatic π-stacking stabilizes an α-helical SARS-CoV-2 MPER peptide that mimics the post-fusion spike and enables potent antiviral activity.",
+      "abstract": "Membrane fusion between SARS-CoV-2 and host cells is mediated by the spike protein and involves the membrane-proximal external region (MPER), a tryptophan-rich sequence implicated in viral entry. Here, we investigated the feasibility of MPER-derived peptides as potential antiviral agents and examined the structural determinants underlying their activity. A series of truncated MPER peptides was synthesized and evaluated for antiviral activity against SARS-CoV-2 in cellular assays, revealing potent inhibitory potency against different variants, with nanomolar IC50 values associated with sequence",
+      "journal": "European journal of medicinal chemistry",
+      "doi": "10.1016/j.ejmech.2026.119122",
+      "pmid": "42430955",
+      "first_author": "Quagliata M",
+      "pub_date": "2026-Jul-08",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.ejmech.2026.119122",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.ejmech.2026.119122"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42430955/"
+        }
+      ],
+      "summary": "This study shows that short peptides derived from the SARS-CoV-2 spike protein's membrane-proximal external region (MPER) can potently inhibit viral entry, with aromatic π-stacking interactions stabilizing an α-helical structure that mimics the post-fusion spike. The most active peptides achieved nanomolar IC50 values against multiple SARS-CoV-2 variants, suggesting a promising new class of antiviral agents.",
+      "significance": "Medium",
+      "tags": [
+        "drug-discovery",
+        "structural-biology",
+        "virology"
+      ]
+    },
+    {
+      "id": "f7d41bfb2c9e",
+      "title": "Theoretical study on N(sp2)+-C(sp2)-H···O hydrogen bonds in the context of drug discovery.",
+      "abstract": "C-H···O hydrogen bonds are regarded as weak and overlooked in structure-based drug design. Here, we demonstrate through quantum-chemical calculations that N(sp2)⁺-C(sp2)-H···O hydrogen bonds involving pyridinium ions exhibit strong and directional interactions with carbonyl oxygen atoms. Density-functional-theory (DFT) and natural-bond-orbital (NBO) analyses indicated that cationization increases the positive charge on adjacent sp2 C-H protons, thereby enhancing their proton-donating ability. Fragment-based symmetry-adapted-perturbation-theory (F-SAPT) analyses revealed that these interactions",
+      "journal": "Scientific reports",
+      "doi": "10.1038/s41598-026-60147-z",
+      "pmid": "42420371",
+      "first_author": "Suzuki M",
+      "pub_date": "2026-Jul-08",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs41598-026-60147-z",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41598-026-60147-z"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42420371/"
+        }
+      ],
+      "summary": "This study uses quantum-chemical calculations to show that N(sp2)+-C(sp2)-H···O hydrogen bonds involving pyridinium ions are stronger and more directional than typical C-H···O hydrogen bonds, due to increased positive charge on the C-H protons. The findings suggest these interactions could be valuable for structure-based drug design, where they are often overlooked.",
+      "significance": "Medium",
+      "tags": [
+        "drug-discovery",
+        "structural-biology",
+        "methodology"
+      ]
+    },
+    {
+      "id": "797a9b076622",
+      "title": "A structure-based epitope tagging approach identifies vulnerable sites on the malarial P36-P52 protein complex for antibody-mediated neutralization of Plasmodium sporozoites.",
+      "abstract": "Malaria is caused by apicomplexan parasites of the genus Plasmodium, which are transmitted through the bite of Anopheles mosquitoes that inject sporozoites (SPZs) into the skin. SPZs migrate to and infect the liver for an initial round of replication. SPZs and liver stages have long been considered as ideal targets for malaria vaccines. The main SPZ surface protein, the circumsporozoite protein (CSP), is the target of currently approved malaria vaccines and prophylactic antibody therapies. Studies in rodent malaria models have shown that anti-CSP antibodies exert their protective effect mainly",
+      "journal": "PLoS pathogens",
+      "doi": "10.1371/journal.ppat.1014418",
+      "pmid": "42418521",
+      "first_author": "Das S",
+      "pub_date": "2026-Jul-08",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1371%2Fjournal.ppat.1014418",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1371%2Fjournal.ppat.1014418"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42418521/"
+        }
+      ],
+      "summary": "This study uses a structure-based epitope tagging approach to identify vulnerable sites on the P36-P52 protein complex of Plasmodium sporozoites, which are targeted by antibodies to neutralize the parasite. The findings highlight potential new targets for malaria vaccine development beyond the currently targeted circumsporozoite protein.",
+      "significance": "Medium",
+      "tags": [
+        "structural-biology",
+        "immunology",
+        "drug-discovery"
+      ]
+    },
+    {
+      "id": "4ee4977155c1",
+      "title": "Structure of the Beat-Side complex reveals their interaction is required for neuromuscular system wiring.",
+      "abstract": "Nervous system assembly is guided by the actions of cell surface receptors. In Drosophila, members of the beaten path (Beat) and sidestep (Side) protein families have been described as axon guidance receptor-cue pairs, in addition to roles in specifying synaptic connectivity in the optic lobe. To understand the molecular basis and specificity of Beat-Side interactions, we report here the structure of a Beat-Side complex, Beat-Vc bound to Side-VI. The structure shows a binding topology similar to other immunoglobulin superfamily receptors, especially PD-1-PD-L1, nectins, SynCAMs, Dprs, and DIPs",
+      "journal": "Cell reports",
+      "doi": "10.1016/j.celrep.2026.117661",
+      "pmid": "42418321",
+      "first_author": "Priest JM",
+      "pub_date": "2026-Jul-08",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.celrep.2026.117661",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.celrep.2026.117661"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42418321/"
+        }
+      ],
+      "summary": "This study reports the first structure of a Beat-Side protein complex (Beat-Vc bound to Side-VI) from Drosophila, revealing a binding topology similar to other immunoglobulin superfamily receptors like PD-1-PD-L1. The findings demonstrate that Beat-Side interactions are essential for proper neuromuscular system wiring, providing molecular insights into axon guidance and synaptic connectivity.",
+      "significance": "Medium",
+      "tags": [
+        "structural-biology",
+        "neuroscience",
+        "development"
+      ]
+    },
+    {
+      "id": "065f79ecebbc",
+      "title": "Selection of Novel DNA Aptamers against HPV16 Biomarker, E6: An In Silico Approach.",
+      "abstract": "HPV16 E6 oncoprotein is a critical driver of cervical cancer, necessitating high-specificity diagnostic and therapeutic agents. This study presents an in silico selection of DNA aptamers targeting the HPV16 E6 oncoprotein through a pipeline of structure-based virtual screening and 250 ns Molecular Dynamics (MD) simulations, performed with GROMACS 2019 and the CHARMM36M. Using AutoDock VinaXB and HADDOCK, eight candidates were evaluated against the F2 RNA benchmark. MM/PBSA calculations identified Apt 9 (-143.76 kcal/mol) as the most potent lead, surpassing the affinity of the F2 control (-142.",
+      "journal": "ACS omega",
+      "doi": "10.1021/acsomega.6c01718",
+      "pmid": "42428842",
+      "first_author": "Phathekile B",
+      "pub_date": "2026-Jul-07",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1021%2Facsomega.6c01718",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1021%2Facsomega.6c01718"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42428842/"
+        }
+      ],
+      "summary": "This study used computer simulations to identify DNA aptamers that bind to the HPV16 E6 oncoprotein, a key driver of cervical cancer. Through virtual screening and molecular dynamics simulations, one aptamer (Apt 9) showed stronger predicted binding than an existing benchmark, suggesting it could serve as a new diagnostic or therapeutic agent.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "drug-discovery",
+        "cancer"
+      ]
+    },
+    {
+      "id": "e387067d5130",
+      "title": "A comprehensive dataset of 32 million pentapeptide structures for high-throughput virtual screening.",
+      "abstract": "Small peptides are widely used as binders, modulators, and structural motifs, but their conformational flexibility complicates structure-based analysis and high-throughput screening. We present an open dataset of three-dimensional structures for the complete space of canonical amino-acid pentapeptides: 3,200,000 unique sequences with up to 10 conformers per sequence, for a total of 32,000,000 peptide conformers. Structures were generated directly from sequence using an automated workflow built on UCSF ChimeraX for model construction, Reduce for hydrogen placement, and RDKit for conformer gener",
+      "journal": "Scientific data",
+      "doi": "10.1038/s41597-026-07838-4",
+      "pmid": "42414338",
+      "first_author": "Codina JR",
+      "pub_date": "2026-Jul-07",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs41597-026-07838-4",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41597-026-07838-4"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42414338/"
+        }
+      ],
+      "summary": "Researchers created an open dataset of 32 million 3D structures covering all possible pentapeptide sequences made from standard amino acids. This resource enables high-throughput virtual screening of small peptides for use as binders, modulators, or structural motifs without requiring experimental structure determination.",
+      "significance": "High",
+      "tags": [
+        "database",
+        "structural-biology",
+        "drug-discovery"
+      ]
+    },
+    {
+      "id": "05067cc27a77",
+      "title": "Targeting breast cancer with 1,2,4-trioxanes: synthesis, cytotoxicity, and molecular docking insights.",
+      "abstract": "Breast cancer remains the most common malignancy among women to date, with increasing incidence and resistance to conventional therapies driving the search for novel treatments. 1,2,4-Trioxanes, known for their antimalarial activity, have emerged as promising anticancer agents due to their ability to generate reactive oxygen species (ROS) through iron-mediated activation, selectively inducing apoptosis in cancer cells. In this study, a series of hydroxy-functionalized and hemi-succinate trioxane derivatives were synthesized and evaluated against the MCF-7 breast cancer cell line. Among them, c",
+      "journal": "RSC advances",
+      "doi": "10.1039/d6ra03084j",
+      "pmid": "42440872",
+      "first_author": "Yadav P",
+      "pub_date": "2026-Jul-06",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1039%2Fd6ra03084j",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1039%2Fd6ra03084j"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42440872/"
+        }
+      ],
+      "summary": "This study synthesized and tested new 1,2,4-trioxane derivatives against MCF-7 breast cancer cells, finding that some compounds showed promising cytotoxicity. The compounds work by generating reactive oxygen species through iron-mediated activation, selectively killing cancer cells. Molecular docking provided insights into their potential mechanism of action.",
       "significance": "Low",
       "tags": [
+        "drug-discovery",
+        "cancer"
+      ]
+    },
+    {
+      "id": "64e5be115743",
+      "title": "Unveiling acetamide coupled benzothiazole hydrazones as potential anti-proliferative agents: an experimental and computational approach.",
+      "abstract": "A series of benzothiazole acetamide hydrazones (8a-p) was synthesized and evaluated for anti-proliferative activity against various human cancer cell lines, including a pancreatic ductal adenocarcinoma (CAPAN-1), a colorectal carcinoma (HCT-116), a leukemia (HL60), a glioblastoma (LN229), a T lymphoblast (Molt-4), a non-small cell lung cancer (NCI-H460), and a B lymphoblast (Z138) cell line. Among the tested derivatives, compounds 8l, 8n, and 8o emerged as lead compounds, exhibiting cytotoxicity across multiple cell lines. Notably, compound 8o demonstrated selective cytotoxicity towards Z138 a",
+      "journal": "RSC advances",
+      "doi": "10.1039/d6ra03835b",
+      "pmid": "42440848",
+      "first_author": "Imtiaz M",
+      "pub_date": "2026-Jul-06",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1039%2Fd6ra03835b",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1039%2Fd6ra03835b"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42440848/"
+        }
+      ],
+      "summary": "This study synthesized and tested a series of benzothiazole acetamide hydrazones against seven human cancer cell lines, identifying three lead compounds (8l, 8n, 8o) with broad anti-proliferative activity. One compound (8o) showed selective cytotoxicity against a B lymphoblast cell line, suggesting potential for targeted cancer therapy.",
+      "significance": "Low",
+      "tags": [
+        "drug-discovery",
+        "cancer"
+      ]
+    },
+    {
+      "id": "0ade918988d6",
+      "title": "Pharmacophore-based virtual screening, molecular docking, MD simulation, MM-GBSA energy calculation and DFT analysis for the in silico discovery of a SaFtsZ inhibitor.",
+      "abstract": "The rapid emergence of antimicrobial resistance demands the discovery of new antibacterial targets and inhibitors. Staphylococcus aureus filamenting temperature-sensitive protein (SaFtsZ), an essential cytoskeletal protein involved in bacterial cytokinesis and Z-ring formation, has gained attention as a promising target for antibacterial drug discovery. In the present study, an integrated computational strategy involving pharmacophore mapping, molecular docking, molecular dynamics (MD) simulations, and density functional theory (DFT) analysis was employed to identify potential SaFtsZ inhibitor",
+      "journal": "RSC advances",
+      "doi": "10.1039/d6ra04726b",
+      "pmid": "42440674",
+      "first_author": "T S",
+      "pub_date": "2026-Jul-06",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1039%2Fd6ra04726b",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1039%2Fd6ra04726b"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42440674/"
+        }
+      ],
+      "summary": "This study uses a computational pipeline to identify potential inhibitors of SaFtsZ, a bacterial protein essential for cell division, as a new approach to combat antimicrobial resistance. The authors combined pharmacophore modeling, molecular docking, dynamics simulations, and quantum chemical calculations to screen for candidate compounds. The work provides a set of computationally predicted inhibitors that could be experimentally validated for antibacterial activity.",
+      "significance": "Low",
+      "tags": [
+        "drug-discovery",
+        "structural-biology",
         "methodology"
+      ]
+    },
+    {
+      "id": "ac3201530274",
+      "title": "ScrambleBench: a workflow for comparative assessment of structure-based de novo generative models.",
+      "abstract": "Generative artificial intelligence (AI) has rapidly advanced over the past decade in the field of drug discovery, particularly for the de novo design of small molecules based on target protein structures. While generative AI has the potential to complement traditional structure-based drug design (SBDD) to discover novel hits, their performance is often assessed using non-standardized evaluation criteria. As the number of generative AI models continue to grow, it becomes increasingly important to determine whether these tools are sufficiently robust and reliable for integration into medicinal c",
+      "journal": "Journal of cheminformatics",
+      "doi": "10.1186/s13321-026-01254-x",
+      "pmid": "42410671",
+      "first_author": "Yap V",
+      "pub_date": "2026-Jul-06",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1186%2Fs13321-026-01254-x",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1186%2Fs13321-026-01254-x"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42410671/"
+        }
+      ],
+      "summary": "This paper introduces ScrambleBench, a standardized workflow for comparing structure-based generative AI models used in drug discovery. The tool addresses the lack of consistent evaluation criteria, helping researchers determine if these models are robust enough for practical medicinal chemistry use.",
+      "significance": "Medium",
+      "tags": [
+        "drug-discovery",
+        "tool",
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "019dbb6a2c48",
+      "title": "Multiply Perturbed Response: A Computational Protocol to Identify Cooperative Allosteric Residue Combinations Driving Protein Conformational Transitions.",
+      "abstract": "Protein function often depends on dynamic conformational transitions driven by external factors or molecular interactions. Understanding the allosteric mechanisms underlying these transitions is essential for mechanistic insight into protein function. Molecular dynamics (MD) simulations are widely used to study protein dynamics; however, capturing large-scale, rare transitions is computationally expensive. To address this, we previously developed Perturbation Response Scanning (PRS), based on elastic network models and linear response theory, but PRS is limited in capturing collective effects ",
+      "journal": "Bio-protocol",
+      "doi": "10.21769/BioProtoc.5718",
+      "pmid": "42427445",
+      "first_author": "Kazan K",
+      "pub_date": "2026-Jul-05",
+      "source": "PubMed",
+      "url": "https://doi.org/10.21769%2FBioProtoc.5718",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.21769%2FBioProtoc.5718"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42427445/"
+        }
+      ],
+      "summary": "This paper presents a computational protocol called Multiply Perturbed Response (MPR) that extends the Perturbation Response Scanning method to identify cooperative combinations of allosteric residues driving protein conformational changes. MPR uses elastic network models and linear response theory to efficiently predict how multiple residue perturbations collectively influence protein dynamics, overcoming limitations of single-residue approaches. The protocol provides a practical tool for studying allosteric mechanisms and could aid in drug discovery and protein engineering.",
+      "significance": "Medium",
+      "tags": [
+        "methodology",
+        "structural-biology",
+        "protein-structure"
       ]
     },
     {
@@ -548,12 +1134,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42430655/"
         }
       ],
-      "summary": "This review traces the evolution of bioinformatics over 75 years, from command-line tools to AI chatbots, highlighting how exponential biological data growth and computational advances have driven distinct technological eras. It emphasizes the shift from data generation to analysis as a key bottleneck, particularly during the next-generation sequencing era.",
+      "summary": "This review traces the historical evolution of bioinformatics over 75 years, from early command-line tools to modern AI chatbots, highlighting how exponential growth in biological data and computational advances have driven distinct technological eras. The authors focus on how the genomic revolution and next-generation sequencing shifted the bottleneck from data generation to analysis, setting the stage for AI integration.",
       "significance": "Medium",
       "tags": [
         "review",
-        "machine-learning",
-        "tool"
+        "methodology",
+        "machine-learning"
       ]
     },
     {
@@ -579,7 +1165,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42430819/"
         }
       ],
-      "summary": "This study shows that adding diaminocyclohexane (DACH)-based diamines to 5-aminolevulinic acid-based photodynamic therapy greatly improves killing of Gram-negative bacteria, including drug-resistant strains like Acinetobacter baumannii and Proteus mirabilis. Blue light irradiation achieved over 99.99% bacterial mortality in both planktonic and biofilm forms, suggesting a promising new approach for treating stubborn bacterial infections.",
+      "summary": "This study shows that adding diaminocyclohexane (DACH)-based diamines to 5-aminolevulinic acid-based photodynamic therapy greatly improves killing of Gram-negative bacteria, including drug-resistant strains like Acinetobacter baumannii and Proteus mirabilis. Blue light irradiation achieved over 99.99% bacterial mortality, suggesting a promising new approach for treating biofilm-associated infections.",
       "significance": "Medium",
       "tags": [
         "microbiology",
@@ -588,65 +1174,126 @@
       ]
     },
     {
-      "id": "413eeb6187cf",
-      "title": "Structural Organization of the Nvj3-Mdm1 Complex Reveals a Conserved Lipid-Compatible Contact Site Module.",
-      "abstract": "Membrane contact sites are organized by protein assemblies that physically couple organelles and coordinate lipid metabolism, yet the structural principles that enable lipid exchange across these junctions remain poorly defined. At the nuclear-vacuolar junction (NVJ) in budding yeast, the tethering protein Mdm1 and its binding partner Nvj3 form a complex that regulates lipid metabolic pathways, but the structural features underlying their interaction have not been resolved. Here, we use AlphaFold-based complex prediction and comparative structural analysis to define the organization of Nvj3-Md",
-      "journal": "bioRxiv : the preprint server for biology",
-      "doi": "10.64898/2026.06.29.735323",
-      "pmid": "42427710",
-      "first_author": "Aboumourad M",
+      "id": "30dc20f5edc3",
+      "title": "Structural and biochemical insights into the antibiofilm activity of cationic lipoamino acid ester against methicillin-resistant Staphylococcus aureus.",
+      "abstract": "Three-dimensional structures, primarily derived from X-ray crystallography, are crucial for understanding the solid-state properties of active pharmaceuticals and for enabling structure-based drug design. Herein, we report the first single crystal X-ray structure of cationic lipoaminoacid ester [(2-((N-(2-methoxy-2-oxoethyl)tetradecanamido)methyl)-1-methylpyridin-1-ium iodide, QPyN14Ge]. QPyN14Ge crystallized in the triclinic space group P1̄. QPyN14Ge has a highly ordered and coherent packing arrangement due to tail-to-tail interdigitation of hydrophobic layers, stabilization by planar trans-a",
+      "journal": "RSC advances",
+      "doi": "10.1039/d6ra04005e",
+      "pmid": "42405157",
+      "first_author": "Pious A",
       "pub_date": "2026-Jul-03",
       "source": "PubMed",
-      "url": "https://doi.org/10.64898%2F2026.06.29.735323",
+      "url": "https://doi.org/10.1039%2Fd6ra04005e",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.64898%2F2026.06.29.735323"
+          "url": "https://doi.org/10.1039%2Fd6ra04005e"
         },
         {
           "type": "pubmed",
           "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42427710/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42405157/"
         }
       ],
-      "summary": "This study uses AlphaFold and comparative structural analysis to determine how the Nvj3 and Mdm1 proteins interact at membrane contact sites in yeast, revealing a conserved structural module that facilitates lipid exchange. The findings provide new insights into the molecular architecture of lipid transfer machinery at organelle junctions.",
-      "significance": "Medium",
-      "tags": [
-        "structural-biology",
-        "machine-learning",
-        "methodology"
-      ]
-    },
-    {
-      "id": "08f083a717d4",
-      "title": "Cryptic RNA binding sites are energetically accessible and chemically addressable.",
-      "abstract": "Cryptic binding sites generated by local conformational dynamics have become an important concept in protein-targeted ligand discovery, yet their energetic accessibility and relevance to RNA recognition remain less well understood. Here, we use the env8 cobalamin (Cbl) riboswitch as a model system to investigate the energetic consequences of cryptic-site formation through base displacement. Structural analysis revealed that binding of β-axial substituted Cbl derivatives displaces a conserved adenosine (A20) from the RNA core, exposing a previously hidden binding site that is subsequently occup",
-      "journal": "bioRxiv : the preprint server for biology",
-      "doi": "10.64898/2026.07.01.735868",
-      "pmid": "42427657",
-      "first_author": "Olenginski LT",
-      "pub_date": "2026-Jul-02",
-      "source": "PubMed",
-      "url": "https://doi.org/10.64898%2F2026.07.01.735868",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.64898%2F2026.07.01.735868"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42427657/"
-        }
-      ],
-      "summary": "This study demonstrates that cryptic RNA binding sites, formed when a ligand displaces a base and exposes a hidden pocket, are energetically accessible and can be targeted by small molecules, using the env8 cobalamin riboswitch as a model. The findings suggest that such cryptic sites in RNA are chemically addressable, expanding the potential for RNA-targeted drug discovery.",
-      "significance": "Medium",
+      "summary": "This study reports the first single-crystal X-ray structure of a cationic lipoamino acid ester with antibiofilm activity against methicillin-resistant Staphylococcus aureus. The compound's highly ordered packing arrangement, stabilized by hydrophobic interdigitation and planar trans conformation, provides structural insights that could inform the design of new antibiofilm agents.",
+      "significance": "Low",
       "tags": [
         "structural-biology",
         "drug-discovery",
-        "RNA"
+        "microbiology"
+      ]
+    },
+    {
+      "id": "4feca9f99494",
+      "title": "Engineering intrinsically radiolabeled nanoparticles for imaging and therapy: a decade of design strategies and insights.",
+      "abstract": "The convergence of nanotechnology and nuclear medicine has opened new possibilities for cancer imaging and therapy, but conventional chelator-based radiolabeling approaches often suffer from limited stability and can alter the inherent properties of nanomaterials. Intrinsic radiolabeling has emerged as a promising alternative, enabling the direct incorporation of radionuclides within the nanoparticle matrix through mechanisms such as lattice doping, isotopic substitution, coordination to structural sites, or entrapment during nanoparticle formation. In this approach, the radionuclide becomes a",
+      "journal": "RSC advances",
+      "doi": "10.1039/d6ra03415b",
+      "pmid": "42405137",
+      "first_author": "Ghosh S",
+      "pub_date": "2026-Jul-03",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1039%2Fd6ra03415b",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1039%2Fd6ra03415b"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42405137/"
+        }
+      ],
+      "summary": "This review summarizes a decade of progress in engineering intrinsically radiolabeled nanoparticles, which incorporate radionuclides directly into the nanoparticle matrix rather than using conventional chelator-based methods. The approach improves stability and preserves nanoparticle properties, offering promising applications for cancer imaging and therapy.",
+      "significance": "Medium",
+      "tags": [
+        "nanotechnology",
+        "drug-discovery",
+        "review"
+      ]
+    },
+    {
+      "id": "9618b16d63c1",
+      "title": "Low-Temperature xTB-MD-DFT Screening of Functionalized Oxide Surface-Patch Models (TiO2, ZnO, CeO2) for Hydrocarbon Association and Microbial-Proxy Perturbation Assessment in Cold Bioremediation.",
+      "abstract": "Hydrocarbon biodegradation in cold environments is constrained not only by microbial catabolic capacity but also by interfacial access to poorly soluble substrates and by the way remediation materials interact with microbial envelope-related structures. This study presents an uncertainty-aware low-temperature computational screening workflow for prioritizing functionalized oxide surface-patch models that may favor hydrocarbon association while avoiding excessive perturbation of simplified microbial-interface proxies. Twelve finite oxide-ligand candidates derived from TiO2, ZnO, and CeO2 patche",
+      "journal": "Nanomaterials (Basel, Switzerland)",
+      "doi": "10.3390/nano16130815",
+      "pmid": "42439753",
+      "first_author": "Guerra J",
+      "pub_date": "2026-Jul-01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.3390%2Fnano16130815",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3390%2Fnano16130815"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42439753/"
+        }
+      ],
+      "summary": "This study presents a computational workflow to screen functionalized oxide surface patches (TiO2, ZnO, CeO2) for their ability to associate with hydrocarbons while minimizing disruption to microbial interfaces, aiming to improve cold bioremediation. The approach uses low-temperature simulations to prioritize materials that enhance hydrocarbon access without harming microbial structures.",
+      "significance": "Medium",
+      "tags": [
+        "methodology",
+        "microbiology",
+        "materials-science"
+      ]
+    },
+    {
+      "id": "19348110b0e1",
+      "title": "Sustained release of Eugenol from MCM-41 mesoporous silica for preservation of Agaricus bisporus.",
+      "abstract": "The postharvest quality of Agaricus bisporus declines rapidly during refrigerated storage. A controlled-release system (Eugenol@MCM-41) was prepared by loading eugenol into MCM-41, with a loading capacity of 51%. Physicochemical characterization and all-atom molecular dynamics (MD) simulations were combined to clarify the sustained-release mechanism. MD simulations provided supportive evidence for favorable eugenol-silica interfacial interactions and restricted surface-associated mobility in the mesoporous model. In vitro release exhibited clear medium dependence and followed the Weibull model",
+      "journal": "Food chemistry: X",
+      "doi": "10.1016/j.fochx.2026.104170",
+      "pmid": "42438703",
+      "first_author": "Yuan K",
+      "pub_date": "2026-Jul-01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.fochx.2026.104170",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.fochx.2026.104170"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42438703/"
+        }
+      ],
+      "summary": "Researchers developed a controlled-release system by loading eugenol into MCM-41 mesoporous silica to preserve the quality of Agaricus bisporus mushrooms during refrigerated storage. Molecular dynamics simulations revealed favorable interactions between eugenol and silica that restrict mobility, enabling sustained release. The system showed medium-dependent release kinetics following the Weibull model, offering a potential solution for extending mushroom shelf life.",
+      "significance": "Low",
+      "tags": [
+        "food-science",
+        "materials-science"
       ]
     },
     {
@@ -681,34 +1328,127 @@
       ]
     },
     {
-      "id": "0094c55a2b47",
-      "title": "R1398 is the GTP-γ-phosphate sensor that drives the ROC G-domain switching mechanism unique to Parkinson's disease-associated LRRK2.",
-      "abstract": "Mutations in leucine-rich repeat kinase 2 (LRRK2) are the most common genetic cause of Parkinson's disease (PD). Strategies that directly inhibit the LRRK2 kinase active site have not demonstrated disease-modifying efficacy in recent clinical testing. A naturally occurring protective variant, R1398H, provides an alternative route for understanding how reduced disease risk may be achieved by tuning the regulatory GTPase domain rather than the kinase domain itself. Here, we combine structural, computational, biochemical, and cell-based analyses to define how R1398H alters the Ras of complex prot",
-      "journal": "Research square",
-      "doi": "10.21203/rs.3.rs-10121216/v1",
-      "pmid": "42427854",
-      "first_author": "Park Y",
+      "id": "fc079768481a",
+      "title": "Collective fluctuations underlying nanobody inhibitory activity targeting B. anthracis S-layers revealed by multiscale simulations.",
+      "abstract": "Nanobodies (Nbs) that depolymerize bacterial surface-layers (S-layers) offer a route to antivirulence therapeutics, but their mechanisms have been difficult to infer from binding structures alone. In B. anthracis, several Nbs bind to Sap, the S-layer protein that assembles into a paracrystalline lattice surrounding the cell. Despite similar binding poses and sequences, only a subset of these (\"inhibitory\") Nbs induce disassembly of the protein lattice, ultimately abrogating pathogenicity. In this study, we leveraged multiscale simulations to test whether representative Nb-induced fluctuations ",
+      "journal": "bioRxiv : the preprint server for biology",
+      "doi": "10.64898/2026.06.26.734918",
+      "pmid": "42427516",
+      "first_author": "Cecil AJ",
       "pub_date": "2026-Jul-01",
       "source": "PubMed",
-      "url": "https://doi.org/10.21203%2Frs.3.rs-10121216%2Fv1",
+      "url": "https://doi.org/10.64898%2F2026.06.26.734918",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.21203%2Frs.3.rs-10121216%2Fv1"
+          "url": "https://doi.org/10.64898%2F2026.06.26.734918"
         },
         {
           "type": "pubmed",
           "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42427854/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42427516/"
         }
       ],
-      "summary": "This study identifies R1398 as a key sensor of GTP-γ-phosphate that drives the unique switching mechanism of the ROC G-domain in LRRK2, a protein linked to Parkinson's disease. The protective variant R1398H reduces disease risk by tuning the regulatory GTPase domain rather than the kinase domain, offering an alternative therapeutic strategy. Combining structural, computational, biochemical, and cell-based analyses, the findings suggest that targeting the GTPase domain could be more effective than direct kinase inhibition for disease modification.",
-      "significance": "High",
+      "summary": "This study uses multiscale simulations to investigate why only some nanobodies (Nbs) that bind to the B. anthracis S-layer protein Sap are able to disassemble the protective protein lattice and inhibit pathogenicity. The simulations reveal that inhibitory Nbs induce specific collective fluctuations in the Sap lattice that are absent with non-inhibitory Nbs, providing a mechanistic explanation for their differential activity. This work demonstrates how computational approaches can uncover dynamic mechanisms of antibody-based therapeutics that are not apparent from static binding structures.",
+      "significance": "Medium",
       "tags": [
         "structural-biology",
-        "neuroscience",
+        "microbiology",
         "drug-discovery"
+      ]
+    },
+    {
+      "id": "17cdec202bdc",
+      "title": "Targeting bromodomain and extraterminal proteins in cardiovascular disease: Pathological mechanisms and therapeutic applications.",
+      "abstract": "Bromodomain and extraterminal proteins have emerged as key epigenetic regulators that coordinate transcriptional programs fundamental to cardiovascular physiology and disease. Although bromodomain and extraterminal protein inhibitors exert multiple cardiovascular effects, they cannot fully explain clinical heterogeneity in outcomes and responses, highlighting the need to clarify the context- and disease-specific roles of individual bromodomain and extraterminal protein family members. This narrative review delineates the distinct molecular roles of bromodomain-containing protein 2, bromodomain",
+      "journal": "The Journal of international medical research",
+      "doi": "10.1177/03000605261465295",
+      "pmid": "42426583",
+      "first_author": "Zhang K",
+      "pub_date": "2026-Jul-01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1177%2F03000605261465295",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1177%2F03000605261465295"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42426583/"
+        }
+      ],
+      "summary": "This review examines how bromodomain and extraterminal (BET) proteins regulate gene expression in cardiovascular health and disease, and discusses the potential of BET inhibitors as therapies. The authors highlight that current inhibitors have variable clinical effects, emphasizing the need to understand the specific roles of individual BET family members like BRD2.",
+      "significance": "Medium",
+      "tags": [
+        "epigenomics",
+        "review",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "ed3217ca7b7e",
+      "title": "OrgNet+: towards robust protein stability prediction with convolutional neural networks.",
+      "abstract": "Predicting the effect of single-point mutations on protein stability is a central problem in molecular biology and protein engineering. Recent structure-based deep learning methods, particularly 3D convolutional neural networks (3D CNNs), have achieved strong predictive performance by leveraging high-resolution protein structures. However, proteins exist as heterogeneous conformational ensembles rather than single static structures, and the impact of conformational flexibility on structure-based ΔΔG predictors remains poorly characterized. Consequently, current models may yield unstable or eve",
+      "journal": "Bioinformatics (Oxford, England)",
+      "doi": "10.1093/bioinformatics/btag258",
+      "pmid": "42412831",
+      "first_author": "Sarycheva A",
+      "pub_date": "2026-Jul-01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag258",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag258"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42412831/"
+        }
+      ],
+      "summary": "This study introduces OrgNet+, a 3D convolutional neural network that improves protein stability prediction by accounting for conformational flexibility, addressing a key limitation of existing structure-based methods that rely on single static structures. The authors demonstrate that incorporating multiple conformations leads to more robust predictions of mutation effects on protein stability.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "structural-biology",
+        "tool"
+      ]
+    },
+    {
+      "id": "03b408747fc9",
+      "title": "seq2ribo: structure-aware integration of machine learning and simulation to predict ribosome location profiles from RNA sequences.",
+      "abstract": "Ribosome dynamics are vital in the process of protein expression. Current methods rely on ribosome profiling (Ribo-seq), RNA-seq profiles, and full genomic context. This restricts their use in de novo sequence design, like messenger RNA (mRNA) vaccines. Simulation-only approaches like the Totally Asymmetric Simple Exclusion Process (TASEP) oversimplify translation by focusing solely on codon elongation times.",
+      "journal": "Bioinformatics (Oxford, England)",
+      "doi": "10.1093/bioinformatics/btag296",
+      "pmid": "42412804",
+      "first_author": "Kaynar G",
+      "pub_date": "2026-Jul-01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag296",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag296"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42412804/"
+        }
+      ],
+      "summary": "This paper presents seq2ribo, a machine learning method that predicts ribosome location profiles directly from RNA sequences without requiring experimental data like Ribo-seq or full genomic context. By integrating TASEP simulations with a neural network, it enables de novo prediction for applications such as mRNA vaccine design.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "methodology",
+        "synthetic-biology"
       ]
     },
     {
@@ -734,12 +1474,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42433658/"
         }
       ],
-      "summary": "This study uses computational and experimental approaches to show that 3-deoxyanthocyanidins from Sorghum bicolor can modulate pathways related to inflammaging, a chronic inflammation process linked to aging. The findings suggest these polyphenolics may help counteract oxidative stress and metabolic dysfunction associated with biological aging.",
+      "summary": "This study provides computational and experimental evidence that 3-deoxyanthocyanidins from Sorghum bicolor can modulate pathways related to inflammaging, a chronic inflammation-driven process of biological aging. The findings suggest these polyphenolics may counteract oxidative stress and metabolic dysfunction associated with aging.",
       "significance": "Medium",
       "tags": [
         "aging",
         "systems-biology",
-        "methodology"
+        "metabolomics"
       ]
     },
     {
@@ -765,12 +1505,42 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42434172/"
         }
       ],
-      "summary": "This study uses computational modeling to investigate theaflavin, a compound from black tea, as a potential inhibitor of MMP-2 and MMP-9 enzymes involved in breast cancer progression. Molecular dynamics simulations and toxicity predictions suggest theaflavin may bind stably to these targets with favorable safety profiles, supporting its potential as a therapeutic agent.",
+      "summary": "This study uses computational modeling to investigate theaflavin, a compound from black tea, as a potential inhibitor of MMP-2 and MMP-9, which are key proteins involved in breast cancer spread. Molecular dynamics simulations and toxicity predictions suggest theaflavin may bind stably to these targets with favorable safety profiles, supporting its potential as a natural therapeutic agent.",
       "significance": "Low",
       "tags": [
         "drug-discovery",
         "structural-biology",
         "cancer"
+      ]
+    },
+    {
+      "id": "7d68e1fe3075",
+      "title": "Chemical multiplexing in the nervous system: molecular architecture, functional stratification, and pathophysiological plasticity of neuropeptide-classical neurotransmitter cotransmission.",
+      "abstract": "Neurons frequently synthesize both neuropeptides and classical low-molecular-weight neurotransmitters, challenging the historical interpretation of one-neuron-one-transmitter signaling. Rather than representing biochemical redundancy, coexistence reflects a conserved organizational strategy that expands neural coding capacity through chemical multiplexing. Dual vesicular architecture-small clear vesicles for rapid synaptic transmission and large dense-core vesicles for activity-dependent peptide release-creates stimulus-intensity-dependent recruitment of distinct signaling layers. Classical tr",
+      "journal": "Frontiers in molecular neuroscience",
+      "doi": "10.3389/fnmol.2026.1839947",
+      "pmid": "42440641",
+      "first_author": "Merighi A",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.3389%2Ffnmol.2026.1839947",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3389%2Ffnmol.2026.1839947"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42440641/"
+        }
+      ],
+      "summary": "This review challenges the historical 'one-neuron-one-transmitter' dogma by presenting evidence that neurons commonly co-release neuropeptides and classical neurotransmitters, a phenomenon termed 'chemical multiplexing.' The authors describe a dual vesicular architecture where small clear vesicles mediate rapid synaptic transmission while large dense-core vesicles enable activity-dependent peptide release, expanding neural coding capacity. They further discuss how this multiplexing system shows pathophysiological plasticity, with implications for understanding neurological and psychiatric disorders.",
+      "significance": "Medium",
+      "tags": [
+        "neuroscience",
+        "review"
       ]
     },
     {
@@ -796,11 +1566,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436711/"
         }
       ],
-      "summary": "This study used computational methods to evaluate how well certain plant compounds and existing drugs might inhibit gastric H⁺/K⁺-ATPase, a key target for treating acid-related stomach disorders. Molecular docking and dynamics simulations identified several compounds with promising binding interactions and favorable drug-like properties.",
+      "summary": "This study used computational methods to evaluate how well certain plant compounds and existing drugs might inhibit gastric H⁺/K⁺-ATPase, a key target for treating acid-related stomach disorders. The analysis identified several compounds with promising binding interactions, suggesting they could be further explored as potential treatments for conditions like peptic ulcers and GERD.",
       "significance": "Low",
       "tags": [
         "drug-discovery",
-        "structural-biology"
+        "structural-biology",
+        "methodology"
       ]
     },
     {
@@ -826,8 +1597,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42434599/"
         }
       ],
-      "summary": "This study uses computational methods to identify plerixafor-derived compounds as potential inhibitors of the PIM-1 kinase, a promising target in diffuse large B-cell lymphoma. The authors employed QSAR and structure-based approaches to screen for molecules that might overcome treatment resistance in this aggressive lymphoma subtype.",
-      "significance": "Medium",
+      "summary": "This study used computational QSAR and structure-based methods to identify plerixafor-derived compounds as potential PIM-1 kinase inhibitors for treating diffuse large B-cell lymphoma. The work targets PIM-1, a kinase overexpressed in chemotherapy-resistant DLBCL, by exploiting its unique ATP-binding site lacking a hinge region hydrogen bond donor. The findings offer a computational approach to repurpose plerixafor derivatives for targeted cancer therapy.",
+      "significance": "Low",
       "tags": [
         "drug-discovery",
         "machine-learning",
@@ -857,7 +1628,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42434427/"
         }
       ],
-      "summary": "This study investigates whether the HHV-6B virus can trigger type 1 diabetes through molecular mimicry, finding structural and binding similarities between viral epitopes and diabetes-related autoantigens. The results suggest that HHV-6B infection may contribute to the onset of type 1 diabetes by mimicking self-antigens.",
+      "summary": "This study investigates whether human herpesvirus 6B (HHV-6B) might trigger type 1 diabetes through molecular mimicry, finding structural and binding similarities between viral epitopes and diabetes-related autoantigens. The results suggest a potential mechanism where HHV-6B infection could initiate an autoimmune attack on pancreatic cells.",
       "significance": "Medium",
       "tags": [
         "immunology",
@@ -866,64 +1637,125 @@
       ]
     },
     {
-      "id": "02bf66ee0525",
-      "title": "Heptapharmacological activity of Quercetin-3-O-phosphate against lung cancer pathways.",
-      "abstract": "Lung cancer is one of the leading causes of cancer-related deaths globally, with smoking being the primary risk factor, though environmental exposures and genetic mutations also play significant roles. Lung cancer arises when abnormal lung cells grow uncontrollably, leading to over 2 million new cases and nearly 1.8 million deaths globally. Drug resistance, especially to targeted therapies, is a key challenge, as tumours often adapt and become unresponsive. Multitargeted drug design, which targets multiple pathways involved in tumour growth, offers a promising solution to overcome resistance a",
-      "journal": "PloS one",
-      "doi": "10.1371/journal.pone.0349042",
-      "pmid": "42430314",
-      "first_author": "Alahdal MA",
+      "id": "9f6b037bac19",
+      "title": "Rational design 2.0: transitioning from static structural biology to computational prioritization and iterative vaccine optimization for RSV.",
+      "abstract": "Respiratory syncytial virus (RSV) is a major cause of severe lower respiratory tract disease (LRTD) in infants and older adults worldwide. Although vaccines based on the fusion (F) protein have shown progress, their efficacy remains limited by antigenic instability and viral evolution. The metastable transition of the F protein between prefusion (preF) and postF conformations critically determines the exposure of neutralizing epitopes, with most potent antibodies targeting preF-specific sites. In addition, the glycosylated G protein contributes to immune evasion through glycan shielding and CX",
+      "journal": "Frontiers in immunology",
+      "doi": "10.3389/fimmu.2026.1862216",
+      "pmid": "42440565",
+      "first_author": "Wei X",
       "pub_date": "2026--01",
       "source": "PubMed",
-      "url": "https://doi.org/10.1371%2Fjournal.pone.0349042",
+      "url": "https://doi.org/10.3389%2Ffimmu.2026.1862216",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.1371%2Fjournal.pone.0349042"
+          "url": "https://doi.org/10.3389%2Ffimmu.2026.1862216"
         },
         {
           "type": "pubmed",
           "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42430314/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42440565/"
         }
       ],
-      "summary": "This study investigates Quercetin-3-O-phosphate, a modified flavonoid, and finds it acts on seven different molecular pathways involved in lung cancer, suggesting it could be a promising multi-targeted therapeutic to overcome drug resistance. The compound showed activity against key cancer processes like cell proliferation and survival, indicating potential for further development as a lung cancer treatment.",
-      "significance": "Low",
+      "summary": "This paper reviews the challenges in developing effective RSV vaccines due to the metastable nature of the fusion (F) protein and immune evasion by the G protein, and proposes a transition from static structural biology to computational prioritization and iterative vaccine optimization. The authors argue that rational design 2.0, integrating computational methods, can overcome antigenic instability and viral evolution to improve vaccine efficacy.",
+      "significance": "Medium",
       "tags": [
-        "drug-discovery",
-        "cancer"
+        "structural-biology",
+        "immunology",
+        "methodology"
       ]
     },
     {
-      "id": "061c223d1301",
-      "title": "AI-driven drug reposition for pathogens: a new paradigm in pandemic preparedness.",
-      "abstract": "Faced with a severe outbreak of diseases caused by newly emerging and recurrent pathogens, the development cycle of traditional drugs is long, making it difficult to meet emergency needs. Drug repositioning has become a key strategy for rapidly providing therapies by exploring new therapeutic uses of approved drugs. However, traditional reposition methods have bottlenecks such as slow speed and strong randomness. Artificial intelligence (AI) is revolutionizing drug reposition by analyzing and integrating multi-source data with computational models, dramatically accelerating the discovery proce",
-      "journal": "Frontiers in chemistry",
-      "doi": "10.3389/fchem.2026.1842082",
-      "pmid": "42428571",
-      "first_author": "Ma L",
+      "id": "58b60a5fcd18",
+      "title": "Convergent GenX biodegradation by genomically designed and functionally screened synthetic bacterial consortia.",
+      "abstract": "GenX (hexafluoropropylene oxide dimer acid) has been introduced as a replacement for legacy polyfluoroalkyl substances (PFASs) compounds; however, accumulating evidence indicates this C6 ether-PFAS may exhibit comparable toxicity to PFOA while persisting in contaminated water supplies. Biological remediation offers genuine mineralization potential but has been constrained by the exceptional stability of carbon-fluorine bonds. Here, we demonstrate that synthetic bacterial consortia assembled through rational genomic design (GENIA) or microfluidic selection (Community G) achieve rapid GenX biode",
+      "journal": "Frontiers in microbiology",
+      "doi": "10.3389/fmicb.2026.1848796",
+      "pmid": "42422733",
+      "first_author": "De la Vega-Camarillo E",
       "pub_date": "2026--01",
       "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffchem.2026.1842082",
+      "url": "https://doi.org/10.3389%2Ffmicb.2026.1848796",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffchem.2026.1842082"
+          "url": "https://doi.org/10.3389%2Ffmicb.2026.1848796"
         },
         {
           "type": "pubmed",
           "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42428571/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42422733/"
         }
       ],
-      "summary": "This review discusses how artificial intelligence can accelerate drug repositioning—finding new uses for existing drugs—to rapidly develop treatments for emerging infectious diseases. AI overcomes limitations of traditional methods by quickly analyzing diverse data sources, making it a promising strategy for pandemic preparedness.",
+      "summary": "Researchers developed two approaches—rational genomic design and microfluidic functional screening—to assemble synthetic bacterial consortia that can rapidly biodegrade GenX, a replacement PFAS compound with potential toxicity similar to PFOA. This work demonstrates that engineered microbial communities can overcome the stability of carbon-fluorine bonds, offering a promising biological remediation strategy for persistent water contaminants.",
+      "significance": "Medium",
+      "tags": [
+        "microbiology",
+        "synthetic-biology",
+        "metagenomics"
+      ]
+    },
+    {
+      "id": "3ed4f4ddc58b",
+      "title": "Liposomal Nanoparticulate Drug Delivery Systems: Strategies to Destabilize Biological Membranes at the Target Tissue.",
+      "abstract": "Liposomal nanoparticulate drug delivery systems (LNDDSs) are clinically validated nanomedicine platforms seeing regular use in oncology and infectious disease. Their applications have rapidly expanded with several tissue targeting formulations in early-phase clinical trials. Beyond small molecular drugs, LNDDSs are increasingly employed for delivery of nucleic acid therapeutics, such as ribonucleic acid (RNA) based vaccines and immunomodulators. Recent advances in nanomaterials have enabled LNDDSs not only to transport therapeutic agents across systemic biological barriers but also to selectiv",
+      "journal": "International journal of nanomedicine",
+      "doi": "10.2147/IJN.S560530",
+      "pmid": "42415876",
+      "first_author": "Wang J",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.2147%2FIJN.S560530",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.2147%2FIJN.S560530"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42415876/"
+        }
+      ],
+      "summary": "This review discusses liposomal nanoparticulate drug delivery systems (LNDDSs), which are clinically validated platforms used in oncology and infectious disease. It highlights their expanding applications, including targeted formulations in clinical trials and delivery of nucleic acid therapeutics like RNA vaccines, enabled by recent nanomaterial advances.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
-        "machine-learning",
-        "review"
+        "review",
+        "clinical"
+      ]
+    },
+    {
+      "id": "a99ac97ba793",
+      "title": "Design, Synthesis and Biological Evaluation of New Oxazolidinone Antimicrobial Agents with Low Monoamine Oxidase A Inhibition.",
+      "abstract": "Linezolid is an oxazolidinone antibacterial agent that acts by binding to the 23S rRNA of the bacterial 50S ribosomal subunit to inhibit protein synthesis and exhibits potent activity against Gram-positive pathogens and Mycobacterium tuberculosis. Although resistance to linezolid remains relatively low, its clinical use is limited by safety concerns arising from inhibition of monoamine oxidase A (MAO-A). To address this limitation, we designed and synthesized a series of novel oxazolidinone derivatives with reduced MAO-A inhibition and preserved antibacterial potency.",
+      "journal": "Drug design, development and therapy",
+      "doi": "10.2147/DDDT.S596564",
+      "pmid": "42404710",
+      "first_author": "Zhang J",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.2147%2FDDDT.S596564",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.2147%2FDDDT.S596564"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42404710/"
+        }
+      ],
+      "summary": "Researchers designed new oxazolidinone antibiotics that retain antibacterial activity against Gram-positive bacteria and Mycobacterium tuberculosis while reducing the safety risk of monoamine oxidase A inhibition, a side effect that limits the clinical use of the existing drug linezolid.",
+      "significance": "Medium",
+      "tags": [
+        "drug-discovery"
       ]
     }
   ]

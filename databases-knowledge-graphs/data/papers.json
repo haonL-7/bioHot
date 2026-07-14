@@ -1,7 +1,7 @@
 {
   "channel": "databases-knowledge-graphs",
-  "generated_at": "2026-07-13T20:15:30.504869",
-  "count": 16,
+  "generated_at": "2026-07-14T20:09:17.223751",
+  "count": 31,
   "papers": [
     {
       "id": "378b03c7c76d",
@@ -26,7 +26,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42379284/"
         }
       ],
-      "summary": "This study investigates how exposure to crystalline silica particles alters microRNA (miRNA) expression in human macrophage-like cells, identifying potential biomarkers for silica-induced diseases like silicosis and lung cancer. The researchers exposed THP-1 derived macrophages to varying concentrations of silica and measured changes in both intracellular and extracellular miRNAs. The findings suggest that specific miRNAs could serve as effect biomarkers for monitoring occupational and environmental silica exposure.",
+      "summary": "This study investigates how exposure to crystalline silica particles alters microRNA (miRNA) expression in human macrophage-like cells, which could help identify biomarkers for silica-related diseases like silicosis and lung cancer. The researchers exposed THP-1 derived macrophages to varying concentrations of silica particles and analyzed changes in both intracellular and extracellular miRNAs. The findings suggest that silica exposure modulates specific miRNA profiles, potentially serving as effect biomarkers for monitoring occupational and environmental exposure.",
       "significance": "Medium",
       "tags": [
         "toxicology",
@@ -57,7 +57,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42374104/"
         }
       ],
-      "summary": "This study presents the first high-quality de novo transcriptome assembly for the yellow-foot clam, a commercially important fishery species. The resource provides 55,980 predicted coding sequences and enables tissue-specific gene expression profiling, which can support future research on the clam's biology and sustainable aquaculture.",
+      "summary": "This study presents the first high-quality de novo transcriptome assembly for the yellow-foot clam, a sustainably fished species in India. Using Illumina sequencing, the authors generated over 729 million reads and assembled 55,980 coding sequences, providing a valuable genomic resource for understanding the biology and conservation of this economically important bivalve.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -88,12 +88,136 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42363068/"
         }
       ],
-      "summary": "This study presents a single-cell RNA sequencing atlas of the pigtail macaque placenta in late gestation, identifying diverse immune and non-immune cell types. The resource enables comparison with human placental cell populations, supporting the use of this nonhuman primate model for studying pregnancy complications.",
+      "summary": "This study presents a single-cell RNA sequencing atlas of the pigtail macaque placenta in late gestation, identifying distinct immune and non-immune cell populations. By comparing these cells to human placental data, the work highlights similarities and differences that are important for using nonhuman primates as models for human pregnancy complications.",
       "significance": "Medium",
       "tags": [
         "single-cell",
         "transcriptomics",
-        "immunology"
+        "evolution"
+      ]
+    },
+    {
+      "id": "e2d34fd32a21",
+      "title": "Multi-omics analysis of extracellular vesicle cargo in cancer.",
+      "abstract": "Extracellular vesicles (EVs) are increasingly recognized as minimally invasive sources of molecular information in cancer, carrying nucleic acids, proteins, lipids, and metabolites that reflect tumor biology. Recent advances in high-throughput sequencing and mass spectrometry have not only enabled multi-omics profiling of EV cargo but also revealed that different molecular layers capture distinct yet complementary aspects of cancer processes. This review provides a comprehensive overview of the rapidly expanding landscape of EV multi-omics, highlighting methodological constraints, the predomin",
+      "journal": "Trends in cancer",
+      "doi": "10.1016/j.trecan.2026.06.003",
+      "pmid": "42350190",
+      "first_author": "Georgiadi A",
+      "pub_date": "2026-Jun-25",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.trecan.2026.06.003",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.trecan.2026.06.003"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42350190/"
+        }
+      ],
+      "summary": "This review discusses how extracellular vesicles (EVs) from cancer patients carry diverse molecular cargo (nucleic acids, proteins, lipids, metabolites) that can be profiled using multi-omics approaches. It highlights that different molecular layers provide complementary insights into tumor biology, while also addressing current methodological limitations in the field.",
+      "significance": "Medium",
+      "tags": [
+        "cancer",
+        "multi-omics",
+        "review"
+      ]
+    },
+    {
+      "id": "931b5ac9beee",
+      "title": "MIND: multimodal integration with neighbourhood-aware distributions.",
+      "abstract": "Multimodal data integration combines different data modalities to improve predictive and classification performance. In biology, multi-omics profiling has become a powerful tool for applications such as cancer patient stratification. However, integration of multi-omics data remains challenging because of missingness and inherent heterogeneity. Methods such as imputation and sample exclusion often rely on strong assumptions that could lead to information loss or distortion. To address these limitations, we propose MIND (Multimodal Integration with Neighbourhood-aware Distributions), which learn",
+      "journal": "Nature communications",
+      "doi": "10.1038/s41467-026-74413-1",
+      "pmid": "42336813",
+      "first_author": "Xing H",
+      "pub_date": "2026-Jun-24",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs41467-026-74413-1",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41467-026-74413-1"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42336813/"
+        }
+      ],
+      "summary": "MIND is a new method for integrating multi-omics data that handles missing data and heterogeneity without relying on imputation or sample exclusion. It learns neighborhood-aware distributions to combine modalities, improving cancer patient stratification and other biological analyses.",
+      "significance": "Medium",
+      "tags": [
+        "methodology",
+        "machine-learning",
+        "cancer"
+      ]
+    },
+    {
+      "id": "1dd0400085ac",
+      "title": "A pragmatist approach to bridging tables and ontologies through LinkML and punning.",
+      "abstract": "Ontologies support data integration and knowledge discovery across multiple life science disciplines through the application of formal semantics that define hierarchical and cross-hierarchical relationships which enable automated reasoning capabilities. At the same time, tabular data is by far the most commonly produced format of data in most disciplines. This is especially true in biodiversity dataset production. Creating rich semantic data from tables can be complex because of a mismatch between flat tabular data and hierarchical ontology models. Here, we present a practical approach for clo",
+      "journal": "Journal of biomedical semantics",
+      "doi": "10.1186/s13326-026-00359-4",
+      "pmid": "42337582",
+      "first_author": "Duncan WD",
+      "pub_date": "2026-Jun-23",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1186%2Fs13326-026-00359-4",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1186%2Fs13326-026-00359-4"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42337582/"
+        }
+      ],
+      "summary": "This paper presents a practical method using LinkML and punning to bridge the gap between flat tabular data and hierarchical ontology models, making it easier to create rich semantic data from tables commonly used in biodiversity and other life science disciplines.",
+      "significance": "Medium",
+      "tags": [
+        "database",
+        "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "b59640542d15",
+      "title": "Vitiligo Information Resource database v3.",
+      "abstract": "Vitiligo is a multifaceted autoimmune skin disease characterized by the loss of epidermal melanocytes, yet its molecular basis remains poorly understood. To address the need for a specialized systems biology interface, we present VIRdb v3.0, an integrative database combining curated transcriptomics-based datasets with differentially expressed genes, a protein-protein interaction network highlighting regulatory hubs, and an enriched library of natural compounds and FDA-approved drugs targeting vitiligo-related proteins. The platform supports pathway enrichment, molecular docking, and cross-dise",
+      "journal": "NPJ systems biology and applications",
+      "doi": "10.1038/s41540-026-00713-3",
+      "pmid": "42331804",
+      "first_author": "Sengupta A",
+      "pub_date": "2026-Jun-22",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs41540-026-00713-3",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41540-026-00713-3"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42331804/"
+        }
+      ],
+      "summary": "The Vitiligo Information Resource database v3.0 is an integrative systems biology platform that combines curated transcriptomics data, protein-protein interaction networks, and libraries of natural compounds and FDA-approved drugs to help researchers understand the molecular basis of vitiligo and identify potential treatments.",
+      "significance": "Medium",
+      "tags": [
+        "database",
+        "transcriptomics",
+        "systems-biology"
       ]
     },
     {
@@ -119,12 +243,74 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42332524/"
         }
       ],
-      "summary": "This study uses computational methods (network pharmacology, molecular docking, and molecular dynamics simulations) to identify potential protein targets and pathways through which the natural compound naringenin may exert therapeutic effects in spinal cord injury. The findings suggest specific molecular mechanisms that could be further explored for drug development, though all results are based on in silico predictions and require experimental validation.",
+      "summary": "This study uses computational methods (network pharmacology, molecular docking, and molecular dynamics simulations) to identify potential protein targets and pathways through which the natural compound naringenin might treat spinal cord injury. The findings suggest naringenin may act on multiple targets and pathways, providing a theoretical basis for future experimental validation.",
       "significance": "Low",
       "tags": [
         "network-analysis",
         "drug-discovery",
         "methodology"
+      ]
+    },
+    {
+      "id": "9d40516b6017",
+      "title": "Spatial omics illuminates tumor heterogeneity.",
+      "abstract": "Intratumoral heterogeneity (ITH) is the coexistence of diverse cancer cell states, genotypes, and microenvironmental niches within a single tumor and is a major driver of therapeutic resistance and disease progression. While the clinical implications of ITH are well appreciated, conventional methods and models have been limited in resolving the spatial and functional complexity underlying ITH. Recent advances in single-cell and spatial omics, high-plex imaging, and in vivo CRISPR perturbation and lineage tracing now enable unprecedented, mechanistic dissection of tumor ecosystems. These techno",
+      "journal": "Cell reports methods",
+      "doi": "10.1016/j.crmeth.2026.101504",
+      "pmid": "42320479",
+      "first_author": "Srinivas N",
+      "pub_date": "2026-Jun-19",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.crmeth.2026.101504",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.crmeth.2026.101504"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42320479/"
+        }
+      ],
+      "summary": "This review discusses how intratumoral heterogeneity (ITH)—the mix of different cancer cell states, genotypes, and microenvironmental niches within a tumor—drives therapy resistance and disease progression. It highlights that recent advances in single-cell and spatial omics, high-plex imaging, and in vivo CRISPR tools now allow researchers to dissect the spatial and functional complexity of tumor ecosystems at an unprecedented level. The paper underscores the potential of these technologies to transform our understanding of ITH and improve clinical outcomes.",
+      "significance": "Medium",
+      "tags": [
+        "spatial-omics",
+        "single-cell",
+        "cancer"
+      ]
+    },
+    {
+      "id": "421923d8ef71",
+      "title": "Protocol for integrating and interpreting multi-omics data combining unsupervised and supervised data integrating approaches.",
+      "abstract": "Multi-omics integration combines data from transcriptomics, proteomics, and metabolomics to provide insights into biological systems. Here, we present a protocol for integrating and interpreting multi-omics data using unsupervised multi-omics factor analysis (MOFA), supervised projection-based integration (data integration analysis for biomarker discovery using latent components, DIABLO), along with general single-omics analysis techniques and visualizations. We describe steps for data preparation, model construction, and biological interpretation of multi-omics datasets. These approaches iden",
+      "journal": "STAR protocols",
+      "doi": "10.1016/j.xpro.2026.104534",
+      "pmid": "42065969",
+      "first_author": "Anagho-Mattanovich M",
+      "pub_date": "2026-Jun-19",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.xpro.2026.104534",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.xpro.2026.104534"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42065969/"
+        }
+      ],
+      "summary": "This protocol describes a step-by-step approach for integrating transcriptomics, proteomics, and metabolomics data using both unsupervised (MOFA) and supervised (DIABLO) methods. It covers data preparation, model building, and biological interpretation, providing a practical guide for multi-omics analysis.",
+      "significance": "Medium",
+      "tags": [
+        "proteomics",
+        "transcriptomics",
+        "metabolomics"
       ]
     },
     {
@@ -150,7 +336,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42367881/"
         }
       ],
-      "summary": "This preprint introduces MetaHarmonizer, a tool for robust biomedical metadata harmonization that addresses key limitations of LLM-based approaches, including non-determinism, hallucinated ontology terms, and dependence on proprietary APIs. The authors also develop a contamination-controlled evaluation protocol that reveals LLM accuracies on public benchmarks may be substantially inflated, questioning the true transferable capability of these models.",
+      "summary": "This paper introduces MetaHarmonizer, a robust method for harmonizing biomedical metadata that avoids the pitfalls of LLM-based approaches, such as non-determinism and hallucinated terms. The authors also develop a contamination-controlled evaluation protocol, revealing that LLM performance on public benchmarks is likely inflated and not indicative of true transferable capability.",
       "significance": "High",
       "tags": [
         "machine-learning",
@@ -181,12 +367,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42302922/"
         }
       ],
-      "summary": "This study shows that different strains of the skin bacterium Cutibacterium acnes trigger the formation of extracellular traps from immune cells, but with distinct proteomic profiles: neutrophil traps are similar regardless of strain, while T cell traps show strain-specific specialization, particularly for acne-associated strains.",
+      "summary": "This study shows that different strains of the skin bacterium Cutibacterium acnes can trigger immune cells to release extracellular traps, but with distinct effects: neutrophil traps are similar regardless of strain, while T cell traps have strain-specific protein profiles, which may help explain why some strains are linked to acne.",
       "significance": "Medium",
       "tags": [
         "immunology",
         "proteomics",
         "microbiology"
+      ]
+    },
+    {
+      "id": "266ccf590faf",
+      "title": "Next-Generation Bionic Sensors for Small Molecule Detection: Integrating Synthetic Biology, Nanomaterials, and Artificial Intelligence.",
+      "abstract": "Bionic sensors are emerging as powerful analytical platforms driving the development of next-generation detection technologies, particularly for small molecule sensing in complex environmental and biological systems. However, accurate and selective detection of small molecules remains fundamentally challenging due to their low molecular weight, limited structural specificity, and strong interference from complex matrices. This review provides a comprehensive overview of recent advances in bionic sensor technologies, focusing on how the integration of synthetic biology, nanomaterials, and artif",
+      "journal": "Micromachines",
+      "doi": "10.3390/mi17060725",
+      "pmid": "42354756",
+      "first_author": "Barazandegan Y",
+      "pub_date": "2026-Jun-15",
+      "source": "PubMed",
+      "url": "https://doi.org/10.3390%2Fmi17060725",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3390%2Fmi17060725"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42354756/"
+        }
+      ],
+      "summary": "This review discusses the challenges of detecting small molecules and highlights how combining synthetic biology, nanomaterials, and artificial intelligence can lead to more accurate and selective bionic sensors. It covers recent advances in integrating these fields to overcome issues like low molecular weight and matrix interference.",
+      "significance": "Medium",
+      "tags": [
+        "synthetic-biology",
+        "machine-learning",
+        "review"
       ]
     },
     {
@@ -212,7 +429,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42429477/"
         }
       ],
-      "summary": "KG-Microbe is a new framework for building modular, scalable knowledge graphs that integrate diverse microbial data (e.g., host-microbe interactions, genetics, metabolism). It addresses the challenge of handling millions of interactions across thousands of species, enabling deeper mechanistic understanding of microbiomes in health and environment.",
+      "summary": "KG-Microbe is a new framework for building modular, scalable knowledge graphs that integrate diverse microbial data (e.g., genetics, metabolism, host interactions) to better understand complex microbe-host and microbe-environment relationships. It addresses the challenge of handling millions of interactions across thousands of microbial species by providing a structured, reusable approach for data integration. This resource facilitates deeper mechanistic insights into how microbes affect health and environmental outcomes.",
       "significance": "Medium",
       "tags": [
         "microbiome",
@@ -243,11 +460,42 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42426062/"
         }
       ],
-      "summary": "This paper presents a multimodal AI framework that fuses video, audio, text, and physiological data from classrooms to assess teacher competency and recommend personalized training resources. The cross-modal attention mechanism adaptively weights each data stream based on its diagnostic relevance, offering a more comprehensive evaluation than traditional methods.",
+      "summary": "This paper presents a multimodal AI framework that fuses video, audio, text, and physiological data from classrooms to assess teacher competency and recommend personalized training resources. The cross-modal attention mechanism adaptively weights each data stream based on its diagnostic relevance, enabling more comprehensive and reliable evaluation than traditional methods.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
         "tool",
+        "methodology"
+      ]
+    },
+    {
+      "id": "3e328b7cbb95",
+      "title": "Multimodal genomic prediction is not a buzzword: why modern plant breeding must integrate genomics, enviromics, and phenomics.",
+      "abstract": "Plant breeding has entered a new era, transitioning from a predominantly unimodal, genomics-focused paradigm to one defined by multimodal data integration. Dense genomic markers, long-term environmental datasets, physiological and omics measurements, and high-throughput phenotyping platforms are now routine components of modern breeding programs. Paradoxically, while plant breeding now operates in a multimodal data ecosystem, most prediction models remain effectively unimodal, relying on a single type of information at a time-genomics alone, enviromics alone, physiology alone, or phenomics alo",
+      "journal": "G3 (Bethesda, Md.)",
+      "doi": "10.1093/g3journal/jkag110",
+      "pmid": "42219749",
+      "first_author": "Crossa J",
+      "pub_date": "2026-Jul-06",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1093%2Fg3journal%2Fjkag110",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fg3journal%2Fjkag110"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42219749/"
+        }
+      ],
+      "summary": "This perspective argues that plant breeding has become multimodal in data collection (genomics, enviromics, phenomics) but still relies on unimodal prediction models, limiting predictive accuracy. The authors call for integrating these diverse data types into unified models to fully leverage modern breeding programs' capabilities.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "plants",
         "methodology"
       ]
     },
@@ -274,10 +522,9 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42428123/"
         }
       ],
-      "summary": "This paper describes the creation of a specialized ontology for Dravet syndrome, a severe form of epilepsy, by expanding a general epilepsy ontology with expert input. The ontology aims to integrate diverse clinical and research data to improve rare disease informatics and support AI applications. This resource could enhance data sharing, analysis, and machine learning for Dravet syndrome research.",
+      "summary": "Researchers developed a specialized ontology for Dravet syndrome by expanding an existing epilepsy ontology to cover seizures, development, genetics, and drug response. This structured knowledge representation aims to improve rare disease informatics and support AI applications.",
       "significance": "Medium",
       "tags": [
-        "database",
         "tool",
         "clinical"
       ]
@@ -305,7 +552,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42428111/"
         }
       ],
-      "summary": "HeartBioPortal 3.0 is an updated web-based platform that integrates diverse cardiovascular genomics data—including genetic variants, molecular information, and clinical phenotypes—into a unified knowledge environment. This major update improves data architecture and interpretive tools, making it easier for researchers to translate fragmented evidence into actionable biological and clinical insights.",
+      "summary": "HeartBioPortal 3.0 is an updated web-based platform that integrates diverse cardiovascular genomics data—including genetic, molecular, and clinical information—to help researchers and clinicians interpret gene-related evidence more effectively. The new version expands both the underlying data architecture and the user interface, aiming to bridge fragmented resources and accelerate translation of genomic findings into actionable knowledge.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -336,7 +583,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42427576/"
         }
       ],
-      "summary": "RD-OMICS is a new knowledge graph that integrates and harmonizes multi-omics data from rare diseases, addressing the challenge of fragmented and inconsistently annotated public datasets. By structuring data from GEO, it enables more effective integrative analysis and translational discovery for rare diseases, where fewer than 5% have FDA-approved treatments.",
+      "summary": "RD-OMICS is a new knowledge graph that integrates and harmonizes rare disease omics data from public repositories, addressing the fragmentation and inconsistent annotation that hinders research. This resource aims to enable integrative analysis and translational discovery for rare diseases, which currently lack treatments for over 95% of identified conditions.",
       "significance": "Medium",
       "tags": [
         "database",
@@ -367,11 +614,73 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42399680/"
         }
       ],
-      "summary": "This study developed a model combining knowledge graphs with multi-agent reinforcement learning to identify psychological risks in online learning students and provide personalized interventions. Using data from seven courses, the model effectively detected declining learning behaviors and task backlogs that could lead to reduced motivation and increased stress.",
+      "summary": "This study developed a model combining knowledge graphs with multi-agent reinforcement learning to identify psychological risks in online learners and provide personalized interventions. Using data from seven courses, the model effectively detected declining motivation and task backlog, offering a new approach to supporting student mental health in digital learning environments.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
         "tool"
+      ]
+    },
+    {
+      "id": "d37ee9ca18b8",
+      "title": "Eras of bioinformatics technologies from command-line interfaces to artificial intelligence (AI) chatbots.",
+      "abstract": "Over the past 75 years, especially the recent quarter century, bioinformatics has undergone a profound transformation, evolving from a specialized field of command-line tools to a cornerstone of modern biomedical and life sciences. We trace this journey through distinct technological eras driven by exponential biological data growth and parallel computational advances. The genomic revolution established foundational sequence analysis tools and was rapidly followed by the next-generation sequencing era, when unprecedented data volumes shifted the bottleneck from generation to analysis. This dro",
+      "journal": "Briefings in bioinformatics",
+      "doi": "10.1093/bib/bbag256",
+      "pmid": "42430655",
+      "first_author": "Truong VQ",
+      "pub_date": "2026-Jul-03",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1093%2Fbib%2Fbbag256",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbib%2Fbbag256"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42430655/"
+        }
+      ],
+      "summary": "This review traces the evolution of bioinformatics over the past 75 years, from early command-line tools to modern AI chatbots, highlighting how exponential data growth and computational advances have driven each technological era. It emphasizes the shift from data generation to analysis as a key bottleneck, particularly during the next-generation sequencing era.",
+      "significance": "Medium",
+      "tags": [
+        "review",
+        "methodology",
+        "machine-learning"
+      ]
+    },
+    {
+      "id": "d59ddded6055",
+      "title": "Integrative proteogenomic analyses identify plasma proteins that impact the risk of ischemic stroke.",
+      "abstract": "Understanding the proteins implicated in the pathogenesis of ischemic stroke is important for elucidating disease mechanisms and informing prevention strategies. In this study, we aim to identify plasma proteins with a potentially causal effect on risk of ischemic stroke by integrating the largest available genetic data sources for plasma proteins, ischemic stroke and its risk factors.",
+      "journal": "Communications medicine",
+      "doi": "10.1038/s43856-026-01734-z",
+      "pmid": "42399650",
+      "first_author": "Belbasis L",
+      "pub_date": "2026-Jul-03",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs43856-026-01734-z",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs43856-026-01734-z"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42399650/"
+        }
+      ],
+      "summary": "This study integrates large-scale genetic data to identify plasma proteins that may causally influence the risk of ischemic stroke, providing insights into disease mechanisms and potential prevention targets. By combining proteomic and genomic analyses, the authors pinpoint specific proteins whose levels in blood could affect stroke susceptibility.",
+      "significance": "Medium",
+      "tags": [
+        "proteomics",
+        "genomics",
+        "clinical"
       ]
     },
     {
@@ -397,11 +706,42 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42334937/"
         }
       ],
-      "summary": "MetagenomicKG is a new knowledge graph that integrates multiple major metagenomic reference databases (GTDB, KEGG, BV-BRC) to resolve inconsistent nomenclature and enable unified querying of microbial genomic and functional data. This resource aims to simplify the analysis of complex microbial communities by providing a structured, interconnected framework for exploring genetic and functional annotations.",
+      "summary": "This paper introduces MetagenomicKG, a knowledge graph that integrates multiple major metagenomic reference databases (GTDB, KEGG, BV-BRC) to address the challenge of inconsistent nomenclature across resources. By unifying these databases into a single graph structure, it enables more coherent exploration and analysis of microbial community genomic and functional data.",
       "significance": "Medium",
       "tags": [
         "metagenomics",
         "database",
+        "tool"
+      ]
+    },
+    {
+      "id": "a3967c51c347",
+      "title": "AART enables fast and accurate cross-platform proteomic translation.",
+      "abstract": "Plasma proteomic profiling has been widely used for biomarker discovery, disease prediction and diagnosis, and patient stratification. However, technical differences across assay platforms often result in low-to-moderate agreement, limiting study reproducibility, data integration, and model transferability. Here we present AART, a cross-platform proteomic translation framework that integrates matched-protein ridge regression with proteome-wide residual learning. We benchmarked AART spanning three independent cohorts profiled using three major platforms, including Olink, SomaScan, and mass spec",
+      "journal": "bioRxiv : the preprint server for biology",
+      "doi": "10.64898/2026.06.29.735313",
+      "pmid": "42427517",
+      "first_author": "Chen Y",
+      "pub_date": "2026-Jul-02",
+      "source": "PubMed",
+      "url": "https://doi.org/10.64898%2F2026.06.29.735313",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.64898%2F2026.06.29.735313"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42427517/"
+        }
+      ],
+      "summary": "AART is a new computational framework that translates protein measurements across different assay platforms (Olink, SomaScan, mass spec) with high accuracy, overcoming a major barrier to data integration and reproducibility in plasma proteomics.",
+      "significance": "High",
+      "tags": [
+        "proteomics",
+        "machine-learning",
         "tool"
       ]
     },
@@ -428,8 +768,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42427874/"
         }
       ],
-      "summary": "GlyGen is a new knowledgebase that integrates glycan data with protein and gene information, making it easier to study how sugars attached to proteins influence biology and disease. By linking fragmented glycan data to genes, proteins, and other omics data, GlyGen enables researchers to discover novel biological connections that were previously difficult to find.",
-      "significance": "High",
+      "summary": "GlyGen is a new knowledgebase that integrates glycan data with protein and gene information, making it easier to study how glycans influence biological processes like immunity and disease. By linking fragmented glycan data to genes and proteins, it enables researchers to discover novel glycan-mediated relationships across different omics fields.",
+      "significance": "Medium",
       "tags": [
         "database",
         "glycomics",
@@ -459,12 +799,103 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42386919/"
         }
       ],
-      "summary": "This study proposes an AI optimization model for public safety in smart cities that integrates IoT-driven real-time data, institutional coordination, and multi-source data collaboration. Using Hefei as a case study, the authors develop a three-layer framework to improve governance efficiency by breaking down cross-departmental data barriers.",
+      "summary": "This paper proposes an AI optimization model for public safety in smart cities that integrates IoT-driven real-time perception with intelligent decision-making, using Hefei as a case study. The model aims to overcome cross-departmental data barriers and improve governance efficiency through a 'technology-institution-data' collaborative framework. The work is primarily an application of existing AI and IoT concepts to urban public safety management.",
       "significance": "Low",
       "tags": [
         "machine-learning",
-        "smart-cities",
-        "IoT"
+        "methodology"
+      ]
+    },
+    {
+      "id": "079b58228033",
+      "title": "Mechanistically Informed and Omics-Guided Essential Oil Applications for Food Preservation.",
+      "abstract": "The growing demand for safe, sustainable, and clean-label food preservation strategies has accelerated interest in plant-derived essential oils (EOs) as natural antimicrobial agents. These chemically complex mixtures exhibit broad-spectrum activity against foodborne pathogens and spoilage microorganisms through multitarget mechanisms, including membrane disruption, metabolic interference, oxidative stress induction, and modulation of quorum sensing and biofilm formation. However, their practical application remains constrained by compositional variability, physicochemical instability, matrix-d",
+      "journal": "Journal of food protection",
+      "doi": "10.1016/j.jfp.2026.100806",
+      "pmid": "42103286",
+      "first_author": "Bhuiyan MNI",
+      "pub_date": "2026-Jul-01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.jfp.2026.100806",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.jfp.2026.100806"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42103286/"
+        }
+      ],
+      "summary": "This review discusses the potential of plant-derived essential oils as natural antimicrobial agents for food preservation, highlighting their multitarget mechanisms against pathogens. It also addresses practical challenges like compositional variability and instability that limit their application.",
+      "significance": "Low",
+      "tags": [
+        "microbiology",
+        "review"
+      ]
+    },
+    {
+      "id": "b05a4b7687cd",
+      "title": "Targeting mir130b-IL-33-PD-L1 axis effectively inhibits esophageal squamous carcinoma progression.",
+      "abstract": "We used an integrated approach combining molecular biology techniques, animal experiments, and clinical samples to elucidate the mechanistic basis of interleukin-33 (IL-33)-induced programmed death-ligand 1 (PD-L1) upregulation and its role in squamous cell carcinoma (ESCC) progression. Multi-omics analyses and clinical datasets identified that increased expression of IL-33 and its receptor in tumor tissues correlated with advanced stage and poor prognosis. IL-33 expression was associated with enhanced migration, invasion, and proliferation of tumor cells, and these effects were partly reverse",
+      "journal": "Translational oncology",
+      "doi": "10.1016/j.tranon.2026.102786",
+      "pmid": "42092279",
+      "first_author": "Yue Y",
+      "pub_date": "2026-Jul-01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.tranon.2026.102786",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.tranon.2026.102786"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42092279/"
+        }
+      ],
+      "summary": "This study identifies a novel regulatory axis (mir130b-IL-33-PD-L1) that drives esophageal squamous cell carcinoma progression, showing that IL-33 upregulates PD-L1 to promote tumor migration, invasion, and proliferation. Multi-omics and clinical data link high IL-33 expression to advanced disease and poor prognosis, suggesting this pathway as a potential therapeutic target.",
+      "significance": "Medium",
+      "tags": [
+        "cancer",
+        "immunology",
+        "transcriptomics"
+      ]
+    },
+    {
+      "id": "2b3ecb4d876e",
+      "title": "Quantitative phosphoproteomic profiling of CCL5/CCR5 signaling cascade in melanoma cells.",
+      "abstract": "The CCL5/CCR5 axis plays a pivotal role in tumor progression and metastasis. We previously reported CCR5 promoted melanoma EMT and metastasis by upregulating TGFβ1 expression via the PI3K/AKT/GSK3β pathway. However, the full spectrum of downstream events triggered by CCR5 activation remains poorly understood.",
+      "journal": "Frontiers in oncology",
+      "doi": "10.3389/fonc.2026.1852022",
+      "pmid": "42440524",
+      "first_author": "Xie L",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.3389%2Ffonc.2026.1852022",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3389%2Ffonc.2026.1852022"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42440524/"
+        }
+      ],
+      "summary": "This study uses quantitative phosphoproteomics to map the signaling cascade downstream of CCL5/CCR5 activation in melanoma cells, revealing a broader set of phosphorylation events beyond the known PI3K/AKT/GSK3β pathway. The findings provide a more comprehensive view of how CCR5 signaling may drive tumor progression and metastasis.",
+      "significance": "Medium",
+      "tags": [
+        "proteomics",
+        "cancer",
+        "signaling"
       ]
     },
     {
@@ -490,12 +921,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42412889/"
         }
       ],
-      "summary": "This paper presents a new framework for medical question-answering systems that uses multimodal knowledge graphs and dual-layer attention mechanisms to improve intent recognition, entity extraction, and cross-modal retrieval. The approach aims to overcome limitations in existing systems such as reduced accuracy in multi-label classification and heavy reliance on large-scale annotated data.",
+      "summary": "This paper proposes a medical question-answering framework that uses multimodal knowledge graphs and dual-layer attention mechanisms to improve intent recognition, entity extraction, and cross-modal retrieval. The approach aims to overcome limitations in existing systems such as reduced accuracy in multi-label classification and heavy reliance on annotated data.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "clinical",
-        "tool"
+        "deep-learning",
+        "clinical"
+      ]
+    },
+    {
+      "id": "239e0e6ec134",
+      "title": "Microbial Ecology at the Nexus of Food Safety and Biotechnology With Ecological Mechanisms, Risks, and Emerging Innovations.",
+      "abstract": "Food systems are complex microbial ecosystems in which microorganisms play dual and often contrasting roles as agents of foodborne contamination and as essential drivers of food production and biotechnological innovation. Microbial ecology provides an integrative framework for understanding how microbial interactions, environmental conditions, and human interventions shape food safety outcomes and technological processes. This narrative integrative review is aimed at synthesizing current literature on microbial ecology at the nexus of food safety and food biotechnology and at identifying key r",
+      "journal": "International journal of food science",
+      "doi": "10.1155/ijfo/6618960",
+      "pmid": "42344006",
+      "first_author": "Tepson JA",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1155%2Fijfo%2F6618960",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1155%2Fijfo%2F6618960"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42344006/"
+        }
+      ],
+      "summary": "This review synthesizes current literature on how microbial ecology integrates food safety and biotechnology, highlighting the dual roles of microorganisms as both contaminants and essential production drivers. It identifies key research gaps and emerging innovations at this nexus.",
+      "significance": "Medium",
+      "tags": [
+        "microbiome",
+        "review",
+        "methodology"
       ]
     }
   ]
