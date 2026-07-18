@@ -1,7 +1,7 @@
 {
   "channel": "systems-biology",
-  "generated_at": "2026-07-17T19:51:12.992646",
-  "count": 39,
+  "generated_at": "2026-07-18T19:57:11.744705",
+  "count": 47,
   "papers": [
     {
       "id": "a8efd4dee459",
@@ -26,7 +26,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42380882/"
         }
       ],
-      "summary": "This study uses multi-omics to investigate how Qingying granules, a traditional Chinese veterinary medicine, treat porcine warm disease caused by viruses like ASFV and PRRSV. The research identifies optimal dosage and reveals systems-level mechanisms, offering an evidence-based alternative to antibiotics and vaccines for managing these economically devastating swine diseases.",
+      "summary": "This study uses multi-omics analysis to investigate how Qingying granules, a traditional Chinese veterinary medicine, treat warm disease in pigs caused by viruses like ASFV and PRRSV. The research identifies mechanisms of action and optimal dosage, providing evidence-based support for this alternative therapy to address limitations of current antibiotic and vaccine strategies.",
       "significance": "Medium",
       "tags": [
         "multi-omics",
@@ -57,7 +57,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42373949/"
         }
       ],
-      "summary": "This study used a systems biology approach to analyze proteomic data from severe traumatic brain injury patients, finding that dysregulation of subcellular trafficking pathways is a key molecular signature. This pathway-level analysis may help identify patient subgroups and new therapeutic targets, addressing the limitations of single-biomarker approaches that have hindered previous clinical trials.",
+      "summary": "This study used a systems biology approach to analyze proteomic changes in severe traumatic brain injury (TBI), finding that dysregulation of subcellular trafficking pathways is a key molecular signature. By focusing on pathway-level changes rather than single biomarkers, the authors identified potential endotypes for patient stratification and new therapeutic targets. This work addresses the biological heterogeneity that has hindered the development of effective TBI treatments.",
       "significance": "Medium",
       "tags": [
         "proteomics",
@@ -88,12 +88,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42427569/"
         }
       ],
-      "summary": "MondrianMap is a new interactive web tool that visualizes Gene Ontology enrichment results as multi-resolution rectangular maps, preserving the hierarchical structure of gene sets instead of flattening them into ranked lists. It organizes results into 13 semantic layers where block area shows significance, color indicates effect direction, and spatial proximity maintains semantic relationships.",
+      "summary": "MondrianMap is a web tool that visualizes Gene Ontology enrichment results as multi-resolution rectangular maps, preserving the hierarchical structure of gene sets rather than flattening them into ranked lists. It organizes results into 13 semantic layers, using block area for significance and color for effect direction, enabling users to explore biological processes at different levels of abstraction.",
       "significance": "Medium",
       "tags": [
         "tool",
         "transcriptomics",
-        "methodology"
+        "systems-biology"
       ]
     },
     {
@@ -119,12 +119,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42395527/"
         }
       ],
-      "summary": "This study combines intracranial EEG recordings and cell-type-resolved transcriptomics from the same patients to investigate the molecular basis of memory encoding along the human hippocampus. The authors found that memory-related brain oscillations are linked to specific gene expression patterns, revealing distinct molecular programs along the anterior-posterior hippocampal axis.",
+      "summary": "This study combines intracranial EEG recordings and cell-type-resolved transcriptomics from the same patients to link memory-related brain oscillations with gene expression along the hippocampal axis. The findings reveal distinct molecular programs associated with different oscillatory signatures of memory encoding.",
       "significance": "Medium",
       "tags": [
         "neuroscience",
         "transcriptomics",
         "methodology"
+      ]
+    },
+    {
+      "id": "2ae13d55dd19",
+      "title": "From plasmid sequence to process design: A computational analysis of metabolism in the context of plasmid DNA manufacturing.",
+      "abstract": "Detailed understanding of plasmid-host physiological interactions and recombinant protein expression is crucial for the design and optimization of plasmid DNA (pDNA) manufacturing processes. Successfully transformed host cells carrying one or more copies of a particular plasmid exhibit modified metabolic behavior which may include reduced specific growth rate, increased metabolic resource cycling (ATP/ADP, NAD/NADH, NADP/NADPH) and, in some cases, even modified nutrient uptake and metabolite secretion rates. Mapping plasmid design features to critical process parameters (CPPs), such as specifi",
+      "journal": "Journal of biotechnology",
+      "doi": "10.1016/j.jbiotec.2026.06.016",
+      "pmid": "42364778",
+      "first_author": "Stratis N",
+      "pub_date": "2026-Jun-27",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.jbiotec.2026.06.016",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.jbiotec.2026.06.016"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42364778/"
+        }
+      ],
+      "summary": "This paper presents a computational analysis of how plasmid design features affect host cell metabolism during plasmid DNA manufacturing, showing that transformed cells exhibit altered growth rates and metabolic cycling. The work maps plasmid sequence characteristics to critical process parameters, providing a framework for optimizing pDNA production.",
+      "significance": "Medium",
+      "tags": [
+        "systems-biology",
+        "metabolomics",
+        "synthetic-biology"
       ]
     },
     {
@@ -150,12 +181,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42363058/"
         }
       ],
-      "summary": "SimMapNet is a new Bayesian method that improves gene regulatory network inference by incorporating Gene Ontology similarity as prior knowledge, assuming functionally similar genes are more likely to interact. The framework estimates a precision matrix representing network edges, leveraging external biological hints to enhance reconstruction accuracy.",
+      "summary": "SimMapNet is a new Bayesian method that improves gene regulatory network inference by incorporating Gene Ontology similarities as prior knowledge, under the assumption that functionally similar genes are more likely to interact. The framework estimates a precision matrix representing network adjacency, integrating external biological hints to enhance reconstruction accuracy.",
       "significance": "Medium",
       "tags": [
         "network-analysis",
         "methodology",
-        "machine-learning"
+        "systems-biology"
       ]
     },
     {
@@ -181,11 +212,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42127893/"
         }
       ],
-      "summary": "D-SPIN is a new computational framework that builds interpretable gene regulatory network models from large-scale single-cell RNA-seq perturbation data. It reveals how cells organize their responses to thousands of different perturbations, providing insights into the control principles of gene expression.",
+      "summary": "D-SPIN is a new computational framework that builds interpretable gene regulatory network models from single-cell RNA-seq data collected across thousands of perturbations. It reveals how cells organize their responses to perturbations, providing insights into control principles underlying homeostasis and cell-state transitions.",
       "significance": "High",
       "tags": [
-        "single-cell",
         "transcriptomics",
+        "single-cell",
         "network-analysis"
       ]
     },
@@ -212,7 +243,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42345185/"
         }
       ],
-      "summary": "This study reveals that the RNA modification dihydrouridine, catalyzed by the enzyme SbDUS2, regulates transcript turnover and photosynthetic capacity in sorghum under drought stress. By integrating multi-omics data, the authors show that this covalent modification plays a key role in plant abiotic stress responses, highlighting a previously underappreciated mechanism of gene regulation.",
+      "summary": "This study discovers that the RNA modification dihydrouridine, catalyzed by the enzyme SbDUS2, regulates transcript turnover and photosynthetic capacity in sorghum under drought stress. By integrating multi-omics data from field-grown plants, the authors show that this covalent modification plays a key role in plant abiotic stress response, revealing a new layer of gene regulation.",
       "significance": "High",
       "tags": [
         "transcriptomics",
@@ -243,8 +274,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42395443/"
         }
       ],
-      "summary": "DynaVelo is a new deep learning model that integrates single-cell gene expression and chromatin accessibility data to predict how cells change over time. It accurately models the complex dynamics of B cell development and can predict the effects of genetic perturbations, offering a tool for studying cell fate decisions.",
-      "significance": "High",
+      "summary": "DynaVelo is a new deep learning model that integrates single-cell gene expression and chromatin accessibility data to predict how B cells change over time. It improves the identification of key transcription factors driving cell state transitions and can simulate the effects of genetic perturbations.",
+      "significance": "Medium",
       "tags": [
         "single-cell",
         "machine-learning",
@@ -274,12 +305,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42332576/"
         }
       ],
-      "summary": "pyVIPER is a new Python package that enables fast and scalable estimation of protein activity and identification of master regulator proteins from single-cell RNA sequencing data. It addresses the computational challenges posed by large scRNA-seq datasets by providing an efficient implementation of the VIPER algorithm, which helps overcome the low signal-to-noise ratio inherent in single-cell data.",
+      "summary": "pyVIPER is a new Python package that adapts the VIPER algorithm for single-cell RNA-seq data, enabling fast and scalable estimation of protein activity and identification of master regulator proteins. It addresses the computational challenges of analyzing large scRNA-seq datasets by providing an efficient implementation that can handle the low signal-to-noise ratio typical of such data.",
       "significance": "Medium",
       "tags": [
         "single-cell",
-        "tool",
-        "transcriptomics"
+        "transcriptomics",
+        "tool"
       ]
     },
     {
@@ -305,7 +336,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42291256/"
         }
       ],
-      "summary": "This paper presents a new computational model of the HIF signaling pathway in endothelial cells that captures how cells respond to low oxygen levels over time. The model is unique because it systematically accounts for the shift from HIF1α-driven acute responses to HIF2α-driven prolonged responses, and it includes rigorous validation through identifiability analyses. This work provides a more accurate tool for studying hypoxia in diseases like cancer and cardiovascular conditions.",
+      "summary": "This paper presents a new computational model of the HIF signaling pathway in endothelial cells that captures how cells respond to low oxygen levels over time. The model is unique because it systematically accounts for the switch from HIF1α (acute response) to HIF2α (prolonged response) and includes rigorous validation through identifiability analyses. This work provides a more accurate tool for studying hypoxia-related diseases like cancer and cardiovascular disorders.",
       "significance": "Medium",
       "tags": [
         "systems-biology",
@@ -336,10 +367,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42205689/"
         }
       ],
-      "summary": "This study identifies that gastric cancer cells secrete galectin-1, which reprograms peritoneal mesothelial cells through mesothelial-mesenchymal transition, thereby creating a favorable environment for peritoneal metastasis. The findings suggest that targeting galectin-1 could be a potential therapeutic strategy to reduce peritoneal metastasis in gastric cancer patients.",
+      "summary": "This study identifies galectin-1 secreted by gastric cancer cells as a key factor that promotes peritoneal mesothelial-mesenchymal transition, creating a favorable environment for peritoneal metastasis. The findings suggest that targeting galectin-1 could be a therapeutic strategy to reduce peritoneal metastasis in gastric cancer patients.",
       "significance": "Medium",
       "tags": [
         "cancer",
+        "proteomics",
         "clinical"
       ]
     },
@@ -366,12 +398,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42109849/"
         }
       ],
-      "summary": "This proof-of-concept study shows that real-time analysis of exhaled breath metabolites can detect rapid physiological responses to cold-induced pain, and these breath metabolomic changes are reproducible across geographically distinct populations in Switzerland and China. The findings suggest that breath metabolomics could serve as an observer-independent method for assessing pain in patients who cannot self-report, such as non-communicative or vulnerable individuals.",
+      "summary": "This proof-of-concept study shows that real-time analysis of exhaled breath metabolites can detect rapid physiological responses to cold-induced pain, and these breath metabolomic signatures are reproducible across geographically distinct populations in Switzerland and China. The findings suggest that breath metabolomics could serve as an observer-independent method for assessing pain, which may be particularly valuable for non-communicative patients.",
       "significance": "Medium",
       "tags": [
         "metabolomics",
         "clinical",
-        "methodology"
+        "tool"
       ]
     },
     {
@@ -397,7 +429,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42065969/"
         }
       ],
-      "summary": "This protocol describes a step-by-step approach for integrating transcriptomics, proteomics, and metabolomics data using both unsupervised (MOFA) and supervised (DIABLO) methods. It covers data preparation, model construction, and biological interpretation, providing a practical guide for multi-omics analysis.",
+      "summary": "This protocol describes a step-by-step approach for integrating transcriptomics, proteomics, and metabolomics data using both unsupervised (MOFA) and supervised (DIABLO) methods. It covers data preparation, model building, and biological interpretation, enabling researchers to identify biomarkers and understand complex biological systems.",
       "significance": "Medium",
       "tags": [
         "proteomics",
@@ -428,7 +460,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42316003/"
         }
       ],
-      "summary": "This paper introduces a new method for inferring gene regulatory networks that uses causal reinforcement learning to overcome limitations of traditional correlation-based and deep learning approaches. The method improves the identification of causal directions and structural interpretability, and can more efficiently search the solution space for large-scale networks.",
+      "summary": "This paper introduces a new method for inferring gene regulatory networks that uses causal reinforcement learning to overcome limitations of correlation-based and deep learning approaches. The method improves the identification of causal directions and adapts more efficiently to large-scale networks, leading to more accurate capture of real regulatory patterns between genes.",
       "significance": "Medium",
       "tags": [
         "network-analysis",
@@ -459,7 +491,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42346036/"
         }
       ],
-      "summary": "This study investigates how West Nile virus (WNV) infection alters the host's miRNA-mRNA regulatory network, using miRNA-Seq and transcriptome profiling in HEK-293 cells. The findings reveal significant remodeling of miRNA expression and their target gene interactions, providing insights into host-pathogen interactions that could inform future antiviral strategies.",
+      "summary": "This study investigates how West Nile virus (WNV) infection alters the host's miRNA-mRNA regulatory landscape, using miRNA-Seq and transcriptome profiling in HEK-293 cells. The findings reveal specific changes in miRNA expression that may influence host-virus interactions, providing potential targets for antiviral strategies.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -468,34 +500,34 @@
       ]
     },
     {
-      "id": "7fb75779e8f7",
-      "title": "A community reconstruction of Chinese hamster metabolism and structural systems biology elucidate metabolic rewiring in lactate-free CHO cells.",
-      "abstract": "Genome-scale metabolic models (GEMs) are indispensable for studying cellular metabolism. We present iCHO3K, a community-consensus, manually curated reconstruction of the Chinese hamster metabolic network. Spanning 11,004 reactions linked to 3,597 genes, iCHO3K augments the network with 3,489 protein structures and physicochemical descriptors for >70% of 7,377 metabolites, enabling structure-aware analyses. We applied iCHO3K to contextualize transcriptomics and metabolomics from a fed-batch Chinese hamster ovary (CHO) cell line engineered to abolish lactate secretion. The model indicated reduce",
-      "journal": "Cell systems",
-      "doi": "10.1016/j.cels.2026.101574",
-      "pmid": "41990742",
-      "first_author": "Di Giusto P",
-      "pub_date": "2026-Jun-17",
+      "id": "1e48a1e79fcf",
+      "title": "Systematic design of auxotrophic strains and media conditions to probe metabolic functions in E. coli.",
+      "abstract": "Despite progress in automated gene annotation, many deficiencies and knowledge gaps remain, even for well-studied organisms. Of particular concern is the accuracy and detail of annotations for transporters of various organic substrates and products of metabolism and for enzymes that do not share sequence homology with well-characterized strains. Unfortunately, annotation errors present in earlier genome-scale metabolic (GSM) models propagate to newer models with few opportunities for later correction. Here, we introduce a systematic computational procedure that applies the Escherichia coli gen",
+      "journal": "PLoS computational biology",
+      "doi": "10.1371/journal.pcbi.1014469",
+      "pmid": "42371986",
+      "first_author": "Mohammadbeygi R",
+      "pub_date": "2026-Jun-01",
       "source": "PubMed",
-      "url": "https://doi.org/10.1016%2Fj.cels.2026.101574",
+      "url": "https://doi.org/10.1371%2Fjournal.pcbi.1014469",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.1016%2Fj.cels.2026.101574"
+          "url": "https://doi.org/10.1371%2Fjournal.pcbi.1014469"
         },
         {
           "type": "pubmed",
           "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/41990742/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42371986/"
         }
       ],
-      "summary": "Researchers built iCHO3K, a comprehensive genome-scale metabolic model of Chinese hamster cells that includes protein structures for most enzymes. Using this model, they analyzed engineered CHO cells that don't secrete lactate, revealing how the cells rewire their metabolism to maintain growth without lactate production. This resource enables structure-aware studies of metabolism in a key industrial cell line for biopharmaceutical production.",
-      "significance": "High",
+      "summary": "This study presents a computational method to systematically design auxotrophic strains and media conditions for probing metabolic functions in E. coli, addressing gaps in gene annotation accuracy. The approach helps correct errors in genome-scale metabolic models by enabling experimental validation of poorly characterized transporters and enzymes.",
+      "significance": "Medium",
       "tags": [
-        "metabolomics",
         "systems-biology",
-        "structural-biology"
+        "methodology",
+        "microbiology"
       ]
     },
     {
@@ -521,7 +553,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436999/"
         }
       ],
-      "summary": "This paper introduces a quantum-inspired tensor network framework for inferring gene regulatory networks from single-cell transcriptomic data. The method captures higher-order and nonlinear gene dependencies that traditional approaches miss, using quantum mutual information and permutation testing to construct statistically significant networks.",
+      "summary": "This study introduces a quantum-inspired tensor network framework for inferring gene regulatory networks from single-cell transcriptomic data. The method uses quantum mutual information to capture higher-order, nonlinear gene dependencies and constructs optimal networks that preserve biological locality.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -552,7 +584,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42382993/"
         }
       ],
-      "summary": "Uveal melanoma (UM) shows extensive transcriptional reprogramming during metastasis, with matched primary and metastatic samples displaying little concordance. This indicates that phenotypic plasticity is uncoupled during metastatic progression, and about half of primary tumors exhibit a proliferative, MAPK/PI3K-driven phenotype, suggesting heterogeneous dependencies.",
+      "summary": "This study shows that uveal melanoma (UM) undergoes extensive transcriptional reprogramming during metastasis, with matched primary and metastatic tumors displaying little concordance in gene expression. Two main molecular subtypes were identified in both primary and metastatic UM, and about half of primary tumors had a proliferative, MAPK/PI3K-driven phenotype, indicating heterogeneous dependencies.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -583,11 +615,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42458246/"
         }
       ],
-      "summary": "CoReGRN is a new computational method that improves the accuracy of gene regulatory networks inferred from single-cell data by reweighting interactions based on their statistical unusualness and local network context. Applied to HIV and Leishmaniasis co-infection data, it identified regulatory signatures missed by standard methods, demonstrating its utility for discovering context-specific gene regulation.",
+      "summary": "CoReGRN is a new computational method that improves the accuracy of gene regulatory networks inferred from single-cell data by reweighting interactions based on their statistical unusualness and local network context. Applied to HIV and Leishmaniasis co-infection data, it identified regulatory signatures that standard methods miss, demonstrating its utility for discovering context-specific gene regulation.",
       "significance": "Medium",
       "tags": [
         "single-cell",
-        "gene-regulatory-networks",
+        "network-analysis",
         "methodology"
       ]
     },
@@ -614,12 +646,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42119318/"
         }
       ],
-      "summary": "This study developed a multiscale computational model combining tissue- and cellular-level finite element simulations to investigate how mechanical loading and inflammation interact in articular cartilage, particularly in the context of osteoarthritis. The framework aims to capture complex mechano-biochemical interactions that are difficult to study experimentally, offering a new tool for understanding disease progression.",
+      "summary": "This study developed a multiscale computational model integrating tissue and cellular-level finite element simulations to investigate how mechanical loading and inflammation interact in articular cartilage, with implications for osteoarthritis progression. The framework allows in silico exploration of complex mechano-biochemical interactions that are difficult to study experimentally.",
       "significance": "Medium",
       "tags": [
         "systems-biology",
         "methodology",
         "musculoskeletal"
+      ]
+    },
+    {
+      "id": "45fa6babec4b",
+      "title": "A metabolic model of the leaf-associated bacterium Paraburkholderia dioscoreae links the ethylene precursor ACC to core carbon pathways.",
+      "abstract": "Paraburkholderia dioscoreae MSB3T is a novel species with potential agricultural impact, isolated from leaf acumens of the \"air potato yam\" Dioscorea bulbifera. P. dioscoreae's genome encodes a relevant combination of features mediating a beneficial plant-associated lifestyle, and it exhibits significant growth promotion when applied to agriculturally important plants such as tomato. Here, we constructed iPR1691, the first genome-scale metabolic model for P. dioscoreae MSB3, which includes 1,687 reactions, 1,487 metabolites, and 1,691 genes. From an available annotation of P. dioscoreae's geno",
+      "journal": "mSystems",
+      "doi": "10.1128/msystems.00514-26",
+      "pmid": "42439556",
+      "first_author": "Rolle P",
+      "pub_date": "2026-Jul-13",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1128%2Fmsystems.00514-26",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1128%2Fmsystems.00514-26"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42439556/"
+        }
+      ],
+      "summary": "Researchers built the first genome-scale metabolic model (iPR1691) for the plant-beneficial bacterium Paraburkholderia dioscoreae, which promotes growth in crops like tomato. The model reveals how this bacterium metabolizes the ethylene precursor ACC, linking it to core carbon pathways and providing insights into its plant-associated lifestyle.",
+      "significance": "Medium",
+      "tags": [
+        "metabolomics",
+        "microbiome",
+        "plants"
       ]
     },
     {
@@ -645,12 +708,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42435887/"
         }
       ],
-      "summary": "This study uses single-cell multi-omics to map interactions between epithelial and stromal cells in allergic rhinitis, revealing key cellular and molecular changes driving the disease. The findings provide a detailed view of the disease's pathogenesis, potentially identifying new therapeutic targets.",
+      "summary": "This study uses single-cell multi-omics to map interactions between epithelial and stromal cells in allergic rhinitis, revealing key cellular and molecular changes that drive the disease. The findings provide a detailed view of the intercellular communication networks involved, offering potential new targets for therapy.",
       "significance": "Medium",
       "tags": [
         "single-cell",
-        "immunology",
-        "transcriptomics"
+        "transcriptomics",
+        "immunology"
+      ]
+    },
+    {
+      "id": "6a8cdf3ea476",
+      "title": "WILDkCAT: Extract, retrieve, and predict enzyme turnover numbers of constraint-based metabolic models.",
+      "abstract": "Accurate enzyme turnover numbers are essential for building enzyme-constrained genome-scale metabolic models. However, collecting and curating these parameters remains a major bottleneck. Indeed, kcat values are scattered across multiple databases, reported under varying experimental conditions, and often missing for many enzymes. To address this challenge, we present WILDkCAT, a Python-based pipeline that enables the retrieval of kcat values from wild-type enzyme measured under user-specified pH and temperature ranges for a given metabolic model. The application to Escherichia coli (iML1515) ",
+      "journal": "Bioinformatics (Oxford, England)",
+      "doi": "10.1093/bioinformatics/btag510",
+      "pmid": "42435408",
+      "first_author": "Escoffier H",
+      "pub_date": "2026-Jul-11",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag510",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag510"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42435408/"
+        }
+      ],
+      "summary": "WILDkCAT is a new Python pipeline that automatically retrieves enzyme turnover numbers (kcat values) from wild-type enzymes under user-specified pH and temperature conditions for use in metabolic models. It addresses the bottleneck of collecting and curating these scattered and often missing parameters, demonstrated by applying it to the E. coli model iML1515.",
+      "significance": "Medium",
+      "tags": [
+        "tool",
+        "systems-biology",
+        "database"
       ]
     },
     {
@@ -676,7 +770,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42435534/"
         }
       ],
-      "summary": "This study in middle-aged rats found that aerobic exercise and ginseng supplementation, alone or combined, can improve cognitive function and hippocampal health by modulating redox balance and amyloid processing. The combined intervention showed differential effects compared to individual treatments, suggesting potential for lifestyle-based strategies to counter brain aging.",
+      "summary": "This study in middle-aged rats found that aerobic exercise and ginseng supplementation, alone or combined, can modulate molecular markers of hippocampal aging, including redox homeostasis and amyloid processing, with the combined intervention showing differential effects. The findings suggest that lifestyle interventions may help preserve cognitive function and brain health during aging.",
       "significance": "Medium",
       "tags": [
         "neuroscience",
@@ -707,12 +801,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42429619/"
         }
       ],
-      "summary": "This paper introduces a method that allows gradient-based optimization to be applied to exact stochastic simulations (like Gillespie algorithms) by using a Gumbel-Softmax straight-through estimator to handle discrete event selection. This decouples the forward simulation from backward differentiation, enabling accurate optimization across parameter scales over four orders of magnitude larger than previously possible. The work bridges a key gap between discrete stochastic modeling and deep learning-style optimization.",
+      "summary": "This paper introduces a method that allows gradient-based optimization to be applied to exact stochastic simulations of continuous-time Markov chains, which was previously impossible due to the discrete nature of event selection in Gillespie algorithms. By using a Gumbel-Softmax straight-through estimator to decouple forward simulation from backward differentiation, the approach enables accurate optimization across parameter scales spanning over four orders of magnitude. This breakthrough bridges discrete stochastic simulation with deep learning-scale gradient optimization, opening new possibilities for training models where randomness and discreteness are fundamental.",
       "significance": "High",
       "tags": [
         "machine-learning",
         "methodology",
         "systems-biology"
+      ]
+    },
+    {
+      "id": "193a25bba143",
+      "title": "A metabolic model based on a pangenome core reveals putative conserved biochemical features of the phytopathogen Xylella fastidiosa.",
+      "abstract": "Xylella fastidiosa is a xylem-limited phytopathogenic bacterium responsible for severe diseases in many economically important crops. Despite its impact, its metabolism remains poorly characterized due to fastidious growth and the limited availability of defined culture media. Here, we reconstruct the first pangenome-based genome-scale metabolic model for X. fastidiosa, integrating conserved metabolic functions from 18 strains across five subspecies. The resulting consensus model, iXfcore, is manually curated and used to explore the species' metabolic capabilities. Model simulations predict mi",
+      "journal": "Microbiological research",
+      "doi": "10.1016/j.micres.2026.128616",
+      "pmid": "42435656",
+      "first_author": "Corbín-Agustí P",
+      "pub_date": "2026-Jul-08",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1016%2Fj.micres.2026.128616",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1016%2Fj.micres.2026.128616"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42435656/"
+        }
+      ],
+      "summary": "Researchers built the first pangenome-based metabolic model for the plant pathogen Xylella fastidiosa, integrating data from 18 strains to identify core metabolic functions. The model, iXfcore, helps predict the bacterium's metabolic capabilities despite its difficult growth conditions. This resource could aid in understanding and combating diseases caused by this pathogen.",
+      "significance": "Medium",
+      "tags": [
+        "microbiology",
+        "metabolomics",
+        "genomics"
       ]
     },
     {
@@ -738,12 +863,44 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42411279/"
         }
       ],
-      "summary": "This review discusses how single-cell RNA sequencing (scRNA-seq) and spatial omics technologies are being applied in plants to create detailed cellular atlases and uncover regulatory mechanisms. It highlights the rapid adoption of these methods in plant biology, despite their initial development in animal systems, and their power to reveal cellular heterogeneity hidden in bulk tissue studies.",
+      "summary": "This review discusses how single-cell RNA sequencing (scRNA-seq) and spatial omics technologies are being applied in plants to create cellular atlases and uncover regulatory mechanisms. It highlights the rapid adoption of these methods in plant biology, despite their initial development in animal systems, and their power to reveal cellular heterogeneity hidden in bulk tissue studies.",
       "significance": "Medium",
       "tags": [
+        "transcriptomics",
         "single-cell",
         "spatial-omics",
         "plants"
+      ]
+    },
+    {
+      "id": "e86e9b65e567",
+      "title": "Thermo-flux: generation and analysis of thermodynamic-stoichiometric metabolic network models.",
+      "abstract": "Metabolic modeling with stoichiometric models and flux balance analysis (FBA) has greatly advanced our understanding of metabolism. However, valid FBA predictions require mechanistically correct constraints. Thermodynamic constraints can increase the mechanistic foundations of stoichiometric models and reduce the solution space, but incorporating them has so far required cumbersome manual effort. To circumvent manual curation, we introduce 'Thermo-Flux', a semi-automated Python package that converts stoichiometric models into comprehensive thermodynamic-stoichiometric models. 'Thermo-Flux' ena",
+      "journal": "Molecular systems biology",
+      "doi": "10.1038/s44320-026-00227-4",
+      "pmid": "42399466",
+      "first_author": "Smith EN",
+      "pub_date": "2026-Jul-03",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs44320-026-00227-4",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs44320-026-00227-4"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42399466/"
+        }
+      ],
+      "summary": "Thermo-Flux is a new Python package that semi-automatically adds thermodynamic constraints to standard metabolic models, reducing the need for manual curation. This makes it easier to generate more realistic flux balance analysis predictions by narrowing the solution space with thermodynamically feasible reactions.",
+      "significance": "Medium",
+      "tags": [
+        "tool",
+        "systems-biology",
+        "methodology"
       ]
     },
     {
@@ -769,12 +926,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42418826/"
         }
       ],
-      "summary": "This paper introduces two new bioinformatics tools, SOPA and SIMPA, for analyzing tumor heterogeneity at the single-sample level using multiomics data. Unlike existing methods that rely on group comparisons, these tools enable supervised differential pathway analysis for individual samples, offering more personalized insights into cancer biology.",
+      "summary": "This paper introduces SOPA and SIMPA, two new bioinformatics tools for analyzing tumor heterogeneity at the single-sample level using multiomics data. Unlike existing methods that rely on group comparisons, these tools enable supervised differential pathway analysis for individual samples, providing more nuanced insights into cancer biology.",
       "significance": "Medium",
       "tags": [
-        "tool",
         "cancer",
-        "pathway-analysis"
+        "tool",
+        "methodology"
       ]
     },
     {
@@ -800,11 +957,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42399771/"
         }
       ],
-      "summary": "This study combines WGCNA and machine learning to identify key biomarkers for Metabolic Dysfunction-Associated Steatotic Liver Disease (MASLD), a common chronic liver condition. The authors pinpoint novel hub genes that may help explain the molecular heterogeneity of MASLD and could serve as targets for future therapies.",
+      "summary": "This study combines WGCNA and machine learning to identify key biomarkers for Metabolic Dysfunction-Associated Steatotic Liver Disease (MASLD), a common chronic liver condition. The authors found and validated several hub genes that may help explain the molecular heterogeneity of MASLD and could serve as potential therapeutic targets.",
       "significance": "Medium",
       "tags": [
-        "machine-learning",
         "transcriptomics",
+        "machine-learning",
         "clinical"
       ]
     },
@@ -831,7 +988,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42399740/"
         }
       ],
-      "summary": "This study used a multi-omics approach (transcriptomics and metabolomics) to analyze how NSAIDs alter the molecular response to exercise in skeletal muscle, finding drug-specific effects on signaling pathways. The results suggest that NSAIDs can broadly influence exercise-induced molecular changes, which may have implications for athletes and individuals using these drugs.",
+      "summary": "This study used a multi-omics approach to investigate how NSAIDs alter the molecular response to exercise in skeletal muscle. By analyzing transcriptomics and metabolomics data from muscle biopsies, the authors found that NSAIDs trigger drug-specific changes in signaling pathways and biofunctions, rather than simply blocking inflammation. This suggests that NSAID use during exercise has broader, previously unrecognized effects on muscle biology.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -862,7 +1019,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42394617/"
         }
       ],
-      "summary": "This study identifies distinct metabolic subtypes (metabotypes) in patients with end-stage dilated cardiomyopathy, revealing that metabolic shifts vary widely across individuals. The findings suggest that recognizing these metabotypes could enable more personalized treatment approaches for DCM patients.",
+      "summary": "This study identifies distinct metabolic subtypes (metabotypes) in patients with end-stage dilated cardiomyopathy, revealing that shifts in cardiac metabolism vary widely across individuals. The findings provide a practical approach to classifying these metabotypes, which could enable more personalized treatments for DCM patients.",
       "significance": "Medium",
       "tags": [
         "metabolomics",
@@ -888,11 +1045,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42428020/"
         }
       ],
-      "summary": "MERLIN-SUITE is a new computational framework that improves gene regulatory network inference by integrating multi-omics data (like chromatin accessibility and transcription factor activity) alongside gene expression, overcoming the limitations of expression-only methods. It extends the existing MERLIN algorithm to incorporate regulatory priors and modular network learning, enabling more accurate reconstruction of transcriptional programs relevant to development and disease.",
+      "summary": "MERLIN-SUITE is a new computational framework that improves gene regulatory network inference by integrating multi-omics data, including transcription factor activity and regulatory priors, rather than relying solely on gene expression. This probabilistic approach captures both detailed and modular aspects of transcriptional networks, potentially yielding more biologically accurate reconstructions for studying development and disease.",
       "significance": "Medium",
       "tags": [
-        "genomics",
         "transcriptomics",
+        "network-analysis",
         "tool"
       ]
     },
@@ -919,7 +1076,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42391613/"
         }
       ],
-      "summary": "This review discusses how spatially resolved transcriptomics (ST) technologies, such as Visium, Xenium, and MERSCOPE, are being applied to study the complex cellular architecture of the ovary. It covers the strengths and limitations of different ST platforms and the computational challenges involved in analyzing spatial gene expression data. The paper highlights how ST can reveal new biological insights into ovarian function that are missed by single-cell RNA sequencing alone.",
+      "summary": "This review discusses how spatially resolved transcriptomics (ST) technologies, such as Visium, Xenium, and MERSCOPE, are being applied to study the complex cellular architecture of the ovary. It covers the strengths and limitations of different ST platforms and highlights how they provide insights into ovarian biology that single-cell RNA sequencing alone cannot, by preserving the spatial context of gene expression.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -950,7 +1107,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42237030/"
         }
       ],
-      "summary": "This study uses paired single-cell transcriptome and chromatin accessibility sequencing to map cell types and regulatory mechanisms in midbrain and hindbrain organoids, revealing that current protocols produce ventral-biased cell populations. The findings provide a resource for improving organoid engineering to better model neurological disorders.",
+      "summary": "This study uses single-cell multi-omic sequencing to map cell types and regulatory mechanisms in midbrain and hindbrain organoids, revealing that current protocols produce ventral and dorsal cell types. The findings provide a resource for improving organoid engineering to better model neurological disorders.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -981,12 +1138,74 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42090947/"
         }
       ],
-      "summary": "This study models the gene regulatory network of pediatric B-cell acute lymphoblastic leukemia using an ensemble of threshold Boolean networks, revealing robust attractors that correspond to distinct disease phenotypes. The approach identifies key regulatory drivers that consistently control network behavior across different model realizations, providing insights into the dynamical principles underlying leukemia heterogeneity.",
+      "summary": "This study models the gene regulatory network of pediatric B-cell acute lymphoblastic leukemia as a threshold Boolean network, analyzing its dynamics across many weighted realizations. The ensemble approach reveals robust attractors and key regulatory drivers, providing insights into the phenotypic heterogeneity of the disease.",
       "significance": "Medium",
       "tags": [
         "systems-biology",
         "network-analysis",
         "cancer"
+      ]
+    },
+    {
+      "id": "767ceecb778e",
+      "title": "A genome-scale metabolic model of a pathosystem sheds light on bacterial wilt.",
+      "abstract": "During plant infection, complex metabolic interactions occur between the host and the pathogen, including direct competition for resources. While pathogens exploit host-derived nutrients to sustain growth and virulence, plants attempt to restrict pathogen proliferation by limiting nutrient availability. To quantify the contribution of these trophic interactions to disease development, we developed a mathematical model of plant-pathogen metabolism. A genome-scale metabolic model of the pathogen was integrated with a genome-scale, multi-organ metabolic model of the plant and calibrated using exp",
+      "journal": "Plant physiology",
+      "doi": "10.1093/plphys/kiag428",
+      "pmid": "42385052",
+      "first_author": "Gerlin L",
+      "pub_date": "2026-Jul-01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1093%2Fplphys%2Fkiag428",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fplphys%2Fkiag428"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42385052/"
+        }
+      ],
+      "summary": "This study presents a genome-scale metabolic model that integrates both plant and pathogen metabolism to quantify how nutrient competition influences bacterial wilt disease. The model reveals that the pathogen exploits host-derived nutrients for growth and virulence, while the plant restricts nutrient availability to limit infection. This resource provides a framework for understanding trophic interactions in plant-pathogen systems.",
+      "significance": "Medium",
+      "tags": [
+        "metabolomics",
+        "systems-biology",
+        "plants"
+      ]
+    },
+    {
+      "id": "629da3e830fe",
+      "title": "Genome-scale metabolic modelling identifies vaginal microbiome members as potential probiotics.",
+      "abstract": "Probiotic supplements are marketed for diverse health benefits, yet species inclusion often lacks functional rationale. Our survey of 352 over-the-counter probiotic products available in the USA revealed 36 unique microbial species. However, there is no clear link between species inclusion and the intended health benefit. Here, to address this gap, we developed HaPaPro, a collection of 1,012 genome-scale metabolic models spanning pathogenic, probiotic and host-associated bacteria, constructed from publicly available genome sequences. Flux balance analysis revealed that probiotic species fail t",
+      "journal": "Nature microbiology",
+      "doi": "10.1038/s41564-026-02380-w",
+      "pmid": "42286247",
+      "first_author": "Glass EM",
+      "pub_date": "2026-Jul-01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs41564-026-02380-w",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41564-026-02380-w"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42286247/"
+        }
+      ],
+      "summary": "This study developed HaPaPro, a collection of 1,012 genome-scale metabolic models from bacterial genomes, to evaluate probiotic species. The analysis found that many current probiotic species lack functional rationale for their health benefits, and identified specific vaginal microbiome members as potential new probiotics based on metabolic modeling.",
+      "significance": "Medium",
+      "tags": [
+        "metagenomics",
+        "microbiome",
+        "tool"
       ]
     },
     {
@@ -1012,11 +1231,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42107457/"
         }
       ],
-      "summary": "Tuberculosis often occurs alongside chronic conditions like diabetes and HIV, which change the body's immune and metabolic environment and affect how well treatments work. Current drug discovery mostly uses healthy-animal models, ignoring these real-world complexities. This review argues that TB drug development must account for comorbidities to create more effective therapies.",
+      "summary": "This review argues that tuberculosis (TB) drug discovery pipelines are flawed because they rely on 'healthy-host' models, ignoring the fact that TB frequently coexists with chronic conditions like diabetes, HIV, and malnutrition. These comorbidities fundamentally alter the host's immune and metabolic environment, which can change how both the bacteria and drugs behave. The authors call for a rethinking of TB drug targets to account for the biological complexity of real-world patient populations.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
-        "immunology",
+        "microbiology",
         "review"
       ]
     },
@@ -1043,12 +1262,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/41955871/"
         }
       ],
-      "summary": "This study uses network toxicology and molecular docking to predict that the flame retardant EHDPHP causes kidney damage in chickens by activating the ROS/JNK pathway. The findings provide a mechanistic understanding of EHDPHP nephrotoxicity in poultry, highlighting potential risks from environmental exposure.",
+      "summary": "This study investigates how the flame retardant EHDPHP causes kidney damage in chickens. Using network toxicology and molecular docking, the authors predicted that EHDPHP activates the ROS/JNK pathway, and they confirmed this mechanism in exposed chickens.",
       "significance": "Low",
       "tags": [
         "toxicology",
-        "network-analysis",
-        "molecular-docking"
+        "molecular-docking",
+        "network-analysis"
       ]
     },
     {
@@ -1074,12 +1293,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/41741707/"
         }
       ],
-      "summary": "This study identifies a new molecular mechanism in autism spectrum disorder (ASD) where nitric oxide modifies the TSC2 protein via S-nitrosylation, leading to dysregulation of the mTOR signaling pathway in two different ASD mouse models (Shank3 and Cntnap2). The findings link environmental and genetic risk factors through a common biochemical pathway, suggesting potential therapeutic targets for ASD.",
+      "summary": "This study identifies a mechanism where nitric oxide modifies the TSC2 protein via S-nitrosylation, leading to dysregulation of the mTOR signaling pathway in two different mouse models of autism spectrum disorder (Shank3 and Cntnap2). The findings link NO-mediated post-translational modification to a key signaling pathway implicated in ASD, offering a potential molecular target for therapeutic intervention.",
       "significance": "Medium",
       "tags": [
         "neuroscience",
         "systems-biology",
         "proteomics"
+      ]
+    },
+    {
+      "id": "0b84ea76d7b2",
+      "title": "Genome-scale metabolic models predict diet- and lifestyle-driven shifts of ecological interactions in the gut microbiome.",
+      "abstract": "Microbiomes and their host environments form complex, interconnected ecosystems. The microbial species within a microbiome, on the one hand, compete for resources, while on the other hand, they exchange vital metabolites to support their survival. These interactions are influenced by the microbial genetic repertoire, environmental conditions, and availability of nutrients. We developed EcoGS (http://www.github.com/KaletaLab/EcoGS), a metabolic modeling tool designed to predict the ecological interactions between pairs of microbes. Applying EcoGS to the microbiomes of two distinct human cohorts",
+      "journal": "Gut microbes",
+      "doi": "10.1080/19490976.2026.2694811",
+      "pmid": "42397708",
+      "first_author": "Marinos G",
+      "pub_date": "2026-Dec-31",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1080%2F19490976.2026.2694811",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1080%2F19490976.2026.2694811"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42397708/"
+        }
+      ],
+      "summary": "This study introduces EcoGS, a metabolic modeling tool that predicts how diet and lifestyle shape ecological interactions (competition vs. cooperation) between gut microbes. By applying it to human cohorts, the authors show that environmental factors can shift microbial relationships, offering insights into microbiome dynamics.",
+      "significance": "Medium",
+      "tags": [
+        "microbiome",
+        "metabolism",
+        "tool"
       ]
     },
     {
@@ -1105,7 +1355,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42398561/"
         }
       ],
-      "summary": "This study tests whether the single-cell foundation model scGPT captures genuine regulatory signals by applying causal interventions on its gene tokens, rather than relying on correlational attention weights. The authors find that model-internal transcription factor-target dependencies can be recovered through these interventions, and they assess the robustness and transferability of this signal to real perturbation data.",
+      "summary": "This study tests whether causal interventions on gene tokens in the scGPT foundation model can recover known transcription factor-target gene relationships, moving beyond correlational attention weights. The authors find that model-internal regulatory signals are robust and transfer to real perturbation responses, validating scGPT's representation of gene regulation.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -1136,7 +1386,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42404749/"
         }
       ],
-      "summary": "This review introduces the concept of 'nanobiotic synergies,' where nanoparticles and beneficial soil microbes work together to boost plant immune responses and stress tolerance. This integrated approach offers a sustainable alternative to synthetic agrochemicals for improving crop resilience.",
+      "summary": "This review proposes the concept of 'nanobiotic synergies,' where combining nanoparticles with beneficial soil microbes can boost plant immunity and stress tolerance, offering a sustainable alternative to synthetic agrochemicals. It highlights how these two approaches can work together to strengthen plant defense systems more effectively than either alone.",
       "significance": "Medium",
       "tags": [
         "plants",
@@ -1167,7 +1417,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42453133/"
         }
       ],
-      "summary": "This paper introduces Chemical Organization Theory (COT) as a formal framework for synthetic biology, using reaction networks to model and compute concepts like self-organization and emergence across scales from genetic circuits to microbial consortia. The authors present the pyCOT computational platform and demonstrate its pedagogical value over four years with diverse student populations.",
+      "summary": "This paper introduces Chemical Organization Theory (COT) as a formal framework for synthetic biology, using reaction networks to model and compute abstract concepts like self-organization and emergence. The authors demonstrate its application across scales from genetic circuits to synthetic consortia, supported by the pyCOT computational platform and validated through four years of interdisciplinary teaching.",
       "significance": "Medium",
       "tags": [
         "synthetic-biology",
@@ -1198,7 +1448,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42434402/"
         }
       ],
-      "summary": "This study uses computational simulations to evaluate how different design choices in Design-Build-Test-Learn (DBTL) cycles affect the success of metabolic engineering projects. By modeling various experimental and algorithmic strategies, the authors provide insights into which approaches are most effective for optimizing microbial strains.",
+      "summary": "This study uses computational simulations to evaluate how different design choices in Design-Build-Test-Learn (DBTL) cycles affect the success of metabolic engineering projects. The authors show that the interplay between experimental and algorithmic parameters significantly influences strain optimization outcomes, providing guidance for more efficient engineering strategies.",
       "significance": "Medium",
       "tags": [
         "synthetic-biology",
