@@ -1,6 +1,6 @@
 {
   "channel": "ai-drug-discovery",
-  "generated_at": "2026-07-19T07:33:06.315411",
+  "generated_at": "2026-07-19T20:07:02.545707",
   "count": 59,
   "papers": [
     {
@@ -26,7 +26,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42450185/"
         }
       ],
-      "summary": "This paper argues that current evaluation metrics for AI-generated drug molecules (like validity and novelty) are insufficient because they don't assess whether the molecules are actually useful in real-world experiments. The authors call for new benchmarks that measure chemical credibility and biological relevance to better judge translational readiness.",
+      "summary": "This paper critiques current evaluation metrics for AI-generated drug molecules, arguing that standard metrics like validity and novelty don't assess real-world usefulness. The authors propose a shift toward translational readiness metrics that evaluate chemical credibility and biological relevance.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -57,12 +57,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436766/"
         }
       ],
-      "summary": "This study identifies and validates oxidative stress-related genes as potential diagnostic biomarkers for interstitial cystitis (IC), a chronic pain condition with unclear causes. Using transcriptomic data and experimental validation, the researchers pinpointed specific genes that could help diagnose IC and shed light on its biological mechanisms.",
-      "significance": "Medium",
+      "summary": "This study identifies and validates oxidative stress-related genes as potential diagnostic biomarkers for interstitial cystitis, a chronic pain condition with unclear causes. Using transcriptomic data and experimental validation, the authors pinpoint specific genes that could aid in diagnosis and understanding of the disease.",
+      "significance": "Low",
       "tags": [
         "transcriptomics",
-        "clinical",
-        "methodology"
+        "clinical"
       ]
     },
     {
@@ -88,12 +87,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42449804/"
         }
       ],
-      "summary": "This review examines how artificial intelligence, including machine and deep learning, could improve diagnosis, wound monitoring, and early cancer detection in epidermolysis bullosa (EB), a rare genetic skin disorder. The authors identify key challenges such as limited data and the need for multidisciplinary collaboration to integrate AI into clinical care for EB.",
-      "significance": "Low",
+      "summary": "This review examines how artificial intelligence (including machine learning and deep learning) can address key challenges in inherited epidermolysis bullosa (EB), such as reducing diagnostic delays, improving wound monitoring, and enabling early cancer detection. The authors discuss current evidence, limitations, and future directions for AI applications in this rare skin disease.",
+      "significance": "Medium",
       "tags": [
         "machine-learning",
-        "clinical",
-        "review"
+        "deep-learning",
+        "clinical"
       ]
     },
     {
@@ -119,8 +118,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42450107/"
         }
       ],
-      "summary": "This study used computer simulations to identify small molecules that could block a key protein (IsdB NEAT domain) used by Staphylococcus aureus to acquire iron, a process essential for its virulence. Two compounds, including (4-(1-oxoisoindolin-2-yl)benzoic acid (TOP1), showed strong binding potential and may serve as a new antivirulence strategy against drug-resistant MRSA.",
-      "significance": "Low",
+      "summary": "This study used computer-based methods to identify small molecules that could block a key protein (IsdB NEAT domain) used by MRSA to acquire iron, potentially weakening the bacteria without directly killing them. Two compounds, including TOP1, showed strong predicted binding and may represent a new antivirulence strategy against drug-resistant S. aureus.",
+      "significance": "Medium",
       "tags": [
         "drug-discovery",
         "microbiology",
@@ -150,12 +149,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42450047/"
         }
       ],
-      "summary": "This review discusses how integrating cryo-EM, machine learning, automated patch-clamp, and human organoid models can overcome challenges in ion-channel drug discovery, such as rapid gating and safety margins. It highlights a shift toward more predictive, human-relevant screening cascades.",
+      "summary": "This review discusses how integrating cryo-EM, machine learning, automated patch-clamp, and human organoid models can overcome challenges in ion-channel drug discovery, such as rapid gating and narrow safety margins. It highlights a shift toward combining structural, electrophysiological, and human-relevant screening cascades to improve hit identification and safety profiling.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
         "structural-biology",
-        "review"
+        "machine-learning"
       ]
     },
     {
@@ -181,12 +180,136 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42449968/"
         }
       ],
-      "summary": "This study used computational methods to design new pyrimidine-based compounds that could inhibit α-glucosidase, a target for diabetes treatment. The researchers analyzed molecular features of known compounds and built models to predict and optimize inhibitory activity.",
+      "summary": "This study used computational methods to design new pyrimidine-based compounds that could inhibit α-glucosidase, a key enzyme in diabetes management. By analyzing molecular features and simulating how these compounds interact with the enzyme, the researchers identified promising drug candidates with favorable properties.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
         "machine-learning",
         "methodology"
+      ]
+    },
+    {
+      "id": "634fb3d2bf68",
+      "title": "Enhancing virtual screening of cystathionine β-synthase inhibitors: benchmarking target-specific machine-learning scoring functions against state-of-the-art AI docking and co-folding approaches.",
+      "abstract": "Cystathionine β-synthase (CBS) has emerged as an important therapeutic target implicated in cancer and Down syndrome, yet the discovery of selective CBS inhibitors remains challenging due to limited structural diversity of known ligands and the scarcity of target-focused virtual screening (VS) benchmarks. In this study, we present the first comprehensive evaluation of CBS-specific artificial intelligence (AI) models for structure-based VS, supported by a carefully curated and up-to-date data set of experimentally validated CBS inhibitors, true inactives and decoys. Using this data set, we deve",
+      "journal": "Journal of cheminformatics",
+      "doi": "10.1186/s13321-026-01262-x",
+      "pmid": "42471645",
+      "first_author": "Truong CM",
+      "pub_date": "2026-Jul-18",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1186%2Fs13321-026-01262-x",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1186%2Fs13321-026-01262-x"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42471645/"
+        }
+      ],
+      "summary": "This study benchmarks AI-based virtual screening methods for identifying inhibitors of cystathionine β-synthase (CBS), a therapeutic target in cancer and Down syndrome. The authors created a curated dataset of CBS inhibitors and decoys, and evaluated target-specific machine learning scoring functions against state-of-the-art AI docking and co-folding approaches. The work provides the first comprehensive comparison of these methods for CBS, offering guidance for future drug discovery efforts.",
+      "significance": "Medium",
+      "tags": [
+        "drug-discovery",
+        "machine-learning",
+        "methodology"
+      ]
+    },
+    {
+      "id": "1b0822c593f4",
+      "title": "A lightweight, integrated generative AI assistant for accelerated early-stage drug discovery on constrained-resource hardware.",
+      "abstract": "Discovery of novel therapeutic small molecules remains one of the most challenging tasks in pharmaceutical research, as it is described by high attrition rates, well over $2 billion per candidate, and timelines often surpassing a decade. Generative AI has transformative potential to probe the enormous chemical space estimated at 1060 drug-like molecules, but current computational approaches are fragmented across multiple tools and require enterprise-grade hardware, thus creating a sort of \"computational divide\" that excludes many academic groups and smaller laboratories. We introduce in this s",
+      "journal": "Scientific reports",
+      "doi": "10.1038/s41598-026-61237-8",
+      "pmid": "42469326",
+      "first_author": "Bhatia TK",
+      "pub_date": "2026-Jul-18",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs41598-026-61237-8",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41598-026-61237-8"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42469326/"
+        }
+      ],
+      "summary": "This paper presents a lightweight, integrated generative AI assistant designed to run on constrained-resource hardware, aiming to democratize early-stage drug discovery for academic groups and smaller labs that lack enterprise-grade computing. The tool consolidates multiple computational steps into a single platform, potentially reducing the fragmentation and hardware barriers that currently limit access to AI-driven drug design.",
+      "significance": "Medium",
+      "tags": [
+        "drug-discovery",
+        "machine-learning",
+        "tool"
+      ]
+    },
+    {
+      "id": "912c1f0d75bd",
+      "title": "AI-assisted fragment-based drug discovery of SARS-CoV-2 macrodomain binders validated by NMR and X-ray crystallography.",
+      "abstract": "Fragment-based drug discovery (FBDD) is an effective approach for exploring chemical space using small, low-affinity fragments as starting points to facilitate development of lead compounds. Strategies to improve fragment potency include fragment merging and linking to generate higher-affinity inhibitors. Recently, artificial intelligence (AI) and machine learning (ML) have accelerated this process through structure-based optimization and generative compound design. Here, we present an AI-assisted FBDD workflow applied to the SARS-CoV-2 macrodomain (Mac1), a conserved viral protein involved in",
+      "journal": "Communications chemistry",
+      "doi": "10.1038/s42004-026-02138-9",
+      "pmid": "42469492",
+      "first_author": "Aledavood E",
+      "pub_date": "2026-Jul-17",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs42004-026-02138-9",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs42004-026-02138-9"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42469492/"
+        }
+      ],
+      "summary": "This study presents an AI-assisted fragment-based drug discovery workflow applied to the SARS-CoV-2 macrodomain, a conserved viral protein target. By combining machine learning for fragment optimization with experimental validation via NMR and X-ray crystallography, the authors identified novel binders with improved potency. The work demonstrates how AI can accelerate the early stages of drug discovery by guiding fragment merging and linking strategies.",
+      "significance": "Medium",
+      "tags": [
+        "drug-discovery",
+        "machine-learning",
+        "structural-biology"
+      ]
+    },
+    {
+      "id": "9412a451d36b",
+      "title": "X-DILiver: an ensemble learning framework for predicting drug-induced liver injury.",
+      "abstract": "Drug-induced liver injury (DILI) is a primary cause of drug attrition, associated with over 1000 medications and accounting for 32% of marketed drugs withdrawn due to toxicity. This has created an urgent demand for high-accuracy computational methods predicting DILI risk early in the drug development pipeline. We developed X-DILiver, a predictive framework built on the largest DILI-annotated dataset to date. We used data augmentation to improve model robustness and address class imbalance. A library of 312 machine learning models was created using various algorithms and molecular features, and",
+      "journal": "Scientific reports",
+      "doi": "10.1038/s41598-026-59299-9",
+      "pmid": "42469267",
+      "first_author": "Lee J",
+      "pub_date": "2026-Jul-17",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs41598-026-59299-9",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41598-026-59299-9"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42469267/"
+        }
+      ],
+      "summary": "X-DILiver is a new computational framework that predicts drug-induced liver injury (DILI) risk using the largest annotated dataset to date, combining 312 machine learning models with data augmentation to improve accuracy and robustness. This tool addresses a critical need in drug development, as DILI is a major cause of drug withdrawal and attrition.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "drug-discovery",
+        "tool"
       ]
     },
     {
@@ -212,7 +335,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42463895/"
         }
       ],
-      "summary": "This systematic review examines how data science methods can help prevent and control non-communicable diseases (NCDs) in Africa, identifying current efforts, opportunities, and challenges. The study provides a gap analysis to guide future research and implementation in this region.",
+      "summary": "This systematic review examines how data science methods can help prevent and control non-communicable diseases (NCDs) in Africa, identifying current efforts, opportunities, and challenges. The study provides a gap analysis to guide future research and implementation of data-driven approaches for NCD management in the region.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -243,7 +366,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42461947/"
         }
       ],
-      "summary": "This study addresses the challenge of molecular property prediction by incorporating molecular dynamics data, which captures the dynamic behavior of molecules rather than relying solely on static structures. The authors created new dynamics datasets through molecular dynamics simulations and developed a deep learning method that uses this dynamic information to improve prediction accuracy.",
+      "summary": "This study addresses the challenge of molecular property prediction by incorporating molecular dynamics data, which captures the dynamic behavior of molecules rather than relying solely on static structures. The authors created new dynamics datasets through extensive molecular dynamics simulations and developed a deep learning approach to leverage this data, improving prediction accuracy.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -274,8 +397,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42463869/"
         }
       ],
-      "summary": "This study used computational methods to identify a flavonoid glycoside compound that may inhibit PCSK9, a protein that raises LDL cholesterol. The compound showed promising binding interactions in computer simulations, suggesting it could be developed as an oral small-molecule drug for hypercholesterolemia, offering a cheaper alternative to current injectable antibody therapies.",
-      "significance": "Low",
+      "summary": "This study uses computational methods to identify a flavonoid glycoside as a potential oral small-molecule inhibitor of PCSK9, a key regulator of LDL cholesterol. The compound shows promise as a more accessible alternative to expensive antibody therapies for managing hypercholesterolemia.",
+      "significance": "Medium",
       "tags": [
         "drug-discovery",
         "structural-biology",
@@ -305,7 +428,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42458575/"
         }
       ],
-      "summary": "This study evaluates deep learning architectures for predicting how ligands interact with neurologically relevant GPCRs, a key challenge in drug discovery and toxicology. The authors compare models that jointly encode protein and ligand representations, addressing issues like receptor flexibility and ligand selectivity. Their findings highlight the strengths and limitations of different architectures for this specific application.",
+      "summary": "This study evaluates various deep learning architectures for predicting how ligands interact with neurologically relevant GPCRs, a key class of drug targets. The authors compare different drug-target interaction models that jointly encode protein and ligand representations, aiming to improve accuracy for computational toxicology and drug discovery. The findings provide guidance on which architectures perform best for this challenging prediction task.",
       "significance": "Medium",
       "tags": [
         "deep-learning",
@@ -336,7 +459,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42458650/"
         }
       ],
-      "summary": "EvoDiffMol combines evolutionary algorithms with 3D diffusion models to design molecules with optimized properties, overcoming the limitations of methods that rely on simplified 2D representations. The framework uses population-based selection to guide molecular generation toward desired characteristics while preserving essential three-dimensional geometric information.",
+      "summary": "EvoDiffMol combines evolutionary algorithms with 3D diffusion models to generate molecules with optimized properties, overcoming the limitations of methods that rely on simplified 2D representations. The framework uses population-based selection to guide molecular generation toward desired target properties while preserving essential three-dimensional geometric information.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -370,9 +493,9 @@
       "summary": "VITAGRAPH is a new comprehensive biological knowledge graph that integrates diverse data types to support machine learning tasks in network medicine, such as predicting gene-disease associations and drug repurposing. By providing high-quality, structured data, it aims to improve the reliability of AI-driven predictions in computational biology.",
       "significance": "Medium",
       "tags": [
+        "database",
         "network-analysis",
-        "machine-learning",
-        "database"
+        "machine-learning"
       ]
     },
     {
@@ -398,7 +521,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436376/"
         }
       ],
-      "summary": "This paper presents a method to prioritize virtual screening by generating preliminary, interpretable rankings of drug-target activity using a low-feature likelihood-based approach. This reduces computational demands by guiding the search before applying more complex AI models to ultra-large molecular libraries.",
+      "summary": "This paper presents a method to prioritize which compounds to screen in virtual drug discovery by using simple, interpretable features to generate preliminary rankings of drug-target activity. The approach reduces computational burden by guiding more expensive AI-based screening toward the most promising candidates first. It offers a practical way to make ultra-large library screening more efficient and accessible.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -429,7 +552,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42453345/"
         }
       ],
-      "summary": "This review discusses recent advances in organofluoroprobes—organic fluorescent molecules—for brain imaging, which can visualize key biomarkers like amyloid-beta, tau, and reactive species to enable early detection of neurodegenerative diseases such as Alzheimer's and Parkinson's. The authors highlight progress in probe design, current challenges in specificity and blood-brain barrier penetration, and future directions for clinical translation.",
+      "summary": "This review highlights recent progress in organofluoroprobes—fluorescent molecules that can visualize key biomarkers like amyloid-beta, tau, and reactive species—for early diagnosis of neurodegenerative diseases such as Alzheimer's and Parkinson's. It discusses the challenges and future directions for using these probes in brain imaging.",
       "significance": "Medium",
       "tags": [
         "review",
@@ -460,43 +583,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42432671/"
         }
       ],
-      "summary": "This systematic review examines how AI-assisted drug repurposing is being applied to neurological disorders, focusing on validation strategies, challenges, and opportunities. The authors find that while AI methods show promise for identifying new uses for existing drugs in conditions like Alzheimer's and Parkinson's, significant hurdles remain in validation and clinical translation.",
+      "summary": "This systematic review examines how AI is being used to repurpose existing drugs for neurological disorders like Alzheimer's, Parkinson's, and ALS. It evaluates the validation strategies, challenges, and opportunities in this approach, noting that despite advanced technologies, drug development success for these conditions remains low.",
       "significance": "Medium",
       "tags": [
-        "machine-learning",
         "drug-discovery",
+        "machine-learning",
         "review"
-      ]
-    },
-    {
-      "id": "a8c36b5791ac",
-      "title": "AI-guided identification of natural CTSL inhibitors with therapeutic potential for renal injury.",
-      "abstract": "Cathepsin L (CTSL) is a prominent therapeutic target for kidney injury, yet clinically available CTSL inhibitors remain limited. Here, we developed an artificial intelligence (AI)-assisted discovery strategy to identify novel CTSL inhibitors from a natural products library. Through a robust deep learning model and molecular docking, we screened 200 molecules from natural products library for experimental validation. Active candidates were further analyzed by molecular dynamics simulations to characterize binding modes and key CTSL-ligand interaction networks, followed by evaluation of therapeu",
-      "journal": "PLoS computational biology",
-      "doi": "10.1371/journal.pcbi.1014464",
-      "pmid": "42430439",
-      "first_author": "Ma F",
-      "pub_date": "2026-Jul-10",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1371%2Fjournal.pcbi.1014464",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1371%2Fjournal.pcbi.1014464"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42430439/"
-        }
-      ],
-      "summary": "Researchers developed an AI-assisted strategy combining deep learning and molecular docking to identify natural compounds that inhibit Cathepsin L (CTSL), a therapeutic target for kidney injury. From a library of natural products, they screened 200 molecules, validated active candidates experimentally, and characterized their binding modes using molecular dynamics simulations. This approach identified novel CTSL inhibitors with potential for treating renal injury.",
-      "significance": "Medium",
-      "tags": [
-        "drug-discovery",
-        "machine-learning",
-        "deep-learning"
       ]
     },
     {
@@ -522,7 +614,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42431103/"
         }
       ],
-      "summary": "The DRIVE database is a new resource that catalogs how drugs alter gene expression and splicing in cancer cells, including the potential to generate neoantigens. It fills a gap by systematically integrating drug perturbations with transcriptomic and splicing data, which existing resources lack.",
+      "summary": "The DRIVE database is a new resource that catalogs how drugs alter gene expression and splicing in cancer cells, including the potential to generate immunogenic neoantigens. It fills a gap by systematically integrating drug perturbations, splicing dynamics, and neoantigen landscapes, which existing resources do not cover.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -553,11 +645,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42429910/"
         }
       ],
-      "summary": "This study evaluates human-approved drugs as potential treatments for theileriosis, a tick-borne disease in livestock, by targeting a specific enzyme (TaLDH) in the parasite. The research is motivated by rising drug resistance and climate-driven spread of the disease, and leverages drug repurposing since many veterinary drugs overlap with human medicine.",
-      "significance": "Low",
+      "summary": "This study investigates whether human-approved drugs can be repurposed to target lactate dehydrogenase from the parasite Theileria annulata, which causes theileriosis in livestock. By screening FDA-approved human drugs against this enzyme, the authors aim to identify new therapeutic options to combat rising drug resistance and climate-driven spread of the disease. The work highlights drug repurposing as a strategy to address veterinary needs by leveraging existing human pharmaceuticals.",
+      "significance": "Medium",
       "tags": [
         "drug-discovery",
-        "microbiology"
+        "microbiology",
+        "methodology"
       ]
     },
     {
@@ -583,12 +676,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42420332/"
         }
       ],
-      "summary": "This study computationally screens FDA-approved antihypertensive drugs for their potential to treat psoriasis by targeting key inflammatory cytokines. The approach identifies existing drugs that could be repurposed to modulate IL-6, IL-1β, IL-17A, and IFN-γ, offering a cost-effective alternative to current expensive therapies with side effects.",
+      "summary": "This study computationally repurposes FDA-approved antihypertensive drugs as potential psoriasis therapies by analyzing their interactions with key inflammatory cytokines. The findings suggest that certain blood pressure medications may reduce inflammation in psoriasis, offering a cost-effective alternative to current expensive treatments.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
         "immunology",
-        "machine-learning"
+        "computational-biology"
       ]
     },
     {
@@ -614,43 +707,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42451765/"
         }
       ],
-      "summary": "This review explores how compounds from animal venoms can be used as anticancer agents by inhibiting specific enzymes. It focuses on the chemical structures of these venom-derived molecules, how they interact with cancer-related targets, and the mechanisms by they block cancer growth.",
+      "summary": "This review explores how compounds from animal venoms can be repurposed as anticancer agents by inhibiting specific enzymes involved in cancer progression. It highlights the unique structural features of venom-derived peptides and proteins that enable them to selectively target cancer cells, offering a promising avenue for drug discovery.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
         "review",
         "cancer"
-      ]
-    },
-    {
-      "id": "bb4922282eb5",
-      "title": "AD-LSF: A Multimodal Framework for Drug-Target Interaction Prediction Based on Asymmetric Dynamic Gated Modulation and Adaptive Latent Signal Fusion.",
-      "abstract": "Accurate prediction of drug-target interactions (DTIs) is fundamental to drug discovery and repurposing. Although deep learning-based multimodal integration has advanced DTI modeling, current approaches remain limited in capturing complex cross-modal nonlinear dependencies and in reconciling distributional heterogeneity across data modalities. To address these limitations, we propose a multimodal DTI prediction framework termed Asymmetric Dynamic Gated Modulation and Adaptive Latent Signal Fusion (AD-LSF), which is built upon asymmetric dynamic gating modulation and adaptive latent signal fusi",
-      "journal": "ACS omega",
-      "doi": "10.1021/acsomega.6c02700",
-      "pmid": "42428845",
-      "first_author": "Li B",
-      "pub_date": "2026-Jul-07",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1021%2Facsomega.6c02700",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1021%2Facsomega.6c02700"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42428845/"
-        }
-      ],
-      "summary": "This paper introduces AD-LSF, a deep learning framework that improves drug-target interaction prediction by using asymmetric dynamic gating and adaptive latent signal fusion to better handle cross-modal dependencies and data heterogeneity. The method aims to enhance drug discovery and repurposing efforts.",
-      "significance": "Medium",
-      "tags": [
-        "drug-discovery",
-        "deep-learning",
-        "machine-learning"
       ]
     },
     {
@@ -676,7 +738,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42416710/"
         }
       ],
-      "summary": "Researchers designed and tested new E-stilbene-based compounds as tyrosinase inhibitors, finding several with potent activity (IC50 as low as 0.32 µM). The best candidates were identified through computational modeling and experimental assays, offering potential leads for skin-lightening or anti-browning applications.",
+      "summary": "This study synthesized and tested new chemical compounds that inhibit tyrosinase, an enzyme involved in melanin production. The most promising compounds showed strong inhibitory activity at very low concentrations, suggesting potential applications in skin-lightening or anti-browning products.",
       "significance": "Low",
       "tags": [
         "drug-discovery",
@@ -706,12 +768,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42414432/"
         }
       ],
-      "summary": "This study uses network pharmacology and computational modeling to investigate how compounds from two varieties of Citrus medica L. (citron) might simultaneously target biofilm formation, quorum sensing, and antioxidant defenses. The authors identified key bioactive compounds and their potential molecular targets, suggesting these natural products could serve as multi-target therapeutic agents for persistent infections and chronic inflammatory diseases.",
+      "summary": "This study uses network pharmacology and computational modeling to investigate how compounds from two Citrus medica varieties (Liscia and Rugosa) can simultaneously target biofilm formation, quorum sensing, and antioxidant defense mechanisms. The findings suggest that these natural phytocompounds may offer multi-target therapeutic potential for treating persistent infections and chronic inflammatory diseases.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
-        "microbiology",
-        "systems-biology"
+        "systems-biology",
+        "microbiology"
       ]
     },
     {
@@ -737,12 +799,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42414355/"
         }
       ],
-      "summary": "This study uses network pharmacology and bioinformatics to identify potential hepatoprotective mechanisms of Azadirachta indica (neem) leaf extract. By analyzing phytochemicals via GC-MS and computational modeling, the authors predict key molecular targets and pathways involved in reducing liver toxicity and injury.",
+      "summary": "This study uses network pharmacology and bioinformatics to identify potential molecular targets and pathways through which compounds from neem (Azadirachta indica) leaf extract may protect against liver toxicity and injury. By analyzing phytochemical profiles and simulating their interactions with biological networks, the authors propose specific mechanisms for hepatoprotective effects.",
       "significance": "Low",
       "tags": [
         "network-analysis",
-        "drug-discovery",
-        "systems-biology"
+        "systems-biology",
+        "drug-discovery"
       ]
     },
     {
@@ -768,7 +830,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42411463/"
         }
       ],
-      "summary": "This perspective article argues that a new generation of AI (AI 4.0) with advanced reasoning and multi-agent capabilities is transforming from a passive tool into an autonomous 'co-scientist' that can independently formulate and test novel hypotheses. The authors discuss the profound paradigm shift this represents for biomedical research and healthcare, moving beyond simple information synthesis to knowledge generation.",
+      "summary": "This perspective article argues that we are entering a new era of 'knowledge-generating AI' (AI 4.0) that can autonomously formulate and test novel hypotheses, moving beyond simple information synthesis. The authors position this as a paradigm shift where AI becomes an active 'co-scientist' in biomedical research and healthcare, rather than a passive tool. The paper provides a forward-looking framework for understanding how advanced reasoning and multi-agentic AI systems could transform scientific discovery.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -799,7 +861,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42440932/"
         }
       ],
-      "summary": "This study created a benchmark dataset of 2,724 compounds for predicting drug-induced developmental neurotoxicity (DNT) and developed an interpretable deep learning framework to classify DNT-positive versus negative compounds. The dataset combines EPA DNT reference chemicals with matched non-neuroactive drug-like compounds, enabling more reliable model training and interpretation.",
+      "summary": "The authors created a benchmark dataset of 2,724 compounds for predicting developmental neurotoxicity (DNT) and developed an interpretable deep learning framework to classify DNT-positive vs. negative chemicals. The dataset combines EPA reference compounds with matched non-neuroactive drugs, enabling more reliable model training and interpretation.",
       "significance": "Medium",
       "tags": [
         "deep-learning",
@@ -830,7 +892,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42440848/"
         }
       ],
-      "summary": "This study synthesized and tested a new series of benzothiazole-based compounds against seven human cancer cell lines, identifying three lead compounds with broad anti-cancer activity. One compound in particular showed selective toxicity against a B lymphoblast cancer cell line, suggesting potential for targeted therapy development.",
+      "summary": "This study synthesized and tested a series of benzothiazole acetamide hydrazones against seven human cancer cell lines, identifying three lead compounds (8l, 8n, 8o) with broad anti-proliferative activity. Compound 8o showed selective cytotoxicity towards Z138 B lymphoblast cells, suggesting potential for targeted cancer therapy.",
       "significance": "Low",
       "tags": [
         "drug-discovery",
@@ -860,12 +922,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42409962/"
         }
       ],
-      "summary": "This review frames brain metastasis as a multiscale communication disorder involving immune, glial, vascular, and systemic networks, integrating data from spatial transcriptomics, single-cell omics, and computational modeling. It highlights how network-based approaches can reveal coordinated tumor-permissive ecosystems and suggests new therapeutic strategies targeting these communication networks.",
+      "summary": "This review integrates spatial transcriptomics, single-cell omics, and computational modeling to frame brain metastasis as a multiscale communication disorder involving immune, glial, vascular, and systemic networks. It highlights how network-based approaches can reveal coordinated interactions across molecular, cellular, and spatial scales that drive tumor progression and therapy resistance.",
       "significance": "Medium",
       "tags": [
-        "cancer",
         "systems-biology",
-        "network-analysis"
+        "network-analysis",
+        "cancer"
       ]
     },
     {
@@ -891,7 +953,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42401729/"
         }
       ],
-      "summary": "This study identifies Withanolide A as a potential inhibitor of hIAPP aggregation, a key driver of pancreatic β-cell death in Type 2 diabetes, using computational screening and experimental validation in fruit flies. The compound showed promising anti-aggregation activity in biophysical assays and improved health outcomes in a Drosophila model, suggesting a natural product-based therapeutic strategy.",
+      "summary": "This study identifies Withanolide A as a potential inhibitor of hIAPP aggregation, a key driver of pancreatic β-cell death in Type 2 diabetes, using computational screening, biophysical assays, and validation in fruit flies. The compound showed promising anti-aggregation activity in both in silico and in vivo models, suggesting a natural product-based therapeutic avenue.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -922,11 +984,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42437450/"
         }
       ],
-      "summary": "This review examines how topological deep learning (TDL), which uses persistent homology to capture multiscale geometric features of molecules, can improve drug-target interaction prediction, virtual screening, and docking scoring. The authors highlight that TDL offers a complementary approach to address limitations from dataset bias and the complex geometry of molecular recognition, providing a practical guide for researchers.",
+      "summary": "This review examines how topological deep learning (TDL), which uses persistent homology to capture multiscale geometric features, can improve drug-target interaction prediction, virtual screening, and docking scoring. The authors highlight that TDL offers a complementary approach to traditional methods by encoding global molecular structure, but performance is limited by dataset bias and leakage. They provide a practical, task-driven synthesis of current methods and benchmarks.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
-        "deep-learning",
+        "machine-learning",
         "review"
       ]
     },
@@ -953,43 +1015,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42435557/"
         }
       ],
-      "summary": "Researchers used a combination of shape-based modeling, machine learning, and hotspot analysis to discover new inhibitors of the human enzyme HsDHODH as potential antiviral agents against SARS-CoV-2. A virtual screen identified a primary hit compound (H3D-002856) with an IC50 of 2.92 μM, which was then used to guide similarity-based expansion to find additional active compounds.",
+      "summary": "Researchers used a combination of shape-based modeling, machine learning, and hotspot analysis to discover new inhibitors of the human enzyme HsDHODH, which has potential as an antiviral target against SARS-CoV-2. They identified a primary hit compound from a chemical library and expanded it to 17 structural analogs, with one compound showing promising activity.",
       "significance": "Medium",
       "tags": [
-        "machine-learning",
         "drug-discovery",
+        "machine-learning",
         "methodology"
-      ]
-    },
-    {
-      "id": "dd520af54165",
-      "title": "Advancing bioinformatics with language models: components, applications, and perspectives.",
-      "abstract": "Large language models (LLMs) are deep learning-based artificial intelligence models that have achieved remarkable success in natural language processing. Typically composed of neural networks with billions of parameters, they are trained on massive unlabeled datasets using self-supervised or semi-supervised learning. Beyond language, LLMs hold immense potential for addressing complex bioinformatics challenges. This review provides a comprehensive overview of transformer-based model applications in genomics, transcriptomics, proteomics, drug discovery, and single-cell analysis. We discuss criti",
-      "journal": "Briefings in bioinformatics",
-      "doi": "10.1093/bib/bbag367",
-      "pmid": "42430786",
-      "first_author": "Liu J",
-      "pub_date": "2026-Jul-03",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1093%2Fbib%2Fbbag367",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1093%2Fbib%2Fbbag367"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42430786/"
-        }
-      ],
-      "summary": "This review provides a comprehensive overview of how large language models (LLMs), originally developed for natural language processing, are being applied to bioinformatics challenges including genomics, transcriptomics, proteomics, drug discovery, and single-cell analysis. It covers the components of transformer-based models and their potential to address complex biological problems.",
-      "significance": "Medium",
-      "tags": [
-        "LLM",
-        "review",
-        "machine-learning"
       ]
     },
     {
@@ -1015,10 +1046,10 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42418827/"
         }
       ],
-      "summary": "This study uses a deep learning framework to predict and validate that the FDA-approved antibiotic eravacycline has anticancer activity against pancreatic cancer. The authors developed a two-phase computational model to identify potential mechanisms, then confirmed its effects in cell and animal experiments. The work demonstrates a promising approach for drug repurposing in pancreatic cancer.",
+      "summary": "This study uses a deep learning framework to predict and validate that the FDA-approved antibiotic eravacycline has anticancer activity against pancreatic cancer. The computational predictions were confirmed through laboratory experiments, suggesting a potential new use for an existing drug.",
       "significance": "Medium",
       "tags": [
-        "machine-learning",
+        "deep-learning",
         "drug-discovery",
         "cancer"
       ]
@@ -1046,7 +1077,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42405097/"
         }
       ],
-      "summary": "This study describes the synthesis of new amide-linked cholic acid derivatives and tests their antioxidant and antibacterial activities. Some of the compounds showed moderate antioxidant effects and were more effective against Gram-positive bacteria like Staphylococcus aureus than against Gram-negative E. coli.",
+      "summary": "This study describes the synthesis of new amide-linked cholic acid derivatives and tests their antioxidant and antibacterial activities. Some of the compounds showed moderate antioxidant effects and were more effective against Gram-positive bacteria like Staphylococcus aureus. The work is a standard medicinal chemistry study with incremental findings.",
       "significance": "Low",
       "tags": [
         "drug-discovery"
@@ -1075,7 +1106,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42393212/"
         }
       ],
-      "summary": "This study used machine learning and molecular simulations to identify Z4P as a promising IRE1α inhibitor for breast cancer that may be resilient to mutations. The compound showed stable binding in computational tests and could offer a new therapeutic option for drug-resistant breast cancer.",
+      "summary": "This study used machine learning and molecular simulations to identify Z4P as a potential drug that inhibits the IRE1α protein, which is important for breast cancer cell survival. The compound was predicted to be effective even against mutated forms of the protein, suggesting it could overcome drug resistance. The work demonstrates a computational pipeline for prioritizing cancer drug candidates.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -1106,7 +1137,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42453426/"
         }
       ],
-      "summary": "This review discusses how artificial intelligence and multi-omics technologies are overcoming traditional bottlenecks in natural product drug discovery, including screening, isolation, and optimization. AI enhances molecular representation, binding prediction, drug repurposing, and retrosynthesis, while generative models support the design of novel natural product-inspired compounds.",
+      "summary": "This review discusses how artificial intelligence and multi-omics technologies are overcoming traditional bottlenecks in natural product drug discovery, such as screening, isolation, and optimization. AI enhances molecular representation, binding prediction, drug repurposing, and retrosynthesis, while generative models further accelerate innovation. The paper highlights a revitalization of natural product-based drug development through computational and omics approaches.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -1137,7 +1168,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42453419/"
         }
       ],
-      "summary": "This study identifies the CT-domain of CTGF as a superior therapeutic target for Duchenne muscular dystrophy (DMD) compared to the VWC-domain, which was targeted by a failed antibody. Using AI-powered aptamer discovery, the authors developed aptamers that bind the CT-domain, reducing fibrosis without elevating compensatory TGF-β1 levels, offering a potential new treatment for DMD.",
+      "summary": "This study identifies the CT-domain of CTGF as a superior therapeutic target for Duchenne muscular dystrophy (DMD) compared to the previously targeted VWC-domain, as it drives fibrosis without increasing compensatory TGF-β1 levels. Using AI-powered aptamer discovery, the authors developed aptamers that specifically bind to the CT-domain, offering a potential new treatment strategy for DMD.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -1168,7 +1199,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42453414/"
         }
       ],
-      "summary": "FlowDock is a new deep learning framework that simultaneously predicts protein-ligand binding poses and binding affinity more accurately and efficiently than traditional docking methods. It overcomes key limitations of prior AI approaches by accounting for protein flexibility and generating physically valid conformations. This unified flow-based model offers a faster, cost-effective alternative for structure-based drug design.",
+      "summary": "FlowDock is a new deep learning framework that simultaneously predicts protein-ligand binding poses and binding affinity, addressing key limitations of traditional docking (slow speed) and prior AI methods (poor physical validity and lack of protein flexibility). By using a flow-based approach, it generates more realistic and flexible protein-ligand complexes efficiently, offering a promising tool for structure-based drug design.",
       "significance": "High",
       "tags": [
         "drug-discovery",
@@ -1199,7 +1230,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42453406/"
         }
       ],
-      "summary": "This editorial introduces the guest editors for a special column on machine learning in drug discovery, highlighting their expertise and the importance of this interdisciplinary field.",
+      "summary": "This article introduces the guest editors for a special column on machine learning in drug discovery, highlighting their roles and expertise. It is an editorial piece rather than a research study.",
       "significance": "Low",
       "tags": [
         "drug-discovery",
@@ -1229,7 +1260,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42453397/"
         }
       ],
-      "summary": "This review discusses how artificial intelligence, especially deep learning, is transforming biologic drug discovery from a trial-and-error process into a data-driven engineering discipline. It systematically covers the evolution of AI methods and their applications in developing protein and nucleic acid therapeutics.",
+      "summary": "This review examines how artificial intelligence, especially deep learning, is transforming biologic drug discovery from a trial-and-error process into a data-driven engineering discipline. It systematically covers the co-evolution of AI methods and their applications in developing protein and nucleic acid therapeutics.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -1260,7 +1291,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42453392/"
         }
       ],
-      "summary": "This editorial introduces a special column focused on the application of machine learning in drug discovery, highlighting recent advances and the potential of these computational methods to accelerate the identification and development of new therapeutics.",
+      "summary": "This editorial introduces a special column focused on the application of machine learning in drug discovery, highlighting recent advances and potential impacts in the field. It serves as an overview of the included articles rather than presenting new findings.",
       "significance": "Low",
       "tags": [
         "machine-learning",
@@ -1291,7 +1322,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42438120/"
         }
       ],
-      "summary": "This paper introduces LEARNER, a transfer learning method that improves low-rank matrix estimation in a target population by leveraging similarities in latent row and column spaces from a source population. The approach is particularly relevant for biomedical applications such as genetics, medical imaging, and drug discovery where heterogeneous data from multiple sources are common.",
+      "summary": "This paper introduces LEARNER, a transfer learning method that improves low-rank matrix estimation in a target population by leveraging shared latent structures from a source population. The approach is particularly relevant for biomedical applications like genetics and medical imaging where data from multiple heterogeneous sources are available.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -1321,11 +1352,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42445758/"
         }
       ],
-      "summary": "This review synthesizes global literature from 2021-2025 on AI applications in pharmaceutical care, finding that AI achieves 86-98% prediction accuracy in drug discovery and 80% improvement in clinical trial recruitment. The paper covers AI's role across drug development, medication management, and pharmacy operations, highlighting its potential to transform healthcare delivery.",
+      "summary": "This review synthesizes recent literature (2021-2025) on AI applications in pharmaceutical care, finding that AI achieves 86-98% prediction accuracy in drug discovery and 80% improvement in clinical trial processes. The paper highlights how AI is transforming medication management, drug development, and patient care delivery across multiple domains of pharmacy practice.",
       "significance": "Medium",
       "tags": [
-        "drug-discovery",
         "machine-learning",
+        "drug-discovery",
         "review"
       ]
     },
@@ -1352,12 +1383,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42389234/"
         }
       ],
-      "summary": "This study explores drug repurposing as a strategy to treat monkeypox virus by leveraging its genetic similarity to vaccinia and variola viruses. Using structural and computational methods, the authors identify existing drugs that may be effective against MPV, offering a faster and more cost-effective approach than developing new antivirals.",
+      "summary": "This study explores drug repurposing as a strategy to treat monkeypox virus by leveraging its genetic similarity to vaccinia and variola viruses. Using structural and computational methods, the authors identify existing drugs that may be effective against MPV, offering a potentially faster therapeutic option.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
         "structural-biology",
         "methodology"
+      ]
+    },
+    {
+      "id": "38d8ca230924",
+      "title": "SPPIPred: Stacking-based ensemble learning model for identification of protein-protein interaction.",
+      "abstract": "Protein-protein interactions (PPIs) are essential for various biological functions and are crucial in drug discovery, signaling pathways, and network reconstruction. This study presents SPPIPred, an advanced machine learning-based model designed for precise PPI prediction. The SPPIPred model was constructed using five feature extraction methods: Pseudo amino acid composition (PAAC), Composition transition distribution (CTDC), Dipeptide composition (DPC), Word2Vec, and FastText. Among these, FastText emerged as the most effective for encoding protein sequences. Despite the application of featur",
+      "journal": "PloS one",
+      "doi": "10.1371/journal.pone.0353199",
+      "pmid": "42467612",
+      "first_author": "Rahman MA",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1371%2Fjournal.pone.0353199",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1371%2Fjournal.pone.0353199"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42467612/"
+        }
+      ],
+      "summary": "The authors developed SPPIPred, a machine learning model that predicts protein-protein interactions by combining five different feature extraction methods from protein sequences, with FastText proving most effective. The model uses a stacking-based ensemble learning approach to improve prediction accuracy.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "protein-structure",
+        "tool"
       ]
     },
     {
@@ -1383,7 +1445,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42459766/"
         }
       ],
-      "summary": "This paper presents a transformer-based AI framework that predicts drug potency (pIC50) and classifies activity for specific targets using curated bioactivity data from BindingDB. The model addresses the challenge of exploring vast chemical space by improving predictions for underrepresented chemotypes, with applications in Alzheimer's, diabetes, and cancer drug discovery.",
+      "summary": "This paper presents a transformer-based AI model that predicts drug potency (pIC50) and classifies activity for specific targets using curated bioactivity data from BindingDB. The model addresses the challenge of exploring vast chemical space by improving predictions for underrepresented chemotypes, with applications in Alzheimer's, diabetes, and cancer drug discovery.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -1414,11 +1476,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42459675/"
         }
       ],
-      "summary": "This review explores how artificial intelligence, particularly deep learning and machine learning, is improving cancer radiotherapy and immunotherapy by enhancing precision, personalization, and efficiency. Key applications include automated tumor segmentation in medical images and AI-driven feedback systems for individualized treatment planning. The paper also discusses AI's role in drug discovery and repurposing, providing a comprehensive overview of current capabilities and future directions.",
+      "summary": "This review explores how artificial intelligence, particularly deep learning and machine learning, is improving cancer radiotherapy and immunotherapy by enabling automated tumor segmentation, personalized treatment planning, and real-time feedback. It also discusses AI's role in drug discovery and repurposing, highlighting its potential to enhance precision and efficiency in cancer care.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "cancer",
+        "deep-learning",
         "review"
       ]
     },
@@ -1445,7 +1507,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42445524/"
         }
       ],
-      "summary": "This paper introduces Calibrated Weighted Rank Aggregation (CWRA), a new computational method that combines different virtual screening scores to better prioritize drug candidates. The authors show that CWRA independently rediscovers known privileged scaffolds for the Vitamin D receptor, demonstrating its effectiveness for drug discovery.",
+      "summary": "This paper introduces Calibrated Weighted Rank Aggregation (CWRA), a new computational method that intelligently combines different virtual screening scores to better prioritize drug candidates for testing. When applied to find Vitamin D receptor ligands, the method independently rediscovered known privileged scaffolds, demonstrating its ability to identify promising compounds without prior bias.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -1476,7 +1538,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42441587/"
         }
       ],
-      "summary": "This paper introduces T-pGNN4DTI, a machine learning method that predicts drug-target interactions by combining graph neural networks with protein pre-training models. The approach uses a global self-attentive pooling mechanism to improve prediction accuracy, potentially reducing the need for costly biological experiments in drug discovery.",
+      "summary": "This paper presents T-pGNN4DTI, a new machine learning method that combines graph neural networks with protein pre-training models to predict drug-target interactions more accurately. The approach uses a global self-attentive pooling mechanism to better capture important features from drug and protein structures, potentially reducing the need for costly biological experiments in drug discovery.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -1507,69 +1569,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42441086/"
         }
       ],
-      "summary": "This review examines how AI is transforming pharmaceutical innovation while creating complex intellectual property challenges, particularly around inventorship for patents. It analyzes recent US legal developments, including the Supreme Court's 2026 denial of certiorari in Thaler v. Perlmutter, which impacts how AI-generated inventions are protected.",
-      "significance": "Medium",
-      "tags": [
-        "drug-discovery",
-        "review",
-        "machine-learning"
-      ]
-    },
-    {
-      "id": "9c4348d3cb70",
-      "title": "GraphTransDTI: A novel hybrid framework combining graph transformer and CNN-BiLSTM for enhanced Drug-Protein Interaction prediction.",
-      "abstract": "Drug-protein interaction (DTI) prediction is a pivotal step in the drug discovery and repurposing process, helping to minimize experimental costs and time. However, existing deep learning methods often face limitations in simultaneously capturing the spatial structure of drug molecules and the deep contextual correlation with protein sequences. To address this issue, we propose GraphTransDTI, a synergistic hybrid framework that integrates a Graph Transformer to represent drug graph structures, a CNN-BiLSTM network to encode protein sequence context, and a Cross-Attention mechanism to model cro",
-      "journal": "PloS one",
-      "doi": "10.1371/journal.pone.0351314",
-      "pmid": "42430343",
-      "first_author": "Le VV",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1371%2Fjournal.pone.0351314",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1371%2Fjournal.pone.0351314"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42430343/"
-        }
-      ],
-      "summary": "GraphTransDTI is a new deep learning method that combines graph transformers, CNNs, and bidirectional LSTMs to better predict how drugs interact with proteins. It improves upon existing methods by simultaneously capturing the 3D structure of drug molecules and the sequence context of proteins, leading to more accurate predictions for drug discovery and repurposing.",
-      "significance": "Medium",
-      "tags": [
-        "machine-learning",
-        "drug-discovery",
-        "methodology"
-      ]
-    },
-    {
-      "id": "061c223d1301",
-      "title": "AI-driven drug reposition for pathogens: a new paradigm in pandemic preparedness.",
-      "abstract": "Faced with a severe outbreak of diseases caused by newly emerging and recurrent pathogens, the development cycle of traditional drugs is long, making it difficult to meet emergency needs. Drug repositioning has become a key strategy for rapidly providing therapies by exploring new therapeutic uses of approved drugs. However, traditional reposition methods have bottlenecks such as slow speed and strong randomness. Artificial intelligence (AI) is revolutionizing drug reposition by analyzing and integrating multi-source data with computational models, dramatically accelerating the discovery proce",
-      "journal": "Frontiers in chemistry",
-      "doi": "10.3389/fchem.2026.1842082",
-      "pmid": "42428571",
-      "first_author": "Ma L",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffchem.2026.1842082",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffchem.2026.1842082"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42428571/"
-        }
-      ],
-      "summary": "This review discusses how AI-driven drug repositioning can accelerate pandemic preparedness by rapidly identifying new uses for approved drugs against emerging pathogens. It highlights how AI overcomes the limitations of traditional drug repositioning methods, such as slow speed and randomness, by integrating multi-source data with computational models.",
+      "summary": "This review examines how AI is transforming pharmaceutical innovation while creating complex intellectual property challenges, particularly around inventorship and patent protection. It analyzes recent US legal developments, including the Supreme Court's 2026 denial of certiorari in Thaler v. Perlmutter, to highlight the unresolved legal questions surrounding AI-generated inventions.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -1600,8 +1600,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42461922/"
         }
       ],
-      "summary": "This study identifies bioactive compounds from the fungus Pisolithus arhizus that can inhibit efflux pumps in drug-resistant Staphylococcus aureus, a major cause of mastitis in livestock. Using GC-MS profiling and lab experiments, the methanolic extract showed strong antibacterial activity with a minimum inhibitory concentration of 30 µg/mL. The findings suggest a potential natural source for developing new treatments against antimicrobial resistance in veterinary medicine.",
-      "significance": "Medium",
+      "summary": "This study identifies bioactive compounds from the fungus Pisolithus arhizus that can inhibit efflux pumps in antibiotic-resistant Staphylococcus aureus, a major cause of mastitis in livestock. Using GC-MS profiling and lab experiments, the methanolic extract showed strong antibacterial activity with a minimum inhibitory concentration of 30 µg/mL. The findings suggest a potential natural source for developing new treatments against antimicrobial resistance in veterinary settings.",
+      "significance": "Low",
       "tags": [
         "microbiology",
         "drug-discovery",
@@ -1631,11 +1631,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42460009/"
         }
       ],
-      "summary": "This study identifies a JNK inhibitor, JNK-IN-5A, and its derivatives that suppress PKLR expression, offering a potential therapeutic strategy for metabolic liver diseases MASLD and MASH. The findings suggest that targeting PKLR and lipogenic enzymes through JNK inhibition could be a promising approach for treating these conditions.",
+      "summary": "This study identifies JNK-IN-5A and its derivatives as potential treatments for fatty liver disease by suppressing PKLR and lipogenic enzymes. The findings suggest a new therapeutic strategy targeting these metabolic pathways.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
-        "metabolism",
+        "metabolomics",
         "clinical"
       ]
     },
@@ -1662,7 +1662,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42453585/"
         }
       ],
-      "summary": "This paper proposes a unifying principle called tissue-autonomous pharmacological direction (TAPD) to explain why multi-target drugs can have opposite effects in different tissues, such as tamoxifen acting as an antagonist in breast tissue but an agonist in the endometrium. The authors suggest that the expression landscape of drug targets across tissues determines whether a balanced compound will produce tissue-selective effects. This framework could help predict and design drugs with desired tissue-specific actions.",
+      "summary": "This paper proposes a unifying principle called tissue-autonomous pharmacological direction (TAPD) to explain why multi-target drugs can have opposite effects in different tissues. The authors argue that the expression landscape of drug targets across tissues determines whether a balanced compound acts as an agonist or antagonist in a given organ.",
       "significance": "Medium",
       "tags": [
         "pharmacology",
@@ -1693,7 +1693,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436711/"
         }
       ],
-      "summary": "This study used computational methods to evaluate how well certain plant compounds and existing drugs might inhibit gastric H⁺/K⁺-ATPase, a key target for treating acid-related stomach disorders. The analysis identified several compounds with promising binding interactions, suggesting they could be further developed as potential treatments.",
+      "summary": "This study used computational methods to evaluate how well certain plant compounds and drugs might inhibit gastric H⁺/K⁺-ATPase, a key target for treating acid-related stomach disorders. The analysis identified several compounds with promising interactions, suggesting potential for further development as treatments for conditions like peptic ulcers and GERD.",
       "significance": "Low",
       "tags": [
         "drug-discovery",
@@ -1724,7 +1724,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42434599/"
         }
       ],
-      "summary": "This study uses computational methods (QSAR and structure-based modeling) to identify plerixafor-derived compounds as potential inhibitors of the PIM-1 kinase, a target in diffuse large B-cell lymphoma. The work addresses the unique ATP-binding site of PIM-1, which lacks a typical hydrogen bond donor, to design novel inhibitors that could overcome chemotherapy resistance.",
+      "summary": "This study uses computational QSAR and structure-based methods to identify plerixafor-derived compounds as potential PIM-1 kinase inhibitors for treating diffuse large B-cell lymphoma. The PIM-1 kinase is a promising target due to its role in chemotherapy resistance and disease progression.",
       "significance": "Low",
       "tags": [
         "drug-discovery",
@@ -1755,7 +1755,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42422074/"
         }
       ],
-      "summary": "This review covers the historical development of computer-aided drug discovery (CADD) and its role in approved therapeutics, while highlighting recent AI/ML tools that improve predictive performance and accessibility. It also discusses emerging ethical considerations in the field.",
+      "summary": "This review covers the historical development of computer-aided drug discovery (CADD) over four decades, highlighting its role in approved therapeutics, and discusses recent AI/ML tools that improve predictive performance and accessibility. It also addresses emerging ethical considerations in the field.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -1786,12 +1786,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42416831/"
         }
       ],
-      "summary": "This study identifies a yellow pigment-producing Streptomyces strain from paddy soil that produces metabolites with antioxidant and anti-breast cancer activity, characterized through both experimental assays and computational modeling. The findings highlight underexplored actinobacteria from agricultural ecosystems as potential sources of novel therapeutic compounds.",
+      "summary": "This study identifies a yellow pigment-producing Streptomyces strain from paddy soil and uses experimental and computational methods to characterize its antioxidant and anti-breast cancer potential. The findings suggest this bacterial metabolite could be a promising candidate for natural therapeutic development.",
       "significance": "Low",
       "tags": [
         "microbiology",
-        "drug-discovery",
-        "metabolomics"
+        "drug-discovery"
       ]
     },
     {
@@ -1817,7 +1816,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42404062/"
         }
       ],
-      "summary": "MetaphorPrompt2 is a new method that improves the extraction of molecular regulatory pathways from biomedical text by focusing on the structural relationships and functional roles of biological entities, addressing a key limitation of current large language models that often miss intermediary steps or misinterpret complex causal statements.",
+      "summary": "MetaphorPrompt2 is a new method that improves how large language models extract molecular regulatory pathways from biomedical text by focusing on structural relationships and functional roles of biological entities, rather than just surface-level causal statements. This approach helps capture intermediary steps that other methods often miss, leading to more complete pathway representations.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
