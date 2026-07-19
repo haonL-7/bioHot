@@ -1,7 +1,7 @@
 {
   "channel": "single-cell-omics",
-  "generated_at": "2026-07-18T20:01:27.706886",
-  "count": 49,
+  "generated_at": "2026-07-19T07:29:55.229825",
+  "count": 21,
   "papers": [
     {
       "id": "e308102f8723",
@@ -26,12 +26,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42441075/"
         }
       ],
-      "summary": "This study benchmarks computational tools for analyzing long-read single-cell and spatial RNA-seq data, which can capture full-length transcripts and better resolve alternative splicing. The authors generated paired short-read and Nanopore long-read datasets to systematically compare tool performance. The findings provide guidance for selecting appropriate bioinformatics methods for long-read transcriptomics.",
+      "summary": "This study benchmarks bioinformatics tools for analyzing single-cell and spatial RNA-seq data generated with nanopore long-read sequencing. By generating paired short-read and long-read datasets, the authors systematically compare methods for isoform detection and quantification, providing guidance for researchers working with long-read single-cell transcriptomics.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
         "single-cell",
-        "tool"
+        "benchmarking"
       ]
     },
     {
@@ -88,7 +88,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42445385/"
         }
       ],
-      "summary": "This study uses single-cell analysis to characterize mitophagy patterns in osteosarcoma and shows that these patterns influence intercellular communication within the tumor microenvironment, promoting cancer progression. The findings suggest that mitophagy-related signaling could be a target for new diagnostic or therapeutic strategies in this aggressive bone cancer.",
+      "summary": "This study uses single-cell analysis to map mitophagy patterns in osteosarcoma, revealing that different mitophagy states in tumor cells alter communication with immune and stromal cells in the tumor microenvironment. The findings suggest that targeting mitophagy could disrupt pro-tumor signaling and improve treatment strategies for this aggressive bone cancer.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -119,74 +119,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42427615/"
         }
       ],
-      "summary": "This paper introduces PIP-ATAC-seq and PIP-Multiome-seq, new microfluidic-free, droplet-based methods for measuring chromatin accessibility and gene expression in single nuclei. These methods are cost-effective, easy to implement, and produce high-quality data comparable to established techniques, making them valuable tools for single-cell epigenomic research.",
+      "summary": "This paper introduces new droplet-based methods (PIP-ATAC-seq and PIP-Multiome-seq) that measure chromatin accessibility and gene expression in single nuclei without requiring microfluidics. The methods are simple, cost-effective, and produce high-quality data comparable to established techniques, making them accessible for broader use in single-cell epigenomics.",
       "significance": "Medium",
       "tags": [
+        "single-cell",
         "epigenomics",
-        "single-cell",
         "methodology"
-      ]
-    },
-    {
-      "id": "e2198fb6ed7e",
-      "title": "Immunothrombotic Cell-Cell Communication Networks in Coronary Atherosclerosis: Critical Insights from Single-Cell and Spatial Systems Biology.",
-      "abstract": "Coronary artery disease (CAD) is increasingly recognized as a thromboinflammatory disorder in which innate immune activation and coagulation are tightly coupled within the plaque microenvironment. Emerging single-cell and spatial technologies have refined this paradigm by demonstrating that these processes are not diffusely distributed but instead concentrated within discrete cellular niches. This narrative review critically evaluates mechanistic and translational studies integrating single-cell RNA sequencing, spatial transcriptomics, and ligand-receptor modeling to characterize cell-cell com",
-      "journal": "International journal of molecular sciences",
-      "doi": "10.3390/ijms27135900",
-      "pmid": "42450168",
-      "first_author": "Krasińska B",
-      "pub_date": "2026-Jun-30",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3390%2Fijms27135900",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3390%2Fijms27135900"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42450168/"
-        }
-      ],
-      "summary": "This review highlights how single-cell and spatial technologies reveal that immune activation and coagulation in coronary artery disease are concentrated in discrete cellular niches rather than being diffusely distributed. The authors critically evaluate studies using single-cell RNA sequencing, spatial transcriptomics, and ligand-receptor modeling to characterize cell-cell communication networks driving immunothrombosis.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "single-cell",
-        "spatial-omics"
-      ]
-    },
-    {
-      "id": "0944af82329a",
-      "title": "SDF4: a novel prognostic biomarker and therapeutic target in hepatocellular carcinoma revealed by integrated multi‑omics analysis.",
-      "abstract": "SDF4 is a calcium-binding protein with limited research in cancer, particularly liver hepatocellular carcinoma (LIHC). This study aims to clarify its expression and prognostic significance in LIHC, explore its regulatory effects on the tumor microenvironment (TME), and assess its relationship with drug sensitivity for new diagnostic and therapeutic strategies.",
-      "journal": "Translational cancer research",
-      "doi": "10.21037/tcr-2026-0553",
-      "pmid": "42445406",
-      "first_author": "Shi W",
-      "pub_date": "2026-Jun-30",
-      "source": "PubMed",
-      "url": "https://doi.org/10.21037%2Ftcr-2026-0553",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.21037%2Ftcr-2026-0553"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42445406/"
-        }
-      ],
-      "summary": "This study identifies SDF4 as a potential prognostic biomarker and therapeutic target in liver cancer through integrated multi-omics analysis. The findings suggest SDF4 influences the tumor microenvironment and drug sensitivity, offering new avenues for diagnosis and treatment.",
-      "significance": "Medium",
-      "tags": [
-        "cancer",
-        "proteomics",
-        "transcriptomics"
       ]
     },
     {
@@ -212,7 +150,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42395557/"
         }
       ],
-      "summary": "This paper introduces a new computational method that uses cell lineage relationships to model how gene expression changes over time in single-cell RNA-seq data, overcoming the limitations of static snapshot analyses. By incorporating phylogenetic information, the approach more accurately identifies when and where transcriptional shifts occur during development and disease progression.",
+      "summary": "This paper introduces a lineage-aware stochastic model that leverages phylogenetic relationships from cell-lineage tracing to analyze gene expression dynamics in single-cell RNA-seq data, moving beyond static snapshot approaches. By incorporating precise stochastic modeling, the method identifies when and where transcriptional changes occur during development, differentiation, and disease progression, offering improved accuracy over Gaussian-based models.",
       "significance": "High",
       "tags": [
         "single-cell",
@@ -243,74 +181,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42449972/"
         }
       ],
-      "summary": "This review surveys statistical methods for detecting nonlinear relationships in high-dimensional gene expression and omics data, covering approaches such as information-theoretic, rank-based, kernel-based, distance-based, copula-based, and clustering-based measures. The authors highlight that classical linear methods often miss biologically relevant patterns, but note the field remains fragmented without clear guidance for practitioners.",
+      "summary": "This review surveys statistical methods for detecting nonlinear relationships in gene expression and omics data, covering approaches such as information-theoretic, rank-based, kernel-based, distance-based, copula-based, and clustering-based measures. The authors highlight that classical linear methods fail to capture many biologically relevant patterns in high-dimensional transcriptomics data, but note the field remains fragmented. This provides a useful overview for researchers seeking appropriate nonlinear dependence measures for their omics analyses.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
         "methodology",
         "review"
-      ]
-    },
-    {
-      "id": "9025a6bf4203",
-      "title": "Single-Cell Omics Advances in Understanding Tissue Development and Complex Trait Formation in Sheep and Goats.",
-      "abstract": "Single-cell omics technologies have transformed the study of cellular heterogeneity, enabling high-resolution analysis of tissue development and complex traits. In sheep and goats, these approaches have been applied to skin, hair follicles, reproductive organs, metabolic tissues, and adipose tissue, revealing cell type-specific regulatory programs underlying traits such as wool quality, fertility, growth, and fat deposition. However, most studies rely on single-cell RNA sequencing (scRNA-seq) and are limited by incomplete genome annotation, insufficient coverage of production traits, and weak ",
-      "journal": "Animals : an open access journal from MDPI",
-      "doi": "10.3390/ani16131948",
-      "pmid": "42450655",
-      "first_author": "Wang J",
-      "pub_date": "2026-Jun-23",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3390%2Fani16131948",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3390%2Fani16131948"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42450655/"
-        }
-      ],
-      "summary": "This review discusses how single-cell omics technologies, particularly single-cell RNA sequencing, have been used to study tissue development and complex traits in sheep and goats, revealing cell-type-specific regulatory programs for traits like wool quality, fertility, and growth. It highlights current limitations such as incomplete genome annotation and insufficient coverage of production traits.",
-      "significance": "Medium",
-      "tags": [
-        "single-cell",
-        "transcriptomics",
-        "review"
-      ]
-    },
-    {
-      "id": "9e141c7af7a7",
-      "title": "The Serpin Superfamily in Adipose Tissue Remodeling: Molecular Drivers of Immune-Metabolic Crosstalk and Insulin Sensitivity.",
-      "abstract": "Adipose tissue remodeling is a dynamic process essential for metabolic homeostasis, enabling tissue expansion, extracellular matrix (ECM) turnover, angiogenesis, and coordinated immune adaptation. In obesity, however, maladaptive remodeling characterized by fibrosis, chronic low-grade inflammation, and hypoxia disrupts adipose plasticity and promotes systemic insulin resistance. Central to these processes is the tightly regulated homeostasis between proteases and their inhibitors, in which the serine protease inhibitor (serpin) superfamily represents an important yet underappreciated regulator",
-      "journal": "Biology",
-      "doi": "10.3390/biology15130989",
-      "pmid": "42450537",
-      "first_author": "Alwisi N",
-      "pub_date": "2026-Jun-23",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3390%2Fbiology15130989",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3390%2Fbiology15130989"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42450537/"
-        }
-      ],
-      "summary": "This review highlights the serpin superfamily as key regulators of adipose tissue remodeling, controlling the balance between proteases and their inhibitors to maintain metabolic health. In obesity, dysregulated serpin activity contributes to fibrosis, inflammation, and insulin resistance, making serpins potential therapeutic targets for metabolic disease.",
-      "significance": "Medium",
-      "tags": [
-        "review",
-        "immunology",
-        "metabolomics"
       ]
     },
     {
@@ -336,7 +212,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42332576/"
         }
       ],
-      "summary": "pyVIPER is a new Python package that efficiently estimates protein activity and identifies master regulator proteins from single-cell RNA sequencing data. It addresses the scalability challenges of the original VIPER algorithm, enabling analysis of large scRNA-seq datasets for mechanistic insights into cellular states.",
+      "summary": "pyVIPER is a new Python package that adapts the VIPER algorithm for fast and scalable analysis of single-cell RNA sequencing data, enabling identification of master regulator proteins from large scRNA-seq datasets. It addresses the computational bottleneck of applying VIPER to increasingly large single-cell datasets by providing an efficient implementation.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -367,7 +243,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42331557/"
         }
       ],
-      "summary": "SpatialCD is a new computational method that improves cell-type deconvolution for spatial transcriptomics without requiring a reference single-cell RNA-seq dataset, by incorporating spatial information from neighboring spots to better estimate cellular composition. This approach addresses a key limitation of existing reference-free methods that ignore spatial context, potentially leading to more accurate tissue heterogeneity analysis.",
+      "summary": "SpatialCD is a new computational method that improves cell-type deconvolution in spatial transcriptomics by incorporating spatial information from neighboring spots, unlike existing reference-free methods that ignore this context. This approach enhances the accuracy of identifying cell-type proportions without requiring matched single-cell RNA-seq data.",
       "significance": "Medium",
       "tags": [
         "spatial-omics",
@@ -398,7 +274,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42328733/"
         }
       ],
-      "summary": "CAPER is a new computational framework that disentangles true biological signals from unwanted variations in multi-condition single-cell RNA-seq data, overcoming limitations of existing methods that either over-correct or fail to capture cell-type-specific responses. It uses matrix factorization to explicitly separate shared biological states from condition-specific variations, enabling more accurate recovery of condition-associated patterns.",
+      "summary": "CAPER is a new matrix factorization method for multi-condition single-cell RNA-seq data that separates true biological signals from unwanted variations, directly outputting condition-specific patterns without over-correcting or discarding biological signal.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -429,43 +305,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42221827/"
         }
       ],
-      "summary": "This study benchmarks six computational methods for analyzing alternative splicing from single-cell RNA-seq data, focusing on their ability to perform cell clustering and detect differential splicing. Among the methods tested, scQuint showed the most robust performance across multiple datasets. The findings provide guidance for researchers selecting tools for splicing analysis in single-cell transcriptomics.",
+      "summary": "This study benchmarks six computational methods for analyzing alternative splicing from single-cell RNA-seq data, finding that scQuint performs best for tasks like cell clustering and detecting splicing differences. The work provides practical guidance for researchers choosing tools to study how splicing contributes to cell identity and function at single-cell resolution.",
       "significance": "Medium",
       "tags": [
         "single-cell",
         "transcriptomics",
         "methodology"
-      ]
-    },
-    {
-      "id": "0c75c15a2e7c",
-      "title": "Interpretable multi-omics integration across mixed-order tensors with MANTRA.",
-      "abstract": "The integration of multi-modal molecular data is crucial for understanding complex diseases, but existing methods struggle with modern experimental designs that generate datasets with mixed-order tensors-for example, a third-order drug-response tensor alongside a second-order transcriptomics matrix. Here, we present MANTRA (Multi-view ANalysis with Tensor and matRix Alignment), a probabilistic framework that integrates collections of tensors of different orders, combining the strengths of group factor analysis and tensor decomposition. MANTRA learns interpretable latent factors and naturally h",
-      "journal": "Molecular systems biology",
-      "doi": "10.1038/s44320-026-00223-8",
-      "pmid": "42315933",
-      "first_author": "De Azevedo K",
-      "pub_date": "2026-Jun-18",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1038%2Fs44320-026-00223-8",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1038%2Fs44320-026-00223-8"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42315933/"
-        }
-      ],
-      "summary": "MANTRA is a new computational framework that integrates different types of molecular data (like drug response tensors and gene expression matrices) into a unified analysis, overcoming limitations of existing methods that cannot handle mixed-order tensors. It combines group factor analysis and tensor decomposition to learn interpretable latent factors, making it easier to understand complex diseases from multi-omics data.",
-      "significance": "High",
-      "tags": [
-        "methodology",
-        "machine-learning",
-        "transcriptomics"
       ]
     },
     {
@@ -491,7 +336,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42378259/"
         }
       ],
-      "summary": "CAdir is a new tool for single-cell RNA-seq analysis that simultaneously clusters cells and identifies marker genes, and includes a visualization-driven method to assess cluster quality. It addresses common limitations of existing clustering algorithms by providing unsupervised cluster number inference and avoiding distortions from methods like UMAP or t-SNE.",
+      "summary": "CAdir is a new tool for single-cell RNA-seq analysis that simultaneously clusters cells and identifies marker genes, and includes a visualization-driven method to assess cluster quality. It addresses common limitations of existing clustering algorithms by providing unsupervised cluster number inference and built-in quality assessment, reducing reliance on potentially misleading UMAP/t-SNE visualizations.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -522,197 +367,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42462715/"
         }
       ],
-      "summary": "This study uses single-cell CRISPR screening (CROP-seq) to uncover that the epigenetic regulators Nsd1 and Ezh2 antagonistically control the transition between naive and primed pluripotency in mouse embryonic stem cells, with Nsd1-mediated H3K36me2 opposing Ezh2-mediated H3K27me3. The findings reveal a key epigenetic switch that orchestrates pluripotency transitions.",
+      "summary": "This study uses a single-cell CRISPR screen (CROP-seq) to uncover how the epigenetic regulators Nsd1 and Ezh2 antagonistically control the transition between naive and primed pluripotency states in mouse embryonic stem cells. The findings reveal that Nsd1-mediated H3K36me2 opposes Ezh2-mediated H3K27me3 to orchestrate gene expression changes critical for pluripotency transition.",
       "significance": "Medium",
       "tags": [
         "single-cell",
         "epigenomics",
         "CRISPR"
-      ]
-    },
-    {
-      "id": "5f2c576025b8",
-      "title": "TSLP-driven B cell hyper-activation impairs intestinal epithelial homeostasis predisposing to enterocolitis in Hirschsprung disease.",
-      "abstract": "Hirschsprung-associated enterocolitis (HAEC), a lethal complication of Hirschsprung disease (HSCR)-a prevalent congenital disorder with high morbidity-has a poorly understood pathogenesis. We investigated how aberrant immune-stromal crosstalk drives mucosal injury in HSCR.",
-      "journal": "Cellular and molecular gastroenterology and hepatology",
-      "doi": "10.1016/j.jcmgh.2026.101848",
-      "pmid": "42463013",
-      "first_author": "He S",
-      "pub_date": "2026-Jul-16",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1016%2Fj.jcmgh.2026.101848",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1016%2Fj.jcmgh.2026.101848"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42463013/"
-        }
-      ],
-      "summary": "This study reveals that in Hirschsprung disease, overactive B cells driven by TSLP disrupt the intestinal lining, making patients prone to severe enterocolitis. The findings highlight a new immune-stromal mechanism underlying this life-threatening complication.",
-      "significance": "Medium",
-      "tags": [
-        "immunology",
-        "clinical"
-      ]
-    },
-    {
-      "id": "ab2a3226637d",
-      "title": "Use of organ transplant solution to preserve skeletal muscle for cellular and spatial transcriptomic analyses.",
-      "abstract": "Single-cell and spatial transcriptomic technologies have revolutionized human cell and tissue research. Success of these methods critically depends on the preservation of RNA integrity, cellular viability, and structure of the explanted tissues-features that are impacted by tissue storage conditions, and pose challenges in research settings, where tissues are often collected in the operating room and transported to distant laboratories. In this study, we evaluated the effectiveness of a clinically approved organ transplant solution (TS) for preserving skeletal muscle under refrigerated conditi",
-      "journal": "Scientific reports",
-      "doi": "10.1038/s41598-026-58534-7",
-      "pmid": "42457739",
-      "first_author": "Uapinyoying P",
-      "pub_date": "2026-Jul-16",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1038%2Fs41598-026-58534-7",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1038%2Fs41598-026-58534-7"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42457739/"
-        }
-      ],
-      "summary": "This study tests whether a clinically approved organ transplant solution can preserve skeletal muscle tissue for single-cell and spatial transcriptomics, finding it maintains RNA integrity and cellular structure under refrigerated conditions. This offers a practical solution for transporting surgical tissue samples to distant labs without compromising molecular analysis quality.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "single-cell",
-        "spatial-omics"
-      ]
-    },
-    {
-      "id": "14c356f0ca63",
-      "title": "SAA1 Promotes Pro-inflammatory Macrophage-mediated Bone Invasion in Silent Corticotroph Adenomas.",
-      "abstract": "Silent corticotroph adenomas (SCAs) represent a high-risk subtype of pituitary neuroendocrine tumors, characterized by significant clinical heterogeneity and unclear pathogenesis. The multimicrocystic sign is a typical radiological feature of SCAs; however, its biological significance remains unclear. Here, we show that the characteristics of cystic changes reflect tumor evolutionary stages and are correlated with invasiveness and proliferative activity. We performed multi-omics analysis to identify key molecular drivers and revealed that serum amyloid A1 (SAA1) is highly expressed in microcys",
-      "journal": "Genomics, proteomics & bioinformatics",
-      "doi": "10.1093/gpbjnl/qzag064",
-      "pmid": "42458804",
-      "first_author": "Jia J",
-      "pub_date": "2026-Jul-15",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1093%2Fgpbjnl%2Fqzag064",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1093%2Fgpbjnl%2Fqzag064"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42458804/"
-        }
-      ],
-      "summary": "This study identifies serum amyloid A1 (SAA1) as a key molecular driver in silent corticotroph adenomas (SCAs), where its high expression promotes pro-inflammatory macrophage-mediated bone invasion. The findings link cystic changes in SCAs to tumor evolution and invasiveness, providing new insights into the pathogenesis of this high-risk pituitary tumor subtype.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "proteomics",
-        "cancer"
-      ]
-    },
-    {
-      "id": "849c3e22c71c",
-      "title": "ViMST: vision transformer-based dual modality multi-task graph contrastive network for spatial transcriptomics microenvironments investigation.",
-      "abstract": "Investigating spatial transcriptomics microenvironments is crucial for unraveling cellular heterogeneity. Existing methods struggle to extract non-redundant information from histopathological images, as well as to simultaneously and spatially resolve gene expression profiles. We propose a vision transformer-based dual-modality multi-task graph contrastive network for exploring the spatial transcriptomics domain (ViMST), which integrates gene expression, image features, and spatial coordinates to investigate tissue microenvironments. It employs Vision Transformer (ViT) for feature extraction an",
-      "journal": "BMC biology",
-      "doi": "10.1186/s12915-026-02676-7",
-      "pmid": "42458406",
-      "first_author": "Ding C",
-      "pub_date": "2026-Jul-15",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1186%2Fs12915-026-02676-7",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1186%2Fs12915-026-02676-7"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42458406/"
-        }
-      ],
-      "summary": "ViMST is a new computational method that combines gene expression data, histology images, and spatial coordinates to better analyze tissue microenvironments in spatial transcriptomics. It uses a Vision Transformer to extract features from images and a multi-task graph contrastive network to integrate all data types, outperforming existing approaches in resolving spatial gene expression patterns.",
-      "significance": "Medium",
-      "tags": [
-        "spatial-omics",
-        "transcriptomics",
-        "machine-learning"
-      ]
-    },
-    {
-      "id": "dc0f76be3d63",
-      "title": "Cellular hallmarks and aging clock of the human lung parenchyma.",
-      "abstract": "Aging affects lung function, predisposing older adults to respiratory diseases; however, the cellular and molecular mechanisms of lung aging are not fully understood. Leveraging single-cell and spatial transcriptomics data from 184 and 70 lung parenchyma samples, respectively, we present an analytical platform to dissect the cell composition, gene expression modules, and regulatory changes linked to multiple hallmarks of lung aging. Our findings show cell type-specific age-association of senescence markers and a decline in alveolar cell proliferation, autocrine WNT signaling, and stemness indi",
-      "journal": "Nature communications",
-      "doi": "10.1038/s41467-026-75427-5",
-      "pmid": "42457688",
-      "first_author": "Xu K",
-      "pub_date": "2026-Jul-15",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1038%2Fs41467-026-75427-5",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1038%2Fs41467-026-75427-5"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42457688/"
-        }
-      ],
-      "summary": "This study uses single-cell and spatial transcriptomics data from hundreds of human lung samples to create a detailed map of how aging affects lung cells. The researchers identified cell type-specific changes in senescence markers, reduced alveolar cell proliferation, and decreased WNT signaling and stemness, providing a molecular 'aging clock' for the lung parenchyma.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "single-cell",
-        "aging"
-      ]
-    },
-    {
-      "id": "14b1754b1c7d",
-      "title": "Multiomic profiling of responses to clinical and novel bisphosphonates reveals extraskeletal effects on ageing related signatures.",
-      "abstract": "Bisphosphonates (BPs) have been used effectively to treat excessive bone loss for over 50 years. Recent clinical evidence suggests extra-skeletal benefits but how this occurs remains unknown. Here we use a panel of human, murine and cellular assessments to chart BP-induced ageing-related changes both systemically and at local organ sites. In vivo spatial transcriptomics in aged mice treated with zoledronate showed a shift in cellular composition towards that of young animals specifically in heart, liver and intestine, with upregulation of genes governing detoxification, mitochondrial stability",
-      "journal": "Signal transduction and targeted therapy",
-      "doi": "10.1038/s41392-026-02799-x",
-      "pmid": "42448670",
-      "first_author": "Lu J",
-      "pub_date": "2026-Jul-15",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1038%2Fs41392-026-02799-x",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1038%2Fs41392-026-02799-x"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42448670/"
-        }
-      ],
-      "summary": "This study uses multiomic profiling, including spatial transcriptomics in aged mice, to show that bisphosphonates (commonly used for bone loss) can reverse aging-related cellular and gene expression changes in organs like the heart, liver, and intestine, suggesting extraskeletal benefits beyond bone health.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "spatial-omics",
-        "aging"
       ]
     },
     {
@@ -738,198 +398,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42449425/"
         }
       ],
-      "summary": "This study uses single-cell and spatial multi-omics to identify FOLH1+ endothelial cells in clear cell renal cell carcinoma (ccRCC) and reveals their potential role in tumor vascularization and progression. The findings provide mechanistic insights into how these cells contribute to the tumor microenvironment, which could inform diagnostic and therapeutic strategies for ccRCC.",
+      "summary": "This study uses single-cell and spatial multi-omics to identify FOLH1+ endothelial cells in clear cell renal cell carcinoma, revealing their cellular source and spatial distribution within the tumor microenvironment. The findings provide mechanistic insights into how these cells may contribute to tumor vascularization and progression, and support the use of PSMA imaging as a diagnostic tool for ccRCC.",
       "significance": "Medium",
       "tags": [
         "single-cell",
         "spatial-omics",
         "cancer"
-      ]
-    },
-    {
-      "id": "1dcc0539b0cd",
-      "title": "Single-cell transcriptome reveals keratinocyte subclusters contributing to altered differentiation and inflammatory responses in atopic dermatitis.",
-      "abstract": "Atopic dermatitis (AD) is a common chronic inflammatory skin disease with heterogeneous and poorly understood mechanisms. We perform single-cell RNA sequencing of lesional (LAD) and non-lesional (NAD) skin from 42 AD patients and 23 healthy controls (HC). Keratinocytes (KCs) are the predominant disease-relevant cell type. In healthy skin, KC differentiation follows a linear trajectory from basal KCs through seven differentiated stages to terminal keratinized cells. In LAD, this process is disrupted, showing a reversed terminal transition mainly driven by DK7 cells. APOD, LYZ and SERPINB4 emerg",
-      "journal": "Nature communications",
-      "doi": "10.1038/s41467-026-75407-9",
-      "pmid": "42449103",
-      "first_author": "Qin T",
-      "pub_date": "2026-Jul-14",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1038%2Fs41467-026-75407-9",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1038%2Fs41467-026-75407-9"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42449103/"
-        }
-      ],
-      "summary": "This study uses single-cell RNA sequencing to map keratinocyte differentiation in atopic dermatitis, revealing a disrupted linear trajectory in lesional skin with a reversed terminal transition driven by DK7 cells. Key genes APOD, LYZ, and SERPINB4 are identified as potential contributors to altered differentiation and inflammatory responses.",
-      "significance": "Medium",
-      "tags": [
-        "single-cell",
-        "transcriptomics",
-        "immunology"
-      ]
-    },
-    {
-      "id": "2fb0b0edd597",
-      "title": "Conserved anterior/posterior tissue asymmetry encodes proximal/distal positional information during axolotl limb regeneration.",
-      "abstract": "While mammalian limb regeneration is limited to the distal fingertips, axolotls can regenerate entire limbs, providing a model system to uncover conserved patterning mechanisms. Although anterior-posterior (A/P) signaling is required for limb regeneration, how A/P patterning is coordinated across limb segments remains unclear. Using spatial transcriptomics and our SpatialFlux analysis pipeline, we found that A/P genes are asymmetrically distributed along the proximal-distal (Pr/Di) axis of both uninjured and regenerating axolotl limbs. This asymmetric boundary coincides with distally enriched ",
-      "journal": "Cell reports",
-      "doi": "10.1016/j.celrep.2026.117669",
-      "pmid": "42446998",
-      "first_author": "Trostle AJ",
-      "pub_date": "2026-Jul-14",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1016%2Fj.celrep.2026.117669",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1016%2Fj.celrep.2026.117669"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42446998/"
-        }
-      ],
-      "summary": "This study reveals that anterior-posterior (A/P) gene expression is asymmetrically distributed along the proximal-distal (Pr/Di) axis in axolotl limbs, providing positional information for regeneration. Using spatial transcriptomics and a new analysis pipeline called SpatialFlux, the authors show that this conserved asymmetry helps coordinate limb patterning across segments. The finding suggests that A/P tissue asymmetry encodes positional cues essential for successful limb regeneration.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "spatial-omics",
-        "development"
-      ]
-    },
-    {
-      "id": "05bdcca89ec3",
-      "title": "Single-Cell and Spatial Analysis Reveal the Differences Between Left-Sided and Right-Sided Colorectal Cancer.",
-      "abstract": "Colorectal cancer (CRC) exhibits heterogeneity based on tumour laterality, with right-sided tumours demonstrating distinct genetic, immunogenic and clinical behaviours compared to left-sided counterparts. In this study, we conducted single-cell RNA sequencing and spatial transcriptomics to dissect the distinct molecular landscapes of left- and right-sided CRC. We identified enhanced germinal centre B cell infiltration and CXCL13+ T cell enrichment, features linked to adaptive immune priming and better immunotherapy responsiveness. Right-sided CRC epithelial cells exhibited proliferative and im",
-      "journal": "Cell proliferation",
-      "doi": "10.1111/cpr.70260",
-      "pmid": "42444407",
-      "first_author": "Zhang Z",
-      "pub_date": "2026-Jul-14",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1111%2Fcpr.70260",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1111%2Fcpr.70260"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42444407/"
-        }
-      ],
-      "summary": "This study used single-cell RNA sequencing and spatial transcriptomics to compare left-sided and right-sided colorectal cancer. The researchers found that right-sided tumors have more germinal center B cells and CXCL13+ T cells, which are associated with better immunotherapy response, while also showing distinct proliferative epithelial cell features. These findings help explain the known clinical differences between left- and right-sided colorectal cancers.",
-      "significance": "Medium",
-      "tags": [
-        "single-cell",
-        "spatial-omics",
-        "cancer"
-      ]
-    },
-    {
-      "id": "b58643c7b6b2",
-      "title": "Single-cell and spatial transcriptomic analysis reveal distinct tumor microenvironment signatures in primary and recurrent hypopharyngeal squamous cell carcinoma.",
-      "abstract": "Hypopharyngeal squamous cell carcinoma (HPSCC) is a rare, highly aggressive malignancy, with recurrence playing a pivotal role in treatment failure and cancer-related mortality. The tumor microenvironment (TME) characteristics and molecular mechanisms driving recurrence in HPSCC remain poorly defined.",
-      "journal": "Cellular & molecular biology letters",
-      "doi": "10.1186/s11658-026-00991-z",
-      "pmid": "42443752",
-      "first_author": "Cai Z",
-      "pub_date": "2026-Jul-13",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1186%2Fs11658-026-00991-z",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1186%2Fs11658-026-00991-z"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42443752/"
-        }
-      ],
-      "summary": "This study uses single-cell and spatial transcriptomics to compare the tumor microenvironments of primary and recurrent hypopharyngeal squamous cell carcinoma, revealing distinct cellular and molecular signatures associated with recurrence. The findings provide insights into the mechanisms driving treatment failure and may inform future therapeutic strategies for this aggressive cancer.",
-      "significance": "Medium",
-      "tags": [
-        "single-cell",
-        "spatial-omics",
-        "cancer"
-      ]
-    },
-    {
-      "id": "43e784724e20",
-      "title": "Spatial and single-cell profiling identify NDRG1⁺ macrophages as key hallmark of angiogenic remodeling and platinum resistance in HGSOC.",
-      "abstract": "High-grade serous ovarian cancer (HGSOC) exhibits profound immunologic and metabolic remodeling, yet the macrophage programs that drive disease progression and therapeutic resistance remain incompletely defined. Here, we integrate spatial transcriptomics, single-cell sequencing, bulk deconvolution, pseudotime reconstruction, and multiplex immunofluorescence to delineate a distinct tumor-promoting macrophage phenotype, termed Macro4, characterized by hypoxia adaptation, extracellular matrix remodeling, and pro-angiogenic signaling. Macro4 signature-based RSF model robustly predicted poor surviv",
-      "journal": "Translational oncology",
-      "doi": "10.1016/j.tranon.2026.102905",
-      "pmid": "42442223",
-      "first_author": "Bu L",
-      "pub_date": "2026-Jul-13",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1016%2Fj.tranon.2026.102905",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1016%2Fj.tranon.2026.102905"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42442223/"
-        }
-      ],
-      "summary": "This study identifies a distinct macrophage subtype (Macro4) in high-grade serous ovarian cancer that is characterized by hypoxia adaptation, extracellular matrix remodeling, and pro-angiogenic signaling. Using spatial and single-cell profiling, the authors show that this macrophage signature is associated with platinum resistance and poor survival, and they develop a predictive model based on it.",
-      "significance": "Medium",
-      "tags": [
-        "single-cell",
-        "spatial-omics",
-        "cancer"
-      ]
-    },
-    {
-      "id": "7cbb701159f8",
-      "title": "Multi-omics analysis of arginine metabolism in ovarian cancer: A prognostic signature and GTF2F2-driven stromal remodeling.",
-      "abstract": "Arginine metabolism shapes tumor growth, stromal activation, and antitumor immunity, yet its translational relevance in ovarian cancer (OV) remains incompletely defined. We sought to derive an arginine-metabolism-related signature (AMRS) for prognosis and therapy guidance and to nominate actionable regulators.",
-      "journal": "Translational oncology",
-      "doi": "10.1016/j.tranon.2026.102911",
-      "pmid": "42442222",
-      "first_author": "Zhang D",
-      "pub_date": "2026-Jul-13",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1016%2Fj.tranon.2026.102911",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1016%2Fj.tranon.2026.102911"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42442222/"
-        }
-      ],
-      "summary": "This study develops a prognostic signature based on arginine metabolism genes in ovarian cancer, showing that high-risk patients have worse outcomes and distinct immune microenvironments. The transcription factor GTF2F2 is identified as a key regulator driving stromal remodeling, suggesting potential therapeutic targets.",
-      "significance": "Medium",
-      "tags": [
-        "cancer",
-        "transcriptomics",
-        "prognostic"
       ]
     },
     {
@@ -955,43 +429,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42435052/"
         }
       ],
-      "summary": "This study uses an integrative multi-omics approach to identify CYP1B1 as a potential molecular link between cigarette smoke exposure and ferroptosis-related epithelial stress in COPD. The findings suggest that CYP1B1 may serve as a biomarker and therapeutic target for COPD by connecting toxicant exposure to ferroptosis-driven airway injury.",
+      "summary": "This study uses an integrative multi-omics approach to identify CYP1B1 as a potential molecular link between cigarette smoke exposure and ferroptosis-related epithelial stress in COPD. The findings suggest that CYP1B1 may serve as a biomarker and therapeutic target for COPD by connecting toxicant exposure to oxidative damage and cell death pathways.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
         "proteomics",
         "clinical"
-      ]
-    },
-    {
-      "id": "9f6840d846a1",
-      "title": "Loss of Neuropeptide Y Signaling Accompanies the Neural-to-Mesenchymal Transcriptional Transition in Glioblastoma: A Multi-Scale Transcriptomic Analysis.",
-      "abstract": "Neuropeptide Y [NPY; encoded by the NPY gene] is a widely expressed 36-amino-acid neuropeptide that regulates neuronal function, vascular regulation, and immune regulation; its role in glioblastoma [GBM] remains incompletely characterized. We performed an integrative in silico multi-scale transcriptomic analysis combining bulk RNA-sequencing of IDH-wildtype GBM [n = 169] and lower-grade glioma [n = 510] surgical resections from TCGA, normal cortical tissue from GTEx [n = 207], and four independent GEO validation cohorts of surgical GBM and non-tumor brain specimens [GSE4290, GSE50161, GSE13192",
-      "journal": "International journal of molecular sciences",
-      "doi": "10.3390/ijms27136068",
-      "pmid": "42450334",
-      "first_author": "Arshad F",
-      "pub_date": "2026-Jul-06",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3390%2Fijms27136068",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3390%2Fijms27136068"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42450334/"
-        }
-      ],
-      "summary": "This study uses multi-scale transcriptomic analysis to show that neuropeptide Y (NPY) signaling is lost during the neural-to-mesenchymal transition in glioblastoma, suggesting NPY may play a role in maintaining neural identity and its loss could contribute to the aggressive mesenchymal phenotype.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "cancer",
-        "neuroscience"
       ]
     },
     {
@@ -1017,105 +460,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42398025/"
         }
       ],
-      "summary": "This paper introduces PLNFGL, a method that jointly estimates gene regulatory networks across multiple conditions from single-cell RNA-seq data, addressing challenges like dropout events and distributional mismatches that make traditional Gaussian graphical models unsuitable. By leveraging information across conditions, it improves network inference accuracy compared to single-condition approaches.",
+      "summary": "This paper introduces PLNFGL, a method that jointly estimates gene regulatory networks across multiple conditions from single-cell RNA-seq data, addressing challenges like dropout events and distributional mismatches that make traditional Gaussian graphical models unsuitable. By leveraging information across conditions, it improves network inference accuracy compared to estimating networks independently for each condition.",
       "significance": "Medium",
       "tags": [
         "single-cell",
         "network-analysis",
         "methodology"
-      ]
-    },
-    {
-      "id": "c04c1f9e3bfa",
-      "title": "Spatial Transcriptomics in Breast Cancer: Advances and Applications.",
-      "abstract": "While traditional transcriptomics and single-cell RNA sequencing can reveal differences in cell type and gene expression, they cannot provide spatial information within tissues. Spatial transcriptomics (ST), as an emerging technology in recent years, has achieved significant progress in resolving gene expression along the spatial dimension. This technology quantifies gene expression at defined spatial coordinates and describes the spatial distribution of transcripts and the co-localization patterns between cells within intact tissue, allowing for an integrated analysis of molecular and spatial",
-      "journal": "Biology",
-      "doi": "10.3390/biology15131061",
-      "pmid": "42450609",
-      "first_author": "Cao Y",
-      "pub_date": "2026-Jul-03",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3390%2Fbiology15131061",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3390%2Fbiology15131061"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42450609/"
-        }
-      ],
-      "summary": "This review discusses how spatial transcriptomics (ST) overcomes the limitations of traditional transcriptomics and single-cell RNA sequencing by preserving spatial information within tissues. ST quantifies gene expression at defined coordinates, enabling analysis of transcript distribution and cell co-localization patterns in intact tissue, with significant applications in breast cancer research.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "spatial-omics",
-        "cancer"
-      ]
-    },
-    {
-      "id": "7d3be5f62379",
-      "title": "Variational sparse Gaussian-process method for detecting spatially variable genes and cellular interactions in spatial transcriptomics.",
-      "abstract": "Advanced spatially resolved transcriptomic (SRT) technologies preserve the spatial context of gene expression within tissues, enabling the study of context-dependent transcriptional regulation. Here, we propose a variational inference-assisted sparse Gaussian-process (VISGP) framework for identifying spatially variable genes (SVGs) and inferring spatially dependent cellular interactions from SRT data. VISGP combines sparse Gaussian-process approximations with variational inference via inducing variables to reduce computational and memory costs while enabling gene-specific adaptation of spatial",
-      "journal": "Briefings in bioinformatics",
-      "doi": "10.1093/bib/bbag371",
-      "pmid": "42447338",
-      "first_author": "Wang Z",
-      "pub_date": "2026-Jul-03",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1093%2Fbib%2Fbbag371",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1093%2Fbib%2Fbbag371"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42447338/"
-        }
-      ],
-      "summary": "This paper introduces VISGP, a new computational method that uses sparse Gaussian processes and variational inference to efficiently identify spatially variable genes and infer cellular interactions from spatial transcriptomics data. The approach reduces computational and memory costs while allowing gene-specific spatial adaptation, making it more scalable for large datasets.",
-      "significance": "Medium",
-      "tags": [
-        "spatial-omics",
-        "transcriptomics",
-        "methodology"
-      ]
-    },
-    {
-      "id": "8e749e3d97c0",
-      "title": "Multi-task spatial distillation reveals cell-type-resolved programmed cell death landscapes in the human kidney.",
-      "abstract": "Kidney injury and chronic kidney disease progression are accompanied by spatially heterogeneous activation of programmed cell death (PCD), yet existing approaches have limited ability to jointly infer cell-type composition, death-program activity, and their spatial organization from spatial transcriptomics (ST) data. We present CoDeST (Confidence-weighted Dual-teacher Spatial Training), a multi-task spatial inference framework that predicts, for each ST spot, a 34-class kidney cell-type composition vector together with continuous activity scores for four PCD programs: apoptosis, pyroptosis, ne",
-      "journal": "Briefings in bioinformatics",
-      "doi": "10.1093/bib/bbag362",
-      "pmid": "42447337",
-      "first_author": "Wu C",
-      "pub_date": "2026-Jul-03",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1093%2Fbib%2Fbbag362",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1093%2Fbib%2Fbbag362"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42447337/"
-        }
-      ],
-      "summary": "Researchers developed CoDeST, a new computational framework that uses multi-task learning to simultaneously predict cell-type composition and programmed cell death activity from spatial transcriptomics data. Applied to human kidney tissue, it reveals how different cell death programs (apoptosis, pyroptosis, necroptosis) are spatially organized and cell-type-specific, providing insights into kidney injury and disease progression.",
-      "significance": "Medium",
-      "tags": [
-        "transcriptomics",
-        "spatial-omics",
-        "tool"
       ]
     },
     {
@@ -1141,43 +491,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42242209/"
         }
       ],
-      "summary": "This paper introduces STACCato, a new tool that uses supervised tensor analysis to identify cell-cell communication events related to specific biological conditions, overcoming limitations of existing methods such as poor interpretability and inability to adjust for confounders. The approach models dependencies among communication events and provides clearer insights into condition-specific cellular interactions.",
+      "summary": "This paper introduces STACCato, a new computational tool that uses supervised tensor analysis to identify cell-cell communication events associated with specific biological conditions. Unlike existing methods, STACCato addresses key limitations by providing clear interpretation, adjusting for confounders, and modeling dependencies among communication events.",
       "significance": "Medium",
       "tags": [
         "tool",
         "methodology",
         "single-cell"
-      ]
-    },
-    {
-      "id": "9dc67249ee8e",
-      "title": "Spatial Transcriptomics of Immune Cell Distribution in Non-Small Cell Lung Cancer Identifies Tertiary Lymphoid Structures and Its Density and Area Fraction Were Associated with Neoadjuvant Therapy Response.",
-      "abstract": "Non-small cell lung cancer (NSCLC) remains one of the leading causes of cancer-related mortality worldwide over the past decade. Single-cell sequencing loses spatial location information and potential cell-cell interactions, making it difficult to interpret molecular features or biological phenomena. Tertiary lymphoid structures (TLSs) inherently require such spatial immune cell distribution information. Although associations between TLS and response to immune checkpoint inhibitors (ICIs) or chemotherapy have been reported, the relationship between TLS and neoadjuvant therapy (ICI combined wit",
-      "journal": "Cancers",
-      "doi": "10.3390/cancers18132141",
-      "pmid": "42449683",
-      "first_author": "Jin Z",
-      "pub_date": "2026-Jul-02",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3390%2Fcancers18132141",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3390%2Fcancers18132141"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42449683/"
-        }
-      ],
-      "summary": "This study uses spatial transcriptomics to map immune cell distribution in non-small cell lung cancer, focusing on tertiary lymphoid structures (TLS). It finds that TLS density and area fraction are associated with response to neoadjuvant therapy combining immune checkpoint inhibitors and chemotherapy. The work highlights the importance of spatial organization in predicting treatment outcomes.",
-      "significance": "Medium",
-      "tags": [
-        "spatial-omics",
-        "transcriptomics",
-        "cancer"
       ]
     },
     {
@@ -1203,8 +522,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42387342/"
         }
       ],
-      "summary": "This study creates a pan-cancer single-cell atlas to investigate how sex hormones and chromosomes contribute to differences in the tumor microenvironment between males and females. The findings reveal sex-divergent reprogramming of the TME, which may influence tumor progression and immunotherapy responses.",
-      "significance": "Medium",
+      "summary": "This study creates a pan-cancer single-cell atlas to explore how sex hormones and chromosomes influence the tumor microenvironment (TME), revealing sex-divergent reprogramming patterns. The findings highlight that sex-specific TME features vary across cancer types, which may impact tumor progression and immunotherapy responses. This work provides a resource for understanding sex biases in cancer and could inform personalized treatment strategies.",
+      "significance": "High",
       "tags": [
         "single-cell",
         "cancer",
@@ -1234,11 +553,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42008746/"
         }
       ],
-      "summary": "Researchers developed a new gene signature called PRECISE, derived from single-cell and single-nucleus RNA sequencing of thyrocytes, to better predict outcomes in papillary thyroid carcinoma. This signature improves risk stratification by capturing tumor heterogeneity, potentially guiding treatment decisions. It was validated across multiple patient cohorts, showing robust prognostic utility.",
+      "summary": "Researchers developed a new gene signature called PRECISE from single-cell RNA sequencing data to better predict outcomes in papillary thyroid carcinoma. This signature, derived from thyrocytes, improved risk stratification across multiple patient cohorts, potentially aiding clinical decision-making.",
       "significance": "Medium",
       "tags": [
-        "transcriptomics",
         "single-cell",
+        "transcriptomics",
         "cancer"
       ]
     },
@@ -1265,12 +584,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42434346/"
         }
       ],
-      "summary": "GAHIB is a new variational autoencoder for single-cell RNA-seq data that jointly models local cell graph structure, hyperbolic latent geometry, and information bottleneck compression. The model uses a graph-attention encoder and a Lorentz-hyperbolic geometry loss to learn biologically structured cell representations, though its evaluation relies on clustering benchmarks with proxy labels rather than definitive biological ground truth.",
+      "summary": "GAHIB is a new variational autoencoder for single-cell RNA-seq data that jointly optimizes for local cell graph structure, hyperbolic latent geometry, and information bottleneck compression. The model uses a graph-attention encoder and a Lorentz-hyperbolic geometry loss to learn biologically structured cell representations, though its evaluation relies on clustering benchmarks with proxy labels rather than definitive biological ground truth.",
       "significance": "Medium",
       "tags": [
         "single-cell",
-        "machine-learning",
-        "methodology"
+        "transcriptomics",
+        "machine-learning"
       ]
     },
     {
@@ -1296,7 +615,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42412755/"
         }
       ],
-      "summary": "This study identifies key oxidative stress-related genes linking type 2 diabetes and sarcopenia by combining single-cell and bulk RNA sequencing with machine learning. The findings highlight potential molecular targets for understanding and treating muscle loss in diabetic patients.",
+      "summary": "This study identifies key genes linking oxidative stress to sarcopenia in type 2 diabetes by combining single-cell and bulk RNA sequencing with machine learning. The findings reveal potential molecular targets for understanding and treating muscle loss in diabetic patients.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -1305,220 +624,29 @@
       ]
     },
     {
-      "id": "12e03198ce8f",
-      "title": "Integrating multi-omics and machine learning to uncover CCL20 as a potential regulator of the immunosuppressive microenvironment in lung adenocarcinoma.",
-      "abstract": "The interplay between malignant cells and the immunosuppressive tumor microenvironment (TME) is pivotal for lung adenocarcinoma (LUAD) progression.",
-      "journal": "Frontiers in immunology",
-      "doi": "10.3389/fimmu.2026.1870538",
-      "pmid": "42459691",
-      "first_author": "Wang G",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffimmu.2026.1870538",
+      "id": "a14d0d02da1c",
+      "title": "sNucConv: A bulk RNA-seq deconvolution method trained on single-nucleus RNA-seq data to estimate cell-type composition of human adipose tissues",
+      "abstract": "Summary Deconvolution algorithms mostly rely on single-cell RNA-sequencing (scRNA-seq) data applied onto bulk RNA-sequencing (bulk RNA-seq) to estimate tissues’ cell-type composition, with performance accuracy validated on deposited databases. Adipose tissues’ cellular composition is highly variable, and adipocytes can only be captured by single-nucleus RNA-sequencing (snRNA-seq). Here we report the development of sNucConv, a Scaden deep-learning-based deconvolution tool, trained using 5 hSAT and 7 hVAT snRNA-seq-based data corrected by (i) snRNA-seq/bulk RNA-seq highly correlated genes and (i",
+      "journal": "iScience",
+      "doi": "10.1016/j.isci.2024.110368",
+      "pmid": "",
+      "first_author": "",
+      "pub_date": "2024",
+      "source": "Semantic Scholar",
+      "url": "https://doi.org/10.1016%2Fj.isci.2024.110368",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffimmu.2026.1870538"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42459691/"
+          "url": "https://doi.org/10.1016%2Fj.isci.2024.110368"
         }
       ],
-      "summary": "This study uses multi-omics data and machine learning to identify CCL20 as a potential key regulator of the immunosuppressive tumor microenvironment in lung adenocarcinoma. The findings suggest that CCL20 may play a role in shaping immune evasion, offering a new target for therapy.",
-      "significance": "Medium",
-      "tags": [
-        "cancer",
-        "immunology",
-        "machine-learning"
-      ]
-    },
-    {
-      "id": "909ef6a873f2",
-      "title": "Single-Cell and Spatial Transcriptomics Identify the Mono-S100A4 Subset Associated with Sepsis-Induced Lung Injury via the MIF-(CD74+CD44) Axis.",
-      "abstract": "In sepsis-induced immune dysregulation, monocytes contribute critically through their dual pro-inflammatory and immunosuppressive functions. Leading to multi-organ injury, the lungs are the most vulnerable initial target, dictating clinical outcomes. Thus, studying monocyte dynamics is essential to understand sepsis-induced acute lung injury (ALI) pathophysiology.",
-      "journal": "Journal of inflammation research",
-      "doi": "10.2147/JIR.S575566",
-      "pmid": "42454160",
-      "first_author": "Wang A",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.2147%2FJIR.S575566",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.2147%2FJIR.S575566"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42454160/"
-        }
-      ],
-      "summary": "This study uses single-cell and spatial transcriptomics to identify a specific monocyte subset (Mono-S100A4) that is associated with sepsis-induced lung injury. The subset appears to drive injury through the MIF-(CD74+CD44) signaling axis, offering a potential target for therapeutic intervention.",
-      "significance": "Medium",
-      "tags": [
-        "single-cell",
-        "spatial-omics",
-        "immunology"
-      ]
-    },
-    {
-      "id": "d14ed9116705",
-      "title": "GxP-Ready Single-Cell RNA-seq and Spatial Transcriptomics End-to-End Pipeline for Clinical Research.",
-      "abstract": "Single-cell/nucleus RNA-sequencing and Spatial Transcriptomics are powerful tools for investigating cellular heterogeneity and tissue architecture that have deepened our disease understanding. Their broader adoption in clinical and regulated settings, however, is hindered by regulatory requirements related to data integrity, regulatory compliance, reproducibility, and scalability. To address this gap, we developed NNclinSSOAP (Novo Nordisk Clinical Single-cell Spatial Omics Analytical Pipeline)-a modular, GxP-ready end-to-end computational pipeline that combines established single-cell workflo",
-      "journal": "Computational and structural biotechnology journal",
-      "doi": "10.34133/csbj.0164",
-      "pmid": "42454105",
-      "first_author": "Zaratiegui A",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.34133%2Fcsbj.0164",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.34133%2Fcsbj.0164"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42454105/"
-        }
-      ],
-      "summary": "This paper presents NNclinSSOAP, a modular computational pipeline designed to make single-cell RNA-seq and spatial transcriptomics analyses compliant with GxP regulatory standards for clinical research. The pipeline integrates established workflows to address challenges in data integrity, reproducibility, and scalability, aiming to facilitate the adoption of these technologies in regulated settings.",
-      "significance": "Medium",
-      "tags": [
-        "single-cell",
-        "spatial-omics",
-        "clinical"
-      ]
-    },
-    {
-      "id": "060fed7340c4",
-      "title": "Multi-Omics Analysis Reveals Nono-Kcnq2 Regulation of Neuronal Excitability in Chronic Constriction Injury-Induced Neuropathic Pain.",
-      "abstract": "Neuropathic pain, resulting from somatosensory nervous system damage or disease, is a debilitating condition marked by spontaneous pain, hypersensitivity, and sensory abnormalities. Neuropathic pain involves spinal neuronal hyperexcitability, yet its molecular basis remains poorly defined. We utilized a comprehensive multi-omics approach, incorporating proteomics, phosphoproteomics, concatenated tandem array of consensus transcription response elements, and both single-cell and spatial transcriptomics, to chart time-resolved adaptations in the L4 to L6 spinal cord of a chronic constriction inj",
-      "journal": "Research (Washington, D.C.)",
-      "doi": "10.34133/research.1366",
-      "pmid": "42453939",
-      "first_author": "Chen P",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.34133%2Fresearch.1366",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.34133%2Fresearch.1366"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42453939/"
-        }
-      ],
-      "summary": "This study uses a multi-omics approach (proteomics, phosphoproteomics, and transcriptomics) to investigate molecular changes in the spinal cord during neuropathic pain, identifying the Nono-Kcnq2 pathway as a key regulator of neuronal excitability. The findings provide new insights into the molecular basis of spinal neuron hyperexcitability in chronic pain conditions.",
+      "summary": "sNucConv is a deep-learning deconvolution tool that uses single-nucleus RNA-seq data from human adipose tissues to estimate cell-type proportions from bulk RNA-seq. It addresses the challenge that adipocytes are not captured by standard single-cell methods, and corrects for technical differences between snRNA-seq and bulk RNA-seq to improve accuracy.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
-        "proteomics",
-        "neuroscience"
-      ]
-    },
-    {
-      "id": "8ee4bf663ce9",
-      "title": "Integrative multi-omics analysis implicates the RNF40-LIMA1 axis in hepatocellular carcinoma progression and immune microenvironment remodeling.",
-      "abstract": "Ring Finger Protein 40 (RNF40), an E3 ubiquitin ligase, plays context-dependent roles in various cancers, serving as either a tumor suppressor or an oncogene. Critically, RNF40 targets LIM domain and actin-binding protein 1 (LIMA1) for degradation via the ubiquitin-proteasome pathway. LIMA1, which is involved in actin cytoskeleton organization, exerts opposing effects in different cancer types. However, the precise functional relationship between RNF40 and LIMA1 in Hepatocellular Carcinoma (HCC) remains poorly understood. Despite the efficacy of immune checkpoint inhibitors, intrinsic resistan",
-      "journal": "Frontiers in oncology",
-      "doi": "10.3389/fonc.2026.1846606",
-      "pmid": "42444812",
-      "first_author": "Liu Z",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffonc.2026.1846606",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffonc.2026.1846606"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42444812/"
-        }
-      ],
-      "summary": "This study identifies the RNF40-LIMA1 axis as a key driver of hepatocellular carcinoma (HCC) progression and immune microenvironment remodeling through integrative multi-omics analysis. RNF40 promotes HCC by degrading LIMA1, and this axis correlates with poor prognosis and altered immune cell infiltration, suggesting a potential target for overcoming immunotherapy resistance.",
-      "significance": "Medium",
-      "tags": [
-        "proteomics",
-        "cancer",
-        "immunology"
-      ]
-    },
-    {
-      "id": "fac72f88cbc1",
-      "title": "Spatial RNA velocity reveals cellular state transitions and prognostic markers in the melanoma microenvironment.",
-      "abstract": "The inability to infer transcriptional dynamics from high-resolution spatial transcriptomics represents a major computational challenge, as these datasets lack the spliced/unspliced mRNA counts required for conventional RNA velocity. To address this, we developed a novel computational framework that repurposes subcellular transcript localization-using nuclear and cytoplasmic RNAs as proxies for unspliced and spliced mRNA, respectively-for spatial RNA velocity analysis. By integrating this approach with scVelo's dynamical model, we inferred directional state transitions directly from melanoma s",
-      "journal": "Frontiers in oncology",
-      "doi": "10.3389/fonc.2026.1845013",
-      "pmid": "42440764",
-      "first_author": "Fang X",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffonc.2026.1845013",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffonc.2026.1845013"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42440764/"
-        }
-      ],
-      "summary": "This study introduces a computational framework that infers RNA velocity from spatial transcriptomics data by using nuclear and cytoplasmic RNA localization as proxies for unspliced and spliced mRNA. Applied to melanoma, the method successfully predicts cellular state transitions and identifies prognostic markers, addressing a key limitation in spatial transcriptomics analysis.",
-      "significance": "High",
-      "tags": [
-        "transcriptomics",
-        "spatial-omics",
-        "cancer"
-      ]
-    },
-    {
-      "id": "4f53b4f26357",
-      "title": "SPP1+ Macrophages Promote Immunosuppression in Post-TACE Hepatocellular Carcinoma Involving Lactate-Induced Lactylation and Potential SPP1-CD44 Signaling.",
-      "abstract": "Transarterial chemoembolization (TACE) treats inoperable liver cancer by inducing tumor ischemia, but subsequent hypoxia can promote an immunosuppressive microenvironment. This study explores how TACE-related hypoxia influences immune cells through lactate metabolism and lactylation.",
-      "journal": "Journal of hepatocellular carcinoma",
-      "doi": "10.2147/JHC.S603485",
-      "pmid": "42438784",
-      "first_author": "Wang H",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.2147%2FJHC.S603485",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.2147%2FJHC.S603485"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42438784/"
-        }
-      ],
-      "summary": "This study reveals that TACE treatment for liver cancer creates a hypoxic environment that increases lactate production, which in turn promotes immunosuppressive SPP1+ macrophages via lactylation. These macrophages then suppress anti-tumor immunity through SPP1-CD44 signaling, potentially explaining why TACE can sometimes worsen outcomes.",
-      "significance": "Medium",
-      "tags": [
-        "cancer",
-        "immunology",
-        "transcriptomics"
+        "tool",
+        "methodology"
       ]
     }
   ]
