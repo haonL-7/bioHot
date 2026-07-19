@@ -9,7 +9,23 @@ project_home = "/home/haonL/evidence-app"
 if project_home not in sys.path:
     sys.path.insert(0, project_home)
 
-os.environ["DEEPSEEK_API_KEY"] = "REDACTED-ROTATE-YOUR-KEY"
+# ⚠️  DO NOT hardcode API keys here. Set via PythonAnywhere dashboard:
+#     "Web" tab → "Environment variables" → DEEPSEEK_API_KEY=your-key
+#     Or create a .env file in /home/haonL/evidence-app/
+if not os.environ.get("DEEPSEEK_API_KEY"):
+    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                if line.startswith("DEEPSEEK_API_KEY="):
+                    os.environ["DEEPSEEK_API_KEY"] = line.split("=", 1)[1].strip()
+                    break
+if not os.environ.get("DEEPSEEK_API_KEY"):
+    raise RuntimeError(
+        "DEEPSEEK_API_KEY is required. "
+        "Set it via PythonAnywhere dashboard (Web → Environment variables) "
+        "or create /home/haonL/evidence-app/.env with DEEPSEEK_API_KEY=your-key"
+    )
 
 # Step-by-step with clear error reporting
 import_error = None

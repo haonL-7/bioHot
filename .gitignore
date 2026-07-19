@@ -9,10 +9,15 @@ __pycache__/
 *$py.class
 *.so
 
-# 环境变量
+# 环境变量（⚠️ 包含 API Key，绝不能提交）
 .env
 .env.local
 .env.*.local
+.env.production
+.env.development
+
+# ⚠️ 不提交 .env.example 以外的任何 .env 文件
+# .env.example 是唯一允许提交的模板文件
 
 # IDE 配置
 .vscode/

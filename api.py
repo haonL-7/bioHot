@@ -4,11 +4,53 @@
 """
 import json
 import os
-from fastapi import FastAPI, HTTPException, Query
+import time
+from collections import defaultdict
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, HTMLResponse
 from typing import Optional
 from openai import OpenAI
+
+# ==================== 速率限制 ====================
+
+# Per-IP rate limiter: max 10 AI analysis calls per IP per day
+# (the expensive DeepSeek endpoint)
+_ai_rate_window = 86400  # 24 hours in seconds
+_ai_rate_limit = 10       # max calls per window
+_ai_usage = defaultdict(list)  # IP → [timestamps]
+
+
+def _check_ai_rate(ip: str) -> tuple[bool, int]:
+    """Returns (allowed, remaining_calls). Cleans expired entries."""
+    now = time.time()
+    window_start = now - _ai_rate_window
+    _ai_usage[ip] = [t for t in _ai_usage[ip] if t > window_start]
+    used = len(_ai_usage[ip])
+    remaining = max(0, _ai_rate_limit - used)
+    return (used < _ai_rate_limit, remaining)
+
+
+def _record_ai_call(ip: str):
+    _ai_usage[ip].append(time.time())
+
+
+# Per-IP general rate limiter: 60 requests per minute for all endpoints
+_general_rate_window = 60
+_general_rate_limit = 60
+_general_usage = defaultdict(list)
+
+
+def _check_general_rate(ip: str) -> bool:
+    now = time.time()
+    window_start = now - _general_rate_window
+    _general_usage[ip] = [t for t in _general_usage[ip] if t > window_start]
+    return len(_general_usage[ip]) < _general_rate_limit
+
+
+def _record_general_call(ip: str):
+    _general_usage[ip].append(time.time())
+
 
 # ==================== 初始化 FastAPI 应用 ====================
 app = FastAPI(
@@ -17,11 +59,20 @@ app = FastAPI(
     version="2.0.0"
 )
 
+# ⚠️  CORS: Only allow your own domains, not "*"
+ALLOWED_ORIGINS = [
+    "https://haonl-7.github.io",
+    "https://haonl-7.github.io/bioHot",
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET"],
     allow_headers=["*"],
 )
 
@@ -266,6 +317,31 @@ def analyze_with_deepseek(question: str, kb_context: str) -> dict:
         }
 
 
+# ==================== 全局中间件：通用速率限制 ====================
+
+@app.middleware("http")
+async def rate_limit_middleware(request: Request, call_next):
+    ip = request.client.host if request.client else "unknown"
+
+    # Skip rate limit for static root path
+    if request.url.path == "/":
+        return await call_next(request)
+
+    if not _check_general_rate(ip):
+        return JSONResponse(
+            status_code=429,
+            content={
+                "success": False,
+                "error": "请求过于频繁，请稍后再试（每分钟最多 60 次请求）",
+                "retry_after_seconds": 60,
+            },
+            headers={"Retry-After": "60"},
+        )
+
+    _record_general_call(ip)
+    return await call_next(request)
+
+
 # ==================== 全局异常处理 ====================
 
 @app.exception_handler(Exception)
@@ -477,13 +553,32 @@ async def experiment_advice(query: str = Query(..., description="搜索关键词
 
 
 @app.get("/api/ai_analyze")
-async def ai_analyze(query: str = Query(..., description="需要 AI 分析的关键词")):
+async def ai_analyze(request: Request, query: str = Query(..., description="需要 AI 分析的关键词")):
     """
     AI 深度分析接口 — DeepSeek 增强
     1. 先查本地知识库
     2. 无论是否命中，都调用 DeepSeek 进行增强分析
     3. 返回结构化的证据评估 JSON
+
+    限流：每 IP 每天最多 10 次（DeepSeek API 调用费用较高）
     """
+    ip = request.client.host if request.client else "unknown"
+
+    # AI-specific rate check (10/day per IP)
+    allowed, remaining = _check_ai_rate(ip)
+    if not allowed:
+        return JSONResponse(
+            status_code=429,
+            content={
+                "success": False,
+                "error": f"AI 分析已达到每日限额（{_ai_rate_limit} 次/天）。请明天再试。",
+                "remaining": 0,
+                "limit_per_day": _ai_rate_limit,
+            },
+        )
+
+    _record_ai_call(ip)
+
     # Step 1: 查询本地知识库
     local_match = search_knowledge(query)
 
@@ -498,6 +593,10 @@ async def ai_analyze(query: str = Query(..., description="需要 AI 分析的关
         "success": True,
         "query": query,
         "ai_analysis": ai_result,
+        "rate_limit": {
+            "remaining": remaining - 1,
+            "limit_per_day": _ai_rate_limit,
+        },
         "local_match": {
             "found": local_match is not None,
             "name": local_match.get("name", "") if local_match else "",
