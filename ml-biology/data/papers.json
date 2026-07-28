@@ -1,7 +1,7 @@
 {
   "channel": "ml-biology",
-  "generated_at": "2026-07-27T20:20:06.986650",
-  "count": 59,
+  "generated_at": "2026-07-28T20:13:13.799825",
+  "count": 60,
   "papers": [
     {
       "id": "47312667dc8d",
@@ -26,12 +26,104 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42502841/"
         }
       ],
-      "summary": "scYeast is the first foundational AI model specifically designed for yeast single-cell transcriptomics, incorporating biological prior knowledge about transcriptional regulation into its architecture. Unlike existing models that focus on human or mouse cells, scYeast uses an asymmetric parallel Transformer to embed regulatory information directly into the attention mechanism, improving its ability to analyze yeast single-cell data.",
-      "significance": "Medium",
+      "summary": "scYeast is the first foundational cell model for yeast single-cell transcriptomics, using a novel asymmetric parallel architecture to embed biological prior knowledge into the Transformer's attention mechanism. This approach leverages transcriptional regulatory information during training, addressing the gap in large-scale pre-trained models for model organisms like yeast.",
+      "significance": "High",
       "tags": [
         "single-cell",
         "transcriptomics",
         "machine-learning"
+      ]
+    },
+    {
+      "id": "e4b8b7ab2d69",
+      "title": "CRAFITY and PALBI Define a Machine Learning-Supported Prognostic Framework in Hepatocellular Carcinoma-Data from an Eastern European Cohort with Low Macrotrabecular-Massive Prevalence.",
+      "abstract": "Background and Aims: To develop an inclusive, predictive framework for hepatocellular carcinoma patients, beyond what the Barcelona Clinic Liver Cancer (BCLC) staging system captures alone, non-invasive scores have emerged as potential contributors. Among them, the CRAFITY score (CRP and AFP in ImmunoTherapY), originally developed for immunotherapy-treated HCC populations, and the Platelet-Albumin-Bilirubin (PALBI) score have shown promising prognostic performance in selected cohorts. Likewise, the macrotrabecular-massive (MTM) histological subtype has been identified as a strong independent p",
+      "journal": "Diseases (Basel, Switzerland)",
+      "doi": "10.3390/diseases14070234",
+      "pmid": "42505562",
+      "first_author": "Grapa C",
+      "pub_date": "2026-Jun-29",
+      "source": "PubMed",
+      "url": "https://doi.org/10.3390%2Fdiseases14070234",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3390%2Fdiseases14070234"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42505562/"
+        }
+      ],
+      "summary": "This study develops a machine learning-supported prognostic framework for hepatocellular carcinoma (HCC) by combining the CRAFITY and PALBI scores, using data from an Eastern European cohort with low prevalence of the macrotrabecular-massive subtype. The framework aims to improve upon the standard BCLC staging system for predicting patient outcomes.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "cancer",
+        "clinical"
+      ]
+    },
+    {
+      "id": "fc50d1befae3",
+      "title": "A hybrid experimental and machine learning framework for designing and predicting compressive strength of ultra-high-performance concrete.",
+      "abstract": "Ultra-high-performance concrete (UHPC) offers exceptional mechanical and durability properties but often relies on quartz powder, raising sustainability and occupational health concerns. This study introduces an integrated experimental-computational framework for predicting the compressive strength of UHPC and developing quartz-free mixtures. Experimentally, the effects of mixing sequence, sand characteristics, superplasticizer chemistry, and curing regime were investigated, leading to a quartz-free UHPC achieving 136 MPa at 28 days under heat-curing. A dataset of 550 UHPC compressive strength",
+      "journal": "Scientific reports",
+      "doi": "10.1038/s41598-026-62257-0",
+      "pmid": "42509266",
+      "first_author": "Ayman M",
+      "pub_date": "2026-Jul-28",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1038%2Fs41598-026-62257-0",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1038%2Fs41598-026-62257-0"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42509266/"
+        }
+      ],
+      "summary": "This study presents a hybrid experimental and machine learning framework to predict the compressive strength of ultra-high-performance concrete (UHPC) and develop quartz-free mixtures. By testing mixing sequences, sand types, superplasticizers, and curing methods, the authors created a quartz-free UHPC reaching 136 MPa, using a dataset of 550 samples for model training.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "tool"
+      ]
+    },
+    {
+      "id": "366bff929840",
+      "title": "Haplotypes and Machine Learning Improve Genomic Prediction in Brassica napus.",
+      "abstract": "Genomic selection (GS) is a crop and livestock improvement method suited for predicting complex agronomical traits, while genomic prediction (GP) is the development of GS models prior to their practical use in breeding programs. One of the challenges in GP is accounting for how complex genomic interactions, such as epistasis, affect the resulting phenotype. Incorporating haplotypes and Machine Learning (ML) into GP models are two methods for accounting for local epistasis and non-linear relationships. This study compared linear- and ML-GP models for single nucleotide polymorphisms (SNPs) and h",
+      "journal": "Plant biotechnology journal",
+      "doi": "10.1111/pbi.70730",
+      "pmid": "42503843",
+      "first_author": "MacNish TR",
+      "pub_date": "2026-Jul-26",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1111%2Fpbi.70730",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1111%2Fpbi.70730"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42503843/"
+        }
+      ],
+      "summary": "This study shows that using haplotypes and machine learning improves genomic prediction accuracy in rapeseed (Brassica napus) compared to standard SNP-based models. By capturing local epistasis and non-linear relationships, these approaches better account for complex genetic interactions affecting agronomic traits.",
+      "significance": "Medium",
+      "tags": [
+        "genomics",
+        "machine-learning",
+        "plants"
       ]
     },
     {
@@ -57,7 +149,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42502133/"
         }
       ],
-      "summary": "This paper presents Image2Count, a deep learning model that predicts single-cell gene expression from low-plex immunofluorescence images, aiming to make spatial omics analysis more clinically accessible and affordable. The model learns visual representations of the tumor immune microenvironment, potentially enabling precision oncology by guiding treatment decisions without the high costs of high-plex spatial methods.",
+      "summary": "This paper presents Image2Count, a deep learning model that predicts single-cell gene expression from low-plex immunofluorescence images, enabling cost-effective spatial profiling of the tumor immune microenvironment. The approach aims to bridge the gap between high-plex spatial omics and clinical applicability, potentially guiding precision oncology treatment decisions.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -88,7 +180,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42501604/"
         }
       ],
-      "summary": "The MULTIPREVENT project proposes using low-dose chest CT scans combined with biomarkers, functional tests, and genomic profiling to screen for multiple smoking-related diseases at once, including lung cancer, heart disease, COPD, osteoporosis, and diabetes. This integrated approach could enable earlier detection and risk prediction of multimorbidity in adults.",
+      "summary": "The MULTIPREVENT project proposes using low-dose chest CT scans combined with biomarkers, functional tests, and genetic profiling to screen for multiple smoking-related diseases simultaneously, including lung cancer, heart disease, COPD, osteoporosis, and diabetes. This integrated approach aims to provide a more comprehensive health assessment and risk prediction for multimorbidity in adults.",
       "significance": "Medium",
       "tags": [
         "clinical",
@@ -119,12 +211,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42498094/"
         }
       ],
-      "summary": "This study uses genomic data from human, animal, and environmental sources to map β-lactam resistance patterns in E. coli globally. The findings highlight how resistance spreads across different reservoirs, which can improve prediction and management of antimicrobial resistance.",
+      "summary": "This study uses genomic data from human, animal, and environmental sources to map β-lactam resistance patterns in E. coli globally, aiming to improve antimicrobial resistance prediction and management through a One-Health approach.",
       "significance": "Medium",
       "tags": [
         "genomics",
         "microbiology",
         "clinical"
+      ]
+    },
+    {
+      "id": "e0d922a114b0",
+      "title": "SimBinder-IF: Structure-Aware Antibody Affinity Optimization via Efficient Preference Learning.",
+      "abstract": "Antibody therapeutic efficacy depends on high-affinity target engagement, yet laboratory affinity maturation is slow and costly. Most protein language models (PLMs) lack explicit training for high affinity, and current preference optimization methods introduce computational overhead without clear affinity improvements. Therefore, structure-aware and parameter-efficient approaches for antibody affinity optimization are urgently needed.",
+      "journal": "Bioinformatics (Oxford, England)",
+      "doi": "10.1093/bioinformatics/btag548",
+      "pmid": "42498639",
+      "first_author": "Zhao X",
+      "pub_date": "2026-Jul-24",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag548",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag548"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42498639/"
+        }
+      ],
+      "summary": "This paper introduces SimBinder-IF, a structure-aware method that uses efficient preference learning to optimize antibody affinity without the computational overhead of current approaches. It addresses the need for faster, cheaper computational affinity maturation by explicitly training for high-affinity target engagement.",
+      "significance": "Medium",
+      "tags": [
+        "deep-learning",
+        "protein-structure",
+        "drug-discovery"
       ]
     },
     {
@@ -150,12 +273,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42494109/"
         }
       ],
-      "summary": "This study systematically evaluates the performance of large language models (LLMs) on bio-molecular modeling tasks across different molecular scales, finding that while LLMs show promise for certain problems, they have significant limitations in handling multi-scale biological complexity. The authors also assess tool-augmented LLMs and identify key gaps that need to be addressed for reliable scientific discovery.",
+      "summary": "This study systematically evaluates the performance of large language models (LLMs) across different scales of bio-molecular modeling, from molecular to systems level, and finds that while LLMs show promise, their current capabilities are limited and inconsistent, especially for complex multi-scale problems. The authors also assess tool-augmented LLMs and highlight significant gaps that need to be addressed for reliable scientific discovery.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
         "LLM",
-        "protein-structure"
+        "structural-biology"
       ]
     },
     {
@@ -181,10 +304,10 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42489519/"
         }
       ],
-      "summary": "This paper presents EscaPRRS-ORF5, a new computational framework that integrates structural and evolutionary information to predict which variants of the PRRS virus are most likely to escape the immune system. By incorporating host-virus interaction constraints, the method improves upon existing tools that rely solely on sequence data, offering better prioritization of high-risk viral mutants for vaccine design.",
+      "summary": "This paper presents EscaPRRS-ORF5, a new computational framework that integrates structural biology and evolutionary analysis to predict which variants of the PRRS virus are most likely to evade the immune system. By incorporating host-virus interaction constraints like receptor binding, the tool improves upon sequence-only methods for prioritizing high-risk viral mutants. This approach could help guide vaccine design and surveillance for this economically important swine pathogen.",
       "significance": "Medium",
       "tags": [
-        "machine-learning",
+        "structural-biology",
         "evolution",
         "tool"
       ]
@@ -212,7 +335,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42489338/"
         }
       ],
-      "summary": "This paper introduces a deep learning framework specifically designed to predict O-glycopeptide tandem mass spectra, addressing a major challenge in O-glycoproteomics where existing methods for N-glycopeptides fall short. The model improves the accuracy of O-glycopeptide identification, enabling more comprehensive characterization of this complex post-translational modification. This advance has the potential to significantly enhance O-glycoproteomics analysis for studying glycosylation in health and disease.",
+      "summary": "This paper presents a deep learning model specifically designed to predict O-glycopeptide tandem mass spectra, addressing a major challenge in O-glycoproteomics where existing methods for N-glycopeptides fail. The model improves the accuracy of O-glycopeptide identification, enabling more comprehensive characterization of this important but difficult-to-analyze protein modification.",
       "significance": "High",
       "tags": [
         "deep-learning",
@@ -221,65 +344,34 @@
       ]
     },
     {
-      "id": "865b711a974a",
-      "title": "clinTALL: machine learning-driven multimodal subtype classification and treatment outcome prediction in pediatric T-ALL.",
-      "abstract": "Childhood T-lineage acute lymphoblastic leukemia (T-ALL) is an aggressive hematologic malignancy with poor prognosis. Differently from B-cell precursor ALL, T-ALL lacks effective risk stratification strategies. A recent study has integrated whole genome and whole transcriptome data to define 17 distinct molecular subtypes with prognostic significance. However, clinical translation of this knowledge remains challenging due to the complexity of interpreting high-dimensional multi-omics-based data.",
-      "journal": "Genome medicine",
-      "doi": "10.1186/s13073-026-01733-8",
-      "pmid": "42487139",
-      "first_author": "Stoiber L",
+      "id": "d84dcd898aac",
+      "title": "Evolutionary, Neural, or LLM-Driven Heuristic Generation? A Unified Ant Colony Optimization Benchmark for Nature-Inspired Routing Heuristics on the TSP and CVRP.",
+      "abstract": "Biomimetic optimization transfers biological information-processing mechanisms into computational systems. Ant colony optimization (ACO) is a canonical example: artificial ants functionally abstract pheromone-mediated stigmergy, decentralized exploration, trail decay through algorithmic evaporation, and adaptive path reinforcement. Building on this functional biological analogue, we present a controlled cross-paradigm evaluation of routing-heuristic generation. A standardized interface embeds human-designed rules, the genetic programming hyper-heuristic GHPP, a resource-constrained DeepACO-MLP",
+      "journal": "Biomimetics (Basel, Switzerland)",
+      "doi": "10.3390/biomimetics11070516",
+      "pmid": "42505549",
+      "first_author": "Wu H",
       "pub_date": "2026-Jul-22",
       "source": "PubMed",
-      "url": "https://doi.org/10.1186%2Fs13073-026-01733-8",
+      "url": "https://doi.org/10.3390%2Fbiomimetics11070516",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.1186%2Fs13073-026-01733-8"
+          "url": "https://doi.org/10.3390%2Fbiomimetics11070516"
         },
         {
           "type": "pubmed",
           "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42487139/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42505549/"
         }
       ],
-      "summary": "This paper presents clinTALL, a machine learning framework that integrates multi-omics data to classify molecular subtypes and predict treatment outcomes in pediatric T-ALL, a leukemia type lacking effective risk stratification. The model aims to translate complex genomic and transcriptomic data into clinically actionable insights, potentially improving prognosis and treatment decisions for this aggressive cancer.",
+      "summary": "This study compares different methods for generating routing heuristics, including human-designed rules, evolutionary algorithms, and neural networks, using ant colony optimization as a benchmark. The authors find that no single approach dominates, with each method showing strengths under different constraints, highlighting the value of cross-paradigm evaluation.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "cancer",
-        "transcriptomics"
-      ]
-    },
-    {
-      "id": "5726dcb87170",
-      "title": "Interpretable prediction of DNA replication origins in S. cerevisiae using DNABERT and DNABERT-2.",
-      "abstract": "DNA replication is a biological process in which a single DNA molecule is duplicated, initiating from multiple genomic sites known as replication origins. Identifying replication origins and analyzing their underlying base sequence composition is crucial for understanding the mechanisms of DNA replication. Although there are various machine learning and deep learning approaches for origin prediction, many rely on labor intensive feature engineering or lack interpretability. We fine-tune two genome-based pretrained language models, DNABERT and DNABERT-2, to predict replication origins in buddin",
-      "journal": "BMC bioinformatics",
-      "doi": "10.1186/s12859-026-06562-5",
-      "pmid": "42487110",
-      "first_author": "Piroozeh Z",
-      "pub_date": "2026-Jul-22",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1186%2Fs12859-026-06562-5",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1186%2Fs12859-026-06562-5"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42487110/"
-        }
-      ],
-      "summary": "This study fine-tunes two genome-based language models, DNABERT and DNABERT-2, to predict DNA replication origins in budding yeast, achieving accurate predictions without manual feature engineering. The models also provide interpretability, revealing key sequence features associated with replication origins.",
-      "significance": "Medium",
-      "tags": [
-        "machine-learning",
-        "deep-learning",
-        "genomics"
+        "evolution",
+        "methodology"
       ]
     },
     {
@@ -305,7 +397,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42485426/"
         }
       ],
-      "summary": "This paper presents TWARDIS, a large vision model framework for automated analysis of C. elegans, enabling both static morphometry and dynamic neural activity quantification. The framework overcomes limitations of traditional segmentation methods by being robust to variations in imaging conditions, noise, and overlaps, thereby increasing throughput and reducing bias.",
+      "summary": "This paper presents TWARDIS, a large vision model framework that automates the analysis of C. elegans from static morphology to dynamic neural activity, overcoming limitations of traditional segmentation methods that are sensitive to imaging conditions. The framework enables high-throughput, unbiased quantitative phenotyping by handling noise, overlaps, and uneven illumination without requiring expensive hardware or extensive manual curation.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -336,7 +428,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42495397/"
         }
       ],
-      "summary": "EPIC is a new machine learning framework that predicts how enzyme activity is modulated by its own reaction products, a phenomenon that is often overlooked by computational tools. By modeling enzyme-product interactions, EPIC can classify and predict enzyme response behaviors without requiring resource-intensive experimental assays, potentially accelerating enzyme mining and engineering.",
+      "summary": "The authors present EPIC, a machine learning framework that predicts how enzyme activity is modulated by its own reaction products, specifically for β-glucosidases. This tool addresses the gap in computational methods for modeling enzyme-product interactions, which are typically characterized through resource-intensive experiments. EPIC could accelerate enzyme mining and engineering by providing a rapid, in silico alternative for predicting product-dependent behaviors.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -367,10 +459,10 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42495285/"
         }
       ],
-      "summary": "This paper presents a new deep learning method combining LSTM and GRU networks with multi-channel processing to improve fault diagnosis in chemical processes by reducing noise and better extracting temporal features. The approach addresses limitations of traditional manual feature engineering and existing deep learning methods by offering more flexible architecture and multiscale information integration.",
+      "summary": "This paper proposes a noise reduction method combining multi-channel LSTM and GRU networks for fault diagnosis in chemical processes, addressing limitations of manual feature engineering and improving robustness to signal noise. The approach enhances temporal feature extraction and multiscale information integration compared to traditional deep learning methods.",
       "significance": "Low",
       "tags": [
-        "deep-learning",
+        "machine-learning",
         "methodology"
       ]
     },
@@ -397,7 +489,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42482119/"
         }
       ],
-      "summary": "DynaTCR is a new computational method that improves prediction of how T-cell receptors bind to antigens by using a graph-based learning approach that dynamically selects hard negative examples and reduces over-smoothing. This addresses key challenges in the field, such as limited training data and noise from unobserved binding pairs, potentially accelerating immunotherapy development.",
+      "summary": "DynaTCR is a new computational method that improves prediction of how T-cell receptors bind to antigenic peptides, a key step in adaptive immunity. It uses a graph-based approach with dynamic hard-negative sampling to overcome problems like limited training data and false-negative noise, leading to more accurate predictions for immunotherapy development.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -428,11 +520,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42480528/"
         }
       ],
-      "summary": "MSA Pairformer is a new protein language model that extends the ability to model protein evolution from single proteins to protein-protein interactions, using a bidirectional refinement approach inspired by AlphaFold2/3. This enables more accurate modeling of coevolution in protein complexes, which is crucial for understanding and engineering molecular assemblies.",
+      "summary": "MSA Pairformer is a new protein language model that extends the capabilities of models like AlphaFold to accurately model the evolution of protein-protein interactions by using bidirectional refinement between sequence and pairwise residue representations. This allows for better characterization and engineering of molecular assemblies, overcoming a key challenge in the field.",
       "significance": "High",
       "tags": [
-        "protein-structure",
         "machine-learning",
+        "protein-structure",
         "methodology"
       ]
     },
@@ -459,12 +551,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42480065/"
         }
       ],
-      "summary": "This paper introduces a protein language model that uses biologically induced sparse attention to capture interactions across entire viral genomes, overcoming the limitation of traditional models that only analyze individual proteins. By extending the model's context to a genomic scale, it improves predictions of protein function and interactions in viruses.",
+      "summary": "This paper introduces a protein language model that uses biologically induced sparse attention to capture interactions across entire viral genomes, overcoming the limitation of standard models that only analyze individual proteins. By extending the model's context to a genomic scale, it improves predictions of protein function and interactions in viruses.",
       "significance": "High",
       "tags": [
         "deep-learning",
         "genomics",
-        "machine-learning"
+        "protein-structure"
       ]
     },
     {
@@ -490,11 +582,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42477155/"
         }
       ],
-      "summary": "Researchers developed HPSurv, a histopathomics-based system that uses whole-slide images to predict survival in pancreatic ductal adenocarcinoma by quantifying tumor spatial heterogeneity. The system integrates pathological tissue classification, spatial heterogeneity characterization, and a survival Transformer model to improve prognostic accuracy.",
+      "summary": "This study introduces HPSurv, a histopathomics-based system that uses whole-slide images to predict survival in pancreatic ductal adenocarcinoma by quantifying tumor spatial heterogeneity. The system integrates pathological tissue classification, spatial heterogeneity characterization, and a survival Transformer model to improve prognostic accuracy.",
       "significance": "Medium",
       "tags": [
-        "machine-learning",
         "cancer",
+        "machine-learning",
         "tool"
       ]
     },
@@ -521,11 +613,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42469931/"
         }
       ],
-      "summary": "This paper presents SEVA, a new computational tool that integrates structural and evolutionary features to simultaneously predict virulence factors and antibiotic resistance genes in pathogens. The method aims to reduce false negative rates and improve detection beyond simple sequence identity to known reference databases, which could enhance pathogen surveillance efforts.",
+      "summary": "This paper presents SEVA, a new computational tool that integrates structural and evolutionary features to simultaneously predict virulence factors and antibiotic resistance genes from genomic data. By combining these feature types, SEVA achieves lower false negative rates and better detection of novel variants compared to existing methods that rely solely on sequence identity to known databases.",
       "significance": "Medium",
       "tags": [
-        "machine-learning",
         "tool",
+        "machine-learning",
         "microbiology"
       ]
     },
@@ -552,7 +644,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42491891/"
         }
       ],
-      "summary": "This paper presents a new hybrid deep learning model for medium-term wind speed forecasting that combines complementary feature extraction with sequence modeling. The model achieves high accuracy (R² > 0.97) and reduces error by over 20% compared to existing methods, which could improve wind farm operations.",
+      "summary": "This paper presents a new deep learning framework that combines complementary feature extraction and sequence modeling to improve medium-term wind speed forecasting. The model achieves high accuracy (R² > 0.97) and reduces error by over 20% compared to existing methods across multiple datasets.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -582,7 +674,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42491743/"
         }
       ],
-      "summary": "EpitopeGen is a transformer-based model that predicts which epitopes (antigen fragments) a T cell receptor (TCR) likely recognizes, directly from TCR sequence data. By generating candidate epitope sequences and searching billions of possible TCR-epitope pairs, it enables identification of T cell groups with shared antigen specificity without costly lab experiments. This approach could accelerate immune profiling and vaccine development.",
+      "summary": "EpitopeGen is a transformer-based model that predicts which epitopes (antigen fragments) a T cell receptor (TCR) is likely to recognize, using only the TCR sequence. By generating candidate epitopes from TCR data, it enables large-scale identification of T cell groups with shared antigen specificity without costly lab experiments. This approach could accelerate immune profiling for vaccine development and disease research.",
       "significance": "High",
       "tags": [
         "machine-learning",
@@ -613,12 +705,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42475685/"
         }
       ],
-      "summary": "This study identifies two systematic biases in SegmentNT, a nucleotide transformer model: prediction outputs vary depending on input sequence length and the position of nucleotides within the sequence. The authors show that these biases can be standardized to improve prediction consistency, and suggest similar issues may affect other genomic language models.",
+      "summary": "This study identifies systematic biases in SegmentNT, a nucleotide transformer model, showing that input sequence length and nucleotide position within the sequence affect prediction probabilities. The authors demonstrate that these biases can be standardized to improve prediction consistency, with implications for other nucleotide transformer models.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "genomics",
-        "LLM"
+        "deep-learning",
+        "genomics"
       ]
     },
     {
@@ -644,7 +736,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42469205/"
         }
       ],
-      "summary": "EnzGFM is a new protein language model specifically designed for enzymes, using a Mamba-Transformer hybrid architecture and hierarchical pre-training to better capture enzyme-specific patterns. It outperforms general-purpose Transformer-based models on catalytic property prediction tasks while being 2-5 times faster, making it more suitable for high-throughput screening.",
+      "summary": "EnzGFM is a new protein language model specifically designed for enzymes, using a hybrid Mamba-Transformer architecture and hierarchical pre-training to better predict catalytic properties. It outperforms general-purpose Transformer-based models by 2-5 times in speed while maintaining higher accuracy across enzyme property benchmarks.",
       "significance": "High",
       "tags": [
         "machine-learning",
@@ -675,7 +767,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42461443/"
         }
       ],
-      "summary": "This paper introduces a new computational method that uses specificity-driven cell-gene graph learning to identify rare cell states from single-cell and spatial transcriptomic data. Unlike traditional approaches that rely on cell-cell similarity and can obscure rare populations, this method preserves subtle transcriptional signatures, making it particularly useful for detecting rare cells involved in development and disease.",
+      "summary": "This paper introduces a new computational method that uses specificity-driven cell-gene graph learning to better identify rare cell states from single-cell and spatial transcriptomic data. Unlike traditional approaches that rely on cell-cell similarity and can obscure rare populations, this method preserves subtle transcriptional signatures, making it particularly useful for detecting rare cells involved in development, differentiation, and disease.",
       "significance": "High",
       "tags": [
         "single-cell",
@@ -706,7 +798,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42458575/"
         }
       ],
-      "summary": "This study evaluates various deep learning architectures for predicting how ligands interact with neurologically relevant GPCRs, a key challenge in drug discovery and toxicology. The authors compare models that jointly encode protein and ligand representations to address issues like receptor flexibility and ligand selectivity.",
+      "summary": "This study evaluates various deep learning architectures for predicting how ligands interact with neurologically relevant GPCRs, a key class of drug targets. The authors compare different drug-target interaction models that jointly encode protein and ligand representations, addressing challenges like receptor flexibility and ligand selectivity. The findings help guide the selection of computational approaches for GPCR-focused drug discovery and toxicology.",
       "significance": "Medium",
       "tags": [
         "deep-learning",
@@ -715,34 +807,65 @@
       ]
     },
     {
-      "id": "18799f179897",
-      "title": "Construction and validation of a phenotypic prediction model for bacterial gentamicin resistance using deep learning with gene sequences.",
-      "abstract": "The emergence of bacterial resistance to antibiotics poses a significant threat to human health; thus, there is an urgent need for new strategies in understanding the mechanisms of resistance and further fast prediction of it. Deep learning models offer promising solutions through analyzing genetic sequences in the prediction of bacterial resistance patterns. This study develops and validates a transformer-based deep learning model, DNABERT-2-117M, to predict gentamicin resistance in Klebsiella pneumoniae directly from whole-genome sequences. Our central methodological advance investigates the",
-      "journal": "Microbiology spectrum",
-      "doi": "10.1128/spectrum.01906-25",
-      "pmid": "42454932",
-      "first_author": "Li J",
-      "pub_date": "2026-Jul-15",
+      "id": "354b23c0d634",
+      "title": "Causality-Guided Machine Learning for Retinoblastoma Survival Prediction: Development and Comparative Evaluation Using SEER.",
+      "abstract": "Background: Retinoblastoma (RB) is a rare pediatric malignancy characterized by small sample sizes and low event rates, where conventional association-driven feature selection may lead to unstable models, overadjustment, and limited generalizability. However, existing survival prediction studies lack a careful treatment of feature selection that accounts for underlying causal structure. Objectives: To develop and validate a causality-guided machine learning model for RB survival prediction by jointly incorporating survival time and survival status as outcome variables. Methods: We analyzed 101",
+      "journal": "Medical sciences (Basel, Switzerland)",
+      "doi": "10.3390/medsci14030389",
+      "pmid": "42506358",
+      "first_author": "Chen S",
+      "pub_date": "2026-Jul-14",
       "source": "PubMed",
-      "url": "https://doi.org/10.1128%2Fspectrum.01906-25",
+      "url": "https://doi.org/10.3390%2Fmedsci14030389",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.1128%2Fspectrum.01906-25"
+          "url": "https://doi.org/10.3390%2Fmedsci14030389"
         },
         {
           "type": "pubmed",
           "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42454932/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42506358/"
         }
       ],
-      "summary": "This study developed and validated a transformer-based deep learning model (DNABERT-2-117M) that predicts gentamicin resistance in Klebsiella pneumoniae directly from whole-genome sequences. The approach offers a fast, sequence-based alternative to traditional phenotypic testing for antibiotic resistance prediction.",
+      "summary": "This study develops a causality-guided machine learning model for retinoblastoma survival prediction, addressing the limitations of conventional association-driven feature selection in rare pediatric cancers. By incorporating causal structure into feature selection and jointly modeling survival time and status, the approach improves model stability and generalizability compared to standard methods.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "deep-learning",
-        "genomics"
+        "cancer",
+        "methodology"
+      ]
+    },
+    {
+      "id": "efcad0c9a17a",
+      "title": "Recent Progress in Artificial Intelligence in Biosensor Development: From Bioprobe Design to Fabrication and Signal Analysis.",
+      "abstract": "The coronavirus disease 2019 (COVID-19) pandemic highlighted the need for rapid, accurate, and point-of-care diagnostic technologies, accelerating interest in biosensors as next-generation analytical platforms. However, biosensor performance is governed by a connected sequence of processes, including bioprobe-target recognition, sensor fabrication, structural optimization, and signal interpretation. Because these processes involve multiple interacting variables, conventional empirical approaches often have limitations in efficiently optimizing biosensor performance and interpreting complex ana",
+      "journal": "Biosensors",
+      "doi": "10.3390/bios16070382",
+      "pmid": "42505458",
+      "first_author": "Han Y",
+      "pub_date": "2026-Jul-13",
+      "source": "PubMed",
+      "url": "https://doi.org/10.3390%2Fbios16070382",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3390%2Fbios16070382"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42505458/"
+        }
+      ],
+      "summary": "This review discusses how artificial intelligence can optimize biosensor development across the entire pipeline—from designing bioprobes and fabricating sensors to interpreting complex signals—overcoming limitations of conventional empirical methods. The authors highlight AI's potential to accelerate the creation of rapid, accurate point-of-care diagnostics, as underscored by the COVID-19 pandemic.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "tool",
+        "review"
       ]
     },
     {
@@ -768,7 +891,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42465931/"
         }
       ],
-      "summary": "This study evaluates the diagnostic reasoning of large language models (LLMs) and neurologists against a neuropathologically confirmed ground truth dataset, rather than relying on clinician consensus. The findings highlight the limitations of current AI benchmarks in neurology and underscore the need for biologically validated datasets to assess clinical AI performance.",
+      "summary": "This study evaluates the diagnostic reasoning of AI models and neurologists against neuropathological ground truth, rather than clinician consensus, for complex neurological disorders. It highlights the need for benchmarks based on biological truth to accurately assess AI performance in neurology.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -799,74 +922,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42465380/"
         }
       ],
-      "summary": "This paper introduces a new analytical pipeline that uses decision trees to convert continuous neural network attributions from single-cell omics data into discrete regulatory thresholds. These thresholds then guide large language models to integrate existing literature with empirical data, enabling the generation of structured, testable biological hypotheses. The approach addresses a key bottleneck in translating computational findings into mechanistic understanding.",
+      "summary": "This paper presents a new computational pipeline that uses decision trees to convert continuous neural network attributions from single-cell omics data into discrete regulatory thresholds, which are then used to guide large language models in generating testable biological hypotheses. The approach bridges the gap between complex computational models and mechanistic biological understanding by grounding AI-generated hypotheses in both empirical data and existing literature.",
       "significance": "Medium",
       "tags": [
         "single-cell",
         "machine-learning",
         "LLM"
-      ]
-    },
-    {
-      "id": "42738f2eae26",
-      "title": "EnzymeHunter: Achieving fine-grained enzyme function prediction with a hierarchically aware contrastive learning framework.",
-      "abstract": "Accurate enzyme function annotation is a grand challenge due to the vast number of uncharacterized proteins and the difficulty of distinguishing subtle functions. We introduce EnzymeHunter, a deep-learning framework that achieves fine-grained prediction via a hierarchically aware contrastive learning strategy. By integrating sequence and structural information and using the Enzyme Commission (EC) hierarchy to guide its loss function, our model learns a functionally coherent embedding space where distances reflect precise levels of catalytic similarity. EnzymeHunter significantly outperforms st",
-      "journal": "Patterns (New York, N.Y.)",
-      "doi": "10.1016/j.patter.2026.101567",
-      "pmid": "42453691",
-      "first_author": "Cao G",
-      "pub_date": "2026-Jul-10",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1016%2Fj.patter.2026.101567",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1016%2Fj.patter.2026.101567"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42453691/"
-        }
-      ],
-      "summary": "EnzymeHunter is a new deep-learning tool that predicts enzyme functions at a much finer level of detail than previous methods. It does this by learning from both protein sequences and structures, and by using the hierarchical Enzyme Commission classification system to guide its training, resulting in more accurate and precise functional annotations.",
-      "significance": "High",
-      "tags": [
-        "deep-learning",
-        "tool",
-        "methodology"
-      ]
-    },
-    {
-      "id": "b3f8ec45b9fd",
-      "title": "H3BERTa: A CDR-H3-specific language model for antibody repertoire analysis.",
-      "abstract": "Antibodies are central to immune defense and therapeutic design, yet predicting functional sequences remains challenging. Deep learning models trained on full variable regions often struggle due to sparse experimental data, signal dilution from conserved framework residues, and extreme diversity of hypervariable loops. The heavy-chain complementarity-determining region 3 (CDR-H3) is the most variable segment, shaping antigen specificity and immune diversity. Here, we present H3BERTa, a language model trained solely on CDR-H3 sequences to assess the extent of biological information encoded by t",
-      "journal": "Patterns (New York, N.Y.)",
-      "doi": "10.1016/j.patter.2026.101561",
-      "pmid": "42453687",
-      "first_author": "Rodella C",
-      "pub_date": "2026-Jul-10",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1016%2Fj.patter.2026.101561",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1016%2Fj.patter.2026.101561"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42453687/"
-        }
-      ],
-      "summary": "H3BERTa is a new language model trained exclusively on CDR-H3 sequences, the most variable part of antibodies, to better predict functional antibody sequences. By focusing only on this hypervariable region, the model avoids signal dilution from conserved framework regions and captures biological information relevant to antigen specificity and immune diversity.",
-      "significance": "Medium",
-      "tags": [
-        "deep-learning",
-        "immunology",
-        "tool"
       ]
     },
     {
@@ -892,7 +953,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42465320/"
         }
       ],
-      "summary": "This study reanalyzed public RNA-seq data from multiple sclerosis (MS) patients to extract over 11 million BCR sequences, then developed a new decoder-only language model to embed these sequences. The resulting embeddings enabled classifiers that can identify MS-associated B-cell receptors and repertoires, potentially aiding diagnosis and understanding of the disease's autoimmune component.",
+      "summary": "This study reanalyzed public RNA sequencing data from multiple sclerosis (MS) patients to extract over 11 million B-cell receptor sequences. The authors developed a new decoder-only BCR DNA embedding model that can classify MS-associated BCRs and repertoires, potentially aiding in diagnosis and understanding of the disease.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -923,12 +984,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42465392/"
         }
       ],
-      "summary": "SpliSync uses a genomic language model (HyenaDNA) combined with alignment data and a U-net architecture to correct splice site errors in long RNA sequencing reads, improving transcript reconstruction accuracy. This addresses a key limitation of long-read RNA-seq, where high error rates at splice junctions reduce alignment precision.",
+      "summary": "SpliSync uses a genomic language model (HyenaDNA) combined with alignment data and a U-net architecture to correct splice site errors in long RNA sequencing reads, improving the accuracy of transcript reconstruction. This addresses a key limitation of long-read RNA-seq, where high error rates at splice junctions reduce alignment quality.",
       "significance": "Medium",
       "tags": [
+        "genomics",
         "transcriptomics",
-        "machine-learning",
-        "tool"
+        "machine-learning"
       ]
     },
     {
@@ -954,12 +1015,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42499385/"
         }
       ],
-      "summary": "This study presents a new method for noninvasive prenatal testing (NIPT) that uses differences in chromatin structure between maternal and fetal cells. By analyzing DNase I hypersensitive sites (DHSs) in cell-free DNA, the approach can detect trisomy 21 based on distinct fragmentation patterns, offering a potential alternative to traditional NIPT methods.",
+      "summary": "This study presents a new noninvasive prenatal testing method that uses differences in chromatin structure between maternal and fetal cells to detect trisomy 21. By analyzing DNase I hypersensitive sites in cell-free DNA, the approach identifies fetal chromosomal abnormalities based on distinct fragmentation patterns.",
       "significance": "Medium",
       "tags": [
-        "genomics",
         "epigenomics",
-        "clinical"
+        "clinical",
+        "methodology"
       ]
     },
     {
@@ -985,12 +1046,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42499146/"
         }
       ],
-      "summary": "This study measured the actual in vivo catalytic rates of 99 enzymes in the archaeon Methanococcus maripaludis during growth on formate, providing the first experimental quantification of these rates for C1 utilization pathways. The findings fill a critical gap in understanding enzyme kinetics in anaerobic Archaea, which have been poorly characterized compared to model organisms.",
+      "summary": "This study measured the in vivo catalytic rates of 99 enzymes in the archaeon Methanococcus maripaludis during growth on formate, providing the first such data for a methanogen. The findings fill a gap in understanding enzyme kinetics for anaerobic Archaea and offer insights into C1 metabolism.",
       "significance": "Medium",
       "tags": [
         "microbiology",
         "metabolism",
-        "methodology"
+        "proteomics"
       ]
     },
     {
@@ -1016,7 +1077,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42495186/"
         }
       ],
-      "summary": "This study evaluates conventional protein assays for quantifying protein impurities in active pharmaceutical ingredients (APIs) and finds their accuracy is compromised by protein structural diversity. The authors demonstrate that HILIC-MS/MS outperforms these traditional methods, providing more reliable quantification critical for drug safety and cost-effective purification.",
+      "summary": "This study evaluates conventional protein assays for quantifying impurities in active pharmaceutical ingredients (APIs) and finds their accuracy is compromised by protein structural diversity. The authors demonstrate that HILIC-MS/MS outperforms these methods, providing more reliable quantification.",
       "significance": "Medium",
       "tags": [
         "proteomics",
@@ -1047,7 +1108,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42491104/"
         }
       ],
-      "summary": "This review summarizes recent advances in using deep learning for small-molecule drug discovery, from molecular design to clinical translation. It highlights how AI-driven methods enable generative modeling and property prediction to accelerate identification of therapeutic candidates, while also discussing ongoing challenges.",
+      "summary": "This review highlights how deep learning is accelerating small-molecule drug discovery, from designing molecules with desired properties to predicting clinical success. It covers key technical advances like generative modeling and property prediction, while also discussing current limitations and challenges in translating AI-driven discoveries to the clinic.",
       "significance": "Medium",
       "tags": [
         "deep-learning",
@@ -1078,7 +1139,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42500742/"
         }
       ],
-      "summary": "LucaVirus is a new AI model trained on billions of viral nucleotide and protein sequences that learns meaningful biological representations of viral evolution and function. It can predict relationships between sequences, protein homology, and evolutionary divergence, enabling downstream models for key virology tasks. This unified approach overcomes challenges posed by high sequence divergence in viruses.",
+      "summary": "LucaVirus is a new AI foundation model trained on over 25 billion viral nucleotide and protein sequences that learns meaningful biological representations of viral evolution and function. It can predict relationships between sequences, protein homology, and evolutionary divergence, enabling downstream models for key virology tasks.",
       "significance": "High",
       "tags": [
         "machine-learning",
@@ -1109,12 +1170,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42496057/"
         }
       ],
-      "summary": "This review discusses how process simulation, mathematical optimization, and AI/ML can improve monoclonal antibody manufacturing by addressing challenges in upstream cell culture and downstream purification. It highlights strategies to reduce costs, cycle times, and uncertainty in production.",
+      "summary": "This review discusses how process simulation, mathematical optimization, and AI/ML can improve monoclonal antibody manufacturing by addressing challenges in upstream cell culture, downstream purification, and plant-level bottlenecks. It highlights strategies to reduce cost, cycle time, and uncertainty in production.",
       "significance": "Medium",
       "tags": [
-        "review",
         "machine-learning",
-        "drug-discovery"
+        "drug-discovery",
+        "review"
       ]
     },
     {
@@ -1171,12 +1232,136 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42494653/"
         }
       ],
-      "summary": "This study used machine learning on multi-omics data from osteosarcoma patients to identify a centromere-associated prognostic gene model (CPGM). The authors validated B3GALT4 as a tumor suppressor in osteosarcoma, suggesting centromere genes play a key role in tumor progression and immunity.",
+      "summary": "This study uses machine learning on multi-omics data from osteosarcoma cohorts to build a centromere-associated prognostic gene model (CPGM). The authors identify and validate B3GALT4 as a potential tumor suppressor, highlighting the role of centromere genes in genomic instability and immune regulation in osteosarcoma.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
         "cancer",
         "transcriptomics"
+      ]
+    },
+    {
+      "id": "4ed437712deb",
+      "title": "Artificial intelligence for early detection of diabetic retinopathy: A vision transformer-based approach.",
+      "abstract": "Early identification of diabetic retinopathy (DR), which is a primary cause of vision impairment globally, is a crucial phasis for effective intervention and treatment. Traditional screening workflows rely on manual diagnosis by ophthalmologists, which remains the gold standard but can be time-consuming and subject to variability due to human factors. To support and enhance the screening process, artificial intelligence (AI)-based tools have shown promise in automating DR detection, particularly with recent advances in deep learning. However, medical images with long-range dependencies and spa",
+      "journal": "PloS one",
+      "doi": "10.1371/journal.pone.0350854",
+      "pmid": "42507684",
+      "first_author": "ElAdel A",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1371%2Fjournal.pone.0350854",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1371%2Fjournal.pone.0350854"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42507684/"
+        }
+      ],
+      "summary": "This paper presents a vision transformer-based AI model for early detection of diabetic retinopathy from retinal images. The approach aims to improve upon traditional deep learning methods by better capturing long-range spatial dependencies in medical images, potentially offering more accurate and automated screening.",
+      "significance": "Medium",
+      "tags": [
+        "deep-learning",
+        "machine-learning",
+        "clinical"
+      ]
+    },
+    {
+      "id": "0a09351caa9d",
+      "title": "Enhancing missense variant classification in predicted intrinsically disordered regions.",
+      "abstract": "Classifying disease-causing missense variants in intrinsically disordered regions (IDRs) remains a significant challenge, with over 25% of known deleterious variants occurring in these regions. Existing in silico missense variant predictors that predict variant classification generally perform better in ordered regions of the protein, limiting their effectiveness. To address this, we developed a machine learning methodology that integrates global IDR conformation (gIDRc) features from ALBATROSS, phase separation (PS) features from BioPython, and 1024-dimensional protein embeddings from ProtTra",
+      "journal": "PloS one",
+      "doi": "10.1371/journal.pone.0354365",
+      "pmid": "42507643",
+      "first_author": "Gnanaolivu RD",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1371%2Fjournal.pone.0354365",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1371%2Fjournal.pone.0354365"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42507643/"
+        }
+      ],
+      "summary": "This paper presents a new machine learning method that improves the classification of disease-causing missense variants in intrinsically disordered regions (IDRs) of proteins, which are often poorly handled by existing predictors. By combining features from ALBATROSS, BioPython, and ProtTra, the approach enhances accuracy for variants in these challenging regions.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "methodology",
+        "protein-structure"
+      ]
+    },
+    {
+      "id": "a940d73916cc",
+      "title": "A Machine Learning-Based Nomogram for Predicting Overall Survival in BCLC Stage 0-B Hepatocellular Carcinoma Patients with Low HALP Score.",
+      "abstract": "This study aimed to investigate the prognostic value of the hemoglobin, albumin, lymphocyte, and platelet (HALP) score in patients with Barcelona Clinic Liver Cancer (BCLC) stage 0-B hepatocellular carcinoma (HCC) and to develop a prognostic nomogram for the low-HALP subgroup.",
+      "journal": "Journal of inflammation research",
+      "doi": "10.2147/JIR.S592293",
+      "pmid": "42504325",
+      "first_author": "Liu Y",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.2147%2FJIR.S592293",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.2147%2FJIR.S592293"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42504325/"
+        }
+      ],
+      "summary": "This study developed a machine learning-based nomogram to predict overall survival in early-stage hepatocellular carcinoma patients with low HALP scores, finding that the HALP score is a useful prognostic marker. The nomogram could help clinicians identify high-risk patients within this subgroup for more personalized treatment.",
+      "significance": "Low",
+      "tags": [
+        "machine-learning",
+        "cancer",
+        "clinical"
+      ]
+    },
+    {
+      "id": "cfdb1e8c30d2",
+      "title": "Machine learning prioritization identifies PANX1 as an inflammation-associated candidate regulator in lung adenocarcinoma.",
+      "abstract": "Tumor-associated inflammation is an important contributor to cancer progression and therapeutic resistance. However, the molecular regulators linking inflammatory signaling with tumor biology in lung adenocarcinoma (LUAD) remain incompletely defined.",
+      "journal": "Frontiers in genetics",
+      "doi": "10.3389/fgene.2026.1831053",
+      "pmid": "42504199",
+      "first_author": "Yang Y",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.3389%2Ffgene.2026.1831053",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3389%2Ffgene.2026.1831053"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42504199/"
+        }
+      ],
+      "summary": "This study uses machine learning to identify PANX1 as a key regulator linking inflammation to tumor progression in lung adenocarcinoma. The findings suggest PANX1 could be a potential therapeutic target for this cancer type.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "cancer",
+        "immunology"
       ]
     },
     {
@@ -1202,7 +1387,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42500660/"
         }
       ],
-      "summary": "This study uses machine learning to predict how genetic similarity between PRRSV-2 strains translates to cross-neutralization, which is key for vaccine effectiveness. By analyzing viral genetic data, the model can estimate the degree of immunological cross-protection between immunizing and challenge viruses, potentially improving swine herd immunization strategies.",
+      "summary": "This study uses machine learning to predict how well antibodies generated against one strain of PRRSV-2 (a major swine virus) can neutralize other strains, based on their genetic sequences. The findings help translate genetic similarity into a measure of cross-protection, which could improve vaccine strain selection and herd immunity strategies.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -1233,7 +1418,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42499817/"
         }
       ],
-      "summary": "This study developed an explainable machine learning model that uses proteomic biomarkers to simultaneously diagnose pneumonia, tuberculosis, and lung cancer, which are often difficult to distinguish due to overlapping symptoms. The model achieved high accuracy and provides interpretable predictions, potentially improving clinical decision-making for these lung diseases.",
+      "summary": "This study developed an explainable machine learning model that uses proteomic biomarkers to simultaneously diagnose pneumonia, tuberculosis, and lung cancer, which often present with similar symptoms. The model addresses the challenge of overlapping clinical presentations and high comorbidity rates, offering a more accurate and interpretable diagnostic tool.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -1264,7 +1449,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42499761/"
         }
       ],
-      "summary": "RAG-GNN is a new framework that combines graph neural networks with a retrieval module to improve protein interaction network embeddings by incorporating relevant text documents. The study shows that retrieval augmentation provides measurable benefits over a GNN-only approach in a cancer signaling case study.",
+      "summary": "The authors introduce RAG-GNN, a framework that enhances graph neural networks for protein interaction networks by adding a retrieval module that pulls relevant text documents, a gating mechanism, and contrastive learning to align network and text representations. In a controlled cancer signaling case study, they show that retrieval augmentation provides measurable improvements over a GNN-only baseline. The work is presented as a methodological investigation rather than a direct tool for therapeutic discovery.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -1295,12 +1480,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42495634/"
         }
       ],
-      "summary": "This study identifies MYO6 as a potential diagnostic biomarker and immunotherapeutic target for myocardial infarction, validated through multiple analytical approaches. The findings suggest MYO6 plays a pivotal role in MI pathology and could improve early diagnosis and treatment strategies.",
+      "summary": "This study identifies MYO6 as a potential diagnostic biomarker and immunotherapeutic target for myocardial infarction (MI) through multi-modal validation. The findings suggest MYO6 plays a key role in MI pathology and could improve early diagnosis and treatment strategies.",
       "significance": "Medium",
       "tags": [
-        "transcriptomics",
+        "clinical",
         "immunology",
-        "clinical"
+        "biomarker"
       ]
     },
     {
@@ -1326,12 +1511,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42495597/"
         }
       ],
-      "summary": "This systematic review examines 50 studies from 2016-2025 on using deep learning to identify evolutionary patterns in genomic data, highlighting the heterogeneity in biological objectives, modeling assumptions, and evaluation standards across the field. The authors call for more standardized practices to unify this growing area of research.",
+      "summary": "This systematic review examines 50 studies from 2016-2025 on using deep learning to detect evolutionary patterns in genomic data, highlighting the diversity of biological goals, modeling assumptions, and evaluation standards across the field. It provides a structured overview of how deep learning is applied to evolutionary genomics, clarifying key conceptual differences that are often overlooked.",
       "significance": "Medium",
       "tags": [
-        "machine-learning",
         "deep-learning",
-        "evolution"
+        "evolution",
+        "genomics"
       ]
     },
     {
@@ -1357,12 +1542,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42491413/"
         }
       ],
-      "summary": "This study develops and validates a prediction model that uses liquid biopsy biomarkers and clinical features to assess the risk of metastasis in urological tumors, aiming to enable early detection and personalized treatment. The model integrates non-invasive biomarkers to improve clinical decision-making for patients with urological cancers.",
+      "summary": "This study develops a prediction model that uses biomarkers from liquid biopsies and clinical data to identify the risk of metastasis in urological tumors, aiming to enable earlier detection and personalized treatment. The model could help clinicians make more informed decisions for patients with these cancers.",
       "significance": "Medium",
       "tags": [
         "cancer",
         "clinical",
-        "machine-learning"
+        "tool"
       ]
     },
     {
@@ -1388,7 +1573,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42490893/"
         }
       ],
-      "summary": "This scoping review provides a comprehensive map of how artificial intelligence (including machine learning, deep learning, graph-based methods, foundation models, and large language models) is being used in genomics and multi-omics research. It synthesizes key concepts, architectures, applications, evaluation practices, interpretability strategies, and governance challenges, highlighting the fragmented nature of the field.",
+      "summary": "This scoping review provides a comprehensive map of how artificial intelligence is being used in genomics and multi-omics, covering machine learning, deep learning, graph-based methods, foundation models, and large language models. It synthesizes current applications, evaluation practices, interpretability strategies, and governance challenges, highlighting the fragmented nature of the field.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -1419,7 +1604,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42490873/"
         }
       ],
-      "summary": "This study developed a machine learning model that incorporates the CALLY index (C-reactive protein, albumin, and lymphocyte count) to predict 90-day mortality in patients with hepatitis B virus-related acute-on-chronic liver failure. The model aims to improve early risk stratification for this high-mortality condition, potentially aiding clinical decision-making in intensive care settings.",
+      "summary": "This study develops a machine learning model incorporating the CALLY index (C-reactive protein, albumin, and lymphocyte count) to predict 90-day mortality in patients with hepatitis B virus-related acute-on-chronic liver failure. The model aims to improve early risk stratification for timely clinical decision-making in the ICU.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -1427,219 +1612,34 @@
       ]
     },
     {
-      "id": "8c58873d16cb",
-      "title": "Identification and validation of parthanatos-related genes in lung adenocarcinoma and construction of a prognostic risk model.",
-      "abstract": "As a major cause of cancer-related death, lung adenocarcinoma (LUAD) remains a significant health challenge. Parthanatos plays a crucial role in tumor progression, influencing cancer cell survival and therapy resistance. This study constructed a parthanatos-based prognostic model and explored its associated biological processes.",
-      "journal": "Frontiers in immunology",
-      "doi": "10.3389/fimmu.2026.1806560",
-      "pmid": "42488648",
-      "first_author": "Yang Y",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffimmu.2026.1806560",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffimmu.2026.1806560"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42488648/"
-        }
-      ],
-      "summary": "This study identifies genes related to parthanatos, a form of cell death, in lung adenocarcinoma and builds a prognostic risk model based on them. The model helps predict patient outcomes and reveals biological processes linked to this cell death pathway, potentially guiding treatment decisions.",
-      "significance": "Medium",
-      "tags": [
-        "cancer",
-        "transcriptomics",
-        "machine-learning"
-      ]
-    },
-    {
-      "id": "4a3f66d3c5b1",
-      "title": "S2DA-GO: enhancing protein function prediction via gradient-decoupled cross-attention and semantic priors.",
-      "abstract": "Accurate automated protein function prediction is essential for bridging the widening gap between the exponential accumulation of uncharacterized protein sequences and the limited repository of experimentally verified functional annotations. However, despite recent advances in incorporating Gene Ontology (GO) priors and sequence-label interactions, existing computational methods still face substantial challenges in long-tailed multi-label settings, particularly in handling optimization instability caused by rare-label noise and in learning reliable representations for sparsely annotated GO ter",
+      "id": "b1796003f7a2",
+      "title": "mwHIT: accelerated and accurate histone modification imputation using multi-scale window attention.",
+      "abstract": "Histone modifications regulate chromatin organization and gene activity, and abnormal modification patterns are closely associated with disease-related transcriptional dysregulation. Although ChIP-seq provides accurate measurements of histone modification profiles, genome-wide experimental profiling remains costly and time-consuming. Here, we propose mwHIT, a multi-scale window attention-based Histone Modification Imputation Transformer that predicts histone modification signals from run-on sequencing (RO-seq) and DNA sequence features. mwHIT captures both local and long-range regulatory infor",
       "journal": "Frontiers in genetics",
-      "doi": "10.3389/fgene.2026.1880976",
-      "pmid": "42488347",
-      "first_author": "Wang H",
+      "doi": "10.3389/fgene.2026.1896629",
+      "pmid": "42504200",
+      "first_author": "Zhang Z",
       "pub_date": "2026--01",
       "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffgene.2026.1880976",
+      "url": "https://doi.org/10.3389%2Ffgene.2026.1896629",
       "links": [
         {
           "type": "doi",
           "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffgene.2026.1880976"
+          "url": "https://doi.org/10.3389%2Ffgene.2026.1896629"
         },
         {
           "type": "pubmed",
           "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42488347/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42504200/"
         }
       ],
-      "summary": "This paper introduces S2DA-GO, a new deep learning method that improves protein function prediction by using gradient-decoupled cross-attention and semantic priors. The method addresses challenges in handling rare GO terms and learning reliable representations for sparsely annotated functions, outperforming existing approaches on benchmark datasets.",
+      "summary": "The authors present mwHIT, a deep learning model that uses multi-scale window attention to accurately predict histone modification signals from DNA sequence and run-on sequencing data, reducing the need for costly ChIP-seq experiments. The model captures both local and long-range regulatory information, improving imputation performance.",
       "significance": "Medium",
       "tags": [
-        "machine-learning",
         "deep-learning",
-        "protein-structure"
-      ]
-    },
-    {
-      "id": "6324c63f2ba1",
-      "title": "Development and validation of a clinical-radiomics nomogram for differentiating Mycoplasma pneumoniae pneumonia from bacterial pneumonia in children.",
-      "abstract": "In this case-control study, we developed a nomogram merging computed tomography (CT)-based radiomics, clinical indicators, and CT imaging findings for differentiating Mycoplasma pneumoniae Pneumonia (MPP) from bacterial pneumonia (BP) in children.",
-      "journal": "Frontiers in pediatrics",
-      "doi": "10.3389/fped.2026.1764639",
-      "pmid": "42488224",
-      "first_author": "Guan Y",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffped.2026.1764639",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffped.2026.1764639"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42488224/"
-        }
-      ],
-      "summary": "This study developed a nomogram that combines CT-based radiomics, clinical indicators, and CT imaging findings to distinguish Mycoplasma pneumoniae pneumonia from bacterial pneumonia in children. The tool could help clinicians make more accurate diagnoses and treatment decisions.",
-      "significance": "Medium",
-      "tags": [
-        "machine-learning",
-        "clinical",
-        "tool"
-      ]
-    },
-    {
-      "id": "08b8bd4dc83c",
-      "title": "Prediction of acute postoperative protein depletion risk in colon cancer using an in-context learning foundation model: a retrospective cohort study.",
-      "abstract": "Acute postoperative protein depletion, including hypoalbuminaemia and hypoproteinaemia, frequently complicates colon cancer surgery and exacerbates adverse outcomes, yet early risk stratification remains challenging.",
-      "journal": "Frontiers in oncology",
-      "doi": "10.3389/fonc.2026.1857275",
-      "pmid": "42488127",
-      "first_author": "Cao X",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffonc.2026.1857275",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffonc.2026.1857275"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42488127/"
-        }
-      ],
-      "summary": "This study developed a foundation model using in-context learning to predict the risk of acute postoperative protein depletion (low albumin and protein levels) in colon cancer patients. The model showed promise for early risk stratification, which could help clinicians identify high-risk patients and intervene sooner.",
-      "significance": "Medium",
-      "tags": [
-        "machine-learning",
-        "clinical",
-        "cancer"
-      ]
-    },
-    {
-      "id": "a875a4db1736",
-      "title": "Perioperative nutritional support is associated with attenuated early postoperative albumin decline after gastrectomy for gastric cancer: a retrospective cohort study and machine learning prediction model.",
-      "abstract": "Perioperative nutritional support is recommended for surgical patients at nutritional risk, but its relationship with early postoperative serum albumin recovery after gastrectomy for gastric cancer remains uncertain, and clinicians lack practical tools to identify patients most likely to show early albumin improvement.",
-      "journal": "Frontiers in medicine",
-      "doi": "10.3389/fmed.2026.1843582",
-      "pmid": "42487944",
-      "first_author": "Wen T",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffmed.2026.1843582",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffmed.2026.1843582"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42487944/"
-        }
-      ],
-      "summary": "This study found that perioperative nutritional support helps reduce the early drop in serum albumin levels after gastrectomy for gastric cancer, and developed a machine learning model to predict which patients would benefit most. The findings support the use of nutritional interventions and provide a practical tool for clinicians.",
-      "significance": "Medium",
-      "tags": [
-        "machine-learning",
-        "clinical"
-      ]
-    },
-    {
-      "id": "ad9bcdf77a62",
-      "title": "Genomic variant-driven prediction of azole resistance in Aspergillus fumigatus using GWAS and machine learning.",
-      "abstract": "Azole resistance in Aspergillus fumigatus, a major cause of invasive aspergillosis, threatens public health. Known drivers include cyp51A/B mutations (e.g., TR34/L98H and TR46/Y121F/T289A), yet existing studies have largely focused on clinical isolates and known genetic determinants, leaving gaps in understanding broader genomic contributions. This study aimed to develop a machine learning-based framework to overcome limitations of traditional GWAS and identify novel resistance loci beyond cyp51A. A global collection of 590 A. fumigatus strains was analyzed, including whole-genome sequencing (",
-      "journal": "Frontiers in microbiology",
-      "doi": "10.3389/fmicb.2026.1891518",
-      "pmid": "42487709",
-      "first_author": "Li D",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffmicb.2026.1891518",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffmicb.2026.1891518"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42487709/"
-        }
-      ],
-      "summary": "This study developed a machine learning framework using GWAS data from 590 global Aspergillus fumigatus strains to predict azole resistance, identifying novel resistance loci beyond the known cyp51A mutations. The approach overcomes limitations of traditional GWAS by capturing broader genomic contributions to resistance.",
-      "significance": "Medium",
-      "tags": [
-        "genomics",
-        "machine-learning",
-        "microbiology"
-      ]
-    },
-    {
-      "id": "e50da43a222f",
-      "title": "Genomic-island cassette architecture provides interpretable signal for exploratory classification of poultry-associated Enterococcus cecorum lineages.",
-      "abstract": "Enterococcus cecorum is an emerging poultry pathogen whose antimicrobial resistance and host-associated traits are often carried on genomic islands. Standard comparative genomics workflows usually reduce genomes to unordered gene inventories and may miss informative neighborhood structure within island-associated modules.",
-      "journal": "Frontiers in microbiology",
-      "doi": "10.3389/fmicb.2026.1882753",
-      "pmid": "42487707",
-      "first_author": "Lagad RR",
-      "pub_date": "2026--01",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3389%2Ffmicb.2026.1882753",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3389%2Ffmicb.2026.1882753"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42487707/"
-        }
-      ],
-      "summary": "This study shows that the arrangement of genes within genomic islands (cassette architecture) can be used to classify disease-causing strains of Enterococcus cecorum in poultry, offering a new way to identify pathogen lineages beyond standard gene-by-gene comparisons. The approach highlights how the spatial organization of mobile genetic elements carries interpretable signals for bacterial epidemiology.",
-      "significance": "Medium",
-      "tags": [
-        "genomics",
-        "microbiology",
-        "evolution"
+        "epigenomics",
+        "methodology"
       ]
     },
     {
@@ -1665,12 +1665,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42499499/"
         }
       ],
-      "summary": "This paper presents a new AI framework that combines graph neural networks and multimodal deep learning to better understand the complex molecular pathways involved in tuberculosis. By capturing non-linear relationships in biological networks, the approach aims to improve precision medicine for TB treatment.",
+      "summary": "This paper presents a new AI framework that combines graph neural networks and multimodal deep learning to better understand the complex molecular pathways involved in tuberculosis. By modeling non-linear relationships in biological networks, the approach aims to improve precision medicine for TB. The framework offers a more comprehensive analysis than traditional pathway methods.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
         "deep-learning",
         "systems-biology"
+      ]
+    },
+    {
+      "id": "4a3f66d3c5b1",
+      "title": "S2DA-GO: enhancing protein function prediction via gradient-decoupled cross-attention and semantic priors.",
+      "abstract": "Accurate automated protein function prediction is essential for bridging the widening gap between the exponential accumulation of uncharacterized protein sequences and the limited repository of experimentally verified functional annotations. However, despite recent advances in incorporating Gene Ontology (GO) priors and sequence-label interactions, existing computational methods still face substantial challenges in long-tailed multi-label settings, particularly in handling optimization instability caused by rare-label noise and in learning reliable representations for sparsely annotated GO ter",
+      "journal": "Frontiers in genetics",
+      "doi": "10.3389/fgene.2026.1880976",
+      "pmid": "42488347",
+      "first_author": "Wang H",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.3389%2Ffgene.2026.1880976",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3389%2Ffgene.2026.1880976"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42488347/"
+        }
+      ],
+      "summary": "This paper presents S2DA-GO, a new deep learning method that improves protein function prediction by using a gradient-decoupled cross-attention mechanism and semantic priors from Gene Ontology. The approach addresses challenges with rare labels and noisy data, leading to more reliable predictions for sparsely annotated functions.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "deep-learning",
+        "methodology"
       ]
     },
     {
@@ -1696,7 +1727,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42467671/"
         }
       ],
-      "summary": "This study investigates the internal representations of biological foundation models (scGPT, Geneformer) by autonomously testing 141 geometric and topological hypotheses. The authors find that these models learn biologically meaningful structures, such as persistent homology and community organization, rather than mere training artifacts.",
+      "summary": "This study investigates the geometric and topological structures learned by biological foundation models like scGPT and Geneformer when processing single-cell gene expression data. Using an AI-driven loop that autonomously proposed and tested 141 hypotheses, the authors find that these models learn biologically meaningful structures such as persistent homology, manifold distances, and community organization, rather than mere training artifacts.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -1727,12 +1758,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42466125/"
         }
       ],
-      "summary": "tsAMP is a new computational framework that uses large language models and pathogen genomic variation to identify antimicrobial peptides (AMPs) at the strain level, offering a promising tool to combat multidrug-resistant bacteria. By leveraging genomic differences between strains, it can predict AMPs that are effective against specific bacterial strains, potentially improving the precision of antimicrobial therapy.",
+      "summary": "The paper introduces tsAMP, a framework that uses large language models and pathogen genomic variation to identify antimicrobial peptides at the strain level, offering a targeted approach to combat multidrug-resistant bacteria. This method leverages genomic data to predict AMPs that are effective against specific bacterial strains, potentially improving the precision of antimicrobial therapies.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
         "LLM",
-        "drug-discovery"
+        "microbiology"
       ]
     },
     {
@@ -1758,10 +1789,10 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42465583/"
         }
       ],
-      "summary": "This paper presents TriAlignNet-4mC, a deep learning model that predicts DNA N4-methylcytosine (4mC) sites in mouse genomes by using a position-aligned multi-branch network to capture complex sequence patterns. The model addresses the challenge of limited validated data and aims to improve computational screening of this epigenetic modification in a key mammalian model organism.",
+      "summary": "This paper presents TriAlignNet-4mC, a new deep learning method that uses a position-aligned triple-branch neural network to predict DNA N4-methylcytosine (4mC) sites, with a focus on mouse genomes. The model addresses challenges of scarce validated data and complex sequence dependencies, offering improved accuracy and interpretability for identifying these epigenetic marks in mammals.",
       "significance": "Medium",
       "tags": [
-        "deep-learning",
+        "machine-learning",
         "epigenomics",
         "tool"
       ]
@@ -1789,7 +1820,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42459766/"
         }
       ],
-      "summary": "This paper presents a transformer-based AI framework for predicting drug potency (pIC50) and classifying bioactivity against specific targets, trained on curated BindingDB data for Alzheimer's, diabetes, and cancer. The model aims to address the challenge of exploring vast chemical space by enabling accurate predictions even for underrepresented chemotypes. This approach could accelerate early-stage drug discovery by reducing reliance on experimental screening.",
+      "summary": "This paper presents a transformer-based AI framework that predicts drug potency (pIC50) and classifies activity for specific targets, trained on curated bioactivity data for Alzheimer's, diabetes, and cancer. The model addresses the challenge of exploring vast chemical space by improving predictions for underrepresented chemotypes, offering a promising tool for accelerating drug discovery.",
       "significance": "Medium",
       "tags": [
         "drug-discovery",
@@ -1820,7 +1851,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42455786/"
         }
       ],
-      "summary": "This study uses large language models to analyze temporal trends in the scientific naming of animal species, revealing that names reflect not only taxonomy but also historical and cultural contexts. The work highlights how automated classification can uncover large-scale patterns in naming practices across Animalia.",
+      "summary": "This study uses large language models to analyze over 400 years of scientific animal naming, revealing that names often reflect historical and cultural contexts beyond pure taxonomy. The authors find that eponyms (names honoring people) have declined over time, while descriptive names based on morphology or geography remain common, and that naming practices vary across taxonomic groups and regions.",
       "significance": "Medium",
       "tags": [
         "evolution",
