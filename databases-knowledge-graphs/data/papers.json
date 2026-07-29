@@ -1,8 +1,39 @@
 {
   "channel": "databases-knowledge-graphs",
-  "generated_at": "2026-07-28T20:15:01.176458",
-  "count": 20,
+  "generated_at": "2026-07-29T20:09:09.191774",
+  "count": 22,
   "papers": [
+    {
+      "id": "86fb081b0a50",
+      "title": "MSeqDR PMD-VR: An Expert-Curated Virtual Registry of 11,000 Mitochondrial Disease Cases Established Through Literature Mining and Generative AI Augmentation.",
+      "abstract": "Background/Objectives: Patient registries are essential for rare disease research, yet the extensive genetic and phenotypic heterogeneity of primary mitochondrial diseases (PMDs) makes traditional registry development slow and resource-intensive. We established the MSeqDR PMD virtual registry (PMD-VR) to address this gap through systematic literature mining and semi-automated data harmonization. Methods: The PMD-VR captures, standardizes, and harmonizes published case-level PMD data using a semi-automated curation pipeline. A data transformation framework maps heterogeneous raw data terms to s",
+      "journal": "Genes",
+      "doi": "10.3390/genes17070757",
+      "pmid": "42510797",
+      "first_author": "Shen L",
+      "pub_date": "2026-Jun-30",
+      "source": "PubMed",
+      "url": "https://doi.org/10.3390%2Fgenes17070757",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3390%2Fgenes17070757"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42510797/"
+        }
+      ],
+      "summary": "Researchers created a virtual registry of 11,000 mitochondrial disease cases by mining published literature and using generative AI to help standardize and harmonize the data. This approach overcomes the challenge of building traditional patient registries for rare diseases with diverse symptoms and genetic causes.",
+      "significance": "Medium",
+      "tags": [
+        "database",
+        "tool",
+        "clinical"
+      ]
+    },
     {
       "id": "257fca4667c6",
       "title": "Integrative bioinformatics and experimental analysis identify S100A10 as a diagnostic and prognostic biomarker in pancreatic adenocarcinoma.",
@@ -26,12 +57,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42445445/"
         }
       ],
-      "summary": "This study identifies S100A10 as a potential diagnostic and prognostic biomarker for pancreatic adenocarcinoma through integrative bioinformatics and experimental analysis. The findings suggest S100A10 is associated with tumor progression and immune cell infiltration, offering new insights for diagnosis and treatment.",
+      "summary": "This study identifies S100A10 as a potential diagnostic and prognostic biomarker for pancreatic adenocarcinoma through integrative bioinformatics and experimental analysis. The findings suggest S100A10 plays a role in tumor progression and immune cell infiltration, offering new insights for diagnosis and treatment.",
       "significance": "Medium",
       "tags": [
         "cancer",
-        "biomarker",
-        "bioinformatics"
+        "bioinformatics",
+        "biomarker"
       ]
     },
     {
@@ -57,7 +88,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42379284/"
         }
       ],
-      "summary": "This study shows that exposure to crystalline silica particles alters the expression of microRNAs (miRNAs) in human macrophage-like cells, both inside the cell and in the surrounding environment. These changes in miRNA profiles could serve as potential biomarkers for detecting exposure to silica, which is linked to lung diseases like silicosis and cancer.",
+      "summary": "This study investigates how exposure to crystalline silica particles alters microRNA (miRNA) expression in human macrophage-like cells, identifying potential biomarkers for silica-induced diseases like silicosis and lung cancer. The researchers exposed THP-1 derived macrophages to varying concentrations of silica and measured changes in both intracellular and extracellular miRNAs, finding dose-dependent effects on miRNA profiles.",
       "significance": "Medium",
       "tags": [
         "toxicology",
@@ -95,6 +126,37 @@
       ]
     },
     {
+      "id": "d4968ab8516b",
+      "title": "Diabetic Hyperglycemia Induces Region-Specific Transcriptomic Remodeling in the Cochlea.",
+      "abstract": "Diabetes mellitus is associated with sensorineural hearing loss, but the cochlear molecular alterations related to this complication remain unclear. This pilot study aimed to characterize auditory function and region-specific transcriptomic changes in the diabetic cochlea.",
+      "journal": "Genes",
+      "doi": "10.3390/genes17070836",
+      "pmid": "42510876",
+      "first_author": "Chang TY",
+      "pub_date": "2026-Jul-21",
+      "source": "PubMed",
+      "url": "https://doi.org/10.3390%2Fgenes17070836",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.3390%2Fgenes17070836"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42510876/"
+        }
+      ],
+      "summary": "This study investigates how diabetic hyperglycemia causes region-specific changes in gene expression within the cochlea, potentially explaining the link between diabetes and hearing loss. The findings reveal distinct transcriptomic remodeling across different cochlear regions, providing new molecular insights into diabetes-related auditory dysfunction.",
+      "significance": "Medium",
+      "tags": [
+        "transcriptomics",
+        "clinical",
+        "neuroscience"
+      ]
+    },
+    {
       "id": "674f5fb93ea5",
       "title": "AMIUgraph: analysis and modeling of interactions for utility-driven benchmarking of graph-based models in healthcare.",
       "abstract": "Graph-based machine learning approaches, including Knowledge Graph Embedding (KGE) methods and Graph Neural Networks (GNNs), have emerged as powerful tools for modeling complex biomedical data. However, a systematic and clinically grounded comparison of these approaches across heterogeneous healthcare graphs, accounting for both predictive performance and real-world deployment constraints, is still lacking.",
@@ -117,7 +179,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42471636/"
         }
       ],
-      "summary": "This paper introduces AMIUgraph, a framework for benchmarking graph-based machine learning models (like KGE and GNN) in healthcare, focusing on both predictive performance and practical deployment constraints. It provides a systematic comparison across heterogeneous healthcare graphs to address the lack of clinically grounded evaluations.",
+      "summary": "This paper introduces AMIUgraph, a benchmarking framework for evaluating graph-based machine learning models (KGEs and GNNs) in healthcare. It systematically compares these approaches across diverse healthcare graphs, considering both predictive accuracy and practical deployment constraints, addressing a gap in clinically grounded model evaluation.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -148,7 +210,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42471351/"
         }
       ],
-      "summary": "ViBioChain proposes a blockchain-based architecture to address privacy, ethical governance, and data integrity challenges in personalized gene editing. It integrates quantum fingerprinting, zero-knowledge proofs, and federated learning to enable secure genomic audit trails, automated bioethical compliance checks, and privacy-preserving collaborative model training.",
+      "summary": "ViBioChain proposes a blockchain-based architecture for personalized gene editing that addresses privacy, ethical governance, and data integrity. It integrates quantum fingerprinting, zero-knowledge proofs, and federated learning to enable secure genomic data sharing and automated bioethical compliance.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -179,10 +241,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42457854/"
         }
       ],
-      "summary": "This paper proposes a new computational framework that uses ontologies and cryptographic techniques to improve energy-efficient intrusion detection in 5G and IoT networks. The framework aims to balance high detection accuracy with low energy consumption, addressing a key challenge in resource-constrained smart city environments.",
+      "summary": "This paper proposes an ontology-driven framework for energy-efficient security attack detection in 5G and IoT networks, combining cryptographic algorithms to balance high detection accuracy with low energy consumption. The framework addresses cybersecurity challenges in smart city environments where resource-constrained devices need efficient intrusion detection.",
       "significance": "Low",
       "tags": [
         "machine-learning",
+        "network-analysis",
         "methodology"
       ]
     },
@@ -209,12 +272,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42449128/"
         }
       ],
-      "summary": "This study analyzed gene expression data from osteoarthritis patients and normal controls to identify a 4-gene signature linked to immune cell infiltration in the joint. The findings suggest that these genes and associated immune mechanisms may play a role in osteoarthritis progression, offering potential targets for diagnosis or therapy.",
+      "summary": "This study analyzed gene expression data from osteoarthritis patients to identify a 4-gene signature linked to immune cell infiltration in synovial tissue. The findings suggest that these genes may play a role in the immune mechanisms underlying osteoarthritis, offering potential targets for diagnosis or therapy.",
       "significance": "Low",
       "tags": [
         "transcriptomics",
         "immunology",
-        "methodology"
+        "clinical"
       ]
     },
     {
@@ -271,7 +334,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42340183/"
         }
       ],
-      "summary": "This paper introduces tmQM-RDF, a knowledge graph dataset that organizes information about transition metal complexes in a structured, machine-readable format. The resource aims to facilitate machine learning and computational analysis of these compounds for applications in catalysis and medicinal chemistry.",
+      "summary": "This paper introduces the tmQM-RDF Data Set, a knowledge graph that organizes information about transition metal complexes (TMCs) in a structured, machine-readable format. By converting the existing tmQM dataset into a knowledge graph, the authors aim to facilitate machine learning and computational analysis of TMCs for applications in catalysis and medicinal chemistry.",
       "significance": "Medium",
       "tags": [
         "database",
@@ -302,12 +365,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42429477/"
         }
       ],
-      "summary": "KG-Microbe is a framework for building modular, scalable knowledge graphs that integrate diverse microbial data (e.g., genetics, metabolism, host interactions) to better understand complex microbe-host and microbe-environment relationships. It addresses the challenge of handling millions of interactions across thousands of microbial species by providing a structured, scalable approach to data integration.",
+      "summary": "This paper introduces KG-Microbe, a framework for building modular and scalable knowledge graphs that integrate diverse microbial data types, including host-microbe and microbe-microbe interactions. The approach addresses the challenge of handling millions of interactions across thousands of species by providing a structured, scalable method for data integration, which can facilitate deeper understanding of complex microbial mechanisms in health and environmental contexts.",
       "significance": "Medium",
       "tags": [
         "microbiome",
         "database",
-        "tool"
+        "methodology"
       ]
     },
     {
@@ -333,11 +396,10 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42426062/"
         }
       ],
-      "summary": "This paper presents a multimodal AI framework that integrates video, audio, text, and physiological data to assess teacher competency and recommend personalized training resources. The cross-modal attention mechanism adaptively weights each data stream based on diagnostic relevance, offering a more comprehensive evaluation than traditional methods.",
-      "significance": "Medium",
+      "summary": "This paper presents a multimodal framework that integrates video, audio, text, and physiological data to assess teacher competency, using cross-modal attention to dynamically weight each signal's relevance. The approach aims to provide more reliable and multidimensional evaluations than traditional methods, and also recommends precision training resources based on the assessment.",
+      "significance": "Low",
       "tags": [
         "machine-learning",
-        "tool",
         "methodology"
       ]
     },
@@ -364,12 +426,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42428123/"
         }
       ],
-      "summary": "This paper describes the creation of a specialized ontology for Dravet syndrome, a severe form of epilepsy, by refining a broader epilepsy ontology with expert input. The ontology aims to integrate diverse clinical and research data, supporting better informatics and AI applications for this rare disease. This resource could improve data sharing, analysis, and ultimately patient care.",
+      "summary": "This paper describes the creation of a specialized ontology for Dravet syndrome, a severe form of epilepsy, by refining a broader epilepsy ontology with expert input. The ontology aims to integrate diverse clinical and research data to improve informatics and support AI applications for this rare disease.",
       "significance": "Medium",
       "tags": [
+        "database",
         "tool",
-        "clinical",
-        "neuroscience"
+        "clinical"
       ]
     },
     {
@@ -395,7 +457,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42428111/"
         }
       ],
-      "summary": "HeartBioPortal 3.0 is an updated web-based platform that integrates diverse cardiovascular genomics data—including genetic variants, molecular information, and clinical phenotypes—into a unified, queryable knowledge environment. This major update improves data architecture and interpretive tools to help researchers and clinicians translate fragmented genomic evidence into actionable biological and clinical insights.",
+      "summary": "HeartBioPortal 3.0 is an updated browser-based platform that integrates diverse cardiovascular genomics data—including genetic variants, molecular information, and clinical evidence—to help researchers and clinicians interpret gene-related findings in a unified environment. The new version expands both the underlying data architecture and the user interface, making it easier to translate fragmented genomic evidence into actionable biological and clinical knowledge.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -426,12 +488,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42427576/"
         }
       ],
-      "summary": "RD-OMICS is a new knowledge graph that integrates and harmonizes multi-omics data from rare disease studies in the GEO database, addressing the challenge of fragmented and inconsistently annotated public data. This resource aims to facilitate integrative analysis and translational discovery for rare diseases, which currently lack treatments for over 95% of identified conditions.",
+      "summary": "RD-OMICS is a new data inventory that integrates and structures rare disease omics data from public repositories into a knowledge graph, addressing the fragmentation and inconsistent annotation that hinders rare disease research. By harmonizing metadata, this resource enables more effective integrative analysis and translational discovery for rare diseases.",
       "significance": "Medium",
       "tags": [
         "database",
-        "multi-omics",
-        "rare-disease"
+        "tool",
+        "genomics"
       ]
     },
     {
@@ -457,7 +519,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42399680/"
         }
       ],
-      "summary": "This study developed a model combining knowledge graphs with multi-agent reinforcement learning to identify psychological risks in online learners and provide personalized interventions. Using data from seven courses, the model effectively detected declining learning behaviors and reduced motivation, offering a new approach to supporting student mental health in digital education.",
+      "summary": "This study developed a model combining knowledge graphs with multi-agent reinforcement learning to identify psychological risks in online learning and provide personalized interventions. Using data from seven courses, the model effectively detected declining learning behaviors and motivation, offering a new approach to supporting student mental health in digital education.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -487,7 +549,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42334937/"
         }
       ],
-      "summary": "This paper introduces MetagenomicKG, a knowledge graph that integrates multiple metagenomic reference databases (GTDB, KEGG, BV-BRC) to address inconsistent nomenclature and enable unified queries across these resources. The knowledge graph approach allows researchers to more easily navigate complex microbial community data by linking genetic, taxonomic, and functional annotations.",
+      "summary": "The authors introduce MetagenomicKG, a knowledge graph that integrates multiple metagenomic reference databases (GTDB, KEGG, BV-BRC) to overcome nomenclature inconsistencies and enable unified querying of microbial genomic and functional data. This resource simplifies cross-database analysis for metagenomic studies.",
       "significance": "Medium",
       "tags": [
         "metagenomics",
@@ -518,8 +580,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42427874/"
         }
       ],
-      "summary": "GlyGen is a new knowledgebase that integrates glycan data with protein and gene information, making it easier to study how glycans influence biological processes like immunity and disease. By linking fragmented glycan data to genes and proteins, it enables researchers to discover novel biological connections that were previously difficult to find.",
-      "significance": "High",
+      "summary": "GlyGen is a new knowledgebase that integrates glycan data with protein and gene information, making it easier to study how glycans influence biological processes like development, immunity, and disease. By linking fragmented glycan data to genes and proteins, it enables researchers to discover novel connections that were previously difficult to find.",
+      "significance": "Medium",
       "tags": [
         "database",
         "glycomics",
@@ -549,7 +611,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42386919/"
         }
       ],
-      "summary": "This paper proposes an AI optimization model for public safety in smart cities that integrates IoT-driven real-time perception with intelligent decision-making, using Hefei as a case study. The model aims to overcome cross-departmental data barriers and improve governance efficiency through a 'technology-institution-data' collaborative framework.",
+      "summary": "This paper proposes an AI optimization model for public safety in smart cities that integrates IoT-driven real-time perception with intelligent decision-making, using Hefei as a case study. The model aims to break down cross-departmental data barriers and improve governance efficiency through a 'technology-institution-data' collaborative framework.",
       "significance": "Low",
       "tags": [
         "machine-learning",
@@ -579,7 +641,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42487920/"
         }
       ],
-      "summary": "This study tests an automated system for coding electronic health records into standardized medical codes, combining knowledge graphs with three large language models. Using synthetic data, it shows promise for reducing the manual workload in rare disease registries but also highlights challenges like accuracy and integration.",
+      "summary": "This study develops and evaluates a hybrid automated coding system that combines medical knowledge graphs with an ensemble of large language models to transform electronic health records into standardized codes for rare disease registries. Using synthetic health records, the authors demonstrate potential benefits in reducing the time and resources needed for manual coding while identifying key challenges such as accuracy and integration into existing workflows.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -610,11 +672,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42412889/"
         }
       ],
-      "summary": "This paper presents a medical question-answering framework that uses multimodal knowledge graphs and dual-layer attention mechanisms to improve intent recognition, entity extraction, and cross-modal retrieval. The approach aims to overcome limitations in multi-label classification accuracy and reduce reliance on large-scale annotated data.",
+      "summary": "This paper proposes a medical intelligent question-answering framework that uses multimodal knowledge graphs and dual-layer attention mechanisms to improve intent recognition, entity extraction, and cross-modal retrieval. The approach aims to overcome limitations in existing systems such as reduced accuracy in multi-label classification and heavy reliance on large-scale annotated data.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "deep-learning",
+        "tool",
         "clinical"
       ]
     }
