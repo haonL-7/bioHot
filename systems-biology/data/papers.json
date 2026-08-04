@@ -1,6 +1,6 @@
 {
   "channel": "systems-biology",
-  "generated_at": "2026-08-03T20:26:11.432506",
+  "generated_at": "2026-08-04T20:21:59.153024",
   "count": 44,
   "papers": [
     {
@@ -26,7 +26,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42531722/"
         }
       ],
-      "summary": "This study used urinary proteomic profiling to investigate the biological basis of exercise intolerance in patients at risk of heart failure, identifying a distinct proteomic signature associated with reduced exercise capacity. The findings provide new insights into the molecular mechanisms underlying exercise intolerance and may aid in risk stratification and personalized management.",
+      "summary": "This study used urinary proteomic profiling to identify a molecular signature associated with exercise intolerance in patients at risk of heart failure, drawing on data from the HOMAGE trial. The findings provide new insights into the biological pathways underlying exercise limitation, potentially aiding in early diagnosis and risk stratification.",
       "significance": "Medium",
       "tags": [
         "proteomics",
@@ -56,12 +56,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42526718/"
         }
       ],
-      "summary": "This study uses deep learning-based genome annotation and multi-tissue RNA-Seq to characterize the aquaporin, heat shock protein, and LEA gene families in the halophyte Portulaca oleracea, revealing their coordinated transcriptional responses to salt stress. The authors construct gene regulatory networks that highlight synergistic regulation among these stress-responsive gene families, providing a systems-level view of salt tolerance mechanisms in a promising crop wild relative.",
+      "summary": "This study uses deep learning-based genome annotation, multi-tissue RNA-Seq, phylogenomics, and gene regulatory network inference to characterize the roles of aquaporins, heat shock proteins, and LEA proteins in the halophyte Portulaca oleracea under salt stress. It identifies 78 AQPs, 525 HSPs, and 119 LEA proteins and reveals their coordinated transcriptional regulation, providing insights into the molecular mechanisms of salt tolerance.",
       "significance": "Medium",
       "tags": [
         "genomics",
         "transcriptomics",
-        "systems-biology"
+        "stress"
       ]
     },
     {
@@ -87,7 +87,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42539007/"
         }
       ],
-      "summary": "FERRET is a new benchmarking framework for single-cell gene regulatory network (GRN) inference methods that evaluates robustness by comparing network estimates from the same versus different cellular states, rather than relying on ground-truth networks or simulations. This approach better captures biological variability in real datasets and provides a more practical measure of method performance.",
+      "summary": "FERRET is a new benchmarking framework for single-cell gene regulatory network (GRN) inference methods that evaluates robustness by comparing network estimates from the same versus different cellular states, avoiding reliance on ground-truth networks or simulations. It provides a more biologically relevant way to assess GRN inference tools using real heterogeneous cell type data.",
       "significance": "High",
       "tags": [
         "single-cell",
@@ -118,12 +118,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42527907/"
         }
       ],
-      "summary": "This study investigates whether single-cell foundation models like scGPT and Geneformer encode gene regulatory information beyond mere co-expression. The authors find that the residual-stream representations of these models carry incremental gene-regulatory signal across tissues, suggesting deeper layers capture regulatory relationships not present in expression-level data alone.",
+      "summary": "This study investigates whether single-cell foundation models like scGPT and Geneformer encode gene regulatory information beyond mere co-expression. The authors find that residual-stream representations carry incremental gene-regulatory signal across tissues, suggesting these models capture regulatory relationships not present in expression-level data alone.",
       "significance": "Medium",
       "tags": [
         "single-cell",
         "machine-learning",
-        "genomics"
+        "transcriptomics"
       ]
     },
     {
@@ -149,7 +149,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42497852/"
         }
       ],
-      "summary": "This study uses single-cell transcriptomics and live-cell imaging to map pattern-triggered immune responses across cell types and developmental zones in Arabidopsis roots. It finds that plant-derived phytocytokines trigger stronger immune responses than microbe-derived patterns, with receptor expression differences shaping response intensity and balancing growth-defense trade-offs.",
+      "summary": "This study uses single-cell transcriptomics and live-cell imaging to map pattern-triggered immune responses across cell types and developmental zones in Arabidopsis roots, revealing that plant-derived phytocytokines induce stronger immune responses than microbe-derived patterns. The differential expression of receptors and signaling components explains the cell-type- and zone-specific response intensities, and phytocytokines help balance growth and defense trade-offs.",
       "significance": "High",
       "tags": [
         "single-cell",
@@ -180,7 +180,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42496125/"
         }
       ],
-      "summary": "This study shows that a defined mixture of compounds mimicking fungal exudates triggers earlier and faster growth in Pseudomonas putida compared to individual substrates like glucose, despite equivalent carbon and nitrogen. The emergent phenotype suggests that substrate diversity itself, not just nutrient quantity, shapes microbial metabolism and growth dynamics.",
+      "summary": "This study shows that a defined mixture of compounds mimicking fungal exudates triggers earlier and faster growth in Pseudomonas putida compared to individual substrates like glucose, despite equal carbon and nitrogen. The emergent phenotype suggests that substrate diversity itself, not just nutrient quantity, can shape microbial metabolism and growth dynamics.",
       "significance": "Medium",
       "tags": [
         "microbiology",
@@ -211,7 +211,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42484158/"
         }
       ],
-      "summary": "This paper introduces SignifiKANTE, a computational method for efficiently computing P-values for gene regulatory network (GRN) inference results. It addresses the high computational cost of permutation-based significance testing, making it feasible to assess statistical confidence in GRNs inferred from large gene expression datasets.",
+      "summary": "This paper introduces SignifiKANTE, a tool that efficiently computes empirical P-values for gene regulatory network inference, addressing the computational bottleneck of permutation-based significance testing. It enables statistical significance estimation for regression-based GRN methods on realistically sized datasets, making it practical to include significance measures in GRN analysis.",
       "significance": "Medium",
       "tags": [
         "tool",
@@ -242,7 +242,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42482180/"
         }
       ],
-      "summary": "This study systematically evaluates whether attention-derived edge scores from single-cell foundation models like scGPT and Geneformer provide additional predictive value beyond simple gene-level features for perturbation-target prediction. The authors find that attention scores add no incremental benefit over gene expression statistics, challenging the common practice of interpreting attention edges as regulatory proxies.",
+      "summary": "This study systematically evaluates whether attention-derived edge scores from single-cell foundation models (scGPT, Geneformer) provide additional predictive value for perturbation outcomes beyond simple gene expression features. The authors find that attention scores add no incremental information over gene-level features, and that attention-identified regulatory components are not causally required for predictions, challenging the common practice of interpreting attention as regulatory evidence.",
       "significance": "High",
       "tags": [
         "single-cell",
@@ -273,11 +273,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42539139/"
         }
       ],
-      "summary": "This study maps the tumor microenvironment in platinum-resistant ovarian cancer at a systems level, identifying immune-mediated mechanisms and potential therapeutic targets. The findings highlight the importance of cancer-microenvironment interactions in driving treatment resistance, offering new avenues for intervention.",
+      "summary": "This study maps the tumor microenvironment in platinum-resistant ovarian cancer to identify cell populations and markers driving treatment resistance. The findings reveal immune-mediated mechanisms and potential therapeutic targets that could improve outcomes for patients with recurrent disease.",
       "significance": "Medium",
       "tags": [
+        "single-cell",
         "cancer",
-        "systems-biology",
         "immunology"
       ]
     },
@@ -304,12 +304,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42475434/"
         }
       ],
-      "summary": "This study investigates the role of ATP-dependent citrate lyase (ACLY) in cardiac metabolism and heart failure. The authors show that loss of ACLY drives left ventricular dysfunction through metabolic remodeling, suggesting that ACLY may be a potential therapeutic target for heart failure.",
+      "summary": "This study investigates the role of ATP-dependent citrate lyase (ACLY) in cardiac metabolic adaptation and heart failure. The authors find that loss of ACLY drives left ventricular dysfunction through metabolic remodeling, highlighting ACLY as a potential therapeutic target for heart failure.",
       "significance": "Medium",
       "tags": [
         "metabolomics",
-        "clinical",
-        "systems-biology"
+        "systems-biology",
+        "clinical"
       ]
     },
     {
@@ -335,12 +335,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42262111/"
         }
       ],
-      "summary": "This study integrates pangenomics with multi-omics and phenotypic analyses to reveal how Rhodococcus erythropolis balances core and accessory genomes for stress adaptation, showing that the accessory genome expands via horizontal gene transfer and contributes to environmental resilience. The findings provide a systemic view of the genetic basis of stress tolerance in this biotechnologically important bacterium.",
+      "summary": "This study integrates pangenomics with multi-omics and phenotypic analyses to reveal how Rhodococcus erythropolis balances core and accessory genomes for stress adaptation. The findings show that the accessory genome, enriched by horizontal gene transfer, provides adaptive flexibility, while the core genome maintains essential functions, highlighting systemic trade-offs that govern stress resilience.",
       "significance": "Medium",
       "tags": [
         "genomics",
         "microbiology",
-        "systems-biology"
+        "evolution"
       ]
     },
     {
@@ -366,7 +366,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42477049/"
         }
       ],
-      "summary": "This study analyzes 17 metagenome-assembled genomes from the uncultured Nap2-2B clade of Desulfotomaculales, revealing strict substrate partitioning in hydrocarbon activation enzymes and niche diversification among these methanogenic hydrocarbon-degrading bacteria. The findings expand our understanding of metabolic diversity in understudied environmental microbes.",
+      "summary": "This study uses comparative genomics of 17 metagenome-assembled genomes to characterize the metabolic diversity of uncultured Nap2-2B bacteria, a clade within Desulfotomaculales found in hydrocarbon-degrading environments. The authors show that these bacteria exhibit strict substrate partitioning, with distinct glycyl radical enzymes for activating aliphatic versus aromatic hydrocarbons, and that this partitioning drives niche diversification among the four genera. The findings expand our understanding of the ecological roles of these uncultured organisms in methanogenic hydrocarbon degradation.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -397,12 +397,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42511800/"
         }
       ],
-      "summary": "This study combines systems biology approaches with experimental validation to characterize MMP9-centered signaling networks in non-small cell lung cancer (NSCLC), revealing extracellular matrix- and inflammation-related interaction modules. The authors identify a pharmacodynamic gene signature associated with MMP9 inhibition and demonstrate anticancer activity, providing potential biomarkers for monitoring treatment response.",
+      "summary": "This study combines systems biology approaches with experimental validation to characterize MMP9-centered signaling networks in non-small cell lung cancer (NSCLC), identifying downstream pharmacodynamic biomarkers and potential anticancer activity. The findings reveal extracellular matrix- and inflammation-related interaction modules, providing new insights into the systems-level effects of MMP9 inhibition and potential therapeutic targets.",
       "significance": "Medium",
       "tags": [
         "systems-biology",
         "cancer",
-        "transcriptomics"
+        "network-analysis"
       ]
     },
     {
@@ -428,7 +428,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42140182/"
         }
       ],
-      "summary": "SpaMIE is a deep graph neural network framework that integrates spatial multi-omics data across tissue sections with missing modalities, enabling imputation of absent omics layers and generation of joint embeddings. It addresses the challenge of heterogeneous modality coverage in large-scale spatial atlases, improving downstream analysis and biological interpretation.",
+      "summary": "SpaMIE is a deep graph neural network framework that integrates spatial multi-omics data across tissue sections with missing modalities, enabling imputation of absent omics and joint embedding for downstream analysis. It addresses the challenge of heterogeneous modality coverage in large-scale spatial atlases, improving the utility of cost-effective mono-omics datasets.",
       "significance": "High",
       "tags": [
         "spatial-omics",
@@ -459,7 +459,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42509846/"
         }
       ],
-      "summary": "This review summarizes the analytical methods and applications of single-cell and single-nucleus RNA sequencing in ischemic stroke research, highlighting how these technologies reveal cellular heterogeneity and complex pathophysiological processes. It provides a comprehensive overview of current approaches and their utility in understanding stroke biology.",
+      "summary": "This review discusses the use of single-cell and single-nucleus RNA sequencing to study the cellular heterogeneity underlying ischemic stroke pathology. It covers analytical methods and recent applications, highlighting how these technologies reveal diverse cell types and states involved in stroke progression and recovery.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -490,7 +490,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42436999/"
         }
       ],
-      "summary": "This paper introduces a quantum-inspired tensor network framework for inferring gene regulatory networks from single-cell transcriptomic data. The method captures higher-order and nonlinear gene dependencies using quantum mutual information, outperforming traditional approaches in preserving biological locality and network accuracy.",
+      "summary": "This paper introduces a quantum-inspired tensor network framework for inferring gene regulatory networks from single-cell transcriptomic data. The method captures higher-order and nonlinear gene dependencies using quantum mutual information, outperforming traditional approaches.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -521,7 +521,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42505396/"
         }
       ],
-      "summary": "This review synthesizes recent evidence on how the Mediterranean diet influences neurodegenerative diseases through the gut-immune-brain axis, integrating multi-omics approaches to move toward precision nutrition. It highlights the diet's consistent association with reduced cognitive decline and neurodegeneration risk, and discusses how systems-level analyses can guide personalized dietary interventions.",
+      "summary": "This review synthesizes recent evidence on how the Mediterranean diet influences neurodegenerative diseases through the gut-immune-brain axis, integrating multi-omics approaches to move toward precision nutrition. It highlights the diet's consistent association with slower cognitive decline and reduced neurodegeneration risk, and proposes a systems-level framework for personalized dietary interventions.",
       "significance": "Medium",
       "tags": [
         "review",
@@ -552,12 +552,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42382993/"
         }
       ],
-      "summary": "This study profiles gene expression in primary and metastatic uveal melanoma, revealing two molecular subtypes in both and showing that matched primary-metastasis pairs have low transcriptional concordance, indicating extensive phenotypic reprogramming during metastasis. The findings highlight heterogeneous pathway dependencies and uncoupled plasticity in tumor progression.",
+      "summary": "This study profiles gene expression in primary and metastatic uveal melanoma, revealing two molecular subtypes in both stages. Matched primary-metastatic pairs show little transcriptional concordance, indicating extensive phenotypic reprogramming during metastasis, with about half of primary tumors displaying a proliferative, MAPK/PI3K-driven phenotype.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
         "cancer",
-        "systems-biology"
+        "single-cell"
       ]
     },
     {
@@ -583,12 +583,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42523385/"
         }
       ],
-      "summary": "REGA is a new computational framework that uses reference regulatory element catalogs to infer mechanistic gene regulatory networks from gene expression data alone, bridging the gap between deep multi-omics and broad expression datasets. It improves the prioritization of functional regulatory elements and TF-gene inference across multiple benchmarks, offering an interpretable approach for GRN analysis.",
-      "significance": "Medium",
+      "summary": "This preprint introduces REGA, an interpretable framework that leverages reference regulatory element (RE) catalogs to infer transcription factor (TF)-RE-gene regulatory programs from gene expression data alone. REGA demonstrates improved performance over existing methods in prioritizing functional REs and inferring RE-gene and TF-gene relationships across multiple benchmarks, bridging the gap between deep but small-scale multi-omics and broad but shallow expression datasets.",
+      "significance": "High",
       "tags": [
         "genomics",
         "transcriptomics",
-        "network-analysis"
+        "gene regulatory networks"
       ]
     },
     {
@@ -645,7 +645,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42464288/"
         }
       ],
-      "summary": "This study investigates Panax notoginseng-derived nanovesicles as a potential biocompatible treatment for psoriasis, combining transcriptomic profiling with pharmacological experiments to assess safety and immunomodulatory effects. The findings reveal that these nanovesicles modulate the STAT5/SOCS3 pathway, suggesting a novel mechanism for dampening the IL-23/Th17-driven inflammation in psoriasis, and support their potential as a safer alternative to current biologics.",
+      "summary": "This study profiles the safety and immunomodulatory effects of nanovesicles derived from Panax notoginseng in the context of psoriasis. Using transcriptomic and pharmacological analyses, the authors identify STAT5/SOCS3 signaling as a key pathway through which these vesicles may modulate the IL-23/Th17 axis, suggesting a potential biocompatible nanotherapeutic approach.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -680,7 +680,7 @@
       "significance": "Medium",
       "tags": [
         "single-cell",
-        "gene-regulatory-networks",
+        "network-analysis",
         "methodology"
       ]
     },
@@ -707,7 +707,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42119318/"
         }
       ],
-      "summary": "This study presents an integrated multiscale modeling framework combining finite element models at tissue and cellular scales to investigate how mechanical loading and inflammation interact in articular cartilage, with implications for osteoarthritis progression. The framework enables in silico exploration of complex mechano-biochemical interactions that are difficult to study experimentally.",
+      "summary": "This paper presents a multiscale computational model integrating tissue- and cell-level finite element simulations to investigate how mechanical loading and inflammation interact in articular cartilage, with implications for osteoarthritis. The framework aims to capture complex mechano-biochemical couplings that are difficult to study experimentally, offering a new in silico tool for exploring disease mechanisms.",
       "significance": "Medium",
       "tags": [
         "systems-biology",
@@ -738,7 +738,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42314670/"
         }
       ],
-      "summary": "This study shows that early WNT activation in human pluripotent stem cells promotes the formation of KDR+ ALDH1A2+ mesoderm, a precursor essential for generating T cells in a retinoic acid-dependent manner. Using integrated single-cell RNA and ATAC sequencing, the authors define a WNT-dependent developmental trajectory and identify HDAC2 and E-box transcription factors as key regulators of this process.",
+      "summary": "This study shows that early WNT activation in human pluripotent stem cells promotes the formation of KDR+ ALDH1A2+ mesoderm, a critical intermediate for generating T cells. Using integrated single-cell RNA and ATAC sequencing, the authors define a WNT-dependent developmental trajectory and identify HDAC2 as a key epigenetic regulator that enables retinoic acid-responsive mesoderm development.",
       "significance": "Medium",
       "tags": [
         "single-cell",
@@ -769,12 +769,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42439556/"
         }
       ],
-      "summary": "This study presents iPR1691, the first genome-scale metabolic model for the plant-associated bacterium Paraburkholderia dioscoreae MSB3, comprising 1,687 reactions and 1,691 genes. The model links the plant hormone precursor ACC to core carbon metabolism, providing a mechanistic basis for the bacterium's growth-promoting effects on crops like tomato.",
+      "summary": "This study presents iPR1691, the first genome-scale metabolic model of the plant-associated bacterium Paraburkholderia dioscoreae, linking the ethylene precursor ACC to core carbon pathways. The model provides a framework for understanding the bacterium's beneficial interactions with plants, such as growth promotion in tomato.",
       "significance": "Medium",
       "tags": [
         "systems-biology",
-        "metabolomics",
-        "microbiology"
+        "microbiology",
+        "metabolomics"
       ]
     },
     {
@@ -800,7 +800,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42437600/"
         }
       ],
-      "summary": "This paper proposes a unifying framework to explain why lifespan-extending interventions become less effective as organismal complexity increases. The authors argue that simple organisms rely on a few high-leverage aging pathways, whereas mammals are governed by distributed, multi-tissue regulatory systems that buffer against single-pathway perturbations, thus lowering the ceiling for lifespan extension.",
+      "summary": "This paper proposes a unifying framework to explain why lifespan-extending interventions become less effective as organismal complexity increases. It argues that simple organisms rely on a few high-leverage aging pathways, while mammals are governed by distributed, multi-tissue regulatory systems that buffer against single-pathway perturbations.",
       "significance": "Medium",
       "tags": [
         "aging",
@@ -862,7 +862,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42435408/"
         }
       ],
-      "summary": "WILDkCAT is a new Python pipeline that automatically retrieves enzyme turnover numbers (kcat) for constraint-based metabolic models, filtering values by user-specified pH and temperature conditions. It addresses the bottleneck of scattered and inconsistent kcat data by streamlining extraction and prediction, demonstrated on the E. coli model iML1515.",
+      "summary": "WILDkCAT is a new Python pipeline that automates the retrieval of enzyme turnover numbers (kcat) for constraint-based metabolic models, filtering values by user-specified pH and temperature conditions. It addresses the bottleneck of scattered and inconsistent kcat data by providing a streamlined tool for model curation. The authors demonstrate its utility by applying it to the E. coli model iML1515.",
       "significance": "Medium",
       "tags": [
         "tool",
@@ -893,12 +893,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42429619/"
         }
       ],
-      "summary": "This paper introduces a method to enable gradient-based optimization of exact stochastic simulations of continuous-time Markov chains (CTMCs), overcoming the non-differentiability of discrete event selection in Gillespie-type algorithms. By decoupling forward simulation from backward differentiation and using a Gumbel-Softmax straight-through surrogate, the approach allows accurate optimization at parameter scales over four orders of magnitude larger than previously possible, with potential applications in systems biology and other fields requiring exact stochastic modeling.",
+      "summary": "This paper introduces a method that enables gradient-based optimization of exact stochastic simulations of continuous-time Markov chains, overcoming the discrete event selection barrier. By using a Gumbel-Softmax straight-through surrogate for backpropagation while maintaining exact forward simulation, the approach allows parameter optimization at scales four orders of magnitude larger than previous methods, with potential applications in systems biology and other fields.",
       "significance": "High",
       "tags": [
-        "methodology",
+        "systems-biology",
         "machine-learning",
-        "systems-biology"
+        "methodology"
       ]
     },
     {
@@ -924,7 +924,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42435656/"
         }
       ],
-      "summary": "This study presents the first pangenome-based genome-scale metabolic model for the plant pathogen Xylella fastidiosa, integrating conserved metabolic functions from 18 strains across five subspecies. The curated consensus model, iXfcore, was used to simulate metabolism and predict putative conserved biochemical features, providing a foundation for better understanding the pathogen's metabolism despite its fastidious growth.",
+      "summary": "This study presents the first pangenome-based genome-scale metabolic model for the plant pathogen Xylella fastidiosa, integrating conserved metabolic functions from 18 strains across five subspecies. The curated consensus model, iXfcore, is used to predict the species' metabolic capabilities, revealing putative conserved biochemical features that could inform future research on its pathogenesis and growth requirements.",
       "significance": "Medium",
       "tags": [
         "metabolomics",
@@ -955,12 +955,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42411279/"
         }
       ],
-      "summary": "This review discusses the application of single-cell RNA sequencing (scRNA-seq) and spatial omics technologies in plants, highlighting how these approaches enable the construction of cellular atlases and the discovery of regulatory mechanisms. It covers recent technological advances that have increased throughput and the adoption of these methods in plant research, despite their initial development in animal systems.",
+      "summary": "This review discusses how single-cell RNA sequencing (scRNA-seq) and spatial omics technologies are being applied in plants to create cellular atlases and uncover regulatory mechanisms. It highlights recent advances in throughput and the growing adoption of these methods in plant research, which reveal cellular heterogeneity that bulk transcriptomics cannot capture.",
       "significance": "Medium",
       "tags": [
         "single-cell",
         "spatial-omics",
-        "plants"
+        "transcriptomics"
       ]
     },
     {
@@ -986,43 +986,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42465376/"
         }
       ],
-      "summary": "This preprint uses a kinome-wide CRISPR/Cas9 knockout screen to identify protein kinases essential for vasopressin V2 receptor (V2R) signaling, a classic Gαs-coupled GPCR pathway. By employing a fluorescent reporter for AQP2 transcription, the authors pinpoint critical kinases that modulate PKA-dependent signaling, offering new insights into GPCR signaling networks.",
+      "summary": "This preprint describes a kinome-wide CRISPR/Cas9 knockout screen to identify protein kinases essential for vasopressin V2 receptor (V2R) signaling, a classic Gαs-coupled GPCR pathway. Using a fluorescent reporter cell line for AQP2 transcription, the screen reveals critical kinases that modulate PKA-dependent signaling, providing new insights into GPCR signaling networks.",
       "significance": "Medium",
       "tags": [
         "CRISPR",
         "systems-biology",
         "signaling"
-      ]
-    },
-    {
-      "id": "22cce6cfa553",
-      "title": "EHMN2026®T: A License-Aware AI-QSP Integration Framework Linking EHMN2026® with TRANSFAC®, TRANSPATH® and HumanPSD™ for Diagnostic-Metabolite Interpretation.",
-      "abstract": "Diagnostic metabolites measured in newborn screening, inherited metabolic disease, lysosomal storage disease, oncometabolite testing and routine clinical biochemistry are direct read-outs of human metabolic state. Their mechanistic interpretation requires linking measured metabolites to enzymes, pathways, regulatory context, disease knowledge and, increasingly, AI-assisted quantitative systems pharmacology (AI-QSP) workflows. We developed EHMN2026®T as a license-aware AI-QSP integration framework that connects the EHMN2026® metabolic backbone with licensed geneXplain knowledge resources while ",
-      "journal": "Metabolites",
-      "doi": "10.3390/metabo16070469",
-      "pmid": "42506421",
-      "first_author": "Goryanin I",
-      "pub_date": "2026-Jul-04",
-      "source": "PubMed",
-      "url": "https://doi.org/10.3390%2Fmetabo16070469",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.3390%2Fmetabo16070469"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42506421/"
-        }
-      ],
-      "summary": "The paper introduces EHMN2026®T, a license-aware AI-QSP integration framework that links the EHMN2026® metabolic model with licensed geneXplain resources (TRANSFAC®, TRANSPATH®, HumanPSD™) to improve mechanistic interpretation of diagnostic metabolites. It aims to support AI-assisted quantitative systems pharmacology workflows for clinical applications such as newborn screening and metabolic disease diagnosis.",
-      "significance": "Medium",
-      "tags": [
-        "systems-biology",
-        "metabolomics",
-        "database"
       ]
     },
     {
@@ -1048,7 +1017,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42533527/"
         }
       ],
-      "summary": "This review argues that plant hormone signaling and metabolism should be viewed as an integrated, reciprocal network rather than linear pathways, highlighting how carbon status, nutrients, redox balance, and energy signals coordinate growth and stress responses. It synthesizes current knowledge to propose a more holistic framework for understanding plant adaptation.",
+      "summary": "This review argues that plant hormone signaling and metabolism should be viewed as an integrated, reciprocal network rather than linear pathways, emphasizing how carbon status, nutrients, redox balance, and energy signals coordinate growth and stress responses. It highlights the need for a systems-level perspective to fully understand plant adaptation to changing environments.",
       "significance": "Medium",
       "tags": [
         "systems-biology",
@@ -1079,12 +1048,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42502377/"
         }
       ],
-      "summary": "This paper presents a causal AI digital twin framework for diagnosing bottlenecks in non-model microbial bioprocesses, using metabolic flexibility and rigidification maps. The approach integrates interpretable features, explainable learning, and causal-structure discovery, and was validated on Stenotrophomonas maltophilia grown on acetate, demonstrating its utility in converting sparse experimental data into actionable diagnostic insights.",
+      "summary": "This paper presents a causal AI digital twin approach for diagnosing bottlenecks in bioprocesses, applied to Stenotrophomonas maltophilia grown on acetate. The twin integrates genome-informed metabolic flexibility and rigidification maps with explainable machine learning and causal structure discovery to convert sparse experimental data into actionable diagnostic insights. This represents a novel methodology for improving the performance of non-model microbial cultures.",
       "significance": "Medium",
       "tags": [
-        "systems-biology",
         "machine-learning",
+        "systems-biology",
         "microbiology"
+      ]
+    },
+    {
+      "id": "3bb7624a66fd",
+      "title": "Sex-aware causal inference assessment of the immune system in complex neurodegenerative diseases.",
+      "abstract": "Sex differences, in terms of prevalence, symptoms and disease progression, are established in the aetiology of complex neurodegenerative diseases, including amyotrophic lateral sclerosis, Parkinson's disease and Alzheimer's disease, but the underlying biology driving these differences remains poorly understood. There is emerging evidence from genetic and functional analyses affirming the role of the immune system in such diseases, but a thorough assessment of sex differences in the link between the immune system and neurodegenerative diseases remains lacking. Here, we applied a robust causal i",
+      "journal": "Brain : a journal of neurology",
+      "doi": "10.1093/brain/awaf474",
+      "pmid": "41437896",
+      "first_author": "Lona-Durazo F",
+      "pub_date": "2026-Aug-03",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1093%2Fbrain%2Fawaf474",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbrain%2Fawaf474"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41437896/"
+        }
+      ],
+      "summary": "This study uses causal inference methods to assess sex-specific links between the immune system and neurodegenerative diseases (ALS, Parkinson's, Alzheimer's). It finds that immune-related causal effects differ between sexes, highlighting the need for sex-aware approaches in understanding disease mechanisms.",
+      "significance": "Medium",
+      "tags": [
+        "immunology",
+        "neuroscience",
+        "systems-biology"
       ]
     },
     {
@@ -1110,11 +1110,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42398561/"
         }
       ],
-      "summary": "This study tests whether causal interventions on scGPT's gene tokens can recover transcription factor-target dependencies that align with curated references, moving beyond correlational attention weights. The authors find that model-internal regulatory signals are recoverable and robust, and they assess whether these signals transfer to real perturbation responses.",
+      "summary": "This study tests whether causal interventions on gene tokens in the single-cell foundation model scGPT can recover known transcription factor-target regulatory relationships, moving beyond correlational attention weights. The authors find that model-internal causal signals align with curated references and transfer to real perturbation responses, providing a more rigorous validation of regulatory signal in scGPT.",
       "significance": "Medium",
       "tags": [
+        "single-cell",
         "machine-learning",
-        "transcriptomics",
         "methodology"
       ]
     },
@@ -1141,7 +1141,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42435534/"
         }
       ],
-      "summary": "This study in middle-aged rats shows that aerobic exercise and ginseng supplementation, alone or combined, can modulate molecular markers of hippocampal aging, including redox homeostasis and amyloid processing, with combined intervention showing differential effects. The findings suggest potential lifestyle-based strategies to mitigate age-related cognitive decline.",
+      "summary": "This study in middle-aged rats found that aerobic exercise and ginsenoside supplementation, individually and combined, modulate molecular markers of hippocampal aging, including redox homeostasis and amyloid processing, with differential effects on cognitive performance and neuronal integrity. The combined intervention showed distinct benefits, suggesting potential for multi-modal strategies to counteract age-related cognitive decline.",
       "significance": "Medium",
       "tags": [
         "aging",
@@ -1172,7 +1172,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42404749/"
         }
       ],
-      "summary": "This review introduces the concept of 'nanobiotic synergies,' where nanoparticles and beneficial rhizosphere microbes are combined to boost plant immunity and stress tolerance, offering a sustainable alternative to synthetic agrochemicals. It highlights recent advances in nanotechnology and microbiome research that enable this integrated approach for crop protection.",
+      "summary": "This review proposes the concept of 'nanobiotic synergies,' combining nanoparticles with beneficial rhizosphere microbes to boost plant immunity and stress tolerance, offering a sustainable alternative to synthetic agrochemicals. It highlights recent advances in nanotechnology and microbiome research as a basis for integrated crop protection strategies.",
       "significance": "Medium",
       "tags": [
         "microbiome",
@@ -1203,7 +1203,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42141259/"
         }
       ],
-      "summary": "This study computationally investigates the structural interactions between Testican-1 (SPOCK1) and matrix metalloproteases (MMPs), proposing a mechanistic axis in tumour extracellular matrix remodelling. The findings suggest that Testican-1 may facilitate tumour progression by modulating MMP activity, offering an in silico perspective on a potential therapeutic target.",
+      "summary": "This study computationally analyzes the structural interactions between Testican-1 (SPOCK1) and matrix metalloproteases (MMPs), proposing a mechanistic model for how this axis drives tumour extracellular matrix remodelling and promotes cancer progression. The findings offer an in silico perspective on a potentially targetable interaction in the tumour microenvironment.",
       "significance": "Medium",
       "tags": [
         "structural-biology",
@@ -1234,7 +1234,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42483194/"
         }
       ],
-      "summary": "This review synthesizes current knowledge on how innate immune cells (such as macrophages, dendritic cells, and NK cells) interact with T cells to drive T cell-mediated rejection (TCMR) in kidney transplants. It highlights the cellular and molecular crosstalk pathways that amplify alloreactive T cell responses, and discusses implications for improving diagnostic and therapeutic approaches.",
+      "summary": "This review synthesizes current knowledge on how innate immune cells (such as macrophages, dendritic cells, and NK cells) interact with T cells to drive T cell-mediated rejection in kidney transplants. It highlights the complex crosstalk between innate and adaptive immunity as a key mechanism, and emphasizes the need for a deeper understanding to develop better diagnostics and therapies.",
       "significance": "Medium",
       "tags": [
         "immunology",
@@ -1265,8 +1265,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42471842/"
         }
       ],
-      "summary": "This study integrates single-cell RNA sequencing, spatial transcriptomics, and bulk transcriptomic data to construct a comprehensive atlas of the gastric cancer tumor microenvironment, identifying eight distinct cancer-associated fibroblast (CAF) subpopulations. Among these, CTHRC1+ CAFs are selectively enriched in tumors and strongly associated with T cell exclusion, and they predict immunotherapy resistance, highlighting their role in creating immunosuppressive niches.",
-      "significance": "High",
+      "summary": "This study integrates single-cell RNA sequencing, spatial transcriptomics, and bulk transcriptomic data from multiple cohorts to construct a comprehensive atlas of the gastric cancer tumor microenvironment. The authors identify eight distinct cancer-associated fibroblast (CAF) subpopulations, with CTHRC1+ CAFs specifically enriched in tumors and strongly associated with T cell exclusion, suggesting they drive immunosuppressive niches and may predict immunotherapy resistance.",
+      "significance": "Medium",
       "tags": [
         "single-cell",
         "spatial-omics",
@@ -1296,7 +1296,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42516270/"
         }
       ],
-      "summary": "This study compares reference-free transcriptomic deconvolution methods for analyzing bulk RNA-seq data, focusing on astrocyte-specific signals in Alzheimer's disease. It finds that while these methods vary in statistical robustness and quantitative accuracy, biological validation is crucial for reliable interpretation, particularly for astrocyte-related gene expression changes across the AD continuum.",
+      "summary": "This study compares reference-free transcriptomic deconvolution methods for Alzheimer's disease, highlighting that methods prioritizing statistical robustness or quantitative accuracy alone may miss key biological signals. The authors emphasize the importance of biological validation, particularly in astrocytes, to ensure deconvolution results are meaningful for disease research.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -1327,7 +1327,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42507679/"
         }
       ],
-      "summary": "This study uses a systems biology approach to analyze gene expression data from AML patients and healthy controls, identifying differentially expressed genes and key transcription factors. The analysis revealed a shared metabolic pathway region between AML and Tuberculosis, which the authors interpret as validation of their methodology.",
+      "summary": "This study applies a systems biology approach to gene expression data from Acute Myeloid Leukemia (AML) patients and healthy controls, identifying differentially expressed genes and key transcription factors. The authors also found a shared metabolic pathway region between AML and Tuberculosis, which they use to validate their analytical pipeline.",
       "significance": "Medium",
       "tags": [
         "systems-biology",
@@ -1358,7 +1358,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42499499/"
         }
       ],
-      "summary": "This paper presents a novel AI framework that combines graph neural networks with multimodal deep learning to analyze tuberculosis (TB) pathway mechanisms, capturing non-linear relationships that traditional methods miss. The approach aims to improve precision medicine for TB by providing a more comprehensive understanding of the disease's molecular underpinnings.",
+      "summary": "This paper presents a novel AI framework that combines graph neural networks with multimodal deep learning to analyze tuberculosis (TB) pathway mechanisms, capturing non-linear relationships that traditional methods miss. The framework aims to improve precision medicine for TB by providing a more comprehensive understanding of the disease's molecular complexity.",
       "significance": "Medium",
       "tags": [
         "machine-learning",

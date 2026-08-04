@@ -1,7 +1,7 @@
 {
   "channel": "computational-genomics",
-  "generated_at": "2026-08-03T20:19:46.410229",
-  "count": 54,
+  "generated_at": "2026-08-04T20:14:56.393797",
+  "count": 53,
   "papers": [
     {
       "id": "888d13d0aa60",
@@ -26,12 +26,74 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42409588/"
         }
       ],
-      "summary": "DiffMethylTools is a new toolbox that integrates detection, annotation, and visualization of differential methylation in a single, user-friendly framework. It addresses the lack of integrated tools in the field, improving efficiency and reproducibility for epigenetic studies.",
+      "summary": "DiffMethylTools is a new toolbox that integrates detection, annotation, and visualization of differential methylation in a single, user-friendly framework. It addresses the lack of integrated tools in this area, aiming to improve reproducibility and streamline downstream analyses for epigenetic studies.",
       "significance": "Medium",
       "tags": [
         "epigenomics",
         "tool",
         "methodology"
+      ]
+    },
+    {
+      "id": "14ceec9da919",
+      "title": "A module-based approach for post-omics, post-GWAS network-based gene classification.",
+      "abstract": "Complex traits and diseases are highly polygenic and understanding the full set of genes involved is a central challenge in biomedicine. However, due to sample size limitations and noise (technical and biological), experimental approaches for disease-gene discovery such as transcriptomics and GWAS result in long, noisy, heterogeneous gene lists, which may be trimmed to a subset of likely relevant genes while leaving several false negatives. Computational gene classification approaches, especially those using genome-scale molecular interaction networks, are promising avenues for complementing s",
+      "journal": "Bioinformatics (Oxford, England)",
+      "doi": "10.1093/bioinformatics/btag571",
+      "pmid": "42536422",
+      "first_author": "McKim A",
+      "pub_date": "2026-Jul-31",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag571",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag571"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42536422/"
+        }
+      ],
+      "summary": "This paper presents a module-based computational approach that leverages molecular interaction networks to classify genes from noisy post-omics and post-GWAS gene lists, aiming to reduce false negatives and improve disease-gene discovery. The method groups genes into network modules to enhance classification accuracy, offering a complementary strategy to experimental approaches.",
+      "significance": "Medium",
+      "tags": [
+        "network-analysis",
+        "methodology",
+        "genomics"
+      ]
+    },
+    {
+      "id": "e34aa5433f6c",
+      "title": "Accelerating inference in genomic and proteomic foundation models via speculative decoding.",
+      "abstract": "Genomic and protein foundation models (GFMs and PFMs) have demonstrated strong performance in learning the language of DNA and proteins, but their use in large-scale sequence generation is limited by the latency of autoregressive decoding. Because every token triggers a forward pass of a large Transformer, whose inference is relatively slow, long-sequence generation quickly becomes costly.",
+      "journal": "Bioinformatics (Oxford, England)",
+      "doi": "10.1093/bioinformatics/btag579",
+      "pmid": "42536416",
+      "first_author": "Provatas K",
+      "pub_date": "2026-Jul-31",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag579",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1093%2Fbioinformatics%2Fbtag579"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42536416/"
+        }
+      ],
+      "summary": "This paper introduces speculative decoding to accelerate inference in genomic and protein foundation models, reducing the latency of autoregressive sequence generation. By using a small draft model to propose tokens that are then verified in parallel by the large model, the method speeds up generation without compromising accuracy, making large-scale sequence generation more practical.",
+      "significance": "Medium",
+      "tags": [
+        "machine-learning",
+        "tool",
+        "genomics"
       ]
     },
     {
@@ -57,7 +119,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42530683/"
         }
       ],
-      "summary": "This narrative review discusses how structural modeling tools like AlphaFold and RoseTTAFold, combined with artificial intelligence, can predict the functions of proteins from multidrug-resistant bacterial genomes, aiding in the discovery of new therapeutic targets to combat antimicrobial resistance. The authors highlight that these computational methods enable high-accuracy 3D structure prediction, which helps annotate hypothetical proteins and identify conserved domains and catalytic sites.",
+      "summary": "This narrative review discusses how structural modeling and artificial intelligence, particularly tools like AlphaFold and RoseTTAFold, are being used to predict protein functions from multidrug-resistant bacterial genomes, aiding in the identification of new therapeutic targets. The authors highlight how these computational methods enable high-accuracy 3D structure prediction, annotation of hypothetical proteins, and discovery of conserved domains and catalytic sites, which together help bridge the gap between genomic data and drug discovery.",
       "significance": "Medium",
       "tags": [
         "structural-biology",
@@ -119,11 +181,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42525384/"
         }
       ],
-      "summary": "SynFlow is a new interactive online viewer for genome structural variants (SVs) that allows researchers to dynamically explore large SV datasets, zoom into specific genomic regions, and filter variants in real time, overcoming the limitations of static plots. It is designed to support comparative genomics studies using chromosome-scale genome assemblies.",
+      "summary": "SynFlow is a new interactive online tool for visualizing structural variants (SVs) in genome assemblies, addressing the limitations of static plots. It allows researchers to dynamically explore large SV datasets, zoom into specific regions, and filter results, which is particularly useful for comparative genomics.",
       "significance": "Medium",
       "tags": [
-        "genomics",
         "tool",
+        "genomics",
         "database"
       ]
     },
@@ -150,7 +212,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42525289/"
         }
       ],
-      "summary": "map3C is a new computational tool designed to process multiomic single-cell Hi-C data, which simultaneously profiles chromatin conformation alongside other modalities like gene expression or DNA methylation. It addresses gaps in existing tools by providing key functions for downstream analysis, including data processing, quality control, and identification of structural features.",
+      "summary": "map3C is a new computational tool that processes multiomic single-cell Hi-C data, adding key functions for quality control and identification of chromatin structures alongside other modalities like gene expression or DNA methylation. It addresses gaps in existing tools, enabling more comprehensive analysis of genome structure-function relationships.",
       "significance": "Medium",
       "tags": [
         "tool",
@@ -181,12 +243,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42525212/"
         }
       ],
-      "summary": "This study evaluates the genomic characteristics of Escherichia coli isolates from bovine mastitis and tests alternative antimicrobials, including plant extracts and a polypyrrole compound, against them. The findings suggest these alternatives may be effective against multidrug-resistant strains, offering potential new treatment options for mastitis.",
+      "summary": "This study characterized E. coli isolates from bovine mastitis and tested alternative antimicrobials, including plant extracts and a polypyrrole compound, against them. The findings suggest these alternatives may have potential against multidrug-resistant strains, though the abstract is incomplete.",
       "significance": "Medium",
       "tags": [
         "microbiology",
-        "genomics",
-        "drug-discovery"
+        "drug-discovery",
+        "genomics"
       ]
     },
     {
@@ -212,7 +274,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42530242/"
         }
       ],
-      "summary": "This study integrates multi-omics data with experimental validation to show that METTL9 is upregulated in lung adenocarcinoma (LUAD) and drives tumor progression by activating TGF-β/Smad-mediated epithelial-mesenchymal transition (EMT). The findings highlight METTL9 as a potential prognostic biomarker and therapeutic target in LUAD.",
+      "summary": "This study integrates multi-omics data and experimental validation to show that METTL9 is upregulated in lung adenocarcinoma and promotes tumor progression by activating TGF-β/Smad-mediated epithelial-mesenchymal transition (EMT). The findings highlight METTL9 as a potential prognostic biomarker and therapeutic target in LUAD.",
       "significance": "Medium",
       "tags": [
         "cancer",
@@ -274,7 +336,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42507898/"
         }
       ],
-      "summary": "WebCVTree4 is an upgraded web platform for alignment-free phylogenetic and taxonomic analysis of prokaryotes using whole-genome data. It features a comprehensive genomic database update and optimized algorithms for efficient online tree reconstruction, supporting large-scale evolutionary studies.",
+      "summary": "WebCVTree4 is an upgraded web platform for alignment-free phylogenetic and taxonomic analysis of prokaryotes using whole-genome data. It features an updated genomic database and optimized algorithms that enable efficient online phylogenetic reconstruction for large numbers of species.",
       "significance": "Medium",
       "tags": [
         "tool",
@@ -305,7 +367,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42508406/"
         }
       ],
-      "summary": "This study uses genome-wide DNA methylation profiling to distinguish mucinous ovarian carcinoma (MOC) from extraovarian mucinous metastases (EOM), a common diagnostic challenge. The analysis identifies distinct methylation subtypes of MOC with potential prognostic relevance, offering a new tool for accurate classification and potentially improved patient management.",
+      "summary": "This study uses genome-wide DNA methylation profiling to distinguish mucinous ovarian carcinoma (MOC) from extraovarian mucinous metastases (EOM), which are often misdiagnosed due to overlapping features. The analysis identifies distinct methylation subtypes of MOC with potential prognostic relevance, offering a new diagnostic tool to improve classification and patient management.",
       "significance": "High",
       "tags": [
         "epigenomics",
@@ -336,11 +398,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42539198/"
         }
       ],
-      "summary": "Pansoma is a new machine learning tool that identifies somatic variants using pangenome graphs, which better capture human genetic diversity than linear reference genomes. By leveraging the graph-based human pangenome reference, Pansoma aims to reduce reference bias and improve the accuracy of somatic variant detection, which is critical for cancer research and precision oncology.",
-      "significance": "Medium",
+      "summary": "Pansoma is a new machine learning tool that identifies somatic variants using pangenome graphs, which better capture human genetic diversity than linear reference genomes. By leveraging the graph-based pangenome reference, Pansoma aims to reduce reference bias and improve the accuracy of somatic variant detection, which is critical for cancer research and precision oncology.",
+      "significance": "High",
       "tags": [
-        "machine-learning",
         "genomics",
+        "machine-learning",
         "tool"
       ]
     },
@@ -367,7 +429,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42539242/"
         }
       ],
-      "summary": "MeioBIOME is a new Snakemake workflow that enables parallel analysis of both meiofaunal genomes and their associated host bacteria/archaea from single specimens, overcoming the limitations of low-resolution 16S rRNA surveys. It provides a scalable, reproducible pipeline for studying holobiont ecology and evolution in these understudied microbial eukaryotes.",
+      "summary": "MeioBIOME is a new Snakemake workflow that enables parallel analysis of both meiofaunal genomes and their associated host bacteria/archaea from single specimens. It addresses the limitations of low-resolution 16S rRNA surveys by providing a scalable, reproducible pipeline for studying holobionts at higher resolution, which could improve understanding of ecological and evolutionary dynamics in these systems.",
       "significance": "Medium",
       "tags": [
         "metagenomics",
@@ -398,8 +460,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42539204/"
         }
       ],
-      "summary": "EXCAVATE-HT is a new bioinformatics pipeline that identifies common single nucleotide polymorphisms (SNPs) suitable for allele-specific CRISPR editing, overcoming limitations of existing tools by enabling high-throughput selection of targetable variants and guide RNA design. This approach could make allele-specific therapies applicable to a much larger patient population by targeting common SNPs rather than rare disease mutations.",
-      "significance": "High",
+      "summary": "EXCAVATE-HT is a new bioinformatics pipeline that identifies common single nucleotide polymorphisms (SNPs) suitable for allele-specific CRISPR editing, enabling a small set of guide RNAs to treat many individuals. It overcomes limitations of existing tools by efficiently extracting targetable variants and designing guide RNAs in high throughput, with potential applications in genetic disease therapy and functional studies of allelic diversity.",
+      "significance": "Medium",
       "tags": [
         "tool",
         "genomics",
@@ -429,12 +491,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42497061/"
         }
       ],
-      "summary": "This protocol paper describes how to use colocRedRibbon, a tool that co-localizes GWAS variants with eQTLs to identify causal variants linking genetic associations to gene expression changes. It provides step-by-step instructions for shortlisting variants, computing co-localization statistics, and interpreting posterior probabilities, with applications beyond eQTLs to other QTL types and GWAS datasets.",
+      "summary": "This protocol paper describes how to use colocRedRibbon to identify causal variants by co-localizing GWAS signals with eQTLs, linking disease-associated SNPs to gene expression changes. It provides step-by-step instructions for variant shortlisting, co-localization statistics, and posterior probability assessment, with applications beyond eQTLs to other QTL types and GWAS datasets.",
       "significance": "Medium",
       "tags": [
-        "genomics",
         "tool",
-        "methodology"
+        "methodology",
+        "genomics"
       ]
     },
     {
@@ -460,7 +522,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42487511/"
         }
       ],
-      "summary": "This review discusses how spatial biology technologies, particularly spatial transcriptomics, are being applied to study cancer epigenetics within the context of intact tissue architecture. It highlights the limitations of bulk and single-cell methods that lose spatial information, and emphasizes the potential of spatial approaches to reveal how epigenetic regulation is influenced by the tumor microenvironment.",
+      "summary": "This review discusses the emerging role of spatial biology in cancer epigenetics, highlighting how spatial transcriptomics and related technologies can reveal the spatial organization of epigenetic regulation within tumors. It emphasizes the importance of preserving tissue architecture to understand how local interactions and spatially restricted programs influence cancer development and progression.",
       "significance": "Medium",
       "tags": [
         "spatial-omics",
@@ -491,7 +553,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42539208/"
         }
       ],
-      "summary": "The Human Pangenome Reference Consortium presents HPRC2, a second-phase human pangenome reference with 460 haplotypes—about five times more than the first release—and improved completeness, contiguity, and accuracy. Using a principled sample selection algorithm, it captures over 99% of common genetic variation, overcoming limitations of single reference genomes.",
+      "summary": "HPRC2 is a new human pangenome reference from the Human Pangenome Reference Consortium, expanding to 460 haplotypes—about five times more than the first release—and capturing over 99% of common genetic variation. It shows measurable improvements in genome completeness, contiguity, and accuracy, providing a more representative reference for studying human genetic diversity.",
       "significance": "High",
       "tags": [
         "genomics",
@@ -522,11 +584,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42485224/"
         }
       ],
-      "summary": "ALPAR is a new automated pipeline that simplifies antimicrobial resistance (AMR) analysis by handling everything from raw genomic data processing to machine learning model building, making it accessible to researchers new to the field. It addresses the lack of standardized workflows in AMR machine learning by providing a comprehensive, user-friendly tool.",
+      "summary": "ALPAR is a new automated pipeline that simplifies antimicrobial resistance (AMR) analysis by handling everything from raw genomic data processing to machine learning model training, making it accessible to researchers new to the field. It addresses the lack of standardized workflows in AMR research by providing a comprehensive, user-friendly tool.",
       "significance": "Medium",
       "tags": [
-        "tool",
         "machine-learning",
+        "tool",
         "genomics"
       ]
     },
@@ -553,7 +615,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42510868/"
         }
       ],
-      "summary": "This study integrates bulk and single-cell RNA-seq data to identify potential biomarkers and therapeutic targets for rheumatoid arthritis, and explores bioactive compounds from traditional Chinese medicine that may target these genes. The findings provide candidate biomarkers and potential drug leads for RA treatment.",
+      "summary": "This study integrates bulk transcriptomic and single-cell RNA-seq data to identify potential biomarkers and therapeutic targets for rheumatoid arthritis (RA), and explores traditional Chinese medicine (TCM) compounds that may modulate these targets. The findings offer new candidate biomarkers and potential drug leads for RA treatment.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -584,7 +646,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42510750/"
         }
       ],
-      "summary": "This study evaluates how somatic mutations, particularly from clonal hematopoiesis, can contaminate germline genomic analyses in large cohorts like the UK Biobank, and assesses the effectiveness of standard VAF-based filtering to mitigate this issue. The findings highlight the need for systematic evaluation of contamination control strategies in large-scale genomic studies.",
+      "summary": "This study evaluates how somatic mutations, particularly from clonal hematopoiesis, can contaminate germline genomic data in large cohorts like the UK Biobank, and assesses the effectiveness of standard VAF-based filtering to mitigate this issue. The findings highlight the need for systematic evaluation of contamination control methods in large-scale genomic studies.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -615,74 +677,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42477877/"
         }
       ],
-      "summary": "This paper presents a new algorithm for reconstructing alleles from Oxford Nanopore amplicon sequencing data, specifically applied to the pharmacogene CYP2D6. The method enables detection of known and novel variants without requiring gene-specific customization, addressing a key challenge in using nanopore sequencing for clinical genotyping.",
+      "summary": "This paper presents a new de novo algorithm for reconstructing alleles from Oxford Nanopore amplicon sequencing data, specifically applied to the pharmacogene CYP2D6. The method aims to simplify and automate the analysis of long reads to identify actionable genotypes without extensive gene-specific customization.",
       "significance": "Medium",
       "tags": [
         "genomics",
         "tool",
-        "clinical"
-      ]
-    },
-    {
-      "id": "833fc7bc8f26",
-      "title": "Exploring the use of machine and deep learning in genome-wide association studies: a comprehensive review.",
-      "abstract": "The advent of high-throughput sequencing technologies has generated increasingly large and complex genomic datasets, necessitating analytical approaches capable of capturing high-dimensional and potentially nonlinear genetic interactions. This situation has significantly impacted the entire field of Genome-Wide Association Study (GWAS), whose primary goal is the identification of genomic traits and variants that are statistically associated with the risk of a disease. However, traditional GWAS methods may show reduced performance when applied to highly polygenic and nonlinear genetic architect",
-      "journal": "BioData mining",
-      "doi": "10.1186/s13040-026-00584-8",
-      "pmid": "42477691",
-      "first_author": "D'Antona S",
-      "pub_date": "2026-Jul-20",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1186%2Fs13040-026-00584-8",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1186%2Fs13040-026-00584-8"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42477691/"
-        }
-      ],
-      "summary": "This review comprehensively examines the application of machine and deep learning methods to genome-wide association studies (GWAS), highlighting their potential to capture complex, nonlinear genetic interactions that traditional approaches may miss. It discusses the challenges and opportunities of these advanced analytical techniques for identifying disease-associated genomic variants.",
-      "significance": "Medium",
-      "tags": [
-        "machine-learning",
-        "deep-learning",
-        "genomics"
-      ]
-    },
-    {
-      "id": "dee212da326d",
-      "title": "Impact of M and E protein mutations in SARS-CoV-2 Omicron variants on reduced antibody binding and increased structural stability: a bioinformatics study (2021-2023).",
-      "abstract": "First identified in late 2021, the Omicron variant of SARS-CoV-2 accumulated substantially more mutations than previously circulating variants. This study investigated the genomic characteristics and structural consequences of mutations in the membrane (M) and envelope (E) proteins of dominant Omicron lineages circulating in southern Iran between March 2021 and March 2023.",
-      "journal": "BMC genomics",
-      "doi": "10.1186/s12864-026-13206-8",
-      "pmid": "42477528",
-      "first_author": "Pishva MS",
-      "pub_date": "2026-Jul-20",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1186%2Fs12864-026-13206-8",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1186%2Fs12864-026-13206-8"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42477528/"
-        }
-      ],
-      "summary": "This study analyzed mutations in the membrane (M) and envelope (E) proteins of SARS-CoV-2 Omicron variants circulating in southern Iran from 2021 to 2023, finding that these mutations reduce antibody binding and increase structural stability of the virus. The findings highlight how structural changes in these proteins may contribute to immune evasion and viral persistence.",
-      "significance": "Medium",
-      "tags": [
-        "genomics",
-        "structural-biology",
-        "immunology"
+        "methodology"
       ]
     },
     {
@@ -708,12 +708,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42474752/"
         }
       ],
-      "summary": "This study identifies a distinct DNA methylation episignature for Weiss-Kruszka syndrome (WSKA), a rare neurodevelopmental disorder caused by ZNF462 mutations. Using genome-wide methylation profiling on blood samples from affected individuals, the authors found a reproducible differential methylation pattern that could serve as a diagnostic biomarker. This adds WSKA to the growing list of disorders with epigenetic signatures, improving diagnostic accuracy and understanding of the condition.",
+      "summary": "This study identifies a distinct DNA methylation episignature for Weiss-Kruszka syndrome (WSKA), a rare neurodevelopmental disorder caused by ZNF462 mutations. Using genome-wide methylation profiling on blood samples from 9 patients, the authors found a reproducible differential methylation pattern that could serve as a diagnostic biomarker. This adds WSKA to the growing list of disorders with epigenetic signatures, improving diagnostic accuracy and potentially aiding in variant classification.",
       "significance": "Medium",
       "tags": [
         "epigenomics",
         "clinical",
-        "tool"
+        "neurodevelopment"
       ]
     },
     {
@@ -739,7 +739,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42512367/"
         }
       ],
-      "summary": "This pilot study investigates how azacytidine treatment in higher-risk myelodysplastic syndromes affects RNA and mitochondrial reprogramming beyond its known DNA demethylation effects. Using LC-MS/MS, the authors measured RNA and DNA modifications before and after treatment in a small cohort, revealing additional molecular pathways responsive to the drug.",
+      "summary": "This pilot study used LC-MS/MS to measure RNA and DNA modifications in higher-risk myelodysplastic syndrome patients before and after azacytidine treatment, revealing AZA-responsive changes in RNA modifications and mitochondrial reprogramming beyond its known DNA demethylation effects. The findings suggest additional molecular mechanisms of azacytidine action that could inform treatment response monitoring.",
       "significance": "Medium",
       "tags": [
         "epigenomics",
@@ -770,7 +770,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42468209/"
         }
       ],
-      "summary": "This review examines how natural compounds can modulate epigenetic mechanisms—such as DNA methylation, histone modifications, and non-coding RNAs—in gynecological cancers, with a focus on overcoming chemoresistance and advancing precision oncology. The authors identify a knowledge gap: direct evidence for natural compounds modulating m6A RNA modifications in these cancers is still lacking.",
+      "summary": "This review examines how natural compounds can modulate epigenetic mechanisms—such as DNA methylation, histone modifications, and non-coding RNAs—to combat chemoresistance in gynaecological cancers. It highlights a critical knowledge gap: no direct evidence yet shows natural compounds affecting m6A RNA modifications in these cancers, suggesting a promising avenue for future research in precision oncology.",
       "significance": "Medium",
       "tags": [
         "epigenomics",
@@ -801,7 +801,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42523285/"
         }
       ],
-      "summary": "This preprint presents a gene model for the raptor ortholog in Drosophila eugracilis, generated as part of a course-based undergraduate research effort to study insulin/IGF signaling evolution across Drosophila. The work provides an annotated gene model that contributes to a comparative genomics dataset for this pathway.",
+      "summary": "This preprint presents a gene model for the raptor ortholog in Drosophila eugracilis, annotated as part of a course-based undergraduate research project. The work contributes to a dataset for studying the evolution of the insulin/insulin-like growth factor signaling pathway across Drosophila species.",
       "significance": "Low",
       "tags": [
         "genomics",
@@ -831,7 +831,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42515778/"
         }
       ],
-      "summary": "This paper presents an integrative deep learning framework that connects noncoding genetic variation to drug repurposing by predicting allele-specific enhancer activity and linking it to candidate therapeutics via transcription factor- and gene-based prioritization strategies. The approach addresses the challenge that most GWAS variants are noncoding, offering a new way to translate regulatory variation into therapeutic hypotheses.",
+      "summary": "This paper presents an integrative deep learning framework that links noncoding genetic variants to drug repurposing opportunities by predicting allele-specific enhancer activity and prioritizing candidate therapeutics via transcription factor- and gene-based strategies. The approach addresses the challenge that most GWAS risk variants are noncoding, offering a new computational route to connect regulatory variation with therapeutic hypotheses.",
       "significance": "Medium",
       "tags": [
         "deep-learning",
@@ -862,7 +862,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42463712/"
         }
       ],
-      "summary": "This study introduces a long-read sequencing approach for single-cell-derived sublines to capture the full spectrum of genomic and epigenomic alterations during tumor evolution, overcoming short-read limitations. Applying it to 23 melanoma sublines, the authors reveal divergent and parallel evolutionary trajectories driven by structural variants and DNA methylation changes.",
+      "summary": "This study introduces a long-read sequencing approach for single-cell-derived sublines to comprehensively capture genomic and epigenomic alterations during tumor evolution. Applying it to 23 melanoma sublines reveals both divergent and parallel evolutionary trajectories, highlighting the power of long-read sequencing to resolve complex structural variants and methylation changes that short-read methods miss.",
       "significance": "High",
       "tags": [
         "genomics",
@@ -893,8 +893,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42462715/"
         }
       ],
-      "summary": "This study uses CROP-seq, a single-cell CRISPR screen, to identify epigenetic regulators essential for the naive-to-primed pluripotency transition in mouse embryonic stem cells. They uncover an antagonistic relationship between Nsd1-mediated H3K36me2 and Ezh2-mediated H3K27me3 that orchestrates this transition, providing new insights into the epigenetic control of pluripotency.",
-      "significance": "High",
+      "summary": "This study uses CROP-seq, a single-cell CRISPR screen, to identify epigenetic regulators essential for pluripotency in mouse embryonic stem cells. They uncover an antagonistic relationship between Nsd1-mediated H3K36me2 and Ezh2-mediated H3K27me3 that orchestrates the transition between naive and primed pluripotency states.",
+      "significance": "Medium",
       "tags": [
         "single-cell",
         "CRISPR",
@@ -924,7 +924,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42510959/"
         }
       ],
-      "summary": "This study investigates how salinity stress shapes transcriptomic regulatory networks in Salicornia spp., linking reactive oxygen species (ROS) signaling, antioxidant defense, and cell wall remodeling to biomass processability traits such as water retention, texture, and extractability. It highlights that salt-induced gene expression changes go beyond tolerance mechanisms to directly influence the industrial usability of halophytic biomass.",
+      "summary": "This study investigates how salinity stress shapes transcriptomic regulatory networks centered on reactive oxygen species (ROS) in Salicornia spp., linking salt tolerance, antioxidant defense, and biomass processability traits. It highlights that salt-induced gene regulation affects not only survival but also downstream biomass properties like water retention, texture, and extractability, which are relevant for industrial use.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -955,12 +955,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42513473/"
         }
       ],
-      "summary": "This review examines the use of circulating tumor DNA (ctDNA) as a liquid biopsy biomarker in diffuse large B-cell lymphoma (DLBCL), highlighting its potential for non-invasive tumor profiling, treatment response monitoring, and detection of minimal residual disease. The authors discuss various analytical platforms, from PCR to next-generation sequencing, and emphasize ctDNA's role in capturing the molecular heterogeneity of DLBCL beyond standard histopathology.",
+      "summary": "This review examines the role of circulating tumor DNA (ctDNA) as a non-invasive liquid biopsy biomarker in diffuse large B-cell lymphoma (DLBCL), highlighting its utility in molecular profiling, tumor burden assessment, treatment response monitoring, and detection of minimal residual disease. The authors discuss various analytical platforms, from PCR to next-generation sequencing, and underscore ctDNA's potential to complement standard histopathology in capturing the disease's molecular heterogeneity.",
       "significance": "Medium",
       "tags": [
         "clinical",
         "cancer",
-        "genomics"
+        "review"
       ]
     },
     {
@@ -986,7 +986,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42457791/"
         }
       ],
-      "summary": "This study identifies a homozygous variant in MORF4L1, a chromatin remodeler, as the cause of a distinctive neurodevelopmental disorder with dysmorphic features in a consanguineous family. The autosomal recessive inheritance pattern is unusual for chromatin remodeling disorders, which are typically dominant, and the findings highlight the role of epigenetic dysregulation in neurodevelopmental phenotypes.",
+      "summary": "This study identifies a homozygous variant in MORF4L1, a chromatin remodeler, as the cause of a distinctive neurodevelopmental disorder with dysmorphic features in a consanguineous family. The autosomal recessive inheritance pattern is unusual for chromatin remodeling disorders, which are typically dominant. The findings expand the genetic spectrum of chromatin-related neurodevelopmental conditions.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -1017,7 +1017,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42523253/"
         }
       ],
-      "summary": "This preprint presents a gene model for the raptor ortholog in Drosophila erecta, annotated as part of a Course-based Undergraduate Research Experience (CURE) to study the evolution of the insulin/insulin-like growth factor signaling pathway across Drosophila species. The work provides a detailed gene structure annotation for this species, contributing to a comparative genomics dataset.",
+      "summary": "This preprint presents a gene model for the raptor ortholog in Drosophila erecta, characterized as part of a course-based undergraduate research effort to study the evolution of the insulin signaling pathway across Drosophila species. The work provides an annotated gene model that contributes to a comparative genomics dataset.",
       "significance": "Low",
       "tags": [
         "genomics",
@@ -1047,12 +1047,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42523430/"
         }
       ],
-      "summary": "The authors introduce amR, an R package suite that provides an integrated framework for predicting antimicrobial resistance (AMR) in bacterial pathogens, from genome data curation to interpretable predictions. Unlike existing black-box tools, amR enables identification of resistance mechanisms across species and drugs, addressing a key gap in current computational approaches.",
+      "summary": "The authors developed amR, an integrated R package suite that provides a complete framework for predicting antimicrobial resistance (AMR) in bacterial pathogens, from genome data curation to interpretable predictions. Unlike existing black-box tools, amR enables identification of resistance mechanisms across species and drugs, addressing complex multi-scale resistance traits.",
       "significance": "Medium",
       "tags": [
         "tool",
         "genomics",
-        "machine-learning"
+        "microbiology"
       ]
     },
     {
@@ -1078,12 +1078,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42439459/"
         }
       ],
-      "summary": "This paper introduces a new framework for comparing bacterial methylomes at population scale, focusing on methylation systems that are enzymatically encoded and broadly conserved. It provides a principled strategy to prioritize these systems, enabling large-scale epigenetic comparisons in bacteria.",
+      "summary": "This paper presents a new computational framework for comparing bacterial methylomes at population scale, focusing on methylation systems that are enzymatically encoded and broadly conserved. The approach enables principled prioritization of epigenetic systems across many bacterial strains, addressing a major gap in bacterial epigenomics.",
       "significance": "High",
       "tags": [
         "epigenomics",
         "microbiology",
-        "methodology"
+        "tool"
       ]
     },
     {
@@ -1109,12 +1109,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42510683/"
         }
       ],
-      "summary": "This study constructs a high-quality reference panel for dairy goats by integrating 1,092 samples from multiple populations and public resequencing data, and evaluates different phasing and imputation strategies for low-coverage whole-genome sequencing and SNP-array data. The work provides a valuable resource for genotype imputation and genomic selection in dairy goats, addressing the previous lack of comprehensive reference panels in this species.",
+      "summary": "This study constructed a high-quality reference panel for dairy goats by integrating 1,092 samples from multiple populations and public resequencing data, and evaluated different phasing and imputation strategies for low-coverage whole-genome sequencing and SNP-array data. The panel improves genotype imputation accuracy and provides a standardized workflow for genomic selection in dairy goats.",
       "significance": "Medium",
       "tags": [
         "genomics",
-        "database",
-        "population-genetics"
+        "population-genetics",
+        "tool"
       ]
     },
     {
@@ -1140,7 +1140,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42511545/"
         }
       ],
-      "summary": "T-DNA Analyzer is a new bioinformatics pipeline that uses long-read sequencing data to comprehensively characterize T-DNA insertion sites in transgenic crops, overcoming limitations of traditional PCR-based methods. It filters host-homologous vector sequences to reduce false positives and provides detailed insertion site reports, facilitating safety assessments of genetically modified crops.",
+      "summary": "T-DNA Analyzer is a new bioinformatics pipeline that uses long-read sequencing data to characterize T-DNA insertion sites in transgenic crops, overcoming the limitations of traditional PCR-based methods. It filters out host-homologous vector sequences to reduce false positives and provides comprehensive insertion site reports, facilitating safety assessments of genetically modified crops.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -1171,7 +1171,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42432620/"
         }
       ],
-      "summary": "This study developed a non-invasive machine learning model that combines local epigenetic markers (CDO1 methylation in exfoliated cells) with systemic metabolic indicators to triage patients with abnormal uterine bleeding for endometrial cancer, potentially reducing the need for invasive biopsies. The model is interpretable, offering a practical tool for clinical decision-making.",
+      "summary": "This study developed a non-invasive machine learning model that combines local epigenetic markers (CDO1 methylation in exfoliated cells) with systemic metabolic indicators to triage patients with abnormal uterine bleeding for endometrial cancer, potentially reducing the need for invasive biopsies. The model offers an interpretable approach that could improve early detection and patient stratification.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -1233,7 +1233,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42465957/"
         }
       ],
-      "summary": "This preprint introduces a generator-matrix causal-inference framework to separate aging biomarkers that merely predict mortality from latent dynamics that causally drive it, applied to human data. The framework distinguishes measurable from causal components of aging and tests competing theories of aging, offering a new way to evaluate whether epigenetic clocks and other biomarkers reflect true causal mechanisms.",
+      "summary": "This preprint introduces a generator-matrix causal-inference framework to separate aging biomarkers that merely predict mortality from latent dynamics that causally drive it. Applied to human data, it quantifies the measurable fraction of mortality risk and tests competing theories of aging, offering a new way to evaluate the causal role of epigenetic clocks and other biomarkers.",
       "significance": "High",
       "tags": [
         "aging",
@@ -1268,8 +1268,8 @@
       "significance": "High",
       "tags": [
         "database",
-        "genomics",
-        "cancer"
+        "cancer",
+        "transcriptomics"
       ]
     },
     {
@@ -1295,7 +1295,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42419550/"
         }
       ],
-      "summary": "This study provides a comprehensive multi-omics characterization of the epigenetic changes induced by sulfur mustard exposure in human keratinocytes, revealing coordinated alterations in histone modifications, DNA methylation, and non-coding RNAs that may underlie its long-term toxic effects. The findings highlight epigenetic dysregulation as a central mechanism of SM toxicity beyond direct DNA damage.",
+      "summary": "This study provides a comprehensive multi-omics characterization of epigenetic changes in human keratinocytes exposed to sulfur mustard, revealing coordinated alterations in histone modifications, DNA methylation, and non-coding RNAs that may underlie the chemical's long-term toxic effects. The findings highlight epigenetic dysregulation as a central mechanism of SM toxicity beyond direct DNA damage.",
       "significance": "Medium",
       "tags": [
         "epigenomics",
@@ -1326,43 +1326,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42410237/"
         }
       ],
-      "summary": "OMIDIENT is a new computational method that integrates multiple types of cancer omics data (e.g., genomics, transcriptomics, epigenomics) using a Dirichlet auto-encoder network. It performs unsupervised representation learning to generate sparse, compositional latent representations, enabling a more comprehensive understanding of cancer.",
+      "summary": "OMIDIENT is a new deep generative model that integrates multiple omics data types (genomics, transcriptomics, epigenomics) for cancer analysis using Dirichlet auto-encoder networks. It learns sparse, compositional latent representations that capture shared and complementary information across molecular layers, improving unsupervised cancer subtyping and interpretation.",
       "significance": "Medium",
       "tags": [
         "multi-omics",
-        "machine-learning",
+        "deep-learning",
         "cancer"
-      ]
-    },
-    {
-      "id": "20a01feec63b",
-      "title": "Somatic mobility of transposons is explosive and shaped by distinct integration biases in Arabidopsis thaliana.",
-      "abstract": "The movement of transposable elements (TEs) in somatic cells generates genetic and phenotypic diversity across the soma of individual organisms. This process is especially important in plants that display a sessile lifestyle, can regenerate from somatic cells, and continuously establish their germline from somatic stem cells. Yet, the scale and integration biases by which TEs may shape the plant soma remain unknown.",
-      "journal": "Genome biology",
-      "doi": "10.1186/s13059-026-04149-0",
-      "pmid": "42401980",
-      "first_author": "Ambreen H",
-      "pub_date": "2026-Jul-04",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1186%2Fs13059-026-04149-0",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1186%2Fs13059-026-04149-0"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42401980/"
-        }
-      ],
-      "summary": "This study reveals that transposable element (TE) movement in somatic cells of Arabidopsis thaliana is far more extensive than previously appreciated, generating substantial genetic diversity within individual plants. The authors identify distinct integration biases that shape where these mobile elements insert, which has important implications for plant development, regeneration, and evolution.",
-      "significance": "High",
-      "tags": [
-        "genomics",
-        "evolution",
-        "plants"
       ]
     },
     {
@@ -1388,12 +1357,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42507729/"
         }
       ],
-      "summary": "The authors developed nucDetective, a computational pipeline for high-resolution analysis of chromatin structure, assessing nucleosome positioning, occupancy, fuzziness, and array regularity. They benchmarked it on the malaria parasite Plasmodium falciparum, revealing its unique chromatin landscape with unstable nucleosomes during the erythrocytic development cycle. This tool provides a comprehensive approach to studying chromatin architecture and dynamics in organisms with atypical chromatin features.",
+      "summary": "The authors developed nucDetective, a computational pipeline for high-resolution analysis of chromatin structure, including nucleosome positioning, occupancy, fuzziness, and array regularity. They benchmarked it on the malaria parasite Plasmodium falciparum, revealing its unique chromatin landscape with unstable nucleosomes during the erythrocytic development cycle.",
       "significance": "Medium",
       "tags": [
         "genomics",
-        "tool",
-        "methodology"
+        "epigenomics",
+        "tool"
       ]
     },
     {
@@ -1419,12 +1388,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42411057/"
         }
       ],
-      "summary": "This review discusses how mechanical cues from the cellular environment are transmitted to the nucleus to alter chromatin organization and accessibility, impacting tissue regeneration and disease. It highlights the need for and reviews current technologies that apply mechanical perturbations and characterize the resulting nuclear and chromatin changes.",
+      "summary": "This review discusses how mechanical cues from the cellular environment are transmitted to the nucleus to reorganize chromatin and affect gene expression, highlighting the importance of this process in tissue regeneration and disease. It surveys current technologies for applying mechanical perturbations and for characterizing the resulting changes in nuclear structure and chromatin organization, providing a resource for researchers in mechanobiology.",
       "significance": "Medium",
       "tags": [
         "review",
-        "mechanobiology",
-        "chromatin"
+        "methodology",
+        "epigenomics"
       ]
     },
     {
@@ -1450,7 +1419,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42402925/"
         }
       ],
-      "summary": "This review discusses how epigenetic mechanisms, including DNA methylation, histone modifications, and chromatin organization, regulate vertebrate limb development by controlling progenitor cell competence and response to morphogenetic signals. It highlights the role of chromatin-based processes in integrating positional and temporal cues to generate complex limb structures.",
+      "summary": "This review discusses how epigenetic mechanisms, including DNA methylation, histone modifications, and chromatin organization, coordinate the spatial and temporal precision of gene expression during vertebrate limb development. It highlights how these chromatin-based processes define progenitor cell competence to respond to morphogenetic signals, integrating positional and temporal cues to generate complex limb structures.",
       "significance": "Medium",
       "tags": [
         "epigenomics",
@@ -1481,8 +1450,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42502630/"
         }
       ],
-      "summary": "This dataset provides whole-genome sequences of 21 bacterial isolates from urine samples collected in Burkina Faso, generated using Oxford Nanopore sequencing. It includes identification and antibiotic susceptibility data, offering a resource for studying uropathogens in this region.",
-      "significance": "Low",
+      "summary": "This dataset provides whole-genome sequences of 21 bacterial isolates from urine samples collected in Burkina Faso, generated using Oxford Nanopore sequencing. The data will be useful for studying antibiotic resistance and genomic diversity of uropathogens in West Africa.",
+      "significance": "Medium",
       "tags": [
         "genomics",
         "microbiology",
@@ -1512,7 +1481,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/41770519/"
         }
       ],
-      "summary": "This exploratory study performs genome-wide DNA methylation analysis on pediatric medulloblastomas from a Brazilian cohort, assessing whether established epigenetic markers and classification schemes perform well in this underrepresented population. The findings provide initial evidence on the applicability of current molecular classification tools in diverse genetic backgrounds, highlighting potential differences or confirmations of existing subtypes.",
+      "summary": "This exploratory study performs genome-wide DNA methylation analysis on pediatric medulloblastomas from a Brazilian cohort, assessing whether established epigenetic classification markers perform reliably in this underrepresented population. The findings provide initial evidence on the applicability of current methylation-based molecular subtyping in a Latin American context, highlighting potential differences or confirmations relative to high-income country reference datasets.",
       "significance": "Medium",
       "tags": [
         "epigenomics",
@@ -1543,12 +1512,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42541181/"
         }
       ],
-      "summary": "This study identified novel TP63 gene variants in three Chinese families with split-hand/foot malformation (SHFM), a congenital limb defect. The findings expand the known mutation spectrum of TP63 and provide new insights for genetic diagnosis of SHFM.",
+      "summary": "This study identified novel TP63 gene variants in three Chinese families with split-hand/foot malformation (SHFM), expanding the known mutation spectrum of this congenital limb defect. The findings provide new genetic evidence for diagnosis and genetic counseling in affected families.",
       "significance": "Medium",
       "tags": [
         "genomics",
         "clinical",
-        "population-genetics"
+        "development"
       ]
     },
     {
@@ -1574,7 +1543,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42487679/"
         }
       ],
-      "summary": "This study sequenced and characterized two Bacillus licheniformis strains isolated from Yellowstone hot springs using a hybrid approach combining Oxford Nanopore and Illumina sequencing. The genomes were assembled into near-complete sizes, providing a foundation for exploring their biotechnological and biosynthetic potential.",
+      "summary": "This study sequenced and characterized two Bacillus licheniformis strains isolated from Yellowstone hot springs using a hybrid long-read and short-read assembly approach. The genomes were assembled and analyzed, revealing potential biosynthetic gene clusters relevant to drug discovery and biotechnology.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -1605,7 +1574,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42483414/"
         }
       ],
-      "summary": "This case report identifies a novel compound heterozygous mutation in the NPHP4 gene (c.2611C>T/p.R871X and c.2768G>A/p.R923H) in a Chinese child with nephronophthisis and proteinuria, using whole exome sequencing and Sanger sequencing. The finding expands the mutational spectrum of NPHP4 and highlights the utility of whole exome sequencing for diagnosing rare inherited kidney disorders.",
+      "summary": "This case report describes a Chinese child with nephronophthisis and proteinuria, in whom whole exome sequencing identified a novel compound heterozygous mutation in the NPHP4 gene (c.2611C>T/p.R871X and c.2768G>A/p.R923H). The finding expands the mutational spectrum of NPHP4 and highlights the utility of whole exome sequencing for diagnosing rare genetic kidney disorders.",
       "significance": "Low",
       "tags": [
         "genomics",
@@ -1635,7 +1604,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42500328/"
         }
       ],
-      "summary": "This study integrates genome-wide DNA methylation and transcriptomic data from bladder cancer tumors to identify genes with concordant epigenetic and expression changes, then uses machine learning to build a lipid-metabolic gene signature with prognostic and potentially therapeutic utility. The approach demonstrates how epigenomics-guided multi-omics integration can uncover functionally relevant biomarkers in a heterogeneous cancer.",
+      "summary": "This study integrates genome-wide DNA methylation and transcriptomic data from bladder cancer tumors to identify genes with coordinated epigenetic and expression changes, then uses machine learning to build a lipid-metabolic gene signature with prognostic and potentially therapeutic relevance. The approach highlights how epigenomically informed multi-omics integration can uncover functionally meaningful biomarkers in a heterogeneous cancer.",
       "significance": "Medium",
       "tags": [
         "epigenomics",
@@ -1666,7 +1635,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42454000/"
         }
       ],
-      "summary": "This review proposes a 'Hierarchical Regulation Model' that positions the dorsal root ganglion (DRG) as a central computational hub for peripheral sensitization, integrating ion channel remodeling, transcriptional changes, and translational regulation into a systemic framework. It aims to address the high attrition rate of analgesic candidates by providing a more comprehensive, spatiotemporal understanding of nociception beyond traditional rodent models.",
+      "summary": "This review proposes a 'Hierarchical Regulation Model' that positions the dorsal root ganglion (DRG) as a central hub for peripheral sensitization, integrating ion channel remodeling, transcriptional changes, and other mechanisms into a three-tier framework. It aims to address the high failure rate of analgesic clinical trials by providing a more systemic understanding of nociception beyond reductionist rodent models.",
       "significance": "Medium",
       "tags": [
         "systems-biology",
