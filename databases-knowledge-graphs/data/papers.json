@@ -1,6 +1,6 @@
 {
   "channel": "databases-knowledge-graphs",
-  "generated_at": "2026-08-04T20:27:59.130605",
+  "generated_at": "2026-08-05T20:24:29.511764",
   "count": 27,
   "papers": [
     {
@@ -26,7 +26,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42534443/"
         }
       ],
-      "summary": "This review discusses how multi-omics and systems biology have advanced our understanding of fermentation microbiomes but highlights gaps in causal validation and scale-up. It proposes that large language models can serve as orchestrators to integrate data, build hybrid AI-mechanistic models, and accelerate hypothesis generation for industrial translation.",
+      "summary": "This review discusses how multi-omics and systems biology have advanced our understanding of fermentation microbiomes but notes that industrial translation is limited by fragmented data and scale-up challenges. It proposes that large language models can serve as orchestrators to integrate data, build hybrid AI-mechanistic models, and accelerate hypothesis generation for more causal and scalable microbiome design.",
       "significance": "Medium",
       "tags": [
         "microbiome",
@@ -57,41 +57,10 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42509007/"
         }
       ],
-      "summary": "This qualitative study explores the lived experiences of triage nurses at a tertiary care center to identify factors that influence the triage system. The findings provide insights into the challenges and facilitators perceived by nurses, which can inform improvements in triage processes and patient care.",
+      "summary": "This qualitative study explores the lived experiences of triage nurses at a tertiary care center to identify factors that influence the triage system. The findings highlight key determinants such as resource availability, communication challenges, and nurse workload, which can inform improvements in triage processes and patient care.",
       "significance": "Low",
       "tags": [
         "clinical"
-      ]
-    },
-    {
-      "id": "d4c3f1352423",
-      "title": "MPLID (Membrane Protein-Lipid Interaction Database): A Large-Scale Experimental Resource of Residue-Level Protein-Lipid Contacts.",
-      "abstract": "Membrane proteins constitute approximately 20-30% of all proteomes and represent over 60% of current drug targets. Although protein-lipid interactions play important structural and regulatory roles in membrane-associated proteins, most existing structural resources focus on identifying whether a residue lies within a membrane region, typically inferred from computational hydrophobicity-based positioning algorithms. This approach does not directly address a distinct biological question: which residues at the protein surface make direct physical contact with lipid molecules? Answering this quest",
-      "journal": "GigaScience",
-      "doi": "10.1093/gigascience/giag080",
-      "pmid": "42508035",
-      "first_author": "Omage FB",
-      "pub_date": "2026-Jul-27",
-      "source": "PubMed",
-      "url": "https://doi.org/10.1093%2Fgigascience%2Fgiag080",
-      "links": [
-        {
-          "type": "doi",
-          "label": "DOI",
-          "url": "https://doi.org/10.1093%2Fgigascience%2Fgiag080"
-        },
-        {
-          "type": "pubmed",
-          "label": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/42508035/"
-        }
-      ],
-      "summary": "This paper introduces MPLID, a new database that catalogs residue-level contacts between membrane proteins and lipid molecules, derived from experimental structural data. It addresses a gap in existing resources by focusing on direct physical protein-lipid interactions rather than computationally inferred membrane regions, providing a valuable resource for studying membrane protein structure and function.",
-      "significance": "Medium",
-      "tags": [
-        "database",
-        "structural-biology",
-        "membrane-proteins"
       ]
     },
     {
@@ -117,7 +86,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42486102/"
         }
       ],
-      "summary": "HIT-MAP is a scalable, end-to-end framework that combines endogenous epitope tagging with optimized immunofluorescence imaging and affinity purification-mass spectrometry to enable multimodal mapping of subcellular protein organization at lower cost and without target-specific antibodies. The authors demonstrate its feasibility on a pilot set of 16 proteins, providing a unified pipeline for coordinated data acquisition that could make such mapping accessible beyond large consortia.",
+      "summary": "HIT-MAP is a scalable, end-to-end framework that combines endogenous epitope tagging with optimized immunofluorescence imaging and affinity purification-mass spectrometry to enable multimodal mapping of subcellular protein organization. It reduces per-target costs and reliance on antibodies or cDNA libraries, making such mapping accessible beyond large consortia. The pilot application to 16 proteins demonstrates its feasibility for broader use.",
       "significance": "High",
       "tags": [
         "proteomics",
@@ -184,7 +153,7 @@
       "tags": [
         "spatial-omics",
         "deep-learning",
-        "methodology"
+        "tool"
       ]
     },
     {
@@ -210,11 +179,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42471636/"
         }
       ],
-      "summary": "This paper introduces AMIUgraph, a framework for benchmarking graph-based machine learning models (KGEs and GNNs) in healthcare, focusing on utility-driven evaluation that considers both predictive performance and real-world deployment constraints. It addresses the lack of systematic, clinically grounded comparisons across heterogeneous healthcare graphs.",
+      "summary": "This paper introduces AMIUgraph, a framework for benchmarking graph-based machine learning models (KGEs and GNNs) in healthcare, focusing on both predictive performance and real-world deployment constraints. It addresses the lack of systematic, clinically grounded comparisons across heterogeneous healthcare graphs.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "tool",
+        "graph",
         "clinical"
       ]
     },
@@ -241,12 +210,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42471351/"
         }
       ],
-      "summary": "ViBioChain is a proposed blockchain-based architecture designed to address privacy, ethical governance, and data integrity challenges in personalized gene editing. It integrates quantum fingerprinting, zero-knowledge proofs, and federated learning to enable secure and compliant genomic data handling, though it is a conceptual framework without experimental validation.",
-      "significance": "Low",
+      "summary": "ViBioChain is a proposed blockchain-based architecture designed to address privacy, ethical governance, and data integrity challenges in personalized gene editing. It integrates components such as quantum fingerprinting, zero-knowledge proofs, and federated learning to enable secure and auditable genomic data handling.",
+      "significance": "Medium",
       "tags": [
         "genomics",
-        "tool",
-        "clinical"
+        "synthetic-biology",
+        "methodology"
       ]
     },
     {
@@ -272,7 +241,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42457406/"
         }
       ],
-      "summary": "LivestockDev is a new integrative multi-omics database that compiles and standardizes early embryonic development data across five major livestock species (cattle, sheep, goats, pigs, and horses). It provides a centralized resource for data integration and cross-species comparisons, aiming to overcome the lack of systematic curation and standardized analysis in livestock embryogenesis research.",
+      "summary": "LivestockDev is a new integrative multi-omics database that compiles and standardizes early embryonic development data from five major livestock species (cattle, sheep, goats, pigs, and horses). It enables systematic cross-species comparisons and data integration, addressing the lack of curated resources in livestock embryogenesis research.",
       "significance": "Medium",
       "tags": [
         "database",
@@ -303,11 +272,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42467724/"
         }
       ],
-      "summary": "This scoping review maps the current state of high-throughput omics research on the human ovary across the female lifespan, highlighting which molecular layers (e.g., transcriptomics, proteomics) have been studied and where gaps or inconsistencies remain. It underscores the need for more integrated and standardized multi-omics approaches to fully understand ovarian function and aging.",
+      "summary": "This scoping review maps the cellular and molecular landscape of the human ovary across the female lifespan, highlighting advances from high-throughput omics technologies while noting inconsistencies and gaps in the current literature. It underscores the need for more integrated and standardized approaches to fully understand ovarian function in the context of ART, fertility preservation, and postmenopausal health.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
-        "proteomics",
+        "single-cell",
         "review"
       ]
     },
@@ -334,7 +303,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42467611/"
         }
       ],
-      "summary": "This review examines how FAIR data principles are currently applied in AI-driven plant biology research, arguing that data structure and interoperability—not algorithms—are now the main bottleneck for progress. It provides case studies showing how different FAIR implementations shape which AI analyses are feasible, offering guidance for improving data practices in the field.",
+      "summary": "This review examines how FAIR data principles are currently applied in AI-driven plant research, arguing that data structure and interoperability now constrain progress more than algorithms. It discusses current practices and case studies, highlighting how different FAIR implementations shape which AI analyses are feasible.",
       "significance": "Medium",
       "tags": [
         "review",
@@ -365,8 +334,8 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42457854/"
         }
       ],
-      "summary": "This paper proposes an ontology-driven framework for energy-efficient security attack identification and detection (SAID) in 5G and IoT networks, combining cryptographic algorithms to balance high detection accuracy with low energy consumption. The framework is designed for resource-constrained smart city environments.",
-      "significance": "Medium",
+      "summary": "This paper proposes an ontology-driven framework for energy-efficient security attack identification and detection (SAID) in 5G and IoT networks, combining cryptographic algorithms to balance detection accuracy with low energy consumption. The framework aims to address cybersecurity challenges in resource-constrained smart city environments.",
+      "significance": "Low",
       "tags": [
         "machine-learning",
         "network-analysis",
@@ -396,7 +365,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42523250/"
         }
       ],
-      "summary": "This paper introduces RomicsProcessor, a new bioinformatics package designed to enforce FAIR principles in multi-omics and spatial-omics data analysis. The core innovation is the 'Romics_object', a self-contained digital artifact that records the complete data processing history, aiming to improve computational reproducibility by design.",
+      "summary": "This paper introduces RomicsProcessor, a new R package designed to enforce FAIR principles in multi-omics and spatial-omics data analysis. The package uses a self-contained 'Romics_object' that records the full data processing history, aiming to improve computational reproducibility in the field.",
       "significance": "Medium",
       "tags": [
         "tool",
@@ -427,7 +396,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42449128/"
         }
       ],
-      "summary": "This study analyzed gene expression datasets from osteoarthritis (OA) synovial tissues to identify a novel 4-gene signature associated with immune cell infiltration. The authors combined bioinformatics analyses with experimental validation, providing potential biomarkers and insights into the immune mechanisms underlying OA pathogenesis.",
+      "summary": "This study analyzed gene expression data from osteoarthritis synovial tissues and identified a novel 4-gene signature associated with immune cell infiltration. The findings suggest these genes may play a role in the immune mechanisms underlying osteoarthritis, providing potential biomarkers or therapeutic targets.",
       "significance": "Medium",
       "tags": [
         "transcriptomics",
@@ -458,7 +427,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42448701/"
         }
       ],
-      "summary": "VITAGRAPH is a new comprehensive biological knowledge graph that integrates diverse biomedical data to support machine learning tasks such as gene-disease association prediction and drug repurposing. It provides a high-quality, multi-purpose resource for network medicine and computational biology research.",
+      "summary": "VITAGRAPH is a comprehensive biological knowledge graph that integrates diverse biomedical data to support machine learning tasks such as gene-disease association prediction, drug repurposing, and polypharmacy side-effect analysis. It provides a high-quality, multi-purpose resource for network medicine and computational biology research.",
       "significance": "Medium",
       "tags": [
         "database",
@@ -489,7 +458,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42340183/"
         }
       ],
-      "summary": "This paper introduces tmQM-RDF, a knowledge graph dataset that represents transition metal complexes in a structured, machine-readable format. It aims to facilitate machine learning and computational analysis of these compounds by organizing their chemical and property data into a knowledge graph.",
+      "summary": "The paper introduces tmQM-RDF, a new knowledge graph dataset that represents transition metal complexes (TMCs) in a structured, machine-readable format. This resource aims to facilitate machine learning and computational analysis of TMCs by organizing diverse chemical information into a queryable graph, supporting applications in catalysis and medicinal chemistry.",
       "significance": "Medium",
       "tags": [
         "database",
@@ -520,12 +489,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42429477/"
         }
       ],
-      "summary": "KG-Microbe is a new framework for building modular and scalable knowledge graphs tailored to microbiome and microbial sciences, addressing the challenge of integrating diverse data types (e.g., host-microbe interactions, genetics, metabolism) at scale. It provides a structured approach to represent millions of microbial interactions and associated biological information, enabling more comprehensive analyses of complex mechanisms in health and environment.",
+      "summary": "KG-Microbe is a new framework for building modular and scalable knowledge graphs tailored to microbiome and microbial sciences, addressing the challenge of integrating diverse biological data types. It enables researchers to combine information about microbial species, their interactions, and host/environmental factors to support deeper mechanistic understanding.",
       "significance": "Medium",
       "tags": [
         "database",
-        "microbiome",
-        "systems-biology"
+        "tool",
+        "microbiome"
       ]
     },
     {
@@ -551,12 +520,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42426062/"
         }
       ],
-      "summary": "This paper presents a multimodal framework that fuses video, audio, text, and physiological signals from classrooms to assess teacher competency more comprehensively. Using modality-specific encoders and cross-modal attention, the system adaptively weights each data stream to improve assessment accuracy and recommends precision training resources. The approach addresses limitations of conventional evaluation tools by capturing a broader range of teaching behaviors.",
+      "summary": "This paper presents a multimodal framework that fuses video, audio, text, and physiological signals from classrooms to assess teacher competency more comprehensively. Using modality-specific encoders and cross-modal attention, the system adaptively weights each data stream to improve assessment accuracy and enable precision training recommendations.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
-        "methodology",
-        "clinical"
+        "multimodal",
+        "education"
       ]
     },
     {
@@ -582,7 +551,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42219749/"
         }
       ],
-      "summary": "This perspective argues that modern plant breeding has entered a multimodal data era, yet most genomic prediction models still rely on a single data type. The authors advocate for integrating genomics, enviromics, and phenomics to improve prediction accuracy and breeding efficiency.",
+      "summary": "This perspective argues that modern plant breeding should move beyond genomics-only prediction models and integrate multiple data types—genomics, enviromics (environmental data), and phenomics (high-throughput phenotyping)—to improve accuracy and resilience. The authors highlight a disconnect between the multimodal data now routinely collected in breeding programs and the largely unimodal prediction models still in use, and advocate for a shift toward integrated multimodal approaches.",
       "significance": "Medium",
       "tags": [
         "genomics",
@@ -613,7 +582,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42496598/"
         }
       ],
-      "summary": "PathMED is a new R toolkit that simplifies single-sample molecular scoring and machine learning with omics data, addressing the lack of unified tools for this purpose. It provides a streamlined interface for applying various scoring methods and integrating them into downstream analyses like phenotype prediction and disease stratification.",
+      "summary": "PathMED is a new R toolkit that simplifies single-sample molecular scoring and machine learning with omics data, addressing the lack of unified tools for this purpose. It integrates multiple scoring methods and provides a streamlined workflow for phenotype prediction and disease stratification, enhancing interpretability and cross-dataset generalizability.",
       "significance": "Medium",
       "tags": [
         "tool",
@@ -644,12 +613,12 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42444595/"
         }
       ],
-      "summary": "This study used immunoprecipitation followed by LC-MS/MS to identify candidate proteins associated with TPL2 (MAP3K8) in porcine PK-15 cells, providing the first dataset of TPL2-interacting proteins in swine. The findings offer a resource for understanding TPL2's roles in antiviral immunity and MAPK/NF-κB signaling in pigs.",
+      "summary": "This study provides the first candidate interactome of TPL2 (MAP3K8) in porcine PK-15 cells using immunoprecipitation coupled with LC-MS/MS, identifying potential TPL2-associated proteins that may regulate MAPK/NF-κB signaling and antiviral immunity. The dataset offers a new resource for studying TPL2 function in swine and comparative biology.",
       "significance": "Medium",
       "tags": [
         "proteomics",
         "immunology",
-        "methodology"
+        "database"
       ]
     },
     {
@@ -706,11 +675,11 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42538731/"
         }
       ],
-      "summary": "This study uses integrated network analysis to characterize a coordinated regulatory axis involving miR-21, matrix metalloproteinases (MMPs), and vascular endothelial growth factor (VEGF) in gastric cancer, providing systems-level insights into their interactions. The findings suggest that these molecules function as a networked axis, potentially offering new perspectives on gastric cancer pathogenesis.",
+      "summary": "This study uses integrated network analysis to characterize the coordinated regulatory axis involving miR-21, matrix metalloproteinases (MMPs), and vascular endothelial growth factor (VEGF) in gastric cancer. The findings suggest that these molecules function as a linked network, providing systems-level insights into gastric cancer pathogenesis.",
       "significance": "Medium",
       "tags": [
-        "cancer",
         "systems-biology",
+        "cancer",
         "network-analysis"
       ]
     },
@@ -737,12 +706,43 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42468000/"
         }
       ],
-      "summary": "This study identifies circulating multi-omic signatures associated with disease severity and cholangiocarcinoma in primary sclerosing cholangitis (PSC), a chronic liver disease. The findings reveal potential biomarkers for risk stratification and monitoring, and provide insights into the biological mechanisms driving disease progression.",
+      "summary": "This study identifies circulating multi-omic signatures associated with disease severity, inflammatory bowel disease, and cholangiocarcinoma in primary sclerosing cholangitis, potentially revealing underlying biological mechanisms and biomarkers for risk stratification. The findings may improve monitoring and early detection of complications in PSC patients.",
       "significance": "Medium",
       "tags": [
         "multi-omics",
         "biomarkers",
         "clinical"
+      ]
+    },
+    {
+      "id": "03da34c94c10",
+      "title": "Leveraging expression quantitative trait loci information in single-cell resolution to identify cell-specific genes for Basal cell carcinoma.",
+      "abstract": "Basal cell carcinoma (BCC), the most common skin cancer, is driven by UV-induced DNA damage and shaped by immune surveillance. Although GWAS has identified over 140 risk loci, their cell-type-specific effects remain obscured by tissue-level averaging.",
+      "journal": "PloS one",
+      "doi": "10.1371/journal.pone.0354887",
+      "pmid": "42550790",
+      "first_author": "Du M",
+      "pub_date": "2026--01",
+      "source": "PubMed",
+      "url": "https://doi.org/10.1371%2Fjournal.pone.0354887",
+      "links": [
+        {
+          "type": "doi",
+          "label": "DOI",
+          "url": "https://doi.org/10.1371%2Fjournal.pone.0354887"
+        },
+        {
+          "type": "pubmed",
+          "label": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42550790/"
+        }
+      ],
+      "summary": "This study integrates expression quantitative trait loci (eQTL) data with single-cell RNA sequencing to identify cell-type-specific genes associated with basal cell carcinoma (BCC) risk, overcoming the limitations of tissue-level averaging in GWAS. The approach reveals immune and stromal cell-specific gene effects that may inform targeted therapies.",
+      "significance": "Medium",
+      "tags": [
+        "single-cell",
+        "transcriptomics",
+        "cancer"
       ]
     },
     {
@@ -768,7 +768,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42487920/"
         }
       ],
-      "summary": "This pilot study evaluates an automated coding system for electronic health records, combining medical knowledge graphs with an ensemble of large language models, using synthetic data to assess its potential for rare disease registries. The hybrid approach aims to reduce the time and resources needed for manual coding, while the study highlights both opportunities and challenges for real-world implementation.",
+      "summary": "This pilot study evaluates an automated coding system for electronic health records, designed to support rare disease registries. The system uses a hybrid architecture combining medical knowledge graphs with an ensemble of three large language models, tested on synthetic data to assess feasibility and identify challenges. The findings highlight potential efficiency gains but also underscore obstacles such as accuracy, integration, and validation before real-world adoption.",
       "significance": "Medium",
       "tags": [
         "LLM",
@@ -799,7 +799,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42412889/"
         }
       ],
-      "summary": "This paper presents a medical question-answering framework that integrates multimodal knowledge graphs with a dual-layer attention mechanism to improve intent recognition, entity extraction, and cross-modal retrieval. The approach aims to reduce reliance on large-scale annotated data and enhance multi-label classification accuracy in medical QA systems.",
+      "summary": "This paper proposes a medical intelligent question-answering framework that integrates multimodal knowledge graphs and a dual-layer attention mechanism to improve intent recognition, entity extraction, and cross-modal retrieval. The approach aims to reduce reliance on large-scale annotated data and enhance multi-label classification accuracy in medical QA systems.",
       "significance": "Medium",
       "tags": [
         "machine-learning",
@@ -830,7 +830,7 @@
           "url": "https://pubmed.ncbi.nlm.nih.gov/42523660/"
         }
       ],
-      "summary": "This editorial introduces a research topic on big data in systems biology, highlighting the challenges and opportunities of integrating large-scale datasets to understand complex biological systems. It underscores the need for new computational and analytical approaches to harness big data for advancing systems-level understanding.",
+      "summary": "This editorial introduces a research topic on big data in systems biology, highlighting the challenges and opportunities of integrating large-scale datasets to understand complex biological systems. It likely discusses the need for new computational tools and frameworks to manage, analyze, and interpret diverse data types, from genomics to clinical data.",
       "significance": "Low",
       "tags": [
         "systems-biology",
